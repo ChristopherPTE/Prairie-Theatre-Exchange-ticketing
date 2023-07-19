@@ -1,0 +1,21 @@
+<field>pick(D_REQD_ACKNOWLEDGE_CRITERIA,'<!-- comment:')</field>
+<div class="form-group">
+ <div class="col-sm-offset-3 col-sm-9">
+  <div class="checkbox">
+   <div class="alert alert-warning">
+    <label for="conditions">
+     <input id="conditions" name="ORD_ACKNOWLEDGED_CONDITIONS" type="checkbox" value="1" <field>pick(SCH_ACKNOWLEDGED_CONDITIONS,'','checked')</field>/>
+     I have read and accept all
+     <!-- button trigger modal -->
+     <button class="btn btn-link" data-target="#termsConditions" data-toggle="modal" type="button">
+      Terms and Conditions of Sale
+     </button>
+     and clicking the checkbox affirms my valid electronic signature for this purchase.
+     <!--#include virtual="TMtemplates/tmCheckoutCovid19Policy.html" -->
+     <!--#include virtual="TMtemplates/tmCheckoutRefundExchangePolicy.html" -->
+    </label>
+   </div>
+  </div>
+ </div>
+</div>
+<field>pick(D_REQD_ACKNOWLEDGE_CRITERIA,'-->')</field>

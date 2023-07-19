@@ -1,0 +1,38 @@
+<!-- comment: types can be alert-warning alert-error alert-info -->
+<!-- comment: if you want larger letters make the class    lead alert  alert-xxxx   -->
+<!-- comment: or if you prefer no box, make the class    bs-callout bs-callout-info -->
+<field>pick(len(F_HTML_ERROR_MESSAGE)>0,'<!-- comment: error message')</field>
+<div class="lead alert alert-danger fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <field>F_HTML_ERROR_MESSAGE</field>
+</div>
+<field>pick(len(F_HTML_ERROR_MESSAGE)>0,' -->')</field>
+
+<field>pick(len(F_HTML_WARNING_MESSAGE)>0,'<!-- comment: warning message')</field>
+<div class="lead alert alert-warning fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <field>F_HTML_WARNING_MESSAGE</field>
+</div>
+<field>pick(len(F_HTML_WARNING_MESSAGE)>0,' -->')</field>
+
+<!-- comment: DEPRECATED: Please use F_HTML_INFO_MESSAGE instead -->
+<field>pick(len(F_HTML_PAGE_MESSAGE)>0,'<!-- comment: info message')</field>
+<div class="lead alert alert-info fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <field>F_HTML_PAGE_MESSAGE</field>
+</div>
+<field>pick(len(F_HTML_PAGE_MESSAGE)>0,' -->')</field>
+
+<field>pick(len(F_HTML_INFO_MESSAGE)>0,'<!-- comment: info message')</field>
+<div class="lead alert alert-info fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <field>F_HTML_INFO_MESSAGE</field>
+</div>
+<field>pick(len(F_HTML_INFO_MESSAGE)>0,' -->')</field>
+
+<field>pick(len(F_HTML_SUCCESS_MESSAGE)>0,'<!-- comment: success message')</field>
+<div class="lead alert alert-success fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <field>F_HTML_SUCCESS_MESSAGE</field>
+</div>
+<field>pick(len(F_HTML_SUCCESS_MESSAGE)>0,' -->')</field>

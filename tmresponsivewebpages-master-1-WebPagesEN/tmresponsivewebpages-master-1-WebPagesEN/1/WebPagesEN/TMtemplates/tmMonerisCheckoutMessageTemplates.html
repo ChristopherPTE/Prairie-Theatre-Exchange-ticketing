@@ -1,0 +1,45 @@
+<!-- comment:
+    Templates used for displaying error messages from Moneris Checkout
+
+    See: tmScripts/tmMonerisCheckoutBodyScripts.html
+-->
+<!-- comment: 
+  Template: Retry Message
+
+  retryCount: Retry count
+  maxRetries: Maximum number of retries that will be attempted
+
+  monerisTicket: Moneris Checkout Ticket #, used for reference to the checkout attempt
+  status: Return HTTP status from the request
+  errorThrown: Error message received
+-->
+<rawfield>
+ <script id="moneris-checkout-retry-message" type="text/x-handlebars-template">
+  Retrying communication with server.  Retry {{ retryCount }} of {{ maxRetries }}.  Moneris Ticket #: {{ monerisTicket }} Status: {{ status }} Error: {{ errorThrown }}
+ </script>
+</rawfield>
+
+<!-- comment:
+ Template: Server Fail Message
+
+ monerisTicket: Moneris Checkout Ticket #, used for reference to the checkout attempt
+ status: Return HTTP status from the request
+ errorThrown: Error message received
+-->
+<rawfield>
+ <script id="moneris-checkout-server-fail-message" type="text/x-handlebars-template">
+  Failed to communicate with server.  Moneris Ticket #: {{ monerisTicket }} Status: {{ status }} Error: {{ errorThrown }}
+ </script>
+</rawfield>
+
+<!-- comment:
+ Template: Fail Event Message
+
+ monerisTicket: Moneris Checkout Ticket #, used for reference to the checkout attempt
+ responseCode: Moneris Checkout response code
+-->
+<rawfield>
+ <script id="moneris-checkout-server-fail-message" type="text/x-handlebars-template">
+  Failed to communicate with server.  Moneris Ticket #: {{ monerisTicket }} Response Code: {{ responseCode }}
+ </script>
+</rawfield>

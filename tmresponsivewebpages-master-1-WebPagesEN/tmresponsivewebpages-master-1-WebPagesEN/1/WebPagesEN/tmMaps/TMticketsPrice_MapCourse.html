@@ -1,0 +1,22 @@
+<!-- comment: used for course sales methods -->
+<div class="well well-sm">
+ <form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+  <!--#include virtual="tmMaps/TMticketsPrice_MapFormFields.html" -->
+  <table class="table table-striped table-condensed table-responsive table-hover">
+   <thead>
+    <th class="text-left">
+     <field>D_SECTION_DESC</field>
+    </th>
+    <th class="text-left">
+     Select Price
+    </th>
+   </thead>
+   <tbody>
+    <field>F_HTML_BEST_SEATS_LIST</field>
+   </tbody>
+  </table>
+  <input class="btn btn-success" name="btnReserveTicket" onclick="process()" type="submit" value="Register"/>
+  <input class="btn btn-danger" name="btnReserveCancel" type="submit" value="Start Over"/>
+ </form>
+</div>
+<!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->

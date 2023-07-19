@@ -1,0 +1,17 @@
+<p>
+ <form class="form-inline" action="<field>F_HTML_FIREWALL</field>online" id="TMForm<field>SCD_SEQ</field>" method="POST">
+  <input name="SCD_SEQ" type="hidden" value="<field>SCD_SEQ</field>"/>
+  <input name="SCD_PURCHASE_GROUP" type="hidden" value="<field>SCD_PURCHASE_GROUP</field>"/>
+  <input name="hiddenSubmit" type="hidden" value="" />
+  <div class="form-group">
+   <label class="col-sm-3 control-label" for="SCD_INTENDED_FOR_C_SEQ_<field>SCD_SEQ</field>">
+    Attendee:
+   </label>
+   <div class="col-sm-9">
+    <select class="form-control" id="SCD_INTENDED_FOR_C_SEQ_<field>SCD_SEQ</field>" name="SCD_INTENDED_FOR_C_SEQ_<field>SCD_SEQ</field>" onchange="submitForm('TMForm<field>SCD_SEQ</field>','btnCartIntendedFor','YES');" size="1">
+     <field>$cinst.$getHtmlHouseholdPatronSelectionList(SCD_SEQ)</field>
+    </select>
+   </div>
+  </div>
+ </form>
+</p>

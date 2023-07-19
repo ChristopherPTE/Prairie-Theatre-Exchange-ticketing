@@ -1,0 +1,18 @@
+  <!-- comment: if you want to have a 'calendar' like date on the right of the
+              list of events, then
+                uncomment rowTicketEventCalendarButton.html
+                comment   rowTicketEventCalendarDate.html
+
+              you will need to edit tmStyles/styleCal.html and either
+              uncomment/comment the include for the customCal.css to match what you did above
+-->
+  <div class="media-body">
+   <!-- comment: #include virtual="TMtemplates/rowTicketEventCalendarButton.html" -->
+   <h4 class="media-heading">
+    <a href="<field>F_HTML_FIREWALL</field>tmEvent/tmEvent<field>PB_P_SEQ</field>.html">
+     <field>P_PLAY_TITLE</field>
+    </a>
+    <!--#include virtual="TMtemplates/rowTicketEventCalendarDate.html" -->
+   </h4>
+   <!--#include virtual="TMtemplates/rowTicketEventVenue.html" -->
+  </div>

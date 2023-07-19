@@ -1,0 +1,153 @@
+/* Generic styles */
+
+.color-box {
+  top: 0.1em;
+  width: 0.9em;
+  height: 0.9em;
+  display: inline-block;
+  background-color: #ccc;
+  border: 0.1em black solid;
+}
+
+.loader {
+  /* Grey circle on loader */
+  border: 12px solid rgba(0,0,0,0.1);
+  /* Changes .loader to be a circle instead of a square */
+  border-radius: 50%;
+  /* Width of the loader */
+  width: 60px;
+  /* Height of the loader */
+  height: 60px;
+  /* Make the circle spin, take 1s to spin 360 degrees and spin forever */
+  animation: spin 1s linear infinite;
+  /* Center spinner by automatically setting the left and right space */
+  margin-left: auto;
+  margin-right: auto;
+  /* Add some space above the spinner so it isn't right at the top of the modal */
+  margin-top: 31px;
+  /* Add some space below the spinner so the processing text isn't right below it */
+  margin-bottom: 10px;
+}
+
+.loader-info {
+  /* Quarter or circle that spins */
+  border-top: 12px solid #5bc0de;
+}
+
+.loader-warning {
+  /* Quarter or circle that spins */
+  border-top: 12px solid #f0ad4e;
+}
+
+.loader-danger {
+  /* Quarter or circle that spins */
+  border-top: 12px solid #d9534f;
+}
+
+.loader-success {
+  /* Quarter or circle that spins */
+  border-top: 12px solid #5cb85c;
+}
+
+.loader-primary {
+  /* Quarter or circle that spins */
+  border-top: 12px solid #337ab7;
+}
+
+.glyphicon-ok{
+  display: block;
+  font-size: 60px;
+  margin-top: 31px;
+  margin-bottom: 10px;
+  animation: bounceIn 1s;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.bounceIn {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-name: bounceIn;
+  animation-name: bounceIn;
+}
+
+@keyframes bounceIn {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  from {
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  75% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  90% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.embed-responsive-full-height {
+  padding-bottom: calc(100%);
+}
+
+.legal-font {
+	font-family: Book Antiqua,Palatino,Palatino Linotype,Palatino LT STD,Georgia,serif; 
+}
+
+.legal-font h1 {
+	font-size: 2em; 
+}
+
+.legal-font h2 {
+	font-size: 1.75em; 
+}
+
+.legal-font h3 {
+	font-size: 1.5em;  
+}
+
+.legal-font h4 {
+	font-size: 1.25em; 
+}
+
+.legal-font h5 {
+	font-size: 1.10em; 
+}
+
+.legal-font label { 
+  font-size: 1.2em; 
+}
+
+.legal-font-indent {
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+}
+
+.legal-font input[type='radio'] { 
+  transform: scale(1.5);
+}

@@ -1,0 +1,32 @@
+  <!-- comment: Use the hidden variable 'search' for any additional search criteria.
+
+	 The criteria that are added must be a valid SQL statement or part of a statement that can
+	 be added to whatever Theatre Manager starts with.  Your statement will be added with an  'and' condition 
+
+	 Sample usage of this extra parameter are:
+
+		Sample 1: Using the Performance flag to find out which performances match a particular letter
+
+			  <select class="form-control" name="search" id="search">
+					 <option value="">&lt;any kind&gt;</option>
+					 <option value="PB_PERF_FLAG='C'">Comedy</option>
+					 <option value="PB_PERF_FLAG='D'">Drama</option>
+					 <option value="PB_PERF_FLAG in('C','D')">Comedy or Drama</option>
+					  </select> 
+
+		Sample 2: Using the contents of play notes to see if a particular word  is in it
+
+			  <select class="form-control" name="search" id="search">
+					 <option value="">&lt;any kind&gt;</option>
+					 <option value="P_SALES_NOTES like '%comedy%'">Comedy</option>
+					 <option value="P_SALES_NOTES like '%drama%'">Drama</option>
+					  </select>
+
+		Sample 3: using search from outside the event page to limit to certain items.   Note:  you must
+				provide the parameter event=0 to access all events that match the search - and so
+				Theatre Manager knows what you want to find because the search could apply to donations,
+				gift certificates, etc.  Please refer to
+
+				http://www.theatremanagerhelp.com/frequently-asked-questions/redirecting-link-specific-page-web-listener 
+
+-->

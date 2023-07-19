@@ -1,0 +1,17 @@
+<div class="well well-sm">
+ <form action="<field>F_HTML_HOSTED_PAYMENT_POST_URL</field>" method="POST">
+  <field>F_HTML_HOSTED_PAYMENT_POST_PARAMETERS</field>
+  <input class="btn btn-success" name="submit" type="submit" value="Proceed to credit card entry" />
+  <div class="alert alert-info fade in">
+   <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+   <!--#include virtual="TMtemplates/tmCheckoutProcessingMonerisHostedMessage.html" -->
+  </div>
+ </form>
+ <form action="<field>F_HTML_FIREWALL</field>ccauth" method="POST">
+  <input name="cc" type="hidden" value="<field>F_HTML_CHECKOUT_INFO</field>" />
+  <input name="pg" type="hidden" value="checkout" />
+  <!-- comment: the cancel button must be in the form to send back the hidden fields -->
+  <input class="btn btn-danger" name="btnCheckout" onclick="process()" type="submit"
+   value="Return to step 1 to change payment options" />
+ </form>
+</div>

@@ -1,0 +1,12 @@
+<!-- comment: this handles the pagination for the event list.   look at rowTicketPageList.html for each page -->
+<field>pick(F_HTML_TOTAL_PAGES>1,'<!-- comment: no need to have pagination count if no pages')</field>
+<div class="left">
+ <!-- comment: Pagination -->
+ <ul class="pagination" data-current-page="<field>F_LINE_FIRST_DISPLAYED</field>" data-last-displayed="<field>F_LINE_LAST_DISPLAYED</field>" id="pages">
+  <field>F_HTML_PAGE_LIST</field>
+ </ul>
+ <p class="text-muted">
+  <field>con(D_EVENT,' ',F_LINE_FIRST_DISPLAYED,'-',F_LINE_LAST_DISPLAYED,' of ',F_LINE_COUNT,' displayed')</field>
+ </p>
+</div>
+<field>pick(F_HTML_TOTAL_PAGES>1,' -->')</field>

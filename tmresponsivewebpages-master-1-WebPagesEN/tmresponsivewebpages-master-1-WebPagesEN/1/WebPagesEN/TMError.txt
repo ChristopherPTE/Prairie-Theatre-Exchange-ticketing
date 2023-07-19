@@ -1,0 +1,349 @@
+ErrorNumber	ErrorText
+10001	Please log in again.
+10002	System Interruption - Please log in again.
+10003	We are sorry.  Our end of day is in progress and internet sales are temporarily halted.{br}Please try again in a few moments.
+10004	Your connection has timed out, shopping cart closed and tickets released{br}Please log in again and select the items you wish.
+10005	You have logged out of the secure area.  Please log in again to continue.
+10006	Cannot find 'Best {seats}' after back button used.{br}Any {seats} that were on hold have been released.{br}Please reserve the tickets you want again.
+10007	Cannot cancel tickets after using back in browser.{br}If they are still in your shopping cart, please release them there.
+10008	Cannot reserve tickets after using back button.{br}Please check your shopping cart.  They may already be there.
+10009	Online ticketing is temporarily unavailable while backups run.
+10010	The maximum number of items has been reached for the {order}.
+10011	Welcome to the {company} online sales site.{br}{br}Please enter your email/password from a previous visit -or-{br}choose from one of the options below.
+10012	Email and password combination is invalid.{br}<small>Use 'Forgot my Password' if needed.</small>
+10013	Email and password combination is invalid.{br}<small>Use 'Forgot my Password' if needed.</small>
+10014	Your password must be changed before logon can proceed.
+10015	Enter the required fields.
+10016	Select the {performance} to purchase tickets for.
+10017	There is nothing available in {month} matching your criteria{br}Select another month/year or select all months and years.
+10018	Cannot find any {performances} of {playtitle} matching the criteria{br}Please revise your search.
+10019	Update any required information for {patronname}.
+10020	Please fill in all required fields:{br}{error}
+10021	Welcome {patronname}.
+10022	Account updated.
+10023	Enter in your existing password and your new password.
+10024	Please enter the email address that you need to reset the password for
+10025	Changing of password cancelled.
+10026	Error - Your current password must be entered in correctly.
+10027	Error - Both fields for new password must be entered.
+10028	Error - New passwords did not match.
+10029	Error - Password must be at least {passwordminlength} characters.
+10030	Old password is same as new.{br}No changes made to password.
+10031	Password has been successfully updated.
+10032	An email was sent to {email} describing how to reset your password.{br}<small>Please look for the email and follow the instructions on it.</small>
+10033	An SMTP error occurred trying to send your password via email.
+10034	An email was sent to {email} describing how to reset your password.{br}<small>Please look for the email and follow the instructions on it.</small>
+10035	Select the email notification lists you wish to subscribe to.
+10036	Please select an email notification list to subscribe to.
+10037	You have been added to the selected email notification lists.
+10038	Please select an email notification list to unsubscribe from.
+10039	You have been removed from the requested email notification lists.
+10040	Unable to find {count} {seats} together in the requested area.
+10041	Unable to find {count} {seats} together.
+10042	Unable to find {count} {seats} together in the requested area.{br}Try a different {section}.
+10043	Unable to find {count} {seats} together.{br}Try a different {section}.
+10044	Here is a suggestion for the next best {seats}.{br}{br}Select your price and click 'Buy Tickets Shown' to add them to your cart.{br}{br}Or, 'Suggest Other Seats' again.
+10045	Here are the best available {seats}.{br}{br}Select your price and click 'Buy Tickets Shown' to add them to your cart.{br}{br}Or, 'Suggest Other Seats'.
+10046	Tickets could not be held - you either took too long or used the back button{br}Please review the ticket purchases in your cart and select again.
+10047	Tickets have been placed on hold.
+10048	Please enter the dollar amount you wish to purchase on this {pass}.
+10049	The {pass} has been added to shopping cart.
+10050	Entry of {pass} cancelled.
+10051	Thank you for your {donation}.
+10052	Confirm the items you are purchasing
+10053	Cart is already closed.
+10054	Cannot send payment amounts less than $0.00.
+10055	Please try submitting your payment again in 5 minutes.  We are reconciling prior sales and have halted acceptance of credit card payments temporarily.
+10056	Please try submitting your payment again in a minute.  Acceptance of credit cards has been halted temporarily while reconciliation is in progress.
+10057	Invalid {cardtype} credit card number.
+10058	Invalid credit card expiry date.
+10059	Checkout Processing Error {error}
+10060	Checkout completed.  You will also receive an email confirmation.
+10061	Checkout successful - however, an error occurred trying to add confirmation email.
+10062	You have already indicated that your {order} should be mailed to you.
+10063	You have indicated that your tickets and {passes} should be mailed to you.
+10064	You have indicated that your tickets should be mailed to you.
+10065	You have indicated that your {passes} should be mailed to you.
+10066	Mailing fees are not applicable if you are only making a {donation}.
+10067	Please purchase items before adding a mailing fee.
+10068	What would you like to do?
+10069	You have successfully logged out.
+10070	You have successfully logged out. The shopping cart was cleared and all items returned.
+10071	Invalid attempt to access page '{pagename}' directly via GET.
+10072	Unable to hold {count} {seats}.
+10073	{count} {seats} have been placed on hold for you.{br}{br}Select a price and add them to the cart.
+10074	Unable to hold {count} {seats}. No pricing available for selected {performances}.
+10075	Credit Card Authorization is not available.  Please contact the {venue} at {mainphone}.
+10076	Unexpected use of Back/Forward button.
+10077	Unable to find page: {error}.
+10078	The {performance} is no longer available for sale.
+10079	Credit card CID/CVC2/CVV2 number invalid or missing.
+10080	A valid {pass} must be selected.
+10081	Cannot find any {performances} in the {venue} {venuetitle} matching the criteria{br}Please revise your search.
+10082	Cannot find any {performances} matching the criteria{br}Please revise your search.
+10083	Buying tickets requires cookies be enabled for this site{br}Please change your browser preferences to accept them.
+10084	Duplicate attempt to authorize using this Credit Card today.{br}Please call the box office at {mainphone} to verify your purchase or use a different credit card.
+10085	Your connection has timed out, shopping cart closed and tickets released{br}You will need to find new tickets to add to your cart.
+10086	{count} {performances} displayed.  Use page selection to see more.
+10087	There are no tickets to display for future {performances}.
+10088	User ID not found
+10089	Ticket # {ticketnumber} not found - rescan or retype
+10090	Ticket # {ticketnumber} is not for the indicated {performance}
+10091	{patron} already used ticket # {ticketnumber}
+10092	{performance} date for ticket # {ticketnumber} is in the future
+10093	OK to Enter
+10094	{patron} is not in the {venue}
+10095	OK to Leave
+10096	Ticket {ticketnumber} has not been sold
+10097	There are no active subscriptions to display.
+10098	{subscriptionseries} has been cancelled{br}Thank you for informing us.
+10099	Cannot cancel the selected subscription{br}Please contact the Box Office directly at {mainphone}.
+10100	{subscriptionseries} has been reinstated{br}Use the Renew Subscription option to purchase your {seats}.
+10101	Cannot reinstate the selected subscription{br}Please contact the Box Office directly at {mainphone}.
+10102	Subscription {subscriptionseries} cannot be renewed - web page coding error.
+10103	Subscription {subscriptionseries} is already in the process of being renewed.{br}Check your shopping cart, or call the box office.
+10104	Cannot find some aspect of subscription {subscriptionseries} to renew it - {error}.{br}Contact the box office at {mainphone}.
+10105	Subscription {subscriptionseries} no longer available for sale{br}Contact the box office at {mainphone}.
+10106	Subscription {subscriptionseries) cannot be sold.{br}There are no {events} in it{br}Contact the box office at {mainphone}.
+10107	The sales methods for subscription {subscriptionseries} are not the same{br}Contact the box office at {mainphone}.
+10108	The {venues} for subscription {subscriptionseries} are not the same{br}Contact the box office at {mainphone}.
+10109	You may already have a subscription for all evenings{br}Contact the box office to change an existing one.
+10110	The shopping cart is full.  Please check out with your current purchases.
+10111	Cannot find same {seats} for all {events} that are priced properly for subscription sales{br}Contact the box office at {mainphone}.
+10112	Attempted to hold a subscription {seat} and could not{br}contact the box office at {mainphone}.
+10113	Select a subscription package from the list to create a new one
+10114	Quantity to book must be greater than 0{br}Page coding error - contact the box office {mainphone}.
+10115	Could not find {seat} {seatnumber} during search for best subscription{br}Please contact the box office at {mainphone}.
+10116	Setup Error: Subscription Control {event} # {error} is not in the subscription package{br}Please contact the box office at {mainphone}.
+10117	Setup Error: Subscription does not allow the price code/area you were trying to select{br}Please contact the box office at {mainphone}.
+10118	Setup Error: There are no price codes available for the {seats} offered for sale{br}Please contact the box office at {mainphone}
+10119	Could you please indicate how you heard about the {event} that you are purchasing.
+10120	Cannot use back button to view the checkout notification{br}It was also sent to you via e-mail or{br}you can use the 'Display My Upcoming {performances}' option.
+10121	Password Invalid.
+10122	Privileges incorrect for checkin/checkout.
+10123	Checkout Completed With Errors.{br}Some items in cart may not have been booked.{br}Please phone the box office to verify your {order}.
+10124	Tix {ticketnumber} is for another {outlet}.
+10125	Tix must be for today if no {performance} specified to scan
+10126	Error - Password contains the invalid special characters {error} which cannot be used.
+10127	A payment method must be selected.
+10128	There is an error in the cart{br}The total cost of the cart does not match the individual items.{br}Try releasing some items and booking again, or call the box office at {mainphone} for assistance.
+10129	We are sorry, but there is an error with tickets in the shopping cart.{br}If you receive this message, please contact the box office for assistance or{br}logout from the shopping cart and try booking tickets again.{br}In any case, please contact the box office at {mainphone}{br}to tell us you received this error so {company} can improve your web experience.
+10130	Credit card was authorized but an error occurred finishing the sales process.{br}Please contact the Box Office at {mainphone} - your tickets are on hold.
+10131	Unexpected error retrieving card {last4digits} from the cookie.{br}Please contact the box office to complete this order{br}or try using a different card.
+10132	Failure to save the physical record of payment.{br}Please contact the box office at {mainphone} - your tickets are on hold.
+10133	Online ticketing disabled for all {outlets} in system preferences.
+10134	Online ticketing disabled for {company} in company preferences.
+10135	Web Listener received a request that has been shut down{br}Please contact the Box Office at {mainphone}.
+10136	The cookie that the web listener expected was not found{br}during the checkout process and could occur if the back button was used{br}Please contact the Box Office at {mainphone}.
+10137	The cookie that the web listener expected was not found{br}during the checkout process and could occur if the back button was used{br}Since your card may have been charged, please contact the Box Office right away.
+10138	Please select the name of the purchaser.
+10139	This purchase can only be completed by contacting the box office at {mainphone}.
+10140	Error - Password cannot exceed {passwordmaxlength} characters.
+10141	An email address must be supplied in order to create an account.
+10142	Use next/previous buttons in the calendar to see other months.
+10143	Error - Coupon code {couponcode} already added to shopping cart or is not recognized.
+10144	Coupon code {couponcode} accepted.
+10145	Please indicate if you would like to login to your account{br}or simply enter contact information to continue.
+10146	An email address must be supplied in order to checkout.
+10147	Address required for checkout.  Please enter one now.
+10148	Error - Unable to add to email notification list.
+10149	Your e-mail address, {email}, has been verified and{br}you have confirmed your subscription to the email notification list.
+10150	Your e-mail address, {email}, could not be verified because the validation parameters are incorrect.
+10151	Your e-mail address, {email}, has been removed from all email mail notification lists that you previously subscribed to online.
+10152	You previously confirmed the subscription of the email address {email} to the email notification lists.{br}Please login to make changes.
+10153	Please review the attendees for any {course} in the cart{br}and use the 'Account' button to add {household} members if needed.
+10154	Enter information for the new {patron} in this {household}.
+10155	You must confirm that you have read the terms and conditions of sale prior to completing the {order}.
+10156	Your shopping cart is empty or has nothing of value that can be checked out.
+10157	You cannot use the back button to view previous pages{br}if the cart is no longer open for any reason.{br}Please view your past shopping carts instead.
+10158	You must add at least one item to the cart{br}in order to checkout (other than a fee or coupon).
+10159	Cannot find any {performances} associated with the genre and matching any other criteria{br}Please revise your search.
+10160	Unable to find {count} Best Available {seats} anywhere in the requested area (even after separating tickets){br}Try a different section.
+10161	Unable to find {count} Best Available {seats} anywhere (even after separating tickets).
+10162	The attempt to change the password for {email} failed.{br}The contact record could not be found.{br}{br}Please contact the Box Office for assistance
+10163	By selecting E-Ticket delivery, you must print your tickets after checkout and bring them to the {performance}.
+10164	You have elected to have your tickets waiting for you at Will Call.
+10165	Select the package items to add to the cart.
+10166	You must select at least one item to add to the cart by changing a quantity from zero.
+10167	During your last purchase you elected to just provide an email address.{br}Password must now be changed before logon can proceed to see prior purchases.
+10168	Please select one of the ticket handling delivery methods.
+10169	Unable to find {count} Best Available {seats} together using the selected price point.
+10170	Unable to find {count} Best Available {seats} together using the selected area and price point.
+10171	Unable to find {count} Best Available {seats} anywhere using the selected area{br}and price point (even after separating tickets).{br}Try a different section.
+10172	Unable to find {count} Best Available {seats} anywhere using the selected price point (even after separating tickets).
+10173	Renew your current subscription from the list (even if you wish changes) or you can create a new subscription altogether.
+10174	Cannot lock cart to complete checkout - Status {error}.{br}Any tickets in the cart should still be there.{br}Please try again or contact the Box Office at (mainphone} for assistance.
+10175	Cart may have been checked out.{br}Please look at your history or the current cart.{br}Contact the Box Office at {mainphone} for assistance if you feel an error has occurred.
+10176	Failure to create an {order} during checkout.{br}Please contact the box office at {mainphone} - your tickets are on hold.
+10177	Select a date range and/or activity type to see your {volunteer} activities.
+10178	{count} activities displayed.  Use page selection to see more.
+10179	Cannot find any activities of {activitytype} matching the criteria{br}Please revise your search.
+10180	There is nothing available {dateerror} matching your criteria{br}Select another date range or clear part of the date range.
+10181	Cannot find any {volunteer} records matching the criteria{br}Please revise your search.
+10182	Select a date range and/or activity type to see your {volunteer} activities.
+10183	Enter in control number and unique code for the {pass}.
+10184	The {pass} values are listed below.
+10185	Please let us know how you heard about {company} and prompted you to make an {order}.
+10186	Schedule of activities listed is based on the search.
+10187	Your available {pass} for redemption are listed below.
+10188	Enter a control number / password combination to lookup a remaining value.
+10189	Invalid control number / password combination. Contact the Box Office for assistance.
+10190	This password change link is no longer valid for a variety of possible reasons.{br}{br}You could have taken too long -or- already reset the password -or-{br}used an old link -or- contacted the Box Office who altered your data manually.{br}{br}Please discard the email and request your password reset email to be sent again.
+10191	The attempt to change the password for {email}{br}could not find the contact record.{br}{br}Please contact the Box Office at {mainphone} for assistance.
+10192	There has been and unexpected error finding some data.{br}Please contact the Box Office at {mainphone} with a copy of the page with the error.
+10193	The {pass} you are trying to use is currently being redeemed within another shopping cart. Try adding the {pass} later, or call the box office at {mainphone} for assistance. 
+10194	(required)
+10195	(required, if no company)
+10196	(required, if no first and last name)
+10197	(required, if no last name)
+10198	Error - Your account has been locked due to too many failed login attempts.  Please use the Forgot my Password button to set a new password and regain access.
+10199	Cannot reserve the selected {seats}.  Someone else may have picked them first or it leaves an empty {seat}.{br}{br}Your previous {seats} are still held.
+10200	Successfully changed {seats}.{br}{br}If these are what you wish, select your price and click "Buy Tickets Shown" to add them to your cart.
+10201	Ticket #{ticketnumber} belongs to a {patron} other than the one associated with this ticket.
+10202	Barcode is associated with {patron} #{patronnumber}, but that {patron} could not be found in the database.
+10203	An error occurred while verifying the pricing of the cart.  Please try again later.
+10204	The database is currently busy and unable to process the requested action.  Please try again later.
+10205	Unable to communicate with required server.{br}  Please try again later or call the box office at {mainphone}
+10206	Please select different {seats} on the map and then click 'Pick Selected {Seats}'.{br}{br}Any prior {seat} selection is unchanged.
+10207	Phone number required for checkout.  Please enter one now.
+10208	The contents of the cart prevents checkout.{br}{error}
+10209	{title} ({date} at {time}): Current and past carts contain {current} tickets, which exceeds the maximum amount of {allowed}.
+10210	The name on the credit card is missing.
+10211	Here are some good {seats}.{br}{br}If you prefer different {seats}, click one or more available {seats} on the map and then click 'Pick Selected Seats' button.
+10212	First and Last Name OR Company must be entered
+10213	Last Name OR Company must be entered.
+10214	First name must be entered
+10215	Last name must be entered
+10216	Company must be entered
+10217	Gender appears to be incorrect.
+10218	Birthday appears to be incorrect.
+10219	Another {patron} was found with matching search information.  Please call the box office at {mainphone}.
+10220	{outlet} is required.  Please call the box office at {mainphone}
+10221	{mkt1} is required.
+10222	{mkt2} is required.
+10223	{mkt3} is required.
+10224	{mkt4} is required.
+10225	{mkt5} is required.
+10226	{mkt6} is required.
+10227	{mkt6} appears invalid.
+10228	{mkt7} is required.
+10229	{mkt7} appears invalid.
+10230	{mkt8} is required.
+10231	{mkt8} appears invalid.
+10232	Age code is required.
+10233	Age code appears invalid.
+10234	Address is not associated with a {household}.  Please call the box office {mainphone}.
+10235	At least one of the address lines must be entered
+10236	City must be entered.
+10237	{prov} must be entered.
+10238	{prov} appears to be in a different country
+10239	Country must be entered.
+10240	Postal/Zip code must be entered.
+10241	Postal/Zip code appears invalid.
+10242	Country is unknown.
+10243	Address link is not associated with a {household}.  Please call the box office {mainphone}.
+10244	Address link is not associated with a {patron}.  Please call the box office {mainphone}.
+10245	Address link is not associated with an address.  Please call the box office {mainphone}.
+10246	Address link is not associated with a location.  Please call the box office {mainphone}.
+10247	Address link has an invalid location.  Please call the box office {mainphone}.
+10248	At least one address is required.
+10249	"{contents}" is not associated with a {household}
+10250	"{contents}" appears to have an invalid type.
+10251	"{contents}" appears invalid for the type of field and may prevent saving the data until corrected.
+10252	"{contents}" appears to be a phone number, but it is not in a phone number field.
+10253	"{contents}" appears to be an email address and is not in an email address field. (Warning: Your browser's autofill feature may have put data into a field that you did not and could prevent saving data.)
+10254	"{contents}" appears to be a website, but it is not in a website field.
+10255	"{contents}" cannot be used - please call the box office {mainphone}.
+10256	"{contents}" cannot be used - please call the box office {mainphone}.
+10257	"{contents}" cannot be used - please call the box office {mainphone}.
+10258	"{contents}" is already associated with your account.
+10259	Please retype the verify password.
+10260	"{contents}" has a missing area code.
+10261	Contact link is not associated with a {household}.  Please call the box office {mainphone}.
+10262	Contact link is not associated with a {patron}.  Please call the box office {mainphone}.
+10263	Contact link is not associated with a contact.  Please call the box office {mainphone}.
+10264	Contact link is not associated with a location.  Please call the box office {mainphone}.
+10265	Contact link has an invalid location.  Please call the box office {mainphone}.
+10266	At least one phone number is required (prefix with the country code if it is an overseas phone #)
+10267	Contact link could not be found.  Please call the box office {mainphone}.
+10268	Here are the next Best Available {seats}.{br}{br}If you prefer different {seats}, click one or more available {seats} on the {venue} map and then click 'Pick Selected Seats' button.
+10269	Temporarily unable to generate PDF.  Please try again later or call the box office {mainphone}
+10270	Missing or invalid outlet parameter "{error}" sent to classic listener. Call the box office {mainphone}
+10271	Cannot hold tickets for {series}.{br}{br}Season subscription requires you to select {requirements} optional {events}.
+10272	Cannot hold tickets for {series}.{br}{br}Unexpected {events} in season package while adding subscription to shopping cart.
+10273	Cannot hold tickets for {series}.{br}{br}Error in verifying prices for the season subscription.{br}{br}Contact the box office at {mainphone}.
+10274	{company} Added to Mailing List
+10275	{company} Account has been created
+10276	{company} Account has been updated
+10277	{company} Thanks for your order (#{order_number})
+10278	{company} Request for password reset
+10279	{company} Request for password to be setup and complete account creation
+10280	{company} Password has been updated
+10281	{company} Account has been locked
+10282	Would you like to create an account?
+10283	Password needs at least one digit (0-9)
+10284	Password needs at least one upper and one lower case character
+10285	Password needs at least one special character (eg: @,%,$,!,),=)
+10286	Password cannot contain the same character repeated beside itself
+10287	There was an issue trying to process your credit card.{br}Verify the number and try again or use another card.{br}Please contact the box office if the issues persist.
+10288	Oops - we made an error.{br}{br}Your card {last4digits} was authorized but we do not appear to accept "{cardtype}".{br}{br}Please contact the box office immediately at {mainphone} and give them this message.
+10289	The selected price point is no longer available.  Please try again.
+10290	Unable to remove the mandatory {event} "{title}" from season package "{package_name}"
+10291	Count of {events} in season package "{package_name}" must be: {event_counts}
+10292	There are no orders with outstanding balances.
+10293	You have a {order_count_owing} {order_owing_desc} with a total balance of ${order_balance_owing}.
+10294	Unable to find order #{order_number}.  Please review your open orders.
+10295	Successfully added order to cart.
+10296	Successfully set attendance status to "{status}".
+10297	An error occurred setting the attendance status.  Please try again or contact the box office at {mainphone}.
+10298	Successfully reset attendance status.
+10299	Unable to change the attendance status because it is not permitted.
+10300	Unable to reset password because the link has expired after {expiry_duration}.  Please enter your email and try resetting your password again.
+10301	Unable to add {patron} because {pass} #{pass_number} cannot fully pay the {order}.
+10302	Unable to add {patron} because of an error with {pass} #{pass_number}. Contact the box office at {mainphone}
+10303	Unable to add {patron} because of an error with {pass} #{pass_number}. Contact the box office at {mainphone}{br}{error}
+10304	{pass} #{pass_number} is not yet valid for redemption
+10305	Could not locate {performance} template #{performance_number}.  This error can also occur if you do not have permission to use a {performance} template.
+10306	Found too many results for {performance} template #{performance_number}.{br}Contact the box office at {mainphone}
+10307	Unrecognized {performance} date/time: {performance_timestamp}
+10308	Unrecognized {performance} date: {performance_date}
+10309	Unrecognized {performance} time: {performance_time}
+10310	Cannot create a {performance} earlier than now
+10311	An email address must be provided
+10312	Unable to edit contact outside of {household}
+10313	Unable to edit contact as a limited {patron}
+10314	Unable to edit contact that is not associated with you
+10315	Unable to edit contact as a non-primary {household} member
+10316	Please enter the quantity you wish to purchase
+10317	"{email}" has been added to the selected mail lists.  Please check your email to confirm your mail list subscription.
+10318	Please login to manage your mail list subscriptions.
+10319	The item has been added to shopping cart.
+10320	A valid {resource} must be selected.
+10321	Minute(s)
+10322	Hour(s)
+10323	Day(s)
+10324	Week(s)
+10325	Each
+10326	per Minute
+10327	per Quarter Hour
+10328	per Half Hour
+10329	per Hour
+10330	per Half Day
+10331	per Day
+10332	per Week
+10333	Please enter the quantity you wish to purchase
+10334	Please enter the duration of the rental
+10335	{title} starts on {date} at {time} {tz_short}
+10336	{title} starts at {time} {tz_short}
+10337	Unsubscribed
+10338	Cannot release lock on cart to reset checkout status - Status {error}.{br}Any tickets in the cart should still be there.{br}Please try again or contact the Box Office at (mainphone} for assistance.
+10339	Unable to find form
+10340	Form completed successfully
+10341	Form updated successfully
+10342	Form Errors:{br}{error}
+10343	Form must be accepted in order to continue
+10344	Unable to locate {patron} for form response
+10345	Some forms must be signed before completing checkout
+10346	Outside of region for {title}.  Restriction: {rule_description}
+10347	Please select {requirements} of the optional {events} for this subscription package before proceeding.
+10348	Your shopping cart requires at least {min_value} in order to checkout

@@ -1,0 +1,51 @@
+  <field>pick(F_HTML_LIVE_WATCH, '<!-- comment: enable live watch button')</field>
+  <div>
+   <a class="btn btn-primary btn-block" href="<field>F_HTML_FIREWALL</field>login?liveperformance=<field>PB_SEQ</field>">
+    <i class="fa fa-television" aria-hidden="true"></i>
+    Watch
+   </a>
+  </div>
+  <br/>
+  <field>pick(F_HTML_LIVE_WATCH, '-->')</field>
+  <field>pick(D_WEB_SHOW_TT_IMAGES,'<!-- comment: Ticket Trove Image ')</field>
+  <img class="media-object visible-lg visible-md img-thumbnail" alt="Event Poster" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>"/>
+  <img class="media-object visible-sm visible-xs img-thumbnail" alt="Event Poster" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>" style="width: 64px;"/>
+  <field>pick(D_WEB_SHOW_TT_IMAGES,' -->')</field>
+    <field>pick(PB_SALES_METHOD<>2,'<!-- comment: anything but reserved, put in header')</field>
+  <h4>
+   <field>pick(PB_SALES_METHOD,D_TROUPE_DESC,D_FESTIVAL_DESC,'','Consignment','Inventory',D_AUCTION_DESC,D_COURSE_DESC)</field>
+  </h4>
+  <field>pick(PB_SALES_METHOD<>2,'-->')</field>
+  <div>
+   <a class="btn btn-warning btn-sm" href="<field>F_HTML_FIREWALL</field>login?performance=<field>PB_SEQ</field>">
+    Buy
+   </a>
+   <field>pick(PB_PRINT_AT_HOME,'<!-- comment:')</field>
+   <!--#include virtual="TMtemplates/tmCartTicketsPrintPerformance.html" -->
+   <field>pick(PB_PRINT_AT_HOME,'-->')</field>
+  </div>
+  <h4>
+   Venue
+  </h4>
+  <p>
+   <strong>
+    <a class="link" href="<field>F_HTML_FIREWALL</field>tmVenue/tmVenue<field>TM_SEQ</field>.html" onclick="return popup(this, 'notes')">
+     <field>VE_NAME</field>
+    </a>
+   </strong>
+   <br/>
+   <field>VE_ADDRESS1</field>
+   <br/>
+   <field>pick(len(VE_ADDRESS2)>0,'<!-- comment:')</field>
+      <field>VE_ADDRESS2</field>
+   <br/>
+   <field>pick(len(VE_ADDRESS2)>0,'-->')</field>
+   <field>VE_CITY</field> <field>VE_PROVINCE</field> <field>VE_POSTAL_CODE</field>
+  </p>
+  <!-- comment: display the map of the venue -->
+  <!-- comment: enable if you want
+<div>
+ <img alt="seat map" class="img-thumbnail visible-lg visible-md" src="<field>F_HTML_FIREWALL</field>seatmap?TM_SEQ=<field>PB_TM_SEQ</field>&format=svg"/>
+ <img alt="seat map" class="img-thumbnail visible-sm visible-xs" src="<field>F_HTML_FIREWALL</field>seatmap?TM_SEQ=<field>PB_TM_SEQ</field>&format=svg" style="width: 175px;"/>
+</div>
+-->

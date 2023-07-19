@@ -1,0 +1,33 @@
+<field>pick(FR_SEQ>0,'<!-- comment: completed by')</field>
+<strong>Completed By:</strong>
+<field>F_HTML_FORM_RESPONSE_COMPLETED_BY</field>
+<span class="text-muted">
+ <field>pick(F_HTML_FORM_COMPLETE_C_SEQ=C_SEQ,'','(you)')</field>
+</span>
+</field>
+<field>pick(FR_SEQ>0,'-->')</field>
+<field>pick(FR_SEQ>0,'<!-- comment: show completed on date')</field>
+<span class="text-muted"> 
+ - <field>dat(FR_DATE_COMPLETED,'n D, y h:N A')</field>
+</span>
+<field>pick(FR_SEQ>0,'-->')</field>
+</field>
+<field>pick(FR_SEQ>0,'<!-- comment: completed for with response')</field>
+<br>
+<strong>
+ On Behalf Of:
+</strong>
+<field>F_HTML_FORM_RESPONSE_ON_BEHALF_OF</field>
+<span class="text-muted">
+ <field>pick(F_HTML_FORM_BEHALF_C_SEQ=C_SEQ,'','(you)')</field>
+</span>
+<field>pick(FR_SEQ>0,'-->')</field>
+<field>pick(FR_SEQ>0,'','<!-- comment: completing for (brand new)')</field>
+<strong>
+ Completing For:
+</strong>
+<field>F_HTML_FORM_RESPONSE_ON_BEHALF_OF</field>
+<span class="text-muted">
+ <field>pick(F_HTML_FORM_BEHALF_C_SEQ=C_SEQ,'','(you)')</field>
+</span>
+<field>pick(FR_SEQ>0,'','-->')</field>

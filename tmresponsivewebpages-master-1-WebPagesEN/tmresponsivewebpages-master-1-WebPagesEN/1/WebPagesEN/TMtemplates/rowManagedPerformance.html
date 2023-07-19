@@ -1,0 +1,21 @@
+  <!-- comment: 
+  To display all orders you can remove the checks for order balance.
+-->
+  <tr>
+   <td class="text-left" width="15%">
+    <a class="btn btn-block btn-primary btn-sm" href="<field>F_HTML_FIREWALL</field>online?manageperf=<field>PB_SEQ</field>">
+     <span class="glyphicon glyphicon-edit">
+     </span>
+     Manage
+    </a>
+   </td>
+   <td class="text-left" width="40%">
+    <field>dat(PB_PERFORM_DATE,'w n D y')</field>
+   </td>
+   <td class="text-left" width="30%">
+    <field>pick(len(dat(PB_PERFORM_TIME,'h:N A'))>0,'<!-- comment:')</field>
+    <field>dat(PB_PERFORM_TIME,'h:N A')</field>
+    <field>F_HTML_TZ_SHORT_NAME</field>
+    <field>pick(len(dat(PB_PERFORM_TIME,'h:N A'))>0,'-->')</field>
+   </td>
+  </tr>

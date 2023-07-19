@@ -1,0 +1,24 @@
+  <script type="text/javascript">
+   <!--
+function roundupval(newval) {
+    document.getElementById('roundup').value = newval;
+};
+//-->
+  </script>
+  <field>pick(F_HTML_DONATION_ROUND_UP_ALLOWED&tstringfields.$dollarremainder(SCH_TOTAL_COST,1.00)>0,'<!-- comment: allow a round up donation.','')</field>
+  <div class="alert alert-success fade in">
+   <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+   Everyone likes even prices! &nbsp; Round your purchase up with a small donation and help <field>D_COMPANY_LONG</field> at the same time!
+  <form action="<field>F_HTML_FIREWALL</field>online" id="donationroundup" method="POST">
+    <input name="DD_DC_SEQ" type="hidden" value="<field>D_DONATION_ROUND_UP_DC_SEQ</field>"/>
+    <!-- comment: you can round to nearest anything.  eg, 10.00 rounds to nearest 10.00 -->
+    <input id="roundup" name="DD_AMOUNT_PLEDGE" type="hidden" value="<field>tstringfields.$dollarremainder(SCH_TOTAL_COST,1.00)</field>"/>
+    <input name="anonymous" type="hidden" value="0"/>
+    <input name="DD_CORPORATE" type="hidden" value="0"/>
+    <!--#include virtual="TMtemplates/tmDonationHiddenFields.html" -->
+    <input class="btn btn-danger btn-xs"  name="btnDonationAccept" onclick="roundupval(<field>tstringfields.$dollarremainder(SCH_TOTAL_COST,11.00)</field>); process()" type="submit" value="Round up by $<field>tstringfields.$dollarremainder(SCH_TOTAL_COST,11.00)</field>"/>
+    <input class="btn btn-warning btn-xs" name="btnDonationAccept" onclick="roundupval(<field>tstringfields.$dollarremainder(SCH_TOTAL_COST,7.00)</field>); process()" type="submit" value="$<field>tstringfields.$dollarremainder(SCH_TOTAL_COST,7.00)</field>"/>
+    <input class="btn btn-info btn-xs"    name="btnDonationAccept" onclick="roundupval(<field>tstringfields.$dollarremainder(SCH_TOTAL_COST,5.00)</field>); process()" type="submit" value="$<field>tstringfields.$dollarremainder(SCH_TOTAL_COST,5.00)</field>"/>
+   </form>
+  </div>
+  <field>pick(F_HTML_DONATION_ROUND_UP_ALLOWED&tstringfields.$dollarremainder(SCH_TOTAL_COST,1.00)>0,'-->','')</field>

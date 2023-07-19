@@ -1,0 +1,877 @@
+<script>
+<!--
+var tmWebPayment = (function ( $ ) { 
+	/**
+	* Takes in an array and any number of parameters
+	* Additional parameters act as properties
+	*
+	* Example: groupBy(array, "color", "letter");
+	* will group `array` by `array.color.letter`
+	*/
+	var groupBy = function(array) {
+	  // Take the arguments from this function and store them
+	  // So they can be accessed by the callback
+	  var external_arguments = arguments;
+	  return array.reduce(function(rv, item) {
+		var value = item;
+	
+		for (var i = 1; i < external_arguments.length; i++) {
+		  if (!!value) {
+			value = value[external_arguments[i]];
+		  }
+		}
+	
+		(rv[value] = rv[value] || []).push(item);
+		return rv;
+	  }, {});
+	};
+	
+	/**
+	* Formats payment cards to remove any letters and add spaces after 4 digits
+	* ie: 123e46678f -> 1234 6678
+	* Allows a max of 20 digits 
+	*/
+	function card_format(value) {
+	  var v = value.replace(/[^0-9]/gi, '');
+	  var matches = v.match(/\d{4,20}/g);
+	  var match = matches && matches[0] || '';
+	
+	  var parts = [];
+	  for (i=0, len=match.length; i<len; i+=4) {
+		parts.push(match.substring(i, i+4));
+	  }
+	
+	  if (parts.length) {
+		return parts.join(' ');
+	  } else {
+		return v;
+	  }
+	}
+	
+	/**
+	* Formats the expiry date of payment cards to remove any letters and add a slash after 2 digits
+	* ie: 12e125 -> 12/12
+	* Allows a max of 4 digits
+	* Will strip out non digits
+	*/
+	function expiry_format(value) {
+	  var v = value.replace(/[^0-9]/gi, '');
+	
+	  if (v.length > 2) {
+		return v.substring(0, 2) + "/" + v.substring(2, 4);
+	  }
+	  else {
+		return v;
+	  }
+	}
+	
+	var supportedNetworks = ['visa', 'master', 'jcb'];
+	var supportedTypes = ['credit', 'debit', 'prepaid'];
+	var CART_ITEM_TYPE = {
+	  TICKET_PATRON_OFFERED: 0,
+	  0: "Ticket Patron Offered",
+	  DONATION: 1,
+	  1: "Donation",
+	  MEMBERSHIP: 2,
+	  2: "Membership",
+	  TICKET_PATRON_SELECTED: 3,
+	  3: "Ticket",
+	  TICKET_SUBSCRIPTION: 4,
+	  4: "Subscription",
+	  FEE_AUTO: 5,
+	  5: "Fee",
+	  FEE_PATRON: 6,
+	  6: "Fee",
+	  COUPON: 7,
+	  7: "Coupon",
+	  PASS_FOR_REDEMPTION: 8,
+	  8: "Pass",
+	  FEE_PLUGIN: 9,
+	  9: "Fee",
+	  PAYMENT_AUTHORIZATION: 10,
+	  10: "Payment Authorization",
+	  ORDER_PAYMENT: 11,
+	  11: "Order Payment",
+	  RESOURCE_SALE: 12,
+	  12: "Merchandise",
+	  RESOURCE_RENTAL: 13,
+	  13: "Rental"
+	}
+	var SALES_METHOD = {
+	  TRAVELLING: 0,
+	  0: "Travelling",
+	  GENERAL: 1,
+	  1: "General",
+	  RESERVED: 2,
+	  2: "Reserved",
+	  CONSIGNMENT: 3,
+	  3: "Consignment",
+	  INVENTORY: 4,
+	  4: "Inventory",
+	  AUCTION: 5,
+	  5: "Auction",
+	  COURSE: 6,
+	  6: "Course"
+	}
+	var RECURRING_FREQUENCY = {
+	  NONE: 0,
+	  0: "None",
+	  MONTHLY: 1,
+	  1: "Monthly",
+	  BIWEEKLY: 2,
+	  2: "Biweekly",
+	  QUARTERLY: 3,
+	  3: "Quarterly",
+	  ANNUAL: 4,
+	  4: "Annual",
+	  DAILY: 5,
+	  5: "Daily",
+	  WEEKLY: 6,
+	  6: "Weekly",
+	  BIMONTHLY: 7,
+	  7: "Bimonthly"
+	}
+	var TICKET_STATUS_PRINT = {
+	  AT_HOME: 0,
+	  0: "At Home",
+	  MAILED: 1,
+	  1: "Mailed",
+	  WILL_CALL: 2,
+	  2: "Will Call",
+	  NOT_SELECTED: 3,
+	  3: "Not Selected"
+	}
+	
+	var PAYMENT_URL = "/TheatreManager/<field>F_HTML_CURRENT_OUTLET</field>/online";
+	var quickCheckoutConfig = {
+	  usePurchaseGroups: true,
+	  useTicketGroups: true,
+	  useSeasonGroups: true,
+	  seasonGroupByEvent: false,
+	  
+	  requireAcknowledge: <field>pick(F_HTML_REQUIRE_TERM_ACKNOWLEDGE, 'false', 'true')</field>,
+	
+	  // Payment Provider Toggles
+	  enableBootstrapCheckout: <field>pick(F_HTML_ALLOW_WEB_PAYMENT_BOOTSTRAP_MODAL, 'false', 'true')</field>,
+	  enableBasicCard: <field>pick(F_HTML_ALLOW_WEB_PAYMENT_BASIC_CARD, 'false', 'true')</field>,
+	  enableApplePay: <field>pick(F_HTML_ALLOW_WEB_PAYMENT_APPLE_PAY, 'false', 'true')</field>,
+	  enableGooglePay: <field>pick(F_HTML_ALLOW_WEB_PAYMENT_GOOGLE_PAY, 'false', 'true')</field>
+	}
+	var paymentOptions = {
+	  requestShipping: false,
+	  requestPayerEmail: true,
+	  requestPayerPhone: false
+	};
+	
+	// TM Cart Summary used to create a Payment Request API compatible payload
+	var cartSummary = JSON.parse('<field>F_HTML_PAYMENT_REQUEST_SUMMARY</field>');
+	var loggedIn = '<field>F_LOGGED_IN</field>';
+	var paymentRequest = {
+	  displayItems: [],
+	  orderSummary: {},
+	  total: {
+		label: 'Total',
+		amount: {
+		  currency: cartSummary.currency,
+		  value: cartSummary.value
+		}
+	  }
+	};
+	
+	var paymentTimer;
+	var paymentRequestSupported = $.Deferred();
+	
+	// Payment Request API stuff
+	async function canPayBasicCard() {
+	  var methodData = [
+		{
+		  supportedMethods: 'basic-card',
+		  data: {
+			supportedNetworks: ['visa', 'master', 'jcb'],
+			supportedTypes: ['credit', 'debit', 'prepaid']
+		  }
+		}
+	  ];
+	  var details = {
+		total: {label: ' ', amount: {currency: cartSummary.currency, value: '0.00'}}
+	  };
+	
+	  return await new PaymentRequest(methodData, details).canMakePayment();
+	}
+	
+	// Check if the Payment Request API is supported
+	// and if it supports basic card
+	if (window.PaymentRequest) {
+	  if (quickCheckoutConfig.enableBasicCard) {
+		canPayBasicCard().then(function(value) {
+		  paymentRequestSupported.resolve(value);
+		  // Update button to use paymentrequest
+		});
+	  } else {
+	    paymentRequestSupported.resolve(false);
+	  }
+	}
+	else {
+	  paymentRequestSupported.resolve(false);
+	}
+	
+	function openQuickPay() {
+	  // Wait for the paymentRequest to resolve before determining if it is supported or not
+	  paymentRequestSupported.then(function (supported) {
+		// If payment request API is supported use it
+		if (supported) {
+		  var methodData =[
+			{
+			  supportedMethods: 'basic-card',
+			  data: {
+				supportedNetworks,
+				supportedTypes
+			  }
+			},
+		  ];
+	
+		  var paymentOptions = {
+			requestShipping: false,
+			requestPayerEmail: true,
+			requestPayerPhone: false,
+		  };
+	
+		  try {
+			new PaymentRequest(methodData, paymentRequest)
+			  .show()
+			  .then(function(response) {
+				processPayment(response);
+			  })
+			  .catch(function(err) {
+				console.log(err);
+			  });
+		  }
+	
+		  catch(e) {
+			if(e instanceof RangeError) {
+			  console.log(`Invalid Currency "${cartSummary.currency}". Please refer to ISO 4217 for currency codes`);
+			}
+		  }
+		}
+		// Else use the checkout modal
+		else if (quickCheckoutConfig.enableBootstrapCheckout){
+		  $('#TMQuickCheckoutModal').modal('show'); 
+		}
+	  });
+	};
+	
+	// Functions used to build the Handlebars templates
+	function buildDonations(donations) {
+	  return donations.map(function(item, index) {
+		if (item.code == CART_ITEM_TYPE.DONATION) {
+		  if (item.recurring){
+			item.recurring.frequency = RECURRING_FREQUENCY[item.recurring.frequency];
+			return {
+			  label: $.fn.handlebars.asText("#RecurringLabelTemplate", item).trim(),
+			  amount: {
+				currency: cartSummary.currency,
+				value: item.amount
+			  }
+			};
+		  }
+		  else {
+			return {
+			  label: $.fn.handlebars.asText("#DonationLabelTemplate", item).trim(),
+			  amount: {
+				currency: cartSummary.currency,
+				value: item.amount
+			  }
+			};
+		  }
+		}
+		else {
+		  console.warn("buildDonations called with non-donation item. (item.code=" + item.code + ")");
+		}
+	  });
+	};
+	
+	function buildMemberships(memberships) {
+	  return memberships.map(function (item, index) {
+		if (item.code == CART_ITEM_TYPE.MEMBERSHIP) {
+		  return {
+			label: $.fn.handlebars.asText("#MembershipLabelTemplate", item).trim(),
+			amount: {
+			  currency: cartSummary.currency,
+			  value: item.amount
+			}
+		  }
+		}
+		else {
+		  console.warn("buildMemberships called with non-membership item. (item.code=" + item.code + ")");
+		}
+	  });
+	}
+	
+	function buildResourceSales(resourceLinks) {
+	  return resourceLinks.map(function (item, index) {
+		if (item.code == CART_ITEM_TYPE.RESOURCE_SALE) {
+		  return {
+			label: $.fn.handlebars.asText("#ResourceSaleLabelTemplate", item).trim(),
+			amount: {
+			  currency: cartSummary.currency,
+			  value: item.amount
+			}
+		  }
+		}
+		else {
+		  console.warn("buildResourceSales called with non-resource sale item. (item.code=" + item.code + ")");
+		}
+	  });
+	}
+	
+	function buildResourceRentals(resourceLinks) {
+	  return resourceLinks.map(function (item, index) {
+		if (item.code == CART_ITEM_TYPE.RESOURCE_RENTAL) {
+		  return {
+			label: $.fn.handlebars.asText("#ResourceRentalLabelTemplate", item).trim(),
+			amount: {
+			  currency: cartSummary.currency,
+			  value: item.amount
+			}
+		  }
+		}
+		else {
+		  console.warn("buildResourceRentals called with non-resource rental item. (item.code=" + item.code + ")");
+		}
+	  });
+	}
+	
+	function buildTickets(tickets) {
+	  var events = groupBy(tickets, "event", "title");
+	
+	  return Object.keys(events).map(function(key, index) {
+		var ticketGroup = {
+		  amount: 0,
+		  count: 0,
+		  event: events[key][0].event,
+		  performance: events[key][0].performance,
+		  venue: events[key][0].venue
+		}
+	
+		events[key].map(function(item, index) {
+		  ticketGroup.count++;
+		  ticketGroup.amount += item.amount;
+		});
+	
+		if (ticketGroup.count == 1) {
+		  return {
+			label: $.fn.handlebars.asText("#GroupedTicketLabelTemplate", ticketGroup).trim(),
+			amount: {
+			  currency: cartSummary.currency,
+			  value: ticketGroup.amount
+			}
+		  }
+		}
+		else {
+		  return {
+			label: $.fn.handlebars.asText("#GroupedTicketsLabelTemplate", ticketGroup).trim(),
+			amount: {
+			  currency: cartSummary.currency,
+			  value: ticketGroup.amount
+			}
+		  }
+		}
+	  });
+	};
+	  
+	function buildIndividualTickets(tickets) {
+	  return tickets.map(function(item, index) {
+		if (item.code == CART_ITEM_TYPE.TICKET_PATRON_SELECTED) {
+		  var label;
+	
+		  if (item.event.salesMethod == SALES_METHOD.GENERAL) {
+			label = $.fn.handlebars.asText("#FestivalTicketLabelTemplate", item).trim();
+		  }
+		  else {
+			label = $.fn.handlebars.asText("#ReservedSeatTicketLabelTemplate", item).trim();
+		  }
+	
+		  return {
+			label: label,
+			amount: {
+			  currency: cartSummary.currency,
+			  value: item.amount
+			}
+		  }
+		}
+		else {
+		  console.warn("buildIndividualTickets called with non-ticket item. (item.code=" + item.code + ")");
+		}
+	  });
+	};
+	
+	function buildSubscriptions(subscriptions) {
+	  var controlHouses = subscriptions.filter(function(item) {
+		return item.season ? item.control_house : false;
+	  });
+	  var events = subscriptions.filter(function(item) {
+		return item.season ? !item.control_house : false;
+	  });
+	
+	  if (quickCheckoutConfig.seasonGroupByEvent) {
+		controlHouses = groupBy(controlHouses, "event", "title");
+		events = groupBy(events, "event", "title");
+	  }
+	
+	  else {
+		controlHouses = groupBy(controlHouses, "season", "description");
+		events = groupBy(events, "season", "description");
+	  }
+	
+	  return Object.keys(controlHouses).map(function(key, index) {
+		var ticketGroup = {
+		  amount: 0,
+		  count: 0,
+		  event: controlHouses[key][0].event,
+		  venue: controlHouses[key][0].venue,
+		  season: controlHouses[key][0].season
+		}
+	
+		// Count number of season passes
+		controlHouses[key].map(function(item, index) {
+		  ticketGroup.count++;
+		});
+	
+		// Add up the price of all bought tickets
+		events[key].map(function(item, index) {
+		  ticketGroup.amount += item.amount;
+		});
+		
+		if (ticketGroup.count == 1) {
+		  return {
+			label: $.fn.handlebars.asText("#GroupedSubscriptionLabelTemplate", ticketGroup).trim(),
+			amount: {
+			  currency: cartSummary.currency,
+			  value: ticketGroup.amount
+			}
+		  }
+		}
+		else {
+		  return {
+			label: $.fn.handlebars.asText("#GroupedSubscriptionsLabelTemplate", ticketGroup).trim(),
+			amount: {
+			  currency: cartSummary.currency,
+			  value: ticketGroup.amount
+			}
+		  }
+		}
+	  });
+	}
+	
+	function buildIndividualSubscriptions(subscriptions) {
+	  subscriptions = subscriptions.filter(function(item) {
+		return item.season ? !item.control_house : false;
+	  });
+	
+	  return subscriptions.map(function(item, index) {
+		if (item.code == CART_ITEM_TYPE.TICKET_SUBSCRIPTION) {
+		  return {
+			label: $.fn.handlebars.asText("#SubscriptionLabelTemplate", item).trim(),
+			amount: {
+			  currency: cartSummary.currency,
+			  value: item.amount
+			}
+		  }
+		}
+		else {
+		  console.warn("buildSubscriptions called with non-ticket item. (item.code=" + item.code + ")");
+		}
+	  });
+	}
+	
+	function buildFees(fees) {
+	  return fees.map(function(item, index) {
+		if (item.code == CART_ITEM_TYPE.FEE_AUTO || item.code == CART_ITEM_TYPE.FEE_PATRON || item.code == CART_ITEM_TYPE.FEE_PLUGIN) {
+		  if (item.fee.delivery) {
+			if (cartSummary.deliveryMethod == TICKET_STATUS_PRINT.AT_HOME) {
+			  var label = $.fn.handlebars.asText("#PrintAtHomeFeeLabelTemplate", item).trim();
+			}
+			else if (cartSummary.deliveryMethod == TICKET_STATUS_PRINT.MAILED) {
+			  var label = $.fn.handlebars.asText("#MailFeeLabelTemplate", item).trim();
+			}
+			else if (cartSummary.deliveryMethod == TICKET_STATUS_PRINT.WILL_CALL) {
+			  var label = $.fn.handlebars.asText("#WillCallFeeLabelTemplate", item).trim();
+			}
+			else {
+			  var label = $.fn.handlebars.asText("#FeeLabelTemplate", item).trim();
+			}
+		  }
+		  else {
+			var label = $.fn.handlebars.asText("#FeeLabelTemplate", item).trim();
+		  }
+		  return {
+			  label: label,
+			  amount: {
+				currency: cartSummary.currency,
+				value: item.amount
+			  }
+			}
+		}
+		else {
+		  console.warn("buildFees called with non-fee type. (item.code=" + item.code + ")");
+		}
+	  });
+	}
+	
+	function buildCoupons(coupons) {
+	  return coupons.map(function(item, index) {
+		if (item.code == CART_ITEM_TYPE.COUPON) {
+		  if(item.coupon.isFee) {
+			return {
+			  label: $.fn.handlebars.asText("#CouponFeeLabelTemplate", item).trim(),
+			  amount: {
+				currency: cartSummary.currency,
+				value: item.amount
+			  }
+			}
+		  }
+		  else {
+			return {
+			  label: $.fn.handlebars.asText("#CouponLabelTemplate", item).trim(),
+			  amount: {
+				currency: cartSummary.currency,
+				value: item.amount
+			  }
+			}
+		  }
+		}
+		else {
+		  console.warn("buildCoupons called with non-coupon item. (item.code=" + item.code + ")");
+		}
+	  });
+	}
+	
+	function buildPasses(passes) {
+	  return passes.map(function(item, index) {
+		if (item.code == CART_ITEM_TYPE.PASS_FOR_REDEMPTION) {
+		  var label;
+	
+		  if (item.membership.total_quantity == 0) {
+			label = $.fn.handlebars.asText("#CertificateLabelTemplate", item).trim();
+		  }
+		  else {
+			label = $.fn.handlebars.asText("#PassLabelTemplate", item).trim();
+		  }
+	
+		  return {
+			label: label,
+			amount: {
+			  currency: cartSummary.currency,
+			  value: item.amount
+			}
+		  }
+		}
+		else {
+		  console.warn("buildPasses called with non-pass item. (item.code=" + item.code + ")");
+		}
+	  });
+	}
+	
+	function buildOrders(items) {
+	  return items.map(function(item, index) {
+		return {
+		  label: $.fn.handlebars.asText("#OrderPaymentLabelTemplate", item).trim(),
+		  amount: {
+			currency: cartSummary.currency,
+			value: item.amount
+		  }
+		};
+	  });
+	}
+	
+	function buildDefault(items) {
+	  return items.map(function(item, index) {
+		return {
+		  label: $.fn.handlebars.asText("#ItemLabelTemplate", item).trim(),
+		  amount: {
+			currency: cartSummary.currency,
+			value: item.amount
+		  }
+		};
+	  });
+	}
+	
+	// Functions use to format the cartSummary in to Payment Request API compatible format
+	function combinePaymentRequest(keys, itemGroups) {
+	  if (keys.length > 1) {
+		return itemGroups[keys.shift()].concat(combinePaymentRequest(keys, itemGroups));
+	  }
+	  else {
+		return itemGroups[keys.shift()]
+	  }
+	}
+	
+	function buildPaymentRequest(cart) {
+	  var itemGroups = groupBy(cart, 'code');
+	  var itemGroupKeys = Object.keys(itemGroups);
+	  
+	  // Use separate function to build Donations
+	  if (itemGroups[CART_ITEM_TYPE.DONATION]) {
+		itemGroups[CART_ITEM_TYPE.DONATION] = buildDonations(itemGroups[CART_ITEM_TYPE.DONATION]);
+		// Remove key CART_ITEM_TYPE.DONATION from itemGroupKeys so it doesn't get picked up by buildDefault
+		itemGroupKeys.splice(itemGroupKeys.indexOf(CART_ITEM_TYPE.DONATION.toString()), 1);
+	  }
+	
+	  //Use separate function to build Memberships
+	  if (itemGroups[CART_ITEM_TYPE.MEMBERSHIP]) {
+		itemGroups[CART_ITEM_TYPE.MEMBERSHIP] = buildMemberships(itemGroups[CART_ITEM_TYPE.MEMBERSHIP]);
+		// Remove key CART_ITEM_TYPE.MEMBERSHIP from itemGroupKeys so it doesn't get picked up by buildDefault
+		itemGroupKeys.splice(itemGroupKeys.indexOf(CART_ITEM_TYPE.MEMBERSHIP.toString()), 1);
+	  }
+	  
+	  //Use separate function to build Resource sales
+	  if (itemGroups[CART_ITEM_TYPE.RESOURCE_SALE]) {
+		itemGroups[CART_ITEM_TYPE.RESOURCE_SALE] = buildResourceSales(itemGroups[CART_ITEM_TYPE.RESOURCE_SALE]);
+		// Remove key CART_ITEM_TYPE.RESOURCE_SALE from itemGroupKeys so it doesn't get picked up by buildDefault
+		itemGroupKeys.splice(itemGroupKeys.indexOf(CART_ITEM_TYPE.RESOURCE_SALE.toString()), 1);
+	  }
+	  
+	  //Use separate function to build Resource Rentals
+	  if (itemGroups[CART_ITEM_TYPE.RESOURCE_RENTAL]) {
+		itemGroups[CART_ITEM_TYPE.RESOURCE_RENTAL] = buildResourceRentals(itemGroups[CART_ITEM_TYPE.RESOURCE_RENTAL]);
+		// Remove key CART_ITEM_TYPE.RESOURCE_RENTAL from itemGroupKeys so it doesn't get picked up by buildDefault
+		itemGroupKeys.splice(itemGroupKeys.indexOf(CART_ITEM_TYPE.RESOURCE_RENTAL.toString()), 1);
+	  }
+	
+	  // Use separate function to build Tickets
+	  if (itemGroups[CART_ITEM_TYPE.TICKET_PATRON_SELECTED]) {
+		if(quickCheckoutConfig.useTicketGroups) {
+		  itemGroups[CART_ITEM_TYPE.TICKET_PATRON_SELECTED] = buildTickets(itemGroups[CART_ITEM_TYPE.TICKET_PATRON_SELECTED]);
+		}
+		else {
+		  itemGroups[CART_ITEM_TYPE.TICKET_PATRON_SELECTED] = buildIndividualTickets(itemGroups[CART_ITEM_TYPE.TICKET_PATRON_SELECTED]);
+		}
+		// Remove key CART_ITEM_TYPE.TICKET_PATRON_SELECTED from itemGroupKeys so it doesn't get picked up by buildDefault
+		itemGroupKeys.splice(itemGroupKeys.indexOf(CART_ITEM_TYPE.TICKET_PATRON_SELECTED.toString()), 1);
+	  }
+	
+	  if (itemGroups[CART_ITEM_TYPE.TICKET_SUBSCRIPTION]) {
+		if(quickCheckoutConfig.useSeasonGroups) {
+		  itemGroups[CART_ITEM_TYPE.TICKET_SUBSCRIPTION] = buildSubscriptions(itemGroups[CART_ITEM_TYPE.TICKET_SUBSCRIPTION]);
+		}
+		else {
+		  itemGroups[CART_ITEM_TYPE.TICKET_SUBSCRIPTION] = buildIndividualSubscriptions(itemGroups[CART_ITEM_TYPE.TICKET_SUBSCRIPTION]);
+		}
+		// Remove key CART_ITEM_TYPE.TICKET_SUBSCRIPTION from itemGroupKeys so it doesn't get picked up by buildDefault
+		itemGroupKeys.splice(itemGroupKeys.indexOf(CART_ITEM_TYPE.TICKET_SUBSCRIPTION.toString()), 1);
+	  }
+	
+	  if (itemGroups[CART_ITEM_TYPE.FEE_AUTO]) {
+		itemGroups[CART_ITEM_TYPE.FEE_AUTO] = buildFees(itemGroups[CART_ITEM_TYPE.FEE_AUTO]);
+		// Remove key CART_ITEM_TYPE.FEE_AUTO from itemGroupKeys so it doesn't get picked up by buildDefault
+		itemGroupKeys.splice(itemGroupKeys.indexOf(CART_ITEM_TYPE.FEE_AUTO.toString()), 1);
+	  }
+	
+	  if (itemGroups[CART_ITEM_TYPE.FEE_PATRON]) {
+		itemGroups[CART_ITEM_TYPE.FEE_PATRON] = buildFees(itemGroups[CART_ITEM_TYPE.FEE_PATRON]);
+		// Remove key CART_ITEM_TYPE.FEE_PATRON from itemGroupKeys so it doesn't get picked up by buildDefault
+		itemGroupKeys.splice(itemGroupKeys.indexOf(CART_ITEM_TYPE.FEE_PATRON.toString()), 1);
+	  }
+	
+	  if (itemGroups[CART_ITEM_TYPE.FEE_PLUGIN]) {
+		itemGroups[CART_ITEM_TYPE.FEE_PLUGIN] = buildFees(itemGroups[CART_ITEM_TYPE.FEE_PLUGIN]);
+		// Remove key CART_ITEM_TYPE.FEE_PLUGIN from itemGroupKeys so it doesn't get picked up by buildDefault
+		itemGroupKeys.splice(itemGroupKeys.indexOf(CART_ITEM_TYPE.FEE_PLUGIN.toString()), 1);
+	  }
+	
+	  if (itemGroups[CART_ITEM_TYPE.COUPON]) {
+		itemGroups[CART_ITEM_TYPE.COUPON] = buildCoupons(itemGroups[CART_ITEM_TYPE.COUPON]);
+		// Remove key CART_ITEM_TYPE.COUPON from itemGroupKeys so it doesn't get picked up by buildDefault
+		itemGroupKeys.splice(itemGroupKeys.indexOf(CART_ITEM_TYPE.COUPON.toString()), 1);
+	  }
+	
+	  if (itemGroups[CART_ITEM_TYPE.PASS_FOR_REDEMPTION]) {
+		itemGroups[CART_ITEM_TYPE.PASS_FOR_REDEMPTION] = buildPasses(itemGroups[CART_ITEM_TYPE.PASS_FOR_REDEMPTION]);
+		// Remove key CART_ITEM_TYPE.PASS_FOR_REDEMPTION from itemGroupKeys so it doesn't get picked up by buildDefault
+		itemGroupKeys.splice(itemGroupKeys.indexOf(CART_ITEM_TYPE.PASS_FOR_REDEMPTION.toString()), 1);
+	  }
+	
+	  if (itemGroups[CART_ITEM_TYPE.ORDER_PAYMENT]) {
+		itemGroups[CART_ITEM_TYPE.ORDER_PAYMENT] = buildOrders(itemGroups[CART_ITEM_TYPE.ORDER_PAYMENT]);
+		// Remove key CART_ITEM_TYPE.ORDER_PAYMENT from itemGroupKeys so it doesn't get picked up by buildDefault
+		itemGroupKeys.splice(itemGroupKeys.indexOf(CART_ITEM_TYPE.ORDER_PAYMENT.toString()), 1);
+	  }
+	
+	  // Build all other types of items with Default builder
+	  itemGroupKeys.map(function(key) {
+		itemGroups[key] = buildDefault(itemGroups[key]);
+	  });
+	
+	  return itemGroups;
+	};
+	
+	// If using purchase groups
+	var displayItems;
+	if (quickCheckoutConfig.usePurchaseGroups) {
+	  cartSummary.purchaseGroups = groupBy(cartSummary.cart_items, 'purchase_group');
+	  var purchaseGroups = Object.keys(cartSummary.purchaseGroups);
+	  displayItems = {};
+	
+	  purchaseGroups.map(function(purchaseGroupID) {
+		var displayItem = buildPaymentRequest(cartSummary.purchaseGroups[purchaseGroupID]);
+		for(key of Object.keys(displayItem)) {
+		  if(!displayItems[key]) {
+			displayItems[key] = [];
+		  }
+		  displayItems[key] = displayItems[key].concat(displayItem[key]);
+		}
+	  });
+	}
+	
+	// If not using purchase groups
+	else {
+	  displayItems = buildPaymentRequest(cartSummary.cart_items);
+	} 
+	
+	// Combine payment request
+	paymentRequest.displayItems = combinePaymentRequest(Object.keys(displayItems), displayItems);
+	
+	$("#TMQuickCheckoutRender").handlebars("#TMQuickCheckoutTemplate", paymentRequest);
+	
+	// Event handlers
+	$('#TMQuickCheckoutModal').on('hidden.bs.modal', function() {
+	  $('.collapse').collapse('hide');
+	  // Reset carousel to first page (page 0) on modal close
+	  $('#TMQuickCheckoutCarousel').carousel(0);
+	  $('#payment-button-right-container').css({display: "table-cell"});
+	  $('#payment-button-left').html("Cancel");
+	  clearTimeout(paymentTimer);
+	});
+	$('#TMQuickCheckoutModal').on('shown.bs.modal', function() {
+	  $('#collapseOne').collapse('show');
+	});
+	
+	$('#TMQuickCheckoutSummaryAccordion').find('.panel-default:has(".in")').addClass('panel-primary');
+	$('#TMQuickCheckoutSummaryAccordion').on('show.bs.collapse', function(e) {
+	  $(e.target).closest('.panel-default').addClass(' panel-primary');
+	  $('.collapse').collapse('hide');
+	}).on('hide.bs.collapse', function(e) {
+	  $(e.target).closest('.panel-default').removeClass(' panel-primary');
+	})
+	
+	// Key up events for payment card input fields
+	// Formats the payment card input field on keyup with the card_format() function
+	$("#card-number").keyup(function() {
+	  $("#card-number").val(card_format($("#card-number").val()));
+	});
+	// Formats the payment card expiry input field on keyup with the expiry_format() function
+	$("#card-expiration").keyup(function() {
+	  $("#card-expiration").val(expiry_format($("#card-expiration").val()));
+	});
+	// Formats the payment card validation code input field on keyup with the by removing all non-digits and limiting it to 4 characters
+	$("#card-validation").keyup(function() {
+	  $("#card-validation").val($("#card-validation").val().replace(/[^0-9]/gi, '').substring(0,4));
+	});
+	
+	// Validation when the Pay button is clicked
+	function payClicked() {
+	  var paymentInformation = {
+		details: {
+		  billingAddress: {},
+		  cardNumber: $("#card-number").val().replace(/[^0-9]/gi, ''),
+		  cardSecurityCode: $("#card-validation").val(),
+		  cardholderName: $("#card-name").val(),
+		  expiryMonth: $("#card-expiration").val().substring(0,2),
+		  expiryYear: "20" + $("#card-expiration").val().substring(3,5)
+		},
+		methodName: "basic-card"
+	  }
+	
+	  $("#payment-error-container").addClass("hidden");
+	
+	  if(!paymentInformation.details.cardholderName) {
+		if(!$("#collapseTwo").hasClass("in")) {
+		  $('.collapse').collapse('hide');
+		  $('#collapseTwo').collapse('show');
+		}
+	
+		$("#payment-error-text").html("Please enter the full name as displayed on your card");
+		$("#payment-error-container").removeClass("hidden");
+	  }
+	  else if(!paymentInformation.details.cardNumber || paymentInformation.details.cardNumber.length < 12) {
+		if(!$("#collapseTwo").hasClass("in")) {
+		  $('.collapse').collapse('hide');
+		  $('#collapseTwo').collapse('show');
+		}
+	  
+		$("#payment-error-text").html("Please enter a valid credit card number");
+		$("#payment-error-container").removeClass("hidden");
+	  }
+	  else if(!paymentInformation.details.expiryMonth || !paymentInformation.details.expiryYear) {
+		if(!$("#collapseTwo").hasClass("in")) {
+		  $('.collapse').collapse('hide');
+		  $('#collapseTwo').collapse('show');
+		}
+	  
+		$("#payment-error-text").html("Please enter the card's expiry date");
+		$("#payment-error-container").removeClass("hidden");
+	  }
+	  else if(!paymentInformation.details.cardSecurityCode || paymentInformation.details.cardSecurityCode <= 2) {
+		if(!$("#collapseTwo").hasClass("in")) {
+		  $('.collapse').collapse('hide');
+		  $('#collapseTwo').collapse('show');
+		}
+	  
+		$("#payment-error-text").html("Please enter the card's security code");
+		$("#payment-error-container").removeClass("hidden");
+	  }
+	  else {
+		$('#TMQuickCheckoutCarousel').carousel(1);
+		$('.collapse').collapse('hide');
+		$('#payment-button-container').css({display: "none"});
+		$('#payment-button-right-container').css({display: "none"});
+	
+		paymentInformation.complete = function() {
+		  $('#TMQuickCheckoutCarousel').carousel(2);
+		  $('#payment-button-container').css({display: "table"});
+		  $('#payment-button-left').html("Close");
+		}
+	
+		processPayment(paymentInformation);   
+	  }
+	}
+	
+	function processPayment(paymentInformation) {
+	  $.post(PAYMENT_URL, {
+		btnCheckoutAccept: "",
+		fee: "4", // Not sure what this is
+		SCH_TIX_PRINT_STATUS: "0", // How to get the tickets to you
+		PAY_METHOD_FC_SEQ: "0", // Payment provider
+		PAY_CARD_NO: paymentInformation.details.cardNumber,
+		ExpireMonth: paymentInformation.details.expiryMonth,
+		ExpireYear: paymentInformation.details.expiryYear,
+		CD_NAME_ON_CARD: paymentInformation.details.cardholderName,
+		PAY_CARD_CID_NO: paymentInformation.details.cardSecurityCode,
+		ORD_REASON_BUY_FC_SEQ: "72",
+		ORD_ACKNOWLEDGED_CONDITIONS: "1", // Have you clicked the checkbox that says tickets are non-refundable
+		form_token: $("#TMBottomForm").children('input[name="form_token"]').val() // CSRF? Token
+	  }, function(response) {
+		paymentInformation.complete('success');
+		var newDoc = document.open("text/html", "replace");
+		newDoc.write(response);
+		newDoc.close();
+	  });
+	}
+	
+	// ENTRY POINT -- If this file is included and the quick pay variable is set, then the payment
+	//                modal will be opened.
+	paymentRequestSupported.then(function (value) {
+	  var showQuickPay = <field>pick(F_HTML_SHOW_QUICK_PAY, 'false', 'true')</field>;
+	  if (!!showQuickPay && loggedIn == '1') {
+		openQuickPay();
+	  }
+	});
+	
+	// Exports
+	return {
+       openQuickPay: openQuickPay,
+	   payClicked: payClicked
+	};
+}( jQuery ));
+//-->
+</script>

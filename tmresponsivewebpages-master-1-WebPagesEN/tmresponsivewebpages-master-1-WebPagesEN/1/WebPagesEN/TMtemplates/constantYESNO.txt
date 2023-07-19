@@ -1,0 +1,8 @@
+#	This file must contain TWO pairs of text to represent yes and no
+#	The first column must be YES and NO in the first and second lines
+#	and the second column is the language of your choice
+#	example, in column 2, put OUI and NON in lines 1 & 2 respectively
+#	for French
+
+YES	YES
+NO	NO

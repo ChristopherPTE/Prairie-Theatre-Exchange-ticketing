@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Checkout Window
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Step 1 of 2:
+      <span class="text-muted">
+       Confirm Your Order - No Payment Required
+      </span>
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <!--#include virtual="TMtemplates/tmCheckoutCartPriceSummary.html" -->
+     </div>
+     <div class="col-md-8">
+      <form action="<field>F_HTML_FIREWALL</field>online" class="form-horizontal" id="TMForm" method="POST">
+       <!-- comment: following fields used for hidden submit
+        			  remove the input field for 'param' if you want to go to the default page TMcart.html as we usually go there
+					  after making chances to the shopping cart.  If you prefer to stay on this page and process the credit, the
+					  leave the hidden param field and set is value to 'btnCheckoutProcessing'
+					-->
+       <input name="pg" type="hidden" value="checkout"/>
+       <input name="fee" type="hidden" value="<field>D_WEB_MAIL_FEE_SEQ</field>"/>
+       <input name="param" type="hidden" value="altbtn=btnCheckoutProcessing"/>
+       <input name="hiddenSubmit" type="hidden" value=""/>
+       <field>pick(SCH_TIX_QUANTITY+SCH_PASS_QUANTITY,'<!-- comment: enable/disable special handling')</field>
+       <!--#include virtual="TMtemplates/tmTicketHandling.html" -->
+       <field>pick(SCH_TIX_QUANTITY+SCH_PASS_QUANTITY,'-->')</field>
+    
+         <field>pick((SCH_TIX_QUANTITY+SCH_PASS_QUANTITY)=0,'<!-- comment: for donation only, may need value for reason to buy')</field>
+       <!--#include virtual="TMtemplates/tmCheckoutDonationReasonToBuy.html" -->
+       <field>pick((SCH_TIX_QUANTITY+SCH_PASS_QUANTITY)=0,'-->')</field>     
+     
+         <field>pick(SCH_TIX_QUANTITY+SCH_PASS_QUANTITY,'<!-- comment: if more than donations, show reason to buy')</field>
+       <!--#include virtual="TMtemplates/tmCheckoutReasonToBuy.html" -->
+       <!--#include virtual="TMtemplates/tmCheckoutOrderNotes.html" -->
+       <field>pick(SCH_TIX_QUANTITY+SCH_PASS_QUANTITY,'-->')</field>
+       <!--#include virtual="TMtemplates/tmCheckoutTermsAndConditionsAcceptance.html" -->
+       <div class="form-group">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-9">
+         <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+         <input class="btn btn-success" name="btnCheckoutAccept" onclick="process()" type="submit" value="Confirm Order for Processing"/>
+         <input class="btn btn-warning" name="btnCart" type="submit" value="Cart"/>
+        </div>
+       </div>
+      </form>
+      <!--#include virtual="TMtemplates/tmCheckoutSecurityAdvisory.html" -->
+      <!--#include virtual="TMtemplates/tmCheckoutAddressLine.html" -->
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

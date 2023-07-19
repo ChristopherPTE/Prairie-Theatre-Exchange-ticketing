@@ -1,0 +1,26 @@
+<div class="panel panel-info">
+ <div class="panel-heading">
+  <b>
+   <field>pick(F_HTML_SUBSCRIPTION_OPTIONAL_FLAG,'','<!-- comment: all mandatory')</field>
+    <field>D_EVENT</field> in Subscription
+   <field>pick(F_HTML_SUBSCRIPTION_OPTIONAL_FLAG=1,'',' -->')</field>
+   <field>pick(F_HTML_SUBSCRIPTION_OPTIONAL_FLAG,'<!-- comment: some optonal','')</field>
+    Optional <field>D_EVENT</field> Selection
+   <field>pick(F_HTML_SUBSCRIPTION_OPTIONAL_FLAG,' -->','')</field>
+  </b>
+ </div>
+ <field>pick(len(F_HTML_SUBSCRIPTION_REQUREMENTS)>0,'<!-- comments: no renewal message ','')</field>
+ <div class="panel-body panel-default">
+  <field>F_HTML_SUBSCRIPTION_REQUREMENTS</field>
+ </div>
+ <field>pick(len(F_HTML_SUBSCRIPTION_REQUREMENTS)>0,' -->','')</field>
+ <table class="table table-striped table-condensed table-responsive table-hover">
+  <!--#include virtual="tmTemplates/rowSubRenewOptionalEventHeader.html" -->
+  <!-- comment: the table body for F_HTML_SUBSCRIPTION_PACKAGE_OPTIONAL_EVENT_LIST
+     is in tmTemplates/rowSubRenewOptionalEvent.html -->
+  <tbody>
+   <field>F_HTML_SUBSCRIPTION_PACKAGE_OPTIONAL_EVENT_LIST</field>
+  </tbody>
+  <!--#include virtual="tmTemplates/rowSubRenewOptionalEventFooter.html" -->
+ </table>
+</div>

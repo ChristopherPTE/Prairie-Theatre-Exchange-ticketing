@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   
+   <field>D_COMPANY_LONG</field> | Checkout Identification Options
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmScripts/passwordScore.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Checkout Options
+      <br/>
+      <small class="text-muted">
+       Select one of the three options below
+      </small>
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-3">
+      <div class="panel panel-info">
+       <div class="panel-heading">
+        <h5 class="panel-title">
+         <img src="tmGifs/step1.gif" alt="Step 1" width="24"/>
+         Existing account
+        </h5>
+       </div>
+       <div class="panel-body">
+        <!--#include virtual="TMtemplates/tmLoginForm.html" -->
+       </div>
+      </div>
+     </div>
+     <div class="col-md-3">
+      <div class="panel panel-info">
+       <div class="panel-heading">
+        <h5 class="panel-title">
+         <img src="tmGifs/step2.gif" alt="Step 2" width="24"/>
+         New account
+        </h5>
+       </div>
+       <div class="panel-body">
+        <form action="<field>F_HTML_FIREWALL</field>login" method="POST" role="form">
+         <input class="btn btn-success" name="btnAccountRequest" type="submit" value="New <field>D_PATRON</field>"/>
+         <input name="param" type="hidden" value="altbtn=btnCheckout"/>
+        </form>
+        <!-- #include virtual="TMtemplates/tmLoginLimitedPatronNewAccount.html" -->
+       </div>
+      </div>
+     </div>
+     <div class="col-md-6">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <div class="panel panel-info">
+       <div class="panel-heading">
+        <h5 class="panel-title">
+         <img src="tmGifs/step3.gif" width="24" alt="Step 3"/>
+         Purchase as a guest (no account created)
+        </h5>
+       </div>
+       <div class="panel-body">
+        <!--#include virtual="TMtemplates/tmLoginLimitedPatron.html" -->
+       </div>
+      </div>
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="tmScripts/passwordCapsLock.html" -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

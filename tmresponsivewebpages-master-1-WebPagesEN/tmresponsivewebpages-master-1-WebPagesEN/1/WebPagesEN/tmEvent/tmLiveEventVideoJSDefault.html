@@ -1,0 +1,46 @@
+<!-- comment:
+	Can be overridden with:
+	  - Event: tmEvent/tmLiveEventVideoJS123.html, where 123 is an Event/Play #
+	  - Performance: tmEvent/tmLiveEventPerformanceVideoJS123.html, where 123 is a Performance #
+-->
+<div class="well">
+ <!-- comment: General help on video sources: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video -->
+ <div class="embed-responsive <field>pick(F_HTML_VIDEO_JS_ASPECT_RATIO, 'embed-responsive-16by9', 'embed-responsive-4by3')</field>">
+ <video
+     id="video-js-video"
+     class="video-js embed-responsive-item"
+     controls
+     preload="auto"
+     poster="<field>pick(F_HTML_VIDEO_JS_POSTER_URL, 'tmGifs/tmCompanyLogo.jpg', F_HTML_VIDEO_JS_POSTER_URL)</field>"
+     data-setup="{&quot;autoplay&quot;: true}"
+   >  
+     <!-- comment: m3u8 playlist for streaming video.  e.g. https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8 -->
+     <field>pick(F_HTML_VIDEO_JS_STREAM_M3U8_URL,'<!--comment:')</field>
+     <source src="<field>F_HTML_VIDEO_JS_STREAM_M3U8_URL</field>" type="application/x-mpegURL" />
+     <field>pick(F_HTML_VIDEO_JS_STREAM_M3U8_URL,'-->')</field>
+    
+     <!-- comment: MP4 container, usually with H.264 encoded video.  e.g. http://techslides.com/demos/sample-videos/small.mp4 -->
+     <field>pick(F_HTML_VIDEO_JS_MP4_URL,'<!--comment:')</field>
+     <source src="<field>F_HTML_VIDEO_JS_MP4_URL</field>" type="video/mp4" />
+     <field>pick(F_HTML_VIDEO_JS_MP4_URL,'-->')</field>
+    
+     <!-- comment: WEBM format: https://www.webmproject.org/.  e.g http://techslides.com/demos/sample-videos/small.webm -->
+     <field>pick(F_HTML_VIDEO_JS_WEBM_URL,'<!--comment:')</field>
+     <source src="<field>F_HTML_VIDEO_JS_WEBM_URL</field>" type="video/webm" />
+     <field>pick(F_HTML_VIDEO_JS_WEBM_URL,'-->')</field>
+    
+     <!-- comment: Ogg Theora codec: https://www.theora.org/.  e.g http://techslides.com/demos/sample-videos/small.ogv -->
+     <field>pick(F_HTML_VIDEO_JS_OGG_THEORA_URL,'<!--comment:')</field>
+     <source src="<field>F_HTML_VIDEO_JS_OGG_THEORA_URL</field>" type="video/ogg" />
+     <field>pick(F_HTML_VIDEO_JS_OGG_THEORA_URL,'-->')</field>
+    
+     <p class="vjs-no-js">
+       To view this video, please enable JavaScript and consider switching to a web browser that supports HTML5 video
+     </p>
+   </video>
+ </div>
+</div>
+<script type="text/javascript">
+	window.HELP_IMPROVE_VIDEOJS = false;  // Disable google analytics to video.js authors
+</script>	
+<script src="tmVendor/video-js-7.8.2/video.min.js"></script>

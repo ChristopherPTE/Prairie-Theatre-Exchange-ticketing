@@ -1,0 +1,43 @@
+<!-- comment:
+	Can be overridden with:
+	  - Event: tmEvent/tmLiveEventCineSend123.html, where 123 is an Event/Play #
+	  - Performance: tmEvent/tmLiveEventPerformanceCineSend123.html, where 123 is a Performance #
+-->
+<field>pick(F_HTML_CINESEND_ERROR_TEXT, '<!-- comment:')</field>
+  <div class="well">
+   <div class="embed-responsive <field>pick(F_HTML_CINESEND_ASPECT_RATIO, 'embed-responsive-16by9', 'embed-responsive-4by3')</field>">
+    <h2>Video Error</h2>
+    <p>Unable to load video from provider.  Please the page to try again.</p>
+    <p><field>F_HTML_CINESEND_ERROR_TEXT</field></p>
+   </div>
+  </div>
+  <field>pick(F_HTML_CINESEND_ERROR_TEXT, '-->')</field>
+<field>pick(F_HTML_CINESEND_ERROR_URL, '<!-- comment:')</field>
+<div class="well">
+ <div class="embed-responsive <field>pick(F_HTML_CINESEND_ASPECT_RATIO, 'embed-responsive-16by9', 'embed-responsive-4by3')</field>">
+  <iframe class="embed-responsive-item" src="<field>F_HTML_CINESEND_ERROR_URL</field>">
+  </iframe>
+ </div>
+</div>
+<field>pick(F_HTML_CINESEND_ERROR_URL, '-->')</field>
+<field>pick(F_HTML_CINESEND_USE_LANDING, '<!-- comment:')</field>
+<div class="embed-responsive <field>pick(F_HTML_CINESEND_ASPECT_RATIO, 'embed-responsive-16by9', 'embed-responsive-4by3')</field>" style="height: 950px;">
+ <iframe loading="lazy" class="embed-responsive-item" src="<field>F_HTML_CINESEND_VIDEO_URL</field>" allow="autoplay; encrypted-media; fullscreen" mozallowfullscreen webkitallowfullscreen allowfullscreen>
+ </iframe>
+</div>
+<br>
+<p class="text-center">
+  <button class="btn btn-primary" onclick="window.open('<field>F_HTML_CINESEND_VIDEO_URL</field>','popout','width=800,height=900,menubar=no,location=no,resizable=yes,scrollbars=no,status=no')">
+    <i class="fa fa-external-link-square" aria-hidden="true"></i>
+    New Window
+  </button>
+</p>
+<field>pick(F_HTML_CINESEND_USE_LANDING, '-->')</field>
+<field>pick(F_HTML_CINESEND_USE_EMBED, '<!-- comment:')</field>
+<div class="well">
+ <div class="embed-responsive <field>pick(F_HTML_CINESEND_ASPECT_RATIO, 'embed-responsive-16by9', 'embed-responsive-4by3')</field>">
+  <iframe loading="lazy" class="embed-responsive-item" src="<field>F_HTML_CINESEND_VIDEO_URL</field>" allow="autoplay; encrypted-media; fullscreen" mozallowfullscreen webkitallowfullscreen allowfullscreen>
+  </iframe>
+ </div>
+</div>
+<field>pick(F_HTML_CINESEND_USE_EMBED,  '-->')</field>

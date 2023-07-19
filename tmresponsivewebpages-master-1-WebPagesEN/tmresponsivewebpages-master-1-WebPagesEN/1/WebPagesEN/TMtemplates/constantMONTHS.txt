@@ -1,0 +1,17 @@
+#	these are in pairs for month number and month name
+#	please make sure that there are 13 rows when you customize for languages
+#	columns are separated by tabs, end of line is a CR or LF
+
+0	All Months
+1	January
+2	February
+3	March
+4	April
+5	May
+6	June
+7	July
+8	August
+9	September
+10	October
+11	November
+12	December

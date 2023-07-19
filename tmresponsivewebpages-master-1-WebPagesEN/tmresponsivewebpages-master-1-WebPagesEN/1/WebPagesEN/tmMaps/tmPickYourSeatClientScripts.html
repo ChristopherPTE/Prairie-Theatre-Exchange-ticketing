@@ -1,0 +1,250 @@
+  <script type="text/javascript">
+   // Trigger javascript styles to enable "swap" button and navigation controls
+	$(document.body).addClass('js-on').removeClass('js-off');
+
+	// Start building the map
+    (function() {
+        function requestBackground(widget, cb) {
+			$.ajax({
+				// Issue GET request for SVG background
+				type: "GET",		 
+				dataType : "text",
+
+				// Inject the URL of the server
+				url: "<field>F_HTML_FIREWALL</field>seatmapbackground",
+
+				// Query args - inject performance and map data
+				data: {
+					performance: <field>PB_SEQ</field>,
+					map: <field>TM_SEQ</field>
+				}
+			})
+			// Successful request?  Create each row in the list with a button to add a person
+			.done(function( svgText ) {		     
+				 if (!!cb) {
+				   cb(svgText);
+				 };
+			})
+			// Failed request?  Show the user an error message
+			.fail(function( xhr, status, errorThrown ) {
+				console.log('Failed to load map.  Status: ' + status + ' Error: ' + errorThrown);
+			})
+		}
+
+		function requestData(widget, args, cb) {
+			var data = $.extend({}, args);
+			data['performance'] = <field>PB_SEQ</field>;
+			data['map'] = <field>TM_SEQ</field>;
+			$.ajax({
+				// Issue GET request for JSON
+				type: "GET",		 
+				dataType : "json",
+
+				// Inject the URL of the server
+				url: "<field>F_HTML_FIREWALL</field>seatmapdata",
+
+				// Query args -- only get "extra" data
+				data: data
+			})
+			// Successful request?  Create each row in the list with a button to add a person
+			.done(function( payload ) {		     
+				 if (!!cb) {
+				   cb(payload);
+				 };
+			})
+			// Failed request?  Show the user an error message
+			.fail(function( xhr, status, errorThrown ) {
+				console.log('Failed to load map.  Status: ' + status + ' Error: ' + errorThrown);
+			})
+		}
+
+        $(document).ready(function() {
+            // Function to determine if this is a touch device or not
+            var is_touch_device = function () {
+              return !!('ontouchstart' in window       // Most browsers 
+                  || navigator.msMaxTouchPoints);      // Internet Explorer
+            };
+
+            // Function to hide all the SVG controls
+            var hide_controls = function () {            
+				$('.desktop_navigation').each(function() {
+                    $( this ).hide();
+                });
+            };
+
+            // Function to show all the SVG controls
+            var show_controls = function () {
+				$('.desktop_navigation').each(function() {
+                    $( this ).show();
+                });
+            };
+
+            // Attach the widget to the SVG object.
+            var mapSelector = '#venue_map_client_side';
+            var mapElement = $(mapSelector);
+            var progressSelector = '#venue_map_progress';
+
+            // Setup progress delay
+            var progressElement = $(progressSelector);
+            var progressTimer = setTimeout(function() { progressElement.show() },  500);
+
+			// Hide the map and the controls while we're loading data and drawing
+			mapElement.hide()
+			hide_controls();			
+
+			try {
+				// Construct the widget
+				var widget = new PYOSDynamic.SeatSelection(mapSelector);   
+
+				// Initialize the widget with new pan and zoom values
+				widget.init();
+
+				// Create loading indicators
+				var loadedBackground = false, 
+				    loadedExtra = false, 
+				    loadedPositions = false, 
+				    loadedNames = false, 
+				    loadedAvailability = false;
+
+				function checkLoaded() {
+				  if (!loadedBackground) return;
+				  if (!loadedExtra) return;
+				  if (!loadedPositions) return;
+				  if (!loadedNames) return;
+				  if (!loadedAvailability) return;
+
+				  // Set default Map Display View on non-mobile devices (i.e. Desktop)
+				  // 
+				  // Auto-Zoom to selected seats (default mode) = widget.zoom_reserved_seats();
+				  // View Entire Map                            = widget.reset_pan_zoom();
+				  // View Entire Map + 1 Zoom In                = widget.zoom_in();
+				  // View Entire Map + 1 Zoom Out               = widget.zoom_out();
+				  if (!is_touch_device()) {
+				    widget.reset_pan_zoom();
+				  }
+
+				  if (!is_touch_device()) {
+                    show_controls();
+                  }
+
+				  // Show the map now that it's drawn
+				  clearTimeout(progressTimer);
+				  progressElement.hide()
+				  mapElement.show()
+				}
+
+				// Queue up all the requests to get the seat data
+				requestBackground(widget, function(svgText) {
+					try {
+					  widget.setBackground(svgText);
+					} catch (e) {
+					  if (e instanceof TypeError) {
+					    // Workaround for Firefox that prevents background setting when the element
+					    // is hidden: TypeError: "e.root.getScreenCTM(...) is null"
+					    mapElement.show()
+					    widget.setBackground(svgText);
+					    mapElement.hide()
+					  } else {
+					    throw e;
+					  }
+					}
+					loadedBackground = true;
+					checkLoaded();
+				});
+
+				requestData(widget, {extra: 'true'}, function(data) { 
+				    try {
+					  widget.setOmnisWidth(data['extra']['width']);
+					} catch (e) {
+					  if (e instanceof TypeError) {
+					    // Workaround for Firefox that prevents background setting when the element
+					    // is hidden: TypeError: "e.root.getScreenCTM(...) is null"
+					    mapElement.show()
+					    widget.setOmnisWidth(data['extra']['width']);
+					    mapElement.hide()
+					  } else {
+					    throw e;
+					  }
+					}
+					
+					widget.setSocialDistanceLetter(data['extra']['social_distance_letter']);
+					
+					var tooltip_format = data['extra']['tooltip_format'];
+					if (!!tooltip_format) {
+						widget.setSeatTooltipFormat(tooltip_format);
+					} else {
+						// Fallback to standard tooltip format in case of errors
+						widget.setSeatTooltipFormat('{section}/{row}/{seat}');
+					}
+					
+					loadedExtra = true;
+					checkLoaded();
+				});
+
+				requestData(widget, {positions: 'true'}, function(data) { 
+					widget.setSeatPositions(data['positions']);
+					loadedPositions = true;
+					checkLoaded();
+				});		
+
+				requestData(widget, {names: 'true'}, function(data) { 
+					widget.setSeatNames(data['names']);
+					loadedNames = true;
+					checkLoaded();
+				});	
+
+				requestData(widget, {availability: 'true'}, function(data) { 
+					widget.setSeatAvailability(data['availability'], '\uf007', '\uf05e');
+					loadedAvailability = true;
+					checkLoaded();
+				});
+
+				var reservedSeatsJSON = '<field>F_HTML_CURRENT_SEATS</field>';
+				var reservedSeats;
+				if (!!reservedSeatsJSON && reservedSeatsJSON.length > 0) {
+					try {
+						reservedSeats = JSON.parse(reservedSeatsJSON);
+						widget.setSeatReserved(reservedSeats);
+					} catch (e) {
+						console.log("Unable to parse current seats from server", reservedSeatsJSON);
+					}
+				}
+
+				// Setup all the events for the desktop navigation controls
+				$('#left').click(function(evt) {
+					widget.pan_left();
+				});
+				$('#right').click(function(evt) {
+					widget.pan_right();
+				});
+				$('#up').click(function(evt) {
+					widget.pan_up();
+				});
+				$('#down').click(function(evt) {
+					widget.pan_down();
+				});
+				$('#in').click(function(evt) {
+					widget.zoom_in();
+				});
+				$('#out').click(function(evt) {
+					widget.zoom_out();
+				});
+				$('#reset').click(function(evt) {
+					widget.zoom_reserved_seats();
+				});
+				$('#resetmap').click(function(evt) {
+					widget.reset_pan_zoom();
+				});
+				$('#clear').click(function(evt) {
+					widget.clear_seats();
+				});
+			} catch (err) {
+				// An error has occured with the widget.  
+				console.log('Error loading map:', err);
+
+				// Hide the controls (there is no map to work with)
+				hide_controls();
+			};
+    	});
+	})();
+  </script>

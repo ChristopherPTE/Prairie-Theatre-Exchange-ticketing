@@ -1,0 +1,40 @@
+<div class="well well-sm">
+ <h4 class="media-heading">
+  <a href="<field>F_HTML_FIREWALL</field>tmSubscription/tmSubscription<field>SG_SEQ</field>.html" onclick="return popup(this, 'notes')">
+   <field>SG_DESCRIPTION</field>
+  </a>
+  <span class="text-muted">
+   <field>PB_SERIES_CODE</field>
+  </span>
+ </h4>
+ <div class="small">
+  <a href="<field>F_HTML_FIREWALL</field>tmVenue/tmVenue<field>TM_SEQ</field>.html" onclick="return popup(this, 'notes')">
+   <field>VE_NAME</field>
+  </a>
+ </div>
+ <table class="table table-striped table-condensed table-responsive table-hover">
+  <!--#include virtual="TMtemplates/rowSubRenewSeatHeaderColumns.html" -->
+  <tbody>
+   <field>F_HTML_FAVOURITE_SEAT_DETAIL_LIST</field>
+  </tbody>
+  <tfoot>
+   <tr>
+    <td colspan="3">
+    </td>
+    <td class="text-right">
+     <b>
+      Total
+     </b>
+    </td>
+    <td class="text-right">
+     <b>
+      $<field>F_HTML_SUBSCRIPTION_TOTAL_COST</field>
+     </b>
+    </td>
+    <td>
+    </td>
+   </tr>
+  </tfoot>
+ </table>
+ <!--#include virtual="tmTemplates/rowSubRenewOptionalEventList.html" -->
+</div>

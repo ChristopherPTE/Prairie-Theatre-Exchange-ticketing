@@ -1,0 +1,12 @@
+<!-- comment:
+	Can be overridden with:
+	  - Event: tmEvent/tmLiveEventVimeo123.html, where 123 is an Event/Play #
+	  - Performance: tmEvent/tmLiveEventPerformanceVimeo123.html, where 123 is a Performance #
+-->
+<div class="well">
+ <div class="embed-responsive <field>pick(F_HTML_VIMEO_ASPECT_RATIO, 'embed-responsive-16by9', 'embed-responsive-4by3')</field>">
+  <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/<field>F_HTML_VIMEO_VIDEO_ID</field>?autoplay=1&title=0&byline=0&portrait=0" allow="autoplay; encrypted-media; fullscreen" mozallowfullscreen webkitallowfullscreen allowfullscreen>
+  </iframe>
+ </div>
+</div>
+<script src="https://player.vimeo.com/api/player.js"></script>

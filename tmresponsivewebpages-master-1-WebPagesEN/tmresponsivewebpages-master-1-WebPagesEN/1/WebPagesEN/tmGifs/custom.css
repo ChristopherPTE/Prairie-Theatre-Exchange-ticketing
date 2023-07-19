@@ -1,0 +1,87 @@
+/* Custom CSS */
+.media, .add-border-bottom {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px;
+}
+
+/* remove URL's from printed from screen items */
+@media print {
+  a[href]:after {
+    content: none;
+  }
+}
+
+.navbar-brand {padding: 0;}
+
+/* Common styles for all types */
+.bs-callout {
+  margin: 20px 0;
+  padding: 20px;
+  border-left: 3px solid #eee;
+}
+.bs-callout h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* Variations */
+.bs-callout-danger {
+  background-color: #fdf7f7;
+  border-color: #eed3d7;
+}
+.bs-callout-danger h4 {
+  color: #b94a48;
+}
+.bs-callout-warning {
+  background-color: #faf8f0;
+  border-color: #faebcc;
+}
+.bs-callout-warning h4 {
+  color: #8a6d3b;
+}
+.bs-callout-info {
+  background-color: #f4f8fa;
+  border-color: #bce8f1;
+}
+.bs-callout-info h4 {
+  color: #34789a;
+}
+
+.footer {
+  background-color: #efefef;
+  text-align: center;
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.figure {
+    display: inline-block;
+}
+/* Proctors view freom seat */
+.view-from-seat {
+	display: block;
+	background-size: 250px 125px;
+	width: 250px;
+	height: 125px;
+	background-position: center center;
+	text-align: center;
+}
+.view-from-seat a {
+	display:block;
+	height:100%;
+}
+.view-from-seat a img {
+	padding:50px 47px 20px;
+	display:block;
+	width: 155px;
+	height: 55px;
+}
+
+/* Don't allow seat notes to crush price selection */
+table.table-condensed > tbody > tr > td { 
+	max-width: 10em;
+}

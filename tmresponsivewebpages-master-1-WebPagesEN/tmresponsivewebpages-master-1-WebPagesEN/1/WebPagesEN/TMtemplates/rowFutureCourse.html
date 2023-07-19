@@ -1,0 +1,76 @@
+  <!-- comment: 
+  To display all orders you can remove the checks for order balance.
+-->
+  <tr>
+   <td class="text-left" width="25%">
+    <field>dat(PB_PERFORM_DATE,'w n D y')</field>
+   </td>
+   <td class="text-left" width="25%">
+    <field>pick(len(dat(PB_PERFORM_TIME,'h:N A'))>0,'<!-- comment:')</field>
+    <field>dat(PB_PERFORM_TIME,'h:N A')</field>
+    <field>F_HTML_TZ_SHORT_NAME</field>
+    <field>pick(len(dat(PB_PERFORM_TIME,'h:N A'))>0,'-->')</field>
+   </td>
+   <td class="text-center" width="25%">
+    <!-- comment: Show a text description if the user can't change the reason -->
+    <field>pick(not(F_HTML_CAN_SET_ATTENDANCE)&not(F_HTML_ATTENDANCE_REASON_SHORT)&PB_PERFORM_DATETIME>F_HTML_CURRENT_DATETIME,'<!-- comment: ')</field>
+    No
+    <field>pick(not(F_HTML_CAN_SET_ATTENDANCE)&not(F_HTML_ATTENDANCE_REASON_SHORT)&PB_PERFORM_DATETIME>F_HTML_CURRENT_DATETIME,'-->')</field>
+    <!-- comment: Show a text description if the user can't set the attendance  -->
+    <field>pick(not(F_HTML_CAN_SET_ATTENDANCE)&F_HTML_ATTENDANCE_REASON_SHORT,'<!-- comment: ')</field>
+    <field>F_HTML_ATTENDANCE_REASON_SHORT</field>
+    <field>pick(not(F_HTML_CAN_SET_ATTENDANCE)&F_HTML_ATTENDANCE_REASON_SHORT,'-->')</field>
+    <!-- comment: Show a text description and a remove icon if the person can change the reason  -->
+    <field>pick(F_HTML_CAN_SET_ATTENDANCE&not(F_HTML_ATTENDANCE_REASON_SHORT)&PB_PERFORM_DATETIME>F_HTML_CURRENT_DATETIME,'<!-- comment: ')</field>
+    <a href="<field>F_HTML_FIREWALL</field>online?courseattendance=<field>PS_SEQ</field>">
+     <span class="glyphicon glyphicon-remove-sign text-warning" title="Indicate that you will be unable to attend.">
+     </span>
+    </a>
+    <field>pick(F_HTML_CAN_SET_ATTENDANCE&not(F_HTML_ATTENDANCE_REASON_SHORT)&PB_PERFORM_DATETIME>F_HTML_CURRENT_DATETIME,'-->')</field>
+    <!-- comment: Show a text description with a button if they user can change the attendance  -->
+    <field>pick(F_HTML_CAN_SET_ATTENDANCE&F_HTML_ATTENDANCE_REASON_SHORT,'<!-- comment: ')</field>
+    <div class="btn-group" role="group">
+     <form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+      <input name="PS_SEQ" type="hidden" value="<field>PS_SEQ</field>"/>
+      <button class="btn btn-primary btn-xs text-right" name="btnCourseAttendance" title="Change the reason that you are unable to attend." type="submit">
+       <span class="glyphicon glyphicon-edit">
+       </span>
+       <field>F_HTML_ATTENDANCE_REASON_SHORT</field>
+      </button>
+     </form>
+    </div>
+    <field>pick(F_HTML_CAN_SET_ATTENDANCE&F_HTML_ATTENDANCE_REASON_SHORT,'-->')</field>
+   </td>
+   <td class="text-center" width="25%">
+    <!-- comment: If the order balance is less than or equal to zero, then just indicate that the user has paid -->
+    <field>pick(ORD_BALANCE<=0,'<!-- comment: ')</field>
+    <span class="glyphicon glyphicon-ok-sign text-success">
+    </span>
+    Yes
+    <field>pick(ORD_BALANCE<=0,'-->')</field>
+    <!-- comment: If the order balance is greater than 0, then show either "no" or buttons to help the user pay -->
+    <field>pick(ORD_BALANCE>0&not(F_HTML_ORDER_ALLOW_PAYMENT),'<!-- comment: ')</field>
+    <span class="glyphicon glyphicon-exclamation-sign text-danger">
+    </span>
+    No
+    <field>pick(ORD_BALANCE>0&not(F_HTML_ORDER_ALLOW_PAYMENT),'-->')</field> 
+    <field>pick(ORD_BALANCE>0&F_HTML_ORDER_ALLOW_PAYMENT&F_HTML_ORDER_IN_CART,'<!-- comment: ')</field>
+    <form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+     <a class="btn btn-block btn-info" href="<field>F_HTML_FIREWALL</field>online?cart">
+      In Cart
+     </a>
+    </form>
+    <field>pick(ORD_BALANCE>0&F_HTML_ORDER_ALLOW_PAYMENT&F_HTML_ORDER_IN_CART,'-->')</field> 
+    <field>pick(ORD_BALANCE>0&F_HTML_ORDER_ALLOW_PAYMENT&not(F_HTML_ORDER_IN_CART),'<!-- comment: ')</field>
+    <form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+     <input name="ORD_SEQ" type="hidden" value="<field>ORD_SEQ</field>"/>
+     <input name="order_action" type="hidden" value="pay"/>
+     <button class="btn btn-success btn-xs" name="btnOrderAdd" onclick="process()" type="submit">
+      <i class="glyphicon glyphicon-plus">
+      </i>
+      Add Order #<field>ORD_SEQ</field> to Cart
+     </button>
+    </form>
+    <field>pick(ORD_BALANCE>0&F_HTML_ORDER_ALLOW_PAYMENT&not(F_HTML_ORDER_IN_CART),'-->')</field>
+   </td>
+  </tr>

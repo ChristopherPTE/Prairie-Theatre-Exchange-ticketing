@@ -1,0 +1,20 @@
+<div class="alert alert-info fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <p>
+  A
+  <b>
+   <field>D_COURSE_DESC</field>
+  </b>
+  requires additional registration information before completing the sale
+  such as attendee names (if it will not be yourself). You may need to add other
+member(s) to your household in your account details.
+ </p>
+ <field>pick(F_LOGGED_IN=1,'','<!-- comment: only show comment if not logged in)')</field>
+ <p>
+  <em>
+   This is done after you have logged in and prior to paying for the sale. You will be
+   prompted as neccessary.
+  </em>
+ </p>
+ <field>pick(F_LOGGED_IN=1,'','-->')</field>
+</div>

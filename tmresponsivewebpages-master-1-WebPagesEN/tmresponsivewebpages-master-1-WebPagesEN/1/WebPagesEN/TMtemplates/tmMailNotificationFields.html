@@ -1,0 +1,32 @@
+<h4>
+ Mail Notifications
+</h4>
+<div class="radio">
+ <label>
+  <input id="mailyes" name="MKT_DO_NOT_MAILP" type="radio" value="NO" <field>pick(MKT_DO_NOT_MAILP='YES','checked','')</field>/>
+  Please mail me periodic news and event updates
+ </label>
+</div>
+<div class="radio">
+ <label>
+  <input id="mailno" name="MKT_DO_NOT_MAILP" type="radio" value="YES" <field>pick(MKT_DO_NOT_MAILP='YES','','checked')</field>/>
+  Please do not mail me updates
+ </label>
+</div>
+<field>pick(D_COUNTRY='USA','<!-- comment: do not email is now notifications for all but USA')</field>
+<h4>
+ E-Mail Notifications
+</h4>
+<div class="radio">
+ <label>
+  <input id="emailyes" name="MKT_DO_NOT_EMAIL" type="radio" value="NO" <field>pick(MKT_DO_NOT_EMAIL='YES','checked','')</field>/>
+  Please E-Mail me periodic news and event updates
+ </label>
+</div>
+<div class="radio">
+ <label>
+  <input id="emailno" name="MKT_DO_NOT_EMAIL" type="radio" value="YES" <field>pick(MKT_DO_NOT_EMAIL='YES','','checked')</field>/>
+  Please do not E-Mail me updates
+ </label>
+</div>
+<field>pick(D_COUNTRY='USA','-->')</field>

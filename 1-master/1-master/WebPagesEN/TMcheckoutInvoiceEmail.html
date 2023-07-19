@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHeadEmail.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Purchase Confirmation for order <field>SCH_ORD_SEQ</field>
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScriptsEmail.html" -->
+  <!--#include virtual="tmLayout/tmLastHeadEmail.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBodyEmail.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Web Order <field>ORD_SEQ</field> Confirmation
+      <br/>
+      <small class="text-muted">
+       <field>D_COMPANY_LONG</field>
+      </small>
+     </h1>
+    </div>
+    <div class="alert alert-info fade in">
+     <a aria-label="close" class="close" data-dismiss="alert" href="#">
+      &times;
+     </a>
+     <!-- This email confirms your purchase and receipt
+          of your payment. Save it for your records. IT IS NOT A TICKET. All live show tickets will be held at the Box Office for pick up at show time.-->
+		  <br><br>
+    <!--  For Classes: any further information and/or course materials will be forwarded closer to the course start date<br><br> -->
+    This email confirms your purchase and receipt
+         of your payment. Save it for your records. IT IS NOT A TICKET. <br>
+<!--<a href="https://www.pte.mb.ca/performances/deer-woman" target="_blank">Show Information Page for Deer Woman with FAQ</a><br>
+      <br><br>--><br><br>
+<a href="https://www.pte.mb.ca/performances/tomatoes-tried-to-kill-me-but-banjos-saved-my-life" target="_blank">Information Page for Tomatoes Tried to Kill Me But Banjos Saved My Life</a><br>
+                        <br><br>
+
+<a href="https://www.pte.mb.ca/performances/outside-jokes-a-christmas-carol-bigger-dickens-energy" target="_blank">Information Page for Outside Joke's A Christmas Carol: Bigger Dickens Energy</a><br>
+                        <br><br>
+
+<a href="https://www.pte.mb.ca/performances/space-girl-digital" target="_blank">Information Page for the digital presentation of Space Girl</a><br>
+                        <br><br>
+
+<a href="https://www.pte.mb.ca/performances/everything-has-disappeared" target="_blank">Information Page for Everything Has Disappeared</a><br>
+                        <br><br>
+<!--<a href="https://www.pte.mb.ca/performances/tomatoes-tried-to-kill-me-but-banjos-saved-my-life" target="_blank">FREQUENTLY ASKED QUESTIONS & Artist Information</a><br>
+                                                <br><br> -->
+<!--<a href="https://www.pte.mb.ca/files/file/64874401689ce/Digital-Step-by-Step-final.pdf" target="_blank">HOW TO WATCH - STEP BY STEP</a><br>
+
+            <br><br>
+    You’ll receive a reminder email with links to the log in page on our site 24 hours before your show date and again 1 hour before your showtime. You will have a 48-hour viewing window starting at that time.
+                 <br><br>-->
+<!--  <a href="https://www.pte.mb.ca/our-covid-protocols" target="_blank">Our COVID Protocols</a><br>
+    <br><br>
+    <a href="https://viewer.webproof.com/pageflip/5443/240951/html5.html" target="_blank">The Program for Volare</a><br>
+		  <br><br>
+    <!--  <a href="https://viewer.webproof.com/pageflip/5443/238721/html5.html#page/1" target="_blank">The Program for Our Fathers, Sons, Lovers and Little Brothers</a><br>
+       <br><br> -->
+		 <!-- DO NOT REPLY TO THIS EMAIL - questions can be directed to boxoffice@pte.mb.ca
+		  <br><br> -->
+		  Please note that all ticket purchases are FINAL SALES. Exchanges may be made with some restrictions.
+		  <br><br>
+    </div>
+    <!--#include virtual="TMtemplates/tmCheckoutConfirmationTaxReceiptsEmail.html" -->
+    <!--#include virtual="TMtemplates/tmCheckoutConfirmationCalendarEmail.html" -->
+    <!--#include virtual="TMtemplates/tmCheckoutConfirmationDeliveryEmail.html" -->
+    <!--#include virtual="TMtemplates/tmCheckoutExtraMessagesEmail.html" -->
+    <!--#include virtual="TMtemplates/tmCheckoutCartList.html" -->
+    <!--#include virtual="TMtemplates/tmCheckoutPaymentInformation.html" -->
+    <!--#include virtual="TMtemplates/tmCheckoutPostDatedPaymentsAccepted.html" -->
+    <!--#include virtual="TMtemplates/tmCheckoutCardHolderNotice.html" -->
+    <!--#include virtual="TMtemplates/tmContactHours.html" -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmMarkEmailRead.html" -->
+  <!--#include virtual="tmLayout/tmBodyScriptsEmail.html" -->
+  <!--#include virtual="tmLayout/tmLastBodyEmail.html" -->
+ </body>
+</html>

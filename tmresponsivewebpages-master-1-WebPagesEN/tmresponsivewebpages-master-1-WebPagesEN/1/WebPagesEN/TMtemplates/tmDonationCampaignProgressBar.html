@@ -1,0 +1,32 @@
+<!-- comment:
+	Other field options:
+
+	F_HTML_CAMPAIGN_TARGET: Campaign target amount
+	F_HTML_CAMPAIGN_PERCENT: Overall percent that donations have progressed towards the goal (as integer between 0 and 100)
+	F_HTML_CAMPAIGN_TOTAL: Overall sum of donations for this campaign
+
+	F_HTML_CAMPAIGN_FISCAL_YEAR_PERCENT: Percent that the current fiscal year donations have progressed towards the goal (as integer between 0 and 100)
+	F_HTML_CAMPAIGN_FISCAL_YEAR_COUNT: Count of donations in the current fiscal year
+	F_HTML_CAMPAIGN_FISCAL_YEAR_TOTAL: Sum of donations in the current fiscal year
+
+	F_HTML_CAMPAIGN_PROGRAM_YEAR_PERCENT: Percent that the current program year donations have progressed towards the goal (as integer between 0 and 100)
+	F_HTML_CAMPAIGN_PROGRAM_YEAR_COUNT: Count of donations in the current program year
+	F_HTML_CAMPAIGN_PROGRAM_YEAR_TOTAL: Sum of donations in the current program year
+-->
+<p class="lead">
+ <strong>
+  <field>tStringFields.$dollarDisplay(F_HTML_CAMPAIGN_TOTAL)</field>
+ </strong>
+ <small>
+  of <field>tStringFields.$dollarDisplay(F_HTML_CAMPAIGN_TARGET)</field> raised
+ </small>
+</p>
+<p>
+</p>
+<div class="progress">
+ <div aria-valuemax="<field>F_HTML_CAMPAIGN_TARGET</field>" aria-valuemin="0" aria-valuenow="<field>F_HTML_CAMPAIGN_TOTAL</field>" class="progress-bar progress-bar-striped progress-bar-warning active" role="progressbar" style="width: <field>F_HTML_CAMPAIGN_PERCENT</field>%;">
+  <span class="sr-only">
+   <field>F_HTML_CAMPAIGN_PERCENT</field>% Complete
+  </span>
+ </div>
+</div>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHeadEmail.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | New Account Added to Database
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmLayout/tmHeadScriptsEmail.html" -->
+  <!--#include virtual="tmLayout/tmLastHeadEmail.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBodyEmail.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      New Account Added to Database
+      <br/>
+      <small class="text-muted">
+       <field>C_FIRST_NAME</field> <field>C_LAST_NAME</field>
+      </small>
+     </h1>
+    </div>
+    <div class="alert alert-info">
+     You have been added to our online ticketing system as a result of your recent visit to our web site.
+     Your email address is used to access your account.
+     If you do not recall creating an online account, contact the box office by phone with any concerns you may have.
+    </div>
+    <field>pick(len(F_HTML_DOUBLE_OPT_IN)>0,'<!-- comment: no double opt in mail list items')</field>
+    <p>
+     &nbsp;
+    </p>
+    <div class="alert alert-info">
+     You also clicked some checkboxes to tell us how you want to be notified about our programs and events.
+     <field>D_COMPANY_LONG</field> uses double-opt-in confirmation.   It means you must confirm your choices by 
+     clicking the button below.
+     <br/>
+     <br/>
+     If you do not click the link, you will be removed from those notifications approximately 
+      <field>D_WEB_PENDING_MAIL_LIST_TIMEOUT</field> hours after you created your account.
+    </div>
+    <a class="btn btn-success" href="<field>F_HTML_FIREWALL</field>opt-in?<field>F_HTML_DOUBLE_OPT_IN</field>">
+     Confirm my notification setup
+    </a>
+    <field>pick(len(F_HTML_DOUBLE_OPT_IN)>0,'-->')</field>
+    <a class="btn btn-info" href="<field>F_HTML_FIREWALL</field>login&e=<field>tEditCheck.$urlQuote(F_EMAIL_ADDRESS)</field>&tmsource=accountnew">
+     Login
+    </a>
+    <p>
+     &nbsp;
+    </p>
+    <!--#include virtual="TMtemplates/tmPrivacyNoteEmail.html" -->
+    <!--#include virtual="TMtemplates/tmContactHours.html" -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="TMtemplates/tmMarkEmailRead.html" -->
+  <!--#include virtual="tmLayout/tmBodyScriptsEmail.html" -->
+  <!--#include virtual="tmLayout/tmLastBodyEmail.html" -->
+ </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | <field>D_EVENT</field>/<field>D_COURSE_DESC</field> Management | Add <field>pick(PB_SALES_METHOD=6,D_PERF_DESC,D_CLASS_DESC)</field>
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div class="page-header">
+    <h1>
+     Add <field>pick(PB_SALES_METHOD=6,D_PERF_DESC,D_CLASS_DESC)</field>
+    </h1>
+    <field>pick(P_SEQ>0,'<!-- comment: Hide started date if this is the primary date')</field>
+    <h3>
+     <field>P_PLAY_TITLE</field>
+      -
+      <field>PB_SERIES_CODE</field>
+      -
+      <field>PB_TEMPLATE_DESCRIPTION</field>
+    </h3>
+    <field>pick(P_SEQ>0,'-->')</field>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+     <div class="alert alert-info fade in">
+      <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+      <p>
+       Please select a date and time for the new <field>low(pick(PB_SALES_METHOD=6,D_PERF_DESC,D_CLASS_DESC))</field>
+      </p>
+     </div>
+    </div>
+    <div class="col-md-8">
+     <div>
+      <form action="<field>F_HTML_FIREWALL</field>online" method="POST">
+       <input name="P_SEQ" type="hidden" value="<field>P_SEQ</field>"/>
+       <input name="PB_SEQ" type="hidden" value="<field>PB_SEQ</field>"/>
+       <div class="form-group">
+        <!-- comment: F_HTML_NEW_PERFORMANCE_TIMESTAMP is also available as a combined date/time input, but there is less support for date + time inputs. -->
+        <label for="F_HTML_NEW_PERFORMANCE_DATE">
+         Date
+        </label>
+        <input class="form-control" id="F_HTML_NEW_PERFORMANCE_DATE" name="F_HTML_NEW_PERFORMANCE_DATE" placeholder="yyyy-mm-dd" type="date" value="<field>dat(F_HTML_NEW_PERFORMANCE_DATE, 'y-M-0D')</field>"/>
+        <label for="F_HTML_NEW_PERFORMANCE_TIME">
+         Time
+        </label>
+        <input class="form-control" id="F_HTML_NEW_PERFORMANCE_TIME" name="F_HTML_NEW_PERFORMANCE_TIME" placeholder="hh:mm AM/PM" type="time" value="<field>dat(F_HTML_NEW_PERFORMANCE_TIME, 'h:N A')</field>"/>
+       </div>
+       <div>
+        <a class="btn btn-danger" href="<field>F_HTML_FIREWALL</field>online?manageperfpay=<field>PB_SEQ</field>">
+         <i class="glyphicon glyphicon-remove-circle">
+         </i>
+         Back to <field>D_PERF_DESC</field> Management
+        </a>
+        <button class="btn btn-success" name="btnManagePerformanceAdd" onclick="process()" type="submit">
+         <i class="glyphicon glyphicon-plus">
+         </i>
+         Create <field>pick(PB_SALES_METHOD=6,D_PERF_DESC,D_CLASS_DESC)</field>
+        </button>
+        <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+       </div>
+      </form>
+     </div>
+     <!--#include virtual="TMtemplates/tmFooter.html" -->
+    </div>
+   </div>
+  </div>
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

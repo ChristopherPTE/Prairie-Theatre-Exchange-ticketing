@@ -1,0 +1,125 @@
+<!-- comment: AJAX loading start -->
+<script type="text/javascript">
+    /*
+    * ZERO PAD
+    *
+    * Pad a numeric value, like a 5, with a leading 0 for use in a clock display: 05.
+    */
+    var zeroPad = function(s) {
+        s = String(s);
+        return s.length === 1 ? "0" + s : s;
+    };
+
+    /*
+    * RANDOM INT
+    *
+    * Get a random integer between 0 and max
+    */
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    var progressData = function(queuePosition, queueSize) {
+        var progress = queueSize - queuePosition
+        var precent = progress / queueSize * 100
+        return {
+            size: queueSize,
+            position: queuePosition,
+            progressNth: queuePosition + nth(queuePosition),
+            progressPercent: precent,
+            progressPercentInt: Math.round(precent)
+        }
+    }
+
+    /*
+    * COUNTDOWN DATA
+    *
+    * Return an object with all countdown data provided in an object.  This data is typically
+    * used for templates.
+    */
+    var countdownData = function(locale, countSecs, progressStart, progressEnd) {
+        var secondsLeft = countSecs;
+        var days = parseInt(secondsLeft / 86400);
+        secondsLeft = secondsLeft % 86400;
+
+        var hours = parseInt(secondsLeft / 3600);
+        secondsLeft = secondsLeft % 3600;
+
+        var minutes = parseInt(secondsLeft / 60);
+        var seconds = parseInt(secondsLeft % 60);
+
+        var hasDays = days > 0;
+        var hasHours = days > 0 || hours > 0;
+        var hasMinutes = days > 0 || hours > 0 || minutes > 0;
+
+        var progress = progressStart / progressEnd;
+
+        return {
+            days: days,
+            hours: hours,
+            minutes: minutes,
+            seconds: seconds,
+            secondsText: seconds === 1 ? "second" : "seconds",
+
+            daysClock: String(days),
+            hoursClock: hasDays ? zeroPad(hours) : String(hours),
+            minutesClock: hasHours ? zeroPad(minutes) : String(minutes),
+            secondsClock: hasMinutes ? zeroPad(seconds) : String(seconds),
+
+            words: moment.duration(countSecs, "seconds").locale(locale).humanize(true),
+
+            progressStart: progressStart,
+            progressEnd: progressEnd,
+            progressDecimal: progress,
+            progressPercent: progress * 100,
+            progressPercentInt: Math.round(progress * 100),
+
+            hasDays: days > 0,
+            hasHours: days > 0 || hours > 0,
+            hasMinutes: days > 0 || hours > 0 || minutes > 0
+        }
+    }
+
+    /*
+    * UPDATE POSITION PROGRESS BARS
+    *
+    * Update all possible templated countdowns
+    */
+    var updateQueueProgress = function(templates, queuePosition, queueSize) {
+        var components = progressData(queuePosition, queueSize)
+
+        var templateSelector, renderSelector;
+        for (var i = 0; i < templates.length; i++) {
+            renderSelector = templates[i][0];
+            templateSelector = templates[i][1];
+            $(renderSelector).handlebars(templateSelector, components);
+        }
+    };
+
+    /*
+    * UPDATE COUNTDOWNS
+    *
+    * Update all possible templated countdowns
+    */
+    var updateCountdowns = function(locale, templates, countSecs, progressStart, progressEnd) {
+        var components = countdownData(locale, countSecs, progressStart, progressEnd);
+
+        var templateSelector, renderSelector;
+        for (var i = 0; i < templates.length; i++) {
+            renderSelector = templates[i][0];
+            templateSelector = templates[i][1];
+            $(renderSelector).handlebars(templateSelector, components);
+        }
+    };
+
+    /*
+    * Return a suffix dependent on the provided number (ie: st, nd, rd, th)
+    */
+    function nth(n){return["st","nd","rd"][((n+90)%100-10)%10-1]||"th"}
+
+    /*
+    * Get the cookie with the provided key from document.cookie
+    */
+    function getCookie(name) {return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';}
+</script>
+<!-- comment: AJAX loading end -->

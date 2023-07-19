@@ -1,0 +1,14 @@
+  <div class="well">
+   <div class="form-group">
+ 
+  <input name="SS_SEQ" type="hidden" value="<field>SS_SEQ</field>"/>
+  <input name="F_HTML_SUBSCRIPTION_TOTAL_COST" type="hidden" value="<field>F_HTML_SUBSCRIPTION_TOTAL_COST</field>"/>
+  <input name="F_HTML_SUBSCRIPTION_SEATS_ARE_OK" type="hidden" value="<field>F_HTML_SUBSCRIPTION_SEATS_ARE_OK</field>"/>
+  <field>pick((SS_RENEWAL_STATUS_FC_SEQ<=2|SS_RENEWAL_STATUS_FC_SEQ=7)&F_HTML_SUBSCRIPTION_SEATS_ARE_OK,'<!-- comment: if not started, or notice printed, can be renewed or cancelled')</field>
+  <input class="btn btn-success" id="btnSubscriptionReserve" name="btnSubscriptionReserve" onclick="process()" type="submit" value="Renew Subscription"/>
+  &nbsp;
+
+  <field>pick((SS_RENEWAL_STATUS_FC_SEQ<=2|SS_RENEWAL_STATUS_FC_SEQ=7)&F_HTML_SUBSCRIPTION_SEATS_ARE_OK,' -->')</field>
+  <a class="btn btn-warning" href="<field>F_HTML_FIREWALL</field>login?subscription=0">
+   Other Subscriptions
+  </a>

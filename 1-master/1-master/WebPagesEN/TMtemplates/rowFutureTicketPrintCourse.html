@@ -1,0 +1,110 @@
+  <div align="center" class="page-break" width="700">
+   <table border="0" cellpadding="5" cellspacing="0" width="700">
+    <tr>
+     <td colspan="3">
+      <img border="0" src="<field>F_HTML_IMAGE_SERVER</field>/tmGifs/PrintAtHomeBanner.jpg"/>
+     </td>
+    </tr>
+    <tr>
+     <td align="center" rowspan="7" valign="top" width="150">
+      <field>pick(PB_PRINT_AT_HOME,'<!-- comment: not printing at home, do not show bar code to avoid server hits')</field>
+      <img src="<field>F_HTML_TIX_BAR_CODE</field>&img_angle=270"/>
+      <field>pick(PB_PRINT_AT_HOME,'-->')</field>
+      <field>pick(PB_PRINT_AT_HOME&D_WEB_USE_QRCODES,'<!-- comment: only show if qr codes')</field>
+      <br/>
+      <center>
+       <field>con(PS_SEQ,'-',PS_C_SEQ)</field>
+      </center>
+      <img src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>" width="120"/>
+      <field>pick(PB_PRINT_AT_HOME&D_WEB_USE_QRCODES,'-->')</field>
+     </td>
+     <td class="ticketlineprint" width="50">
+       event
+     </td>
+     <td class="tablerowticketprint">
+      <a href="<field>F_HTML_FIREWALL</field>tmEvent/tmEvent<field>PB_P_SEQ</field>.html" target="_blank">
+       <field>P_PLAY_TITLE</field>
+      </a>
+     </td>
+    </tr>
+    <tr>
+     <td class="ticketlineprint">
+       venue
+     </td>
+     <td class="tablerowticketprint">
+      <a class="link" href="<field>F_HTML_FIREWALL</field>tmVenue/tmVenue<field>TM_SEQ</field>.html" target="_blank">
+       <field>VE_NAME</field>
+      </a>
+      <br/>
+      <div style="font-size: 12px">
+       <field>con(VE_ADDRESS1,' ',VE_ADDRESS2,' ',VE_CITY)</field>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td class="ticketlineprint">
+       date
+     </td>
+     <td class="tablerowticketprint">
+      <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+     </td>
+    </tr>
+    <tr>
+     <td class="ticketlineprint">
+       seat
+     </td>
+     <td class="tablerowticketprint">
+      <field>D_COURSE_DESC</field>
+     </td>
+    </tr>
+    <tr>
+     <td class="ticketlineprint">
+       price
+     </td>
+     <td class="tablerowticketprint">
+      <!--#include virtual="TMtemplates/rowPromotionPriceCode.html" -->
+     </td>
+    </tr>
+    <tr>
+     <td class="ticketlineprint">
+       patron
+     </td>
+     <td class="tablerowticketprint">
+      <field>con(C_FIRST_NAME,' ',C_LAST_NAME)</field>
+     </td>
+    </tr>
+    <tr>
+     <td class="ticketlineprint">
+     </td>
+     <td align="center" valign="middle">
+       
+     </td>
+    </tr>
+    <field>pick(PB_PRINT_AT_HOME&not(D_WEB_USE_QRCODES),'<!-- comment: do not show bar code to avoid server hits')</field>
+     <tr>
+      <td colspan="3" valign="middle">
+       <img align="right" src="<field>F_HTML_TIX_BAR_CODE</field>"/>
+      </td>
+     </tr>
+    <field>pick(PB_PRINT_AT_HOME&not(D_WEB_USE_QRCODES),'-->')</field>
+    <tr>
+     <td colspan="3">
+      <img border="0" src="<field>F_HTML_IMAGE_SERVER</field>tmGifs/Thank you for your order"/>
+     </td>
+    </tr>
+   </table>
+   <p style="page-break-after:always;">
+   </p>
+  </div>
+  <!-- comment: parameters to F_HTML_TIX_BAR_CODE
+quiet_zone			spate to left and right of bar code.  default is 2
+img_angle			the rotation of the image in degrees (valid values 0, 90,180, 270, default 0)
+bar_stem_width		the width of the barcode stem in mils* 0.1 is the default
+bar_height			the height of the barcode characters in mils* 2.5 is the default
+txt_on				specifies  to print text below barcode (valid values 1=on, 0=off)
+txt_point_size		size of text in points.  10 is the default (valid range 4 to 72)
+
+for QR codes
+box_size			size of area where bar code box is displayed.  Default 6
+border				border around the box with white space
+-->

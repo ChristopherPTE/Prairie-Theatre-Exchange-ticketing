@@ -1,0 +1,14 @@
+<!-- comment: if use enters email that exists, then show the password request button -->
+<field>pick(F_HTML_EMAIL_EXISTS=1,'<!-- comment: entered email exists')</field>
+<div class="alert alert-warning fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ If you have purchased from us in the past or think we have your email address on file, please try ...
+ <br/>
+ <br/>
+ <a class="btn btn-xs btn-warning" href="<field>F_HTML_FIREWALL</field>login?btnPasswordRequest=forgot">
+  <i class="fa fa-key">
+  </i>
+  Forgot My Password
+ </a>
+</div>
+<field>pick(F_HTML_EMAIL_EXISTS=1,'-->')</field>

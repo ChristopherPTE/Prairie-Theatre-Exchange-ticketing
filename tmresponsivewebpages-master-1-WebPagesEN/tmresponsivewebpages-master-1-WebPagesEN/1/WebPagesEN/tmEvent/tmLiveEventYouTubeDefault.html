@@ -1,0 +1,11 @@
+<!-- comment:
+	Can be overridden with:
+	  - Event: tmEvent/tmLiveEventYouTube123.html, where 123 is an Event/Play #
+	  - Performance: tmEvent/tmLiveEventPerformanceYouTube123.html, where 123 is a Performance #
+-->
+<div class="well">
+ <div class="embed-responsive <field>pick(F_HTML_YOUTUBE_ASPECT_RATIO, 'embed-responsive-16by9', 'embed-responsive-4by3')</field>">
+  <iframe type="text/html" class="embed-responsive-item" src="https://www.youtube.com/embed/<field>F_HTML_YOUTUBE_VIDEO_ID</field>?autoplay=1&origin=<field>F_HTML_CURRENT_DOMAIN</field>" frameborder="0" allow="autoplay; encrypted-media" mozallowfullscreen webkitallowfullscreen allowfullscreen>
+  </iframe>
+ </div>
+</div>

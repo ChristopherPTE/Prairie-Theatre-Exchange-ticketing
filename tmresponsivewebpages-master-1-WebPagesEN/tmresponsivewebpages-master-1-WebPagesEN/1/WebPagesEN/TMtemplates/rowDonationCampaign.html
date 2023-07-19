@@ -1,0 +1,37 @@
+<div class="row">
+ <div class="media">
+  <!--#include virtual="TMtemplates/rowDonationCampaignImage.html" -->
+  <div class="media-body">
+   <h4 class="media-heading">
+    <a href="<field>F_HTML_FIREWALL</field>tmCampaign/tmCampaign<field>DC_SEQ</field>.html" onclick="return popup(this, 'notes')">
+     <field>DC_DESCRIPTION_EXTERNAL</field>
+    </a>
+    <field>pick(DC_WEB_RECEIPT_ATTACHMENT_ENABLED=0,'<!-- comment: no receipt generated')</field>
+    <small>
+     Tax Receipt is mailed
+    </small>
+    <field>pick(DC_WEB_RECEIPT_ATTACHMENT_ENABLED=0,'-->')</field>
+   </h4>
+   <div class="row">
+    <div class="col-md-7">
+     <!--#include virtual="TMtemplates/tmDonationCampaignSpecificNotes.html" -->
+    </div>
+    <field>pick(F_HTML_CAMPAIGN_TARGET_VISIBLE, '<!-- comment:')</field>
+    <!--#include virtual="TMtemplates/tmDonationCampaignProgressBarList.html" -->
+    <field>pick(F_HTML_CAMPAIGN_TARGET_VISIBLE, '-->')</field>
+    <field>pick(F_HTML_CAMPAIGN_TARGET_VISIBLE, '', '<!-- comment:')</field>
+    <!--#include virtual="TMtemplates/rowDonationCampaignBuy.html" -->
+    <field>pick(F_HTML_CAMPAIGN_TARGET_VISIBLE, '', '-->')</field>
+   </div>
+   <field>pick(F_HTML_CAMPAIGN_TARGET_VISIBLE, '<!-- comment:')</field>
+   <div class="row">
+    <div class="col-md-7">
+    </div>
+    <!--#include virtual="TMtemplates/rowDonationCampaignBuy.html" -->
+   </div>
+   <field>pick(F_HTML_CAMPAIGN_TARGET_VISIBLE, '-->')</field>
+  </div>
+ </div>
+ <!-- /.media -->
+</div>
+<!-- /.row -->

@@ -1,0 +1,33 @@
+#tm-company-logo {
+    max-width: 400px;
+    width: 100%;
+}
+
+.icon {
+    background-color: #ffffff;
+    border-radius: 47%;
+    color: #333333;
+    animation: swing 3.5s infinite ease-in-out;
+    padding:1px 1px;
+}
+.icon-container {
+    position: absolute;
+    right: -24px;
+    top: -12px;
+}
+.progress.user-progress {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    overflow: initial;
+}
+.progress.user-progress .progress-bar {
+    border-radius: 20px;
+    width: 0;
+    height: 100%;
+    position: relative;
+}
+
+.progress .progress-bar .icon-container .icon {
+    font-size: 3.5em;
+}

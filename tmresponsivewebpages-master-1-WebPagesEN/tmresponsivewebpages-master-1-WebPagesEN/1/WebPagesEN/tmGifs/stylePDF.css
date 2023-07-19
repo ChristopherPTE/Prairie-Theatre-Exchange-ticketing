@@ -1,0 +1,68 @@
+.background {
+}
+
+.backgroundPopup {
+}
+
+/* refer to http://www.maxdesign.com.au/articles/center/ for the next two lines on centering */
+
+div#container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 50em;
+}
+
+#content
+{
+	margin: auto;
+	width: 800px;
+}
+
+@media all {
+  .page-break  { 
+    display: block;
+    page-break-after: always; 
+  }
+}
+
+@media print {
+  .page-break  {
+  display: block;
+  page-break-after: always;
+  }
+}
+
+
+/* -------- for ticket printing ------- These two styles are not bootstrap */
+
+.mainPrint { font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px }
+ 
+a.navlinkPrint { font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 11px; color: #000080; text-decoration: none; font-weight: bold } 
+
+.tablerowticketprint {
+	background-color: #FFFFFF;
+	background-repeat: no-repeat;
+	color: #000000;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	vertical-align: middle;
+	border-color: #FDFDFD;
+	text-align: center;
+}
+
+.ticketlineprint {
+	background-color: #FFFFFF;
+	background-repeat: no-repeat;
+	color: #4D4D4D;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 10px;
+	vertical-align: middle;
+	border-color: #FDFDFD;
+	text-align: right;
+}
+
+.barcodecoupon {
+	border: 2px dashed black;
+	padding: 5px;
+}

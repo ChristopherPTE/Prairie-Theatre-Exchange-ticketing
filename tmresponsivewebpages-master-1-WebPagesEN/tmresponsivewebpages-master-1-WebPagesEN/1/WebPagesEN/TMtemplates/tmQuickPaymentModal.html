@@ -1,0 +1,188 @@
+<!-- Template -->
+<rawfield>
+  <script id="TMQuickCheckoutTemplate" type="text/x-handlebars-template">
+    <!-- Quick Checkout Modal -->
+    <div class="modal fade" id="TMQuickCheckoutModal" tabindex="-1" role="dialog" aria-labelledby="TMQuickCheckoutModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="TMQuickCheckoutModalLabel">
+              Checkout
+            </h4>
+          </div>
+
+          <!-- Modal Body -->
+          <div class="modal-body">
+            <div id="TMQuickCheckoutCarousel" class="carousel slide" data-interval="false" data-pause="false" data-keyboard="false">
+              <div class="carousel-inner">
+                <div id="TMQuickCheckoutSummaryPage" class="item active">
+                  <div class="panel-group" id="TMQuickCheckoutSummaryAccordion">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <div class="container-fluid">
+                              <div class="row">
+                                <div class="col-xs-9 col-sm-8">
+                                  Order Summary
+                                </div>
+                                <div class="hidden-xs col-sm-2">
+                                  {{total.amount.currency}}
+                                </div>
+                                <div class="col-xs-3 col-sm-2">
+                                  {{currency total.amount.value}}
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                          <div class="container-fluid">
+                            {{#each displayItems}}
+                              {{#if ../tm_formatOptions.subtotalSection}}
+                                {{#if_eq this.label ../tm_formatOptions.subtotalItem}}
+                                  <hr />
+                                {{/if_eq}}
+                              {{/if}}
+                              <div class="row">
+                                <div class="col-xs-9 col-sm-8">
+                                  {{this.label}}
+                                </div>
+                                <div class="hidden-xs col-sm-2"></div>
+                                <div class="col-xs-3 col-sm-2">
+                                  {{currency this.amount.value}}
+                                </div>
+                              </div>
+                            {{/each}}
+                            <hr />
+                            <div class="row">
+                              <div class="col-xs-7 col-sm-8">
+                                {{total.label}}
+                              </div>
+                              <div class="col-xs-2">
+                                {{total.amount.currency}}
+                              </div>
+                              <div class="col-xs-3 col-sm-2">
+                                {{currency total.amount.value}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            <div class="container-fluid">
+                              <div class="row">
+                                <div class="visible-xs col-xs-8">
+                                  <div class="row">
+                                    <div class="col-xs-12">
+                                      Payment
+                                    </div>
+                                    <div class="col-xs-12"></div>
+                                  </div>
+                                </div>
+                  
+                                <div class="hidden-xs col-sm-2 text-left">
+                                  Payment
+                                </div>
+                                <div class="hidden-xs col-sm-8 text-center"></div>
+                                <div class="col-xs-4 col-sm-2 text-right"></div>
+                              </div>
+                            </div>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div id="payment-error-container" class="col-xs-12 alert alert-danger hidden" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">Error:</span>
+                                <div id="payment-error-text" style="display: inline;"></div>
+                              </div>
+                              <div class="col-xs-12 col-sm-6">
+                                <label for="card-name" >Name on Card</label>
+                                <input name="ccname" id="card-name" class="form-control" type="text" placeholder="" autocomplete="cc-name" required/>
+                                <small class="text-muted">Full name as displayed on card</small>
+                              </div>
+                              <div class="col-xs-12 col-sm-6">
+                                <label for="card-number" >Credit Card Number</label>
+                                <input name="cardnumber" id="card-number" class="form-control" type="text" placeholder="" autocomplete="cc-number" required/>
+                              </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                              <div class="col-xs-6 col-sm-3">
+                                <label for="card-expiration" >Expiration</label>
+                                <input name="cc-exp" id="card-expiration" class="form-control" type="text" placeholder="mm/yy" autocomplete="cc-exp" required/>
+                              </div>
+                              <div class="col-xs-6 col-sm-3">
+                                <label for="card-validation" >CVV</label>
+                                <input name="cvc" id="card-validation" class="form-control" type="text" placeholder="" autocomplete="cc-csc" required/>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Quick Checkout Processing Page -->
+                <div id="TMQuickCheckoutProcessingPage" class="item">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <div class="loader loader-primary"></div>
+                        <div class="text-center text-primary">Processing...</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Quick Checkout Success Page -->
+                <div id="TMQuickCheckoutSuccessPage" class="item">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <h1><span class="glyphicon glyphicon-ok bounce text-success text-center" aria-hidden="true"></span></h1>
+                        <div class="text-success text-center">Payment Successful!</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <div id="payment-button-container" class="btn-group btn-group-justified" role="group">
+              <div id="payment-button-left-container" class="btn-group" role="group">
+                <button id="payment-button-left" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </div>
+              <div id="payment-button-right-container" class="btn-group" role="group">
+                <button id="payment-button-right" type="button" class="btn btn-primary" onclick="tmWebPayment.payClicked()">Pay</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+</rawfield>
+
+<!-- Render -->
+<div id="TMQuickCheckoutRender"></div>
+
+<!--#include virtual="tmWebPaymentAPI/webpaymentLabels.html"-->
+<!--#include virtual="tmWebPaymentAPI/webpaymentLogic.html" -->

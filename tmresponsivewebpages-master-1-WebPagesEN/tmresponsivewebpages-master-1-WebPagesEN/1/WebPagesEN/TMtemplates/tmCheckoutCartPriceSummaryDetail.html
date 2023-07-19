@@ -1,0 +1,97 @@
+<!-- comment: if venue does not want tix fees broken out, remove the lines and also
+        do not subtract from the Price calculation -->
+<div class="alert alert-warning fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <table class="table table-striped table-condensed table-responsive table-hover">
+  <thead>
+   <tr>
+    <th class="text-left">
+     Purchase Summary
+    </th>
+    <th class="text-right">
+     Amount
+    </th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td>
+     Price 
+     <field>pick(SCH_SAVINGS>0,'','*')</field>
+    </td>
+    <td class="text-right">
+     $<field>SCH_TOTAL_COST-SCH_TAX1-SCH_TAX2-SCH_TAX3-SCH_TIX_FEE1-SCH_TIX_FEE2-SCH_TIX_FEE3</field>
+    </td>
+   </tr>
+   <field>pick(SCH_TIX_FEE1>0,'<!-- comment:')</field>
+   <tr>
+    <td>
+     <field>SPR_TIX_FEE1_DESC</field>
+    </td>
+    <td class="text-right">
+     $<field>SCH_TIX_FEE1</field>
+    </td>
+   </tr>
+   <field>pick(SCH_TIX_FEE1>0,'-->')</field>
+   <field>pick(SCH_TIX_FEE2>0,'<!-- comment:')</field>
+   <tr>
+    <td>
+     <field>SPR_TIX_FEE2_DESC</field>
+    </td>
+    <td class="text-right">
+     $<field>SCH_TIX_FEE2</field>
+    </td>
+   </tr>
+   <field>pick(SCH_TIX_FEE2>0,'-->')</field>
+   <field>pick(SCH_TIX_FEE3>0,'<!-- comment:')</field>
+   <td>
+    <field>SPR_TIX_FEE3_DESC</field>
+   </td>
+   <td class="text-right">
+    $<field>SCH_TIX_FEE3</field>
+   </td>
+   <field>pick(SCH_TIX_FEE3>0,'-->')</field>
+   <field>pick(SCH_TAX1>0,'<!-- comment:')</field>
+   <tr>
+    <td>
+     <field>SPR_TAX1_DESC</field>
+    </td>
+    <td class="text-right">
+     $<field>SCH_TAX1</field>
+    </td>
+   </tr>
+   <field>pick(SCH_TAX1>0,'-->')</field>
+   <field>pick(SCH_TAX2>0,'<!-- comment:')</field>
+   <tr>
+    <td>
+     <field>SPR_TAX2_DESC</field>
+    </td>
+    <td class="text-right">
+     $<field>SCH_TAX2</field>
+    </td>
+   </tr>
+   <field>pick(SCH_TAX2>0,'-->')</field>
+   <field>pick(SCH_TAX3>0,'<!-- comment:')</field>
+   <tr>
+    <td>
+     <field>SPR_TAX3_DESC</field>
+    </td>
+    <td class="text-right">
+     $<field>SCH_TAX3</field>
+    </td>
+   </tr>
+   <field>pick(SCH_TAX3>0,'-->')</field>
+   <tr>
+    <td>
+     Total
+    </td>
+    <td class="text-right">
+     $<field>SCH_TOTAL_COST</field>
+    </td>
+   </tr>
+  </tbody>
+ </table>
+ <field>pick(SCH_SAVINGS>0,'<!-- comment:')</field>
+ * Savings $<field>SCH_SAVINGS</field>
+<field>pick(SCH_SAVINGS>0,'-->')</field>
+</div>

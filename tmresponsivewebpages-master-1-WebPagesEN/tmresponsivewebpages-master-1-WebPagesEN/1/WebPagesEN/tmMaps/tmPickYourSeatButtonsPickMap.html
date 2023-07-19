@@ -1,0 +1,36 @@
+<field>pick(PB_SALES_METHOD=2&F_HTML_ALLOW_PICK_YOUR_OWN,'<!-- comment:')</field>
+<div class="row">
+ <div class="col-md-4">
+  <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+  <p>
+   <input class="btn btn-success" id="btnBestAvailSwap" name="btnBestAvailSwap" onclick="process()" type="submit" value="Choose Highlighted Seats"/>
+  </p>
+  <p>
+   <input class="btn btn-info" name="btnBestAvail" onclick="process()" type="submit" value="Suggest <field>F_HTML_SUGGESTED_QTY</field> Good Seats"/>
+  </p>
+ </div>
+ <div class="col-md-8">
+  <div class="alert alert-info fade in">
+   <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+   <h4>
+    How to choose your seats:
+   </h4>
+   <ol>
+    <li>
+     Click one or more available seats on the seating chart below
+    </li>
+    <li>
+     Click the
+     <b>
+      Choose Highlighted Seats
+     </b>
+     button
+     <br/>
+     <br/>
+     Drag the seating chart or zoom in/out to move to different areas of the venue
+    </li>
+   </ol>
+  </div>
+ </div>
+</div>
+<field>pick(PB_SALES_METHOD=2&F_HTML_ALLOW_PICK_YOUR_OWN,'-->')</field>

@@ -1,0 +1,37 @@
+<form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+    <input id="FRM_SEQ" name="FRM_SEQ" readonly="true" type="hidden" value="<field>FRM_SEQ</field>" />
+    <input id="FR_SEQ" name="FR_SEQ" readonly="true" type="hidden" value="<field>FR_SEQ</field>" />
+    <input id="FR_C_SEQ" name="FR_C_SEQ" readonly="true" type="hidden" value="<field>FR_C_SEQ</field>"/>
+    <input id="ForwardParam" name="param" value="" type="hidden" />
+    <div class="panel panel-default legal-font">
+     <div class="panel-heading">
+      <h1 class="panel-title">
+       <field>FRM_NAME_EXTERNAL</field>
+      </h1>
+     </div>
+     <div class="panel-body">
+      <field>F_HTML_FORM_QUESTIONS</field>
+     </div>
+    </div>
+    <hr />
+    <div class="row">
+      <!--#include virtual="TMtemplates/tmFormCompletedSurveyDetails.html" -->
+    </div>
+    <hr/>
+    <div class="row legal-font">
+    
+     <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+     <input name="cancelbtn" type="hidden" value="<field>F_HTML_CANCEL_BTN</field>"/>
+     <input name="nextbtn" type="hidden" value="<field>F_HTML_NEXT_BTN</field>"/>
+     <input class="btn btn-success" name="btnFormAccept" onclick="process()" type="submit" value="Complete Survey" />
+     <input class="btn btn-danger" name="btnFormCancel" type="submit" value="Cancel" />
+    </div>
+    </div>
+    <div class="text-center">
+     <p>
+      <small>
+       Clicking <strong>Sign Form</strong> affirms my valid electronic signature.
+      </small>
+     </p>
+    </div>
+   </form>

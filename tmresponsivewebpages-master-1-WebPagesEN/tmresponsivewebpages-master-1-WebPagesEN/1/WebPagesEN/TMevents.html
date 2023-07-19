@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Upcoming <field>tEditCheck.$setPlural(D_EVENT)</field>
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/stylesCal.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmScripts/adaptiveMenuFunctions.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <!--#include virtual="TMtemplates/tmTicketsLiveNotification.html" -->
+    <!--#include virtual="TMtemplates/tmTicketCustomPatronInstructions.html" -->
+    <small class="text-muted">
+     <field>F_HTML_PAGE_MESSAGE</field>
+    </small>
+    <!--#include virtual="TMtemplates/rowTicketLegend.html" -->
+    <!-- Begin restructured event list -->
+    <div class="clearfix add-border-bottom">
+    </div>
+    <field>F_HTML_EVENTS_LIST</field>
+    <!-- END restructured event list -->
+    <!-- comment: an extra search as the bottom if you want (or you can comment the top and only have one at the bottom) -->
+    <!-- comment: #include virtual="tmSearch/searchBottom.html" -->
+    <div align="center">
+     <a class="btn btn-danger" href="<field>F_HTML_FIREWALL</field>online?btnLogout=Logout">
+      Logout and Empty Shopping Cart
+     </a>
+     <!--#include virtual="TMtemplates/rowTicketTroveLink.html" -->
+    </div>
+   </div>
+   <!-- /#content -->
+  </div>
+  <!-- /.container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

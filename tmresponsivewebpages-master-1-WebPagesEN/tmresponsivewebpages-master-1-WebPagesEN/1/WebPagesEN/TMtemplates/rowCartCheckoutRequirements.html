@@ -1,0 +1,13 @@
+<field>pick(F_HTML_CHECKOUT_MISSING_REQUIREMENTS,'<!-- comment: If there are unfillfilled form requirements show a prompt','')</field>
+<div class="alert alert-warning fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <div>
+  <a class="btn btn-danger btn-xs" href="<field>F_HTML_FIREWALL</field>login?checkoutrequire">
+    Forms Required
+  </a>
+ </div>
+ <p>
+  In order to checkout with the contents of this cart, some forms need to be filled out.
+ </p>
+</div>
+<field>pick(F_HTML_CHECKOUT_MISSING_REQUIREMENTS,'-->','')</field>

@@ -1,0 +1,4 @@
+#	Enter the text to represent searching for 'All Sections'
+#	it goes at the top of the best area search
+
+**Any <field>D_SECTION_DESC</field>**

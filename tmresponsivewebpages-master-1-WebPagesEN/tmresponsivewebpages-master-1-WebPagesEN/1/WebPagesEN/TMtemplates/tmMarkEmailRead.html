@@ -1,0 +1,11 @@
+<!-- comment: this adds a pixel to an outgoing TM email so that a user reading it can be tracked 
+	just include this file at the end of TM server generated emails.   
+	
+	It is in a separate file in case you need to disable at some time in the future.
+
+	You can change the image to another value by appending F_HTML_IMAGE_READ_MARKER on any ?picture or ?image link:
+
+		<img src="<field>F_HTML_FIREWALL</field>online?picture&default<field>F_HTML_IMAGE_READ_MARKER</field>">
+		
+-->
+<field>F_HTML_IMAGE_READ</field>

@@ -1,0 +1,28 @@
+<field>pick(PB_SALES_STATUS=0,'<!-- comment: this message is for Future Onsale events','')</field>
+<div class="col-sm-9">
+ <div class="alert alert-danger fade in">
+  <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+  <field>pick(isclear(PB_ONSALE_INTERNET),'', '<!-- comment: no onsale date')</field>
+  <field>pick(PB_ONSALE_INTERNET<F_CURRENT_DATETIME,'', '<!-- comment: past onsale date')</field>
+  <div>
+   <strong class="lead">
+    Online sales commence 
+    <field>dat(PB_ONSALE_INTERNET, 'w n D, y')</field> at
+    <field>dat(PB_ONSALE_INTERNET, 'h:N A')</field>
+   </strong>
+  </div>
+  <field>pick(PB_ONSALE_INTERNET<F_CURRENT_DATETIME,'', '-->')</field>
+  <field>pick(isclear(PB_ONSALE_INTERNET),'', '-->')</field>
+  <div>
+   For more information contact the Box Office at
+   <a href="tel:<field>D_SWITCH_BOARD</field>">
+    <field>D_SWITCH_BOARD</field>
+   </a>
+   or
+   <a href="mailto:<field>D_EMAIL_ADDR</field>?subject=Online%20Sales%20Inquiry%20-%20<field>P_PLAY_TITLE</field>%20(<field>PB_PERFORM_DATE</field>%20at%20<field>tim(PB_PERFORM_TIME,'h:N A')</field>)">
+    <field>D_EMAIL_ADDR</field>
+   </a>
+  </div>
+ </div>
+</div>
+<field>pick(PB_SALES_STATUS=0,'-->','')</field>

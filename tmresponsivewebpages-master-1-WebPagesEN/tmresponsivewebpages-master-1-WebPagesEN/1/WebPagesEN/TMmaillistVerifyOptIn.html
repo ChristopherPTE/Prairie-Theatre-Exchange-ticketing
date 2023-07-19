@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Notification List Opt-In
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Email Notification Opt-in
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+     </div>
+     <div class="col-md-8">
+      <div class="text">
+       The following email notification options have been confirmed for your account.  If you wish to 
+       change anything, please login using the buttons above and review your 'Account' settings.
+      </div>
+      <br/>
+      <field>F_HTML_DOUBLE_OPT_IN</field>
+      <a class="btn btn-info" href="<field>F_HTML_FIREWALL</field>login?maillist=0">
+       Review My Email Notifications
+      </a>
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

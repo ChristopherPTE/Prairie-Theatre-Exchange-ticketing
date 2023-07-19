@@ -1,0 +1,9 @@
+<a class="link" href="<field>F_HTML_FIREWALL</field>tmVenue/tmVenue<field>TM_SEQ</field>.html">
+ <field>VE_NAME</field>
+</a>
+<field>pick(len(PB_PERF_NOTES)>0,'<!-- comment:')</field>
+<div class="alert alert-info fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <field>PB_PERF_NOTES</field>
+</div>
+<field>pick(len(PB_PERF_NOTES)>0,'-->')</field>

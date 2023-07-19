@@ -1,0 +1,29 @@
+<tr>
+ <td class="text-left">
+  Rental
+ </td>
+ <td class="text-center">
+  <field>SCD_QUANTITY</field>
+ </td>
+ <td class="text-left">
+  <a class="link" href="<field>F_HTML_FIREWALL</field>tmResource/tmResource<field>RE_SEQ</field>.html" onclick="return popup(this, 'notes')">
+   <field>RE_DESCRIPTION</field>
+  </a>
+  <field>pick(len(RE_NOTES)>0, '<!-- comment: hide empty notes')</field>
+  <p>
+   <field>RE_NOTES</field>
+  </p>
+  <field>pick(len(RE_NOTES)>0, '-->')</field>
+ </td>
+ <td class="text-right">
+  <field>SCD_TOTAL_COST</field>
+ </td>
+ <td class="text-center">
+  <form action="<field>F_HTML_FIREWALL</field>online" id="TMForm" method="POST">
+   <input name="SCD_SEQ" type="hidden" value="<field>SCD_SEQ</field>"/>
+   <input name="SCD_PURCHASE_GROUP" type="hidden" value="0"/>
+   <input id="F_HTML_REMOVE_CART_ITEM_YN" type="hidden" name="F_HTML_REMOVE_CART_ITEM_YN" value="1"/>
+   <input class="btn fa btn-danger btn-xs" name="btnCartRemoveItem" onclick="process()" type="submit" value="&#xf014; Remove"/>
+  </form>
+ </td>
+</tr>

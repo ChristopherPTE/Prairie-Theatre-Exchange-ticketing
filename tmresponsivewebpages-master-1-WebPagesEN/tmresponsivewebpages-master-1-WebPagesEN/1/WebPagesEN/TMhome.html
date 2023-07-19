@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Home Page
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+    </div>
+   </div>
+   <div id="content">
+    <div class="pull-right">
+     <a class="btn btn-success" href="mailto:<field>D_EMAIL_ADDR</field>?subject=Online%20Sales%20Support%20Question">
+      <i class="fa fa-support">
+      </i>
+      Need Help?
+     </a>
+    </div>
+    <div class="page-header">
+     <h1>
+      Home Page
+      <br/>
+      <small class="text-mute">
+       <field>C_FIRST_NAME</field> <field>C_INITIAL</field> <field>C_LAST_NAME</field>
+      </small>
+     </h1>
+    </div>
+    <div class="text">
+     You are currently logged in using the email address
+     <b>
+      <field>CI_CONTENTS</field>.
+     </b>
+     <p>
+      &nbsp;
+     </p>
+     If you would prefer another email address,
+     <a href="<field>F_HTML_FIREWALL</field>online?btnAccount=Account">
+      please update it now.
+     </a>
+     The email address needs to be accurate to send purchase confirmations and instructions for print at home tickets.
+    </div>
+    <!--#include virtual="TMtemplates/tmnavButtonsFooter.html" -->
+    <p>
+     &nbsp;
+    </p>
+    <div class="text">
+     Your session will be terminated after <field>D_WEB_TIMEOUT</field> minutes of inactivity and your cart will be released after <field>D_WEB_CART_TIMEOUT</field> minutes of inactivity.
+    </div>
+    <br/>
+    <div class="text">
+     <img align="left" alt="Wheelchair Icon" height="35" src="tmGifs/handicapped.gif" width="35"/>
+     To purchase tickets for wheelchair or limited
+     access seating, we suggest calling our Box Office at
+     <a href="tel:<field>D_SWITCH_BOARD</field>">
+      <field>D_SWITCH_BOARD</field>.
+     </a>
+     We are better able to handle special needs in person or over the phone.
+     <field>pick(D_COUNTRY='USA','<!-- comment: only include ADA note for USA venues')</field>
+     We support the ADA act and enable you to buy online.  We require that you attest to your need for any seats set aside for ADA by agreeing to terms and conditions.
+     <field>pick(D_COUNTRY='USA','-->')</field>
+    </div>
+    <!--#include virtual="TMtemplates/tmPoweredBy.html" -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

@@ -1,0 +1,17 @@
+ <field>pick(PB_SALES_STATUS=1,'<!-- comment: this message is for POSTPONED events','')</field>
+ <div class="col-sm-9">
+  <div class="alert alert-danger fade in">
+   <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+   On
+   <field>dat(PB_DATE_SALES_STATUS,'w n D, y')</field>,
+   this performance was
+   <b>
+    POSTPONED
+   </b>
+   until futher notice
+   <p>
+    Futher information may be displayed above.
+   </p>
+  </div>
+ </div>
+ <field>pick(PB_SALES_STATUS=1,'-->','')</field>

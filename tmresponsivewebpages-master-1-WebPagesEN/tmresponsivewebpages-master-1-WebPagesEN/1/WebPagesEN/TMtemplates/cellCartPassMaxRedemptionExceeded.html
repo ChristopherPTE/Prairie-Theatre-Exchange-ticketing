@@ -1,0 +1,7 @@
+<field>pick(SCD_M_SEQ>0&MT_MAX_AMOUNT_PER_ADMISSION>0&SCD_TOTAL_COST>(M_ISSUED_PASS_AMOUNT/M_ISSUED_PASS_QTY),'<!-- comment: do not show information about Pass Redemption exceeding Maximum Allowed Redemption Value')</field>
+<p>
+ The maximum per admission value for this pass is <field>jst(MT_MAX_AMOUNT_PER_ADMISSION,'$N2')</field>.
+ This resulted in an upgrade charge of <field>jst(SCD_TOTAL_COST-(M_ISSUED_PASS_AMOUNT/M_ISSUED_PASS_QTY),'$N2')</field> 
+ on top of the pass value of <field>jst(M_ISSUED_PASS_AMOUNT/M_ISSUED_PASS_QTY,'$N2')</field>.
+</p>
+<field>pick(SCD_M_SEQ>0&MT_MAX_AMOUNT_PER_ADMISSION>0&SCD_TOTAL_COST>(M_ISSUED_PASS_AMOUNT/M_ISSUED_PASS_QTY),'-->')</field>

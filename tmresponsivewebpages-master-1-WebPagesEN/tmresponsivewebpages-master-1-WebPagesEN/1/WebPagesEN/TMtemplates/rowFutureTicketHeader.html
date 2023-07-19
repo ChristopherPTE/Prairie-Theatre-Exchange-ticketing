@@ -1,0 +1,46 @@
+<div class="row">
+ <h4 class="alert alert-warning fade in">
+  <a class="link" href="<field>F_HTML_FIREWALL</field>tmEvent/tmEvent<field>PB_P_SEQ</field>.html" onclick="return popup(this, 'notes')">
+   <field>P_PLAY_TITLE</field>
+  </a>
+  <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+ </h4>
+ <div class="col-md-4">
+  <!--#include virtual="TMtemplates/rowFutureTicketEventHeader.html" -->
+ </div>
+ <div class="col-md-8">
+  <small>
+   <!--#include virtual="TMtemplates/rowEventSalesNotes.html" -->
+   <!--#include virtual="TMtemplates/rowPerformanceSalesNotes.html" -->
+  </small>
+  <table class="table table-striped table-responsive table-hover">
+   <thead>
+    <tr>
+     <field>pick(PB_SALES_METHOD=2,'<!-- comment: only print for reserved seating')</field>
+     <th>
+      <field>D_SECTION_DESC</field>/<field>D_ROW_DESC</field>/<field>D_SEAT_DESC</field>
+     </th>
+     <field>pick(PB_SALES_METHOD=2,'-->')</field>
+     <th>
+      Promotion
+     </th>
+     <th class="text-right">
+      Price
+     </th>
+     <th class="text-right">
+      Order #
+     </th>
+     <th>
+      Date Tickets Purchased
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <field>F_HTML_HISTORICAL_CART_DETAIL_LIST</field>
+   </tbody>
+  </table>
+  <br/>
+ </div>
+ <!-- comment .col-md-8-->
+</div>
+<!-- comment .row -->

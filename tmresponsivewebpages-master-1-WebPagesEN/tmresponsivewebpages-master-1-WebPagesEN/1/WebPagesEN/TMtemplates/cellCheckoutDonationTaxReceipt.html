@@ -1,0 +1,16 @@
+<field>pick((DC_PRINT_RECEIPTS>0)&(SCD_DON_AMOUNT>=DC_RECEIPT_MIN_AMOUNT)&(DC_WEB_RECEIPT_ATTACHMENT_ENABLED=0),'<!-- comment: receipt mailed')</field>
+<br/>
+A Tax Receipt will be
+<b>
+ sent by mail
+</b>
+at a later date.
+<field>pick((DC_PRINT_RECEIPTS>0)&(SCD_DON_AMOUNT>=DC_RECEIPT_MIN_AMOUNT)&(DC_WEB_RECEIPT_ATTACHMENT_ENABLED=0),'-->')</field>
+<field>pick((DC_PRINT_RECEIPTS>0)&(SCD_DON_AMOUNT>=DC_RECEIPT_MIN_AMOUNT)&(DC_WEB_RECEIPT_ATTACHMENT_ENABLED>0),'<!-- comment: receipt emailed')</field>
+<br/>
+An elecronic Tax Receipt is
+<b>
+ attached to the confirmation email.
+</b>
+Please look for, and print it.
+<field>pick((DC_PRINT_RECEIPTS>0)&(SCD_DON_AMOUNT>=DC_RECEIPT_MIN_AMOUNT)&(DC_WEB_RECEIPT_ATTACHMENT_ENABLED>0),'-->')</field>

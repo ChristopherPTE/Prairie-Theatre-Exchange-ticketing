@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | <field>D_PERF_DESC</field> Sold Out
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      <field>P_PLAY_TITLE</field> Sold Out
+      <br/>
+      <small class="text-muted">
+       <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+      </small>
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <!--#include virtual="tmMaps/tmChangePerformanceDate.html" -->
+     </div>
+     <div class="col-md-8">
+      <div class="alert alert-danger fade in">
+       <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+       We're sorry, the <field>low(D_PERF_DESC)</field> of <field>P_PLAY_TITLE</field> on
+       <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+       has just sold out or the event is no longer available for sale via the internet if the curtain time is nearing.
+      </div>
+      <div class="alert alert-info fade in">
+       <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+       If you wish to contact the box office at <field>D_SWITCH_BOARD</field>,
+       our representatives will be more than happy to assist you.
+       <field>pick(P_PERFORMANCES>1,'<!-- comment: Hide date change if one performance')</field>
+        <br/>
+        <br/>
+        If there is another <field>low(D_PERF_DESC)</field> you'd like to attend,
+        please click the 'Change Date' button.
+        <br/>
+        <!--#include virtual="tmMaps/tmChangePerformanceDateButton.html" -->
+       <field>pick(P_PERFORMANCES>1,'-->')</field>
+      </div>
+      <!--#include virtual="TMtemplates/tmContactHours.html" -->
+     </div>
+     <!-- comment: end of col -->
+    </div>
+    <!-- Comment: end of row -->
+   </div>
+   <!-- comment: end of content -->
+  </div>
+  <!-- comment: end of container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

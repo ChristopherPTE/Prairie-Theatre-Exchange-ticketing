@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <base href="<field>F_HTML_IMAGE_SERVER</field>" />
+ <title>
+  Cart Requirements
+ </title>
+ <!--#include virtual="tmScripts/disclaimer.html" -->
+ <!--#include virtual="tmScripts/styles.html" -->
+ <!--#include virtual="tmScripts/buttonRollover.html" -->
+ <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+ <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+ <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+ <!--#include virtual="tmScripts/googleHeader.html" -->
+</head>
+
+<body class="background">
+ <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+ <div class="container">
+  <div id="content">
+   <!--#include virtual="TMtemplates/tmQuickPaymentModal.html" -->
+   <div class="page-header">
+    <h1>
+     Checkout Requirements
+    </h1>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+     <div class="alert alert-warning fade in">
+         <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+         Some items in your cart require attention before checkout can be completed.
+      </div>
+    </div>
+    <div class="col-md-8">
+      <field>F_HTML_CHECKOUT_REQUIRE_FORMS</field>
+      <hr>
+      <div class="row text-center">
+        <a class="btn btn-large btn-success" href="<field>F_HTML_FIREWALL</field>online?form=<field>FRM_SEQ</field>&behalfof=<field>F_HTML_BEHALF_C_SEQ</field>&nextbtn=checkoutrequire&cancelbtn=checkoutrequire">
+          <i class="fa fa-shopping-cart">
+          </i>
+          View Cart
+         </a>
+      </div>
+    </div>
+    <!-- comment: .col-md-8 -->
+   </div>
+   <!-- comment: .row -->
+  </div>
+  <!-- comment: .content -->
+ </div>
+ <!--  comment: .container -->
+ <!--#include virtual="TMtemplates/tmFooter.html" -->
+</body>
+
+</html>

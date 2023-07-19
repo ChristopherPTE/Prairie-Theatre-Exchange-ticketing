@@ -1,0 +1,9 @@
+<field>pick(F_BTN_WILLCALL,'<!-- comment: Will Call as per company prefs')</field>
+<div class="form-group">
+ <label class="control-label" for="willcall">
+  <input id="willcall" name="SCH_TIX_PRINT_STATUS" onclick="submitForm('TMForm','btnDeliverySelect','YES');" type="radio" value="2" <field>pick(SCH_TIX_PRINT_STATUS=2,'','checked')</field>/>
+  Hold <field>pick(SCH_TIX_QUANTITY=0,'tickets','items')</field> at Will Call / No Delivery Required
+ </label>
+ <!--#include virtual="TMtemplates/tmTicketHandlingWillCallModal.html" -->
+</div>
+<field>pick(F_BTN_WILLCALL,'-->')</field>

@@ -1,0 +1,16 @@
+  <!-- comment:
+
+Available symbols:
+
+	F_HTML_RECOMMENDED_AMOUNTS_MIN - Minimum recommended amount, 0 if no amounts
+	F_HTML_RECOMMENDED_AMOUNTS_MAX - Maximum recommended amount, 0 if no amounts
+
+-->
+  <!-- comment: no recommended amounts in database, show a single button -->
+  <field>pick(F_HTML_RECOMMENDED_AMOUNTS_COUNT>0,'','<!-- comment:')</field>
+  <!--#include virtual="TMtemplates/rowDonationCampaignBuyButton.html" -->
+  <field>pick(F_HTML_RECOMMENDED_AMOUNTS_COUNT>0,'','-->')</field>
+  <!-- comment: no recommended amounts in database, show a single button -->
+  <field>pick(F_HTML_RECOMMENDED_AMOUNTS_COUNT>0,'<!-- comment:')</field>
+  <!--#include virtual="TMtemplates/rowDonationCampaignBuyGrid.html" -->
+  <field>pick(F_HTML_RECOMMENDED_AMOUNTS_COUNT>0,'-->')</field>

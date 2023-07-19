@@ -1,0 +1,394 @@
+.background {
+	background-color: #000388;
+	background-image: url(pageHeader.gif);
+	margin-top: 75px;
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+
+.backgroundPopup {
+	background-color: #000388;
+	margin-top: 12px;
+}
+
+/* refer to http://www.maxdesign.com.au/articles/center/ for the next two lines on centering */
+
+body {
+	text-align: center;
+}
+
+div#container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 50em;
+}
+
+#content
+{
+	margin: auto;
+	width: 800px;
+}
+
+@media all {
+  .page-break  { display: none; }
+}
+
+@media print {
+  .page-break  {
+  display: block;
+  page-break-before: always;
+  }
+}
+
+.backgroundPrint {
+	background-color: #FFFFFF;
+}
+
+.backgroundSide {
+	background-image: url(backgroundSide.gif);
+	background-color: #000000;
+	background-repeat: no-repeat;
+}
+
+.backgroundSidePrint {
+	background-color: #FFFFFF;
+}
+
+.limitedprofilelogin {
+	align: center;
+	width: 70%;
+}
+
+.limitedprofileentry {
+	align: center;
+	width: 70%;
+	display: block;
+	visibility: hidden;
+}
+
+.main { font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px } 
+
+.mainPrint { font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 12px } 
+
+.missingfield { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #FF0000 }
+
+.title { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 18px; font-weight: normal;	color: #000000; line-height: normal } 
+
+.titlePrint { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 18px; font-weight: normal;	color: #000000; line-height: normal } 
+
+a.navlink { font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 11px; color: #FF4500; text-decoration: none; font-weight: bold } 
+
+a.navlinkPrint { font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 11px; color: #000080; text-decoration: none; font-weight: bold } 
+
+a.navlink:hover { font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 11px; color: #FF4500; text-decoration: none; height: auto; width: auto; font-weight: bold } 
+
+a.navlinkPrint:hover { font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 11px; color: #000080; text-decoration: none; height: auto; width: auto; font-weight: bold } 
+
+.message { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14px; color: #FF0000 }
+
+.messagePrint { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14px; color: #FF0000 }
+
+.waitmessage {
+	vertical-align: center;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FF0000;
+	background-color: #FFF;
+	border-right-color: #000;
+	border-bottom-color: #000;
+	border-right-width: 4px;
+	border-bottom-width: 4px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #000;
+	border-left-color: #000;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-left-style: solid;
+	background-repeat: no-repeat;
+	background-position:left;
+}
+
+a.link { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #FFFFFF; text-decoration: none }
+	
+a.linkPrint { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #000080; text-decoration: none }
+	
+a.link:hover { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #FFFFFF; text-decoration: underline }
+	
+a.linkPrint:hover { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #000080; text-decoration: underline }
+	
+.playinfo { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14px; text-decoration: none }
+
+.playinfoPrint { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14px; text-decoration: none }
+
+.backgroundBottom {
+	background-image: url(backgroundBottom.gif);
+	background-color: #000099;
+	background-repeat: no-repeat;
+}
+
+.backgroundBottomPrint {
+	background-color: #FFFFFF;
+}
+
+.tablerowheader {
+	background-color: #40648A;
+	background-repeat: no-repeat;
+	color: #FFFFFF;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	valign: top;
+	vertical-align: text-top;
+}
+
+.tablerowheaderprint {
+	background-color: #FFFFFF;
+	background-repeat: no-repeat;
+	color: #000000;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	valign: top;
+	vertical-align: text-top;
+}
+
+.tablerowdetail {
+	background-color: #7A93AD;
+	background-repeat: no-repeat;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	valign: top;
+	vertical-align: text-top;
+}
+
+.tablerowticketprint {
+	background-color: #FFFFFF;
+	background-repeat: no-repeat;
+	color: #000000;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	valign: top;
+	vertical-align: text-top;
+	border-color: #FDFDFD;
+	text-align: center;
+}
+
+.ticketlineprint {
+	background-color: #FFFFFF;
+	background-repeat: no-repeat;
+	color: #FDFDFD;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 10px;
+	valign: top;
+	vertical-align: text-top;
+	text-align: left;
+}
+
+.barcodecoupon {
+	border: 2px dashed black;
+	padding: 5px;
+}
+
+.tablerowdetailprint {
+	background-color: #FFFFFF;
+	background-repeat: no-repeat;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	valign: top;
+	vertical-align: text-top;
+}
+
+.calendarheader {
+	background-color: #40648A;
+	background-repeat: no-repeat;
+	color: #FFFFFF;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	valign: top;
+	vertical-align: text-top;
+}
+
+.calendarcellheadercurrentmonth {
+	background-color: #7A93AD;
+	background-repeat: no-repeat;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	valign: top;
+	vertical-align: text-top;
+}
+
+.calendarcellheadercurrentdate {
+	background-color: #40648A;
+	background-repeat: no-repeat;
+	color: #FFFFFF;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	text-decoration: bold;
+	valign: top;
+	vertical-align: text-top;
+}
+
+.calendarcellheaderothermonth {
+	background-color: #7A93AD;
+	background-repeat: no-repeat;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	valign: top;
+	vertical-align: text-top;
+}
+
+.calendarcellheaderotherdate {
+	background-color: #40648A;
+	background-repeat: no-repeat;
+	color: #FFFFFF;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	text-decoration: bold;
+	valign: top;
+	vertical-align: text-top;
+}
+
+table.inner {
+	background-color: white;
+	padding: 0px;
+}
+table.outer {
+	background-color: none;
+	padding: 0px;
+}
+table.calendar {
+	background-color: none;
+	border: none;
+}
+table.calendar a.link {
+	font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #000000; text-decoration: underline;
+}
+table.calendar a.link:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+	color: #ff0000; 
+	text-decoration: underline;
+}
+.calendar2 {
+	background-color: yellow;
+	border-width: 1px;
+	border-color: black;
+	border: solid;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 10px;
+	text-align: left;
+	valign: top;
+}
+table.calendar tr {
+	background-color: white;
+	border: none;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 10px;
+	text-align: left;
+	valign: top;
+}
+table.calendar td {
+ 	padding: 0px;
+ 	background-color: white;
+	border: none;
+ 	width: 120px;
+	height: 48px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+ 	font-size: 10px;
+ 	text-align:left;
+ 	vertical-align:text-top;
+	valign: top;
+	overflow: auto;
+}
+table.calendarother {
+	background-color: none;
+	border: none;
+}
+table.calendarother a.link {
+	font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #000000; text-decoration: underline;
+}
+table.calendarother a.link:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+	color: #ff0000; 
+	text-decoration: underline;
+}
+table.calendarother tr {
+	background-color: none;
+	border: none;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 10px;
+	text-align: left;
+	valign: top;
+}
+table.calendarother td {
+ 	padding: 0px;
+ 	background-color: none;
+	border: none;
+ 	width: 120px;
+	height: 48px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+ 	font-size: 10px;
+ 	text-align:left;
+ 	vertical-align:text-top;
+	valign: top;
+	overflow: auto;
+}
+table.datenumber {
+	background-color: none;
+	border-width: 0px;
+	border-style: none;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 12px;
+}
+table.datenumber tr {
+	font-size: 12px;
+	background-color: inherited;
+}
+table.datenumber td {
+	padding: 0px;
+	background-color: inherited;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+}
+table.datenumber td#green {
+	background-color: rgb(0, 255, 0);
+	width: 15px;
+	text-align: center;
+
+}
+table.datenumberother {
+	background-color: none;
+	border-width: 0px;
+	border-style: none;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 12px;
+}
+table.datenumberother tr {
+	font-size: 12px;
+	background-color: inherited;
+}
+table.datenumberother td {
+	padding: 0px;
+	background-color: inherited;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+}
+table.datenumberother td#noborder {
+	border-width: 0px;
+	padding: 0px;
+	border-style: none;
+	border-color: black;
+	width: 12px;
+	height: 12px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	background-color: #999;
+}

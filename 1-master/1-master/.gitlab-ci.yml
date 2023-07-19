@@ -1,0 +1,13 @@
+image: alpine
+
+pages:
+  script:
+    - rm -rf public
+    - mkdir public
+    - cp -r WebPages* public/
+  only:
+    refs:
+      - master
+  artifacts:
+    paths:
+      - public

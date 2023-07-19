@@ -1,0 +1,93 @@
+<!-- comment:
+
+  BOOTSTRAP/BOOTSWATCH THEMES (FOR USE WITH CONTENT DELIVERY NETWORKS)
+
+  Bootstrap and Bootswatch support theming by swaping out the bootstrap.min.css file.
+
+
+  Note that when using a Content Delivery Network (CDN) it is highly advisable to use 
+  Sub-Resource Integrity hashing (https://en.wikipedia.org/wiki/Subresource_Integrity).  
+  If you need to use a theme from a different CDN than listed here you can generate the 
+  appropriate hashes in one of two ways:
+
+  OpenSSL
+
+  	1) Download file from CDN to local computer using a browser or a command line tool like wget
+
+  	2) Generate a hash of the downloaded file with the OpenSSL command line tool:
+
+	  $ openssl dgst -sha384 -binary bootstrap.min.css | openssl base64 -A
+	  HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu
+
+	2) Add hash into appropriate link tag
+
+	  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"/>
+
+
+  Web Service (srihash.org)
+
+  	1) Generate hash by pasting in the URL of your bootstrap.min.css file to the SRI Hash Generator:
+
+	  https://www.srihash.org/
+
+	2) Paste the <link ... /> tag given by the service into this file:
+
+      (Based on pasting in:  maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css)
+
+	  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"/>
+
+-->
+
+<!-- comment: 
+
+   OPTION 1: 
+
+   Default bootstrap style.  White background with grey navigation bars.
+
+   Integrity hashes from:  https://www.bootstrapcdn.com/
+
+-->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"/>
+
+<!-- comment:
+
+  OPTION 2:
+
+  Free themes are available at Bootswatch (http://bootswatch.com/3 -- as of winter 2019)
+  
+  All you need to do to change the theme:
+
+    1) Comment out the default theme link above
+    2) Uncomment the custom theme link below
+    3) Look for the word "superhero" in the link below
+    4) Change "superhero" to the name of another theme, like "paper"
+    5) Change the integrity hash to the matching hash from the list below
+
+    Theme names, with associated integrity hash (v3.4.1), are:
+
+       cerulean   sha384-S0cN63+vYrG1/kfcUhtXsKZfyE9azrjw5p+Q5yYU+Dzjg60sZUEYsIKIb5O/oaT3
+       cosmo      sha384-6SQbkR6/v7QGEoFg1os3KF4uJMFxP6vxm6vLCSbbwwHllJdb4FqkWMiYLtHWGGN4
+       cyborg     sha384-tzza3U8XATv+JNCKjtm0Hn232CwBDxSBjYPkfcByr38iojQCN8+IvnC8OEC1r4Co 
+       darkly     sha384-pKJMCXwCXq3HwRBt27cwwSmc0/DAo2BjRxGd7nEESEStk++p6LffHmhX9oqzVDUk 
+       flatly     sha384-bfWZLPtvQKHg/nZNhaO/ZW4Ba8ISud5CtEjnCTU6OR1yOq5zrrF+JP2o7om6rzLf
+       journal    sha384-T+Z3XwwI21wMyfe0vTxryTqEfv0fxK9gMuolkXbN8HEzFNFSKVyZiRvPQ0Xu4QF0
+       lumen      sha384-5HAjBLBhXAArWyyh/bPaIK9FKMqOGhu8g6tf5ARGMvuNWuvpY38SFgqCCl+bG3Gk
+       paper      sha384-czdUt3c5InCk6AjJWW7zMMS5xcvRAyC6tWoWfXuRYfX6Vvv4Es8m8eRjzMChD493
+       readable   sha384-cEtSoDrbFB1ZfF3E823wseIQXTddQNKRdACknoZ9ivL6BoQcvL9qrUcA3yPxf14L
+       sandstone  sha384-MdGHxjbrV2GoFVHadLhX6S9c4u3zfMCjYWiJCd1qukSKYr5/WblrjNve58VRoYg4
+       simplex    sha384-Ml0EbeK7eVNRHfVP5719pLP1XxMxmGHkzHnlYw6d+l9JEOW0ooutGR8Rc+M4ML7O
+       slate      sha384-XiCBeLjnyW8fUT1Qsjw3NzEeO4AawGrU7aadPCgvNK4DiK5glSw5S66MOluKW8wc
+       spacelab   sha384-+UEyBtcMUzEVPU/VzsSuQxSAdP59Rg8OU5jCsE89v4bKCKi/0NqVy479qQMAmZ4x 
+       superhero  sha384-myonMxXntR4GLlIlbcFuvqvz3IgiV9V0VdLdQARqcQTzQQuJ/pa0C4BSYZYSWVfu  
+       united     sha384-Sa176srEjCXftw8QYd+wY/WVLqUNOlQ+ENT4shhgMBfALErUsVL8RrhU4zWbWyRt
+       yeti       sha384-bbfChtM4oMxTlcWghl4L4ja4z3qqkTUYpXACeFtB2WUoy2Swi5ucq+AyhOjMUKM1
+
+       Integrity hashes calculated on December 4, 2019
+	 -->
+<!--<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.4.1/superhero/bootstrap.min.css" rel="stylesheet" integrity="sha384-myonMxXntR4GLlIlbcFuvqvz3IgiV9V0VdLdQARqcQTzQQuJ/pa0C4BSYZYSWVfu" crossorigin="anonymous">-->
+
+<!-- comment: With optional WCAG Acessibilty -- http://paypal.github.io/bootstrap-accessibility-plugin/demo.html -->
+<!-- <link href="tmVendor/bootstrap-accessibility-plugin-1.0.7/css/bootstrap-accessibility.css" rel="stylesheet" />  -->
+
+<!-- comment: If you want to enable WCAG 2.1 AAA high contrast settings, you'll need to uncomment the line below -->
+<!-- <link href="tmVendor/artsman-bootstrap-accessibility-1.0.0/bootstrap/accessibility.css" rel="stylesheet" /> -->

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Description - <field>RE_DESCRIPTION</field>
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="backgroundPopup">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="row">
+     <div class="col-xs-4">
+      <img alt="poster for <field>RE_DESCRIPTION</field>" class="img-responsive" src="<field>F_HTML_FIREWALL</field>image?resource=<field>RE_SEQ</field>"/>
+     </div>
+     <div class="col-xs-8">
+      <div class="page-header">
+       <h3>
+        <field>RE_DESCRIPTION</field>
+       </h3>
+      </div>
+      <field>pick(len(RE_NOTES)>0,'<!-- comment: no sales notes')</field>
+      <div class="alert alert-info fade in">
+       <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+       <field>RE_NOTES</field>
+      </div>
+      <field>pick(len(RE_NOTES)>0,'-->')</field>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

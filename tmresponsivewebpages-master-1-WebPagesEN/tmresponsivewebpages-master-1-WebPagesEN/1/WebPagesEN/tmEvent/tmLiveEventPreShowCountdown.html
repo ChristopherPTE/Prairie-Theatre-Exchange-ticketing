@@ -1,0 +1,43 @@
+<!-- comment: AJAX loading start -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Save performance date so it can reused on each clock tick
+    var locale = '<field>F_HTML_LOCALE</field>'
+    var performanceStart = moment.utc('<field>F_HTML_PERFORMANCE_START_UTC</field>');
+    var templates = [
+        ['.countdown_template_1_render', "#countdown-template-1"],
+        ['.countdown_template_2_render', "#countdown-template-2"],
+        ['.countdown_template_3_render', "#countdown-template-3"],
+    ];
+  
+    /* 
+     * RUN TIMER
+     *
+     * Intended for use with setInterval, this method will invoke a page reload on 
+     * performance start and update all countdown text until the performance starts
+     */
+    var timerStart = moment.utc();
+    var timerCancel;
+    var runTimer = function() {
+      var localNow = moment.utc();
+      var progressStart = (localNow - timerStart) / 1000;
+      var progressEnd = (performanceStart - timerStart) / 1000;
+      var performanceDiff = (performanceStart - localNow) / 1000;
+      if (performanceDiff <= 0) {
+        // Stop timer
+        clearInterval(timerCancel);
+        // Render last countdown
+        performanceDiff = 0;
+        updateCountdowns(locale, templates, performanceDiff, progressStart, progressEnd);
+        // Trigger page reload
+        location.reload();
+        return;
+      }
+    
+      updateCountdowns(locale, templates, performanceDiff, progressStart, progressEnd);
+    }; 
+  
+    timerCancel = setInterval(runTimer, 1000);
+  });
+  </script>
+  <!-- comment: AJAX loading end -->

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Checkout Window
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div align="center" id="content">
+   <p>
+    <b class="message">
+     <field>F_HTML_PAGE_MESSAGE</field>
+    </b>
+   </p>
+   <table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+     <td align="center">
+      <form action="<field>F_HTML_FIREWALL</field>online" method="POST">
+       <input name="pg" type="hidden" value="checkout"/>
+       No items have been selected to purchase.
+       <p>
+        If you wish to purchase tickets, gift certificates
+            <field>pick(F_DONATION_ALLOWED,'<!-- comment: based on setting in company preferences','')</field>
+        <a class="link" href="<field>F_HTML_FIREWALL</field>login?donation=0">
+         , or make a donation
+        </a>
+        <field>pick(F_DONATION_ALLOWED,'-->','')</field>
+        then please select the item from the menu above.
+       </p>
+      </form>
+     </td>
+    </tr>
+   </table>
+  </div>
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

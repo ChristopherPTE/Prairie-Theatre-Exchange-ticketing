@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <title>
+   <field>D_COMPANY_LONG</field> | Pass/Gift Certificate Selection
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Passes or Gift Certificates
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+     </div>
+     <div class="col-md-8">
+      <form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+       <div class="form-group">
+        <label for="MT_SEQ">
+         Type
+        </label>
+		<div style="">
+			
+			<div class="radio">
+			  <label style="color:white;"><input name="MT_SEQ"  type="radio" value="6">Gift Certificate</label>
+			</div>
+			<div class="radio">
+			  <label style="color:white;"><input name="MT_SEQ"  type="radio" value="28">Student Flex Pass 2019-20</label>
+			</div>
+			<div class="radio">
+			  <label style="color:white;"><input name="MT_SEQ"  type="radio" value="28">Voucher</label>
+			</div>
+			
+		</div>
+		
+		
+        <!--<select class="form-control" id="MT_SEQ" name="MT_SEQ">
+         <field>F_HTML_PASS_LIST</field>
+        </select>-->
+       </div>
+       <div class="form-group">
+        <label for="PS_QUANTITY">
+         Quantity
+        </label>
+        <select class="form-control" id="PS_QUANTITY" name="PS_QUANTITY" size="1">
+         <option selected="" value="1">
+          1
+         </option>
+         <option value="2">
+          2
+         </option>
+         <option value="3">
+          3
+         </option>
+         <option value="4">
+          4
+         </option>
+         <option value="5">
+          5
+         </option>
+         <option value="6">
+          6
+         </option>
+         <option value="7">
+          7
+         </option>
+         <option value="8">
+          8
+         </option>
+         <option value="9">
+          9
+         </option>
+         <option value="10">
+          10
+         </option>
+         <option value="11">
+          11
+         </option>
+         <option value="12">
+          12
+         </option>
+         <option value="13">
+          13
+         </option>
+         <option value="14">
+          14
+         </option>
+         <option value="15">
+          15
+         </option>
+         <option value="16">
+          16
+         </option>
+         <option value="17">
+          17
+         </option>
+         <option value="18">
+          18
+         </option>
+         <option value="19">
+          19
+         </option>
+         <option value="20">
+          20
+         </option>
+        </select>
+       </div>
+       <div class="form-group">
+        <label for="M_NOTES">
+         Personalized Message
+        </label>
+        <textarea class="form-control" id="M_NOTES" name="M_NOTES" placeholder="enter any specific instructions or notes" rows="5"><field>M_NOTES</field></textarea>
+       </div>
+       <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+       <input class="btn btn-success" name="btnReservePass" onclick="process()" type="submit" value="Add to Cart"/>
+       <input class="btn btn-danger" name="<field>pick(F_LOGGED_IN=2,'btnHome','btnGetEventList')</field>" type="submit" value="Cancel"/>
+       <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION=1,'<!-- comment: only show if enabled to redeem passes','')</field>
+       <input class="btn btn-primary" name="btnPassCheckBalance" type="submit" value="Check Balance on Pass/Gift Certificate"/>
+       <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION=1,'-->','')</field>
+      </form>
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+ </body>
+</html>

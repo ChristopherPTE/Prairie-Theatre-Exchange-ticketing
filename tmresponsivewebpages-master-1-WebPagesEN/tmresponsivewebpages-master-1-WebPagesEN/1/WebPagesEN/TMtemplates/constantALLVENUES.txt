@@ -1,0 +1,4 @@
+#	Enter the text to represent searching for 'All Venues'
+#	it goes at the top of the search window for events
+
+All <field>tEditCheck.$setPlural(D_VENUE)</field>

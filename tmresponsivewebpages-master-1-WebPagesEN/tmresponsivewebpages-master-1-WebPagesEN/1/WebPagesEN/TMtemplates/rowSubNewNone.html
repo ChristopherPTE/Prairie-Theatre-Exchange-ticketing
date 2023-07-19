@@ -1,0 +1,21 @@
+<div class="alert alert-warning fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <b>
+  New
+ </b>
+ subscriptions are not available for purchase online at this time.
+ <field>pick(F_LOGGED_IN=1,'<!-- comment: show when logged IN')</field>
+You may
+ <b>
+  renew
+ </b>
+ any subscriptions that follow in the list below.
+ <field>pick(F_LOGGED_IN=1,'-->')</field>
+Please contact the box office for more information.
+</div>
+<br/>
+<div>
+ <a class="btn btn-warning" href="tel:<field>D_SWITCH_BOARD</field>">
+  <field>D_SWITCH_BOARD</field>
+ </a>
+</div>

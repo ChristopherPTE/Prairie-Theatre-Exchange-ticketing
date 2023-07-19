@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Confirm Processing of Payment
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmScripts/reCAPTCHAScripts.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Step 2 of 3:
+      <span class="text-muted">
+        <field>pick(F_HTML_USE_INLINE_PAYMENT_PAGE,'<!-- comment: ')</field>
+         enter credit card
+        <field>pick(F_HTML_USE_INLINE_PAYMENT_PAGE,'-->')</field>
+        <field>pick(F_HTML_USE_INLINE_PAYMENT_PAGE,'','<!-- comment: ')</field>
+         confirm that your card can be charged now
+        <field>pick(F_HTML_USE_INLINE_PAYMENT_PAGE,'','-->')</field>
+      </span>
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <!--#include virtual="TMtemplates/tmProcessingDelivery.html" -->
+      <!--#include virtual="TMtemplates/tmCheckoutProcessingProceedButtonMessage.html" -->
+      <!--#include virtual="TMtemplates/tmCheckoutPostDatedPaymentsAccepted.html" -->
+     </div>
+     <div class="col-md-8">
+
+      <!-- comment: Display Moneris Checkout page-->
+      <field>pick(F_HTML_USE_MONERIS_CHECKOUT,'<!-- comment: ')</field>
+      <!--#include virtual="TMtemplates/tmCheckoutProcessingMonerisCheckout.html" --> 
+      <field>pick(F_HTML_USE_MONERIS_CHECKOUT,'-->')</field>
+      <!-- comment: charge the cart, or cancel the checkout process -->
+      <field>pick(F_HTML_USE_HOSTED_PAYMENT_PAGE,'<!-- comment: this uses hosted payment')</field>
+      <!--#include virtual="TMtemplates/tmCheckoutProcessingMonerisHosted.html" --> 
+      <field>pick(F_HTML_USE_HOSTED_PAYMENT_PAGE,'-->')</field>
+      <field>pick(F_HTML_USE_ALTERNATE_PAYMENT_PAGE,'','<!-- comment: this uses built in payment')</field>
+      <!--#include virtual="TMtemplates/tmCheckoutProcessingDirect.html" --> 
+      <field>pick(F_HTML_USE_ALTERNATE_PAYMENT_PAGE,'','-->')</field>
+
+      <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+      <!--#include virtual="TMtemplates/tmContactHours.html" -->
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <field>pick(F_HTML_USE_MONERIS_CHECKOUT,'<!-- comment: ')</field>
+  <!--#include virtual="TMtemplates/tmMonerisCheckoutMessageTemplates.html" -->
+  <!--#include virtual="tmScripts/tmMonerisCheckoutBodyScripts.html" -->
+  <field>pick(F_HTML_USE_MONERIS_CHECKOUT,'-->')</field>
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

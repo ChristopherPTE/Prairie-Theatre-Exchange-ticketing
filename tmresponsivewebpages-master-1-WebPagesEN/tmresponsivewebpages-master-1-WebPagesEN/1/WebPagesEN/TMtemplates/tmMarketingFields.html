@@ -1,0 +1,281 @@
+  <!-- comment: 
+     For each of the fields below, you can make a hidden import field with a static value (if you do not want the user to enter values in the fields),
+     or you can enable the field for data entry by the user.  In either case, Theatre Manager will validate the inputs given when they are sent
+     to the server.
+
+     Marketing 1 & 2 are numbers
+     Marketing 3 & 4 are upper case letters
+     Marketing 5 is a text field, free format.
+     Age Code, Marketing 6, 7, and 8 are pre-populated dropdown menus
+
+     If the input is optional in the Theatre Manager database, feel free to uncomment the sections that you wish customers to see.
+
+     If the input mandatory in the Theatre Manager database - enable the field or make hidden <input> with a static value.
+-->
+  <!-- comment: Static Value
+
+   <input name="MKT_AGE_CODE_FC_SEQ" type=hidden id="MKT_AGE_CODE_FC_SEQ" value="Value">
+   <input name="MKT_FIELD_1" type=hidden id="MKT_FIELD_1" value="[Static Value]">
+   <input name="MKT_FIELD_2" type=hidden id="MKT_FIELD_2" value="[Static Value]">
+   <input name="MKT_FIELD_3" type=hidden id="MKT_FIELD_3" value="[Static Value]">
+   <input name="MKT_FIELD_4" type=hidden id="MKT_FIELD_4" value="[Static Value]">
+   <input name="MKT_FIELD_5" type=hidden id="MKT_FIELD_5" value="[Static Value]">
+   <input name="MKT_FIELD_6_FC_SEQ" type=hidden id="MKT_FIELD_6_FC_SEQ" value="[Static Value]">
+   <input name="MKT_FIELD_7_FC_SEQ" type=hidden id="MKT_FIELD_7_FC_SEQ" value="[Static Value]">
+   <input name="MKT_FIELD_8_FC_SEQ" type=hidden id="MKT_FIELD_8_FC_SEQ" value="[Static Value]">
+-->
+  <!-- comment: ****************
+    if using anything in this template, suggest uncommenting the div class=well and header
+    you will also need to UNCOMMENT the ENDING div tag at the end of the file
+
+    <h4>
+      Additional Information
+    </h4>
+    <div class="well well-sm">
+
+
+
+  -->
+  <!-- comment: gender as popup list (includes male/female and unspecified)
+  <div class="form-group">
+   <label for="C_SEX">
+    Gender
+   </label>
+   <select class="form-control" id="C_SEX" name="C_SEX" size="3">
+    <field>F_HTML_GENDER_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: gender as radio buttons (alternate) - should use the popup now that gender is a codetable
+  <div class="form-group">
+   <label for="C_SEX">
+    Gender
+   </label>
+   <div class="form-inline">
+    <div class="radio">
+     <label>
+      <input id="Female" name="C_SEX" type="radio" value="Female" <field>pick(C_SEX='Female','','checked')</field>/>
+      Female
+     </label>
+     &nbsp;&nbsp;
+     <label>
+      <input id="Male" name="C_SEX" type="radio" value="Male" <field>pick(C_SEX='Female','checked','')</field>/>
+      Male
+     </label>
+    </div>
+   </div>
+  </div>
+  -->
+  <!-- comment: Age Code
+  <div class="form-group">
+   <label for="MKT_AGE_CODE_FC_SEQ">
+    Age Code <field>F_HTML_REQUIRE_AGE_CODE</field>
+   </label>
+   <select class="form-control" id="MKT_AGE_CODE_FC_SEQ" name="MKT_AGE_CODE_FC_SEQ" size="1">
+    <field>F_HTML_AGE_CODE_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: birthday
+  <div class="form-group">
+   <label for="C_BIRTHDAY">
+    Birthday
+   </label>
+   <input class="form-control" id="C_BIRTHDAY" name="C_BIRTHDAY" placeholder="yyyy-mm-dd" type="date" value="<field>dat(C_BIRTHDAY, 'y-M-0D')</field>"/>
+  </div>
+  -->
+  <!-- comment: Marketing #1 (numbers)
+  <div class="form-group">
+   <label for="MKT_FIELD_1">
+    <field>D_MKT1</field>
+   </label>
+   <input class="form-control" id="MKT_FIELD_1" max="9999999999" min="0" name="MKT_FIELD_1" placeholder="<field>D_MKT1</field> <field>F_HTML_REQUIRE_MARKETING_1</field> (numbers only)" type="number" value="<field>MKT_FIELD_1</field>"/>
+  </div>
+  -->
+  <!-- comment: Marketing #2 (numbers)
+  <div class="form-group">
+   <label for="MKT_FIELD_2">
+    <field>D_MKT2</field>
+   </label>
+   <input class="form-control" id="MKT_FIELD_2" max="9999999999" min="0" name="MKT_FIELD_2" placeholder="<field>D_MKT2</field> <field>F_HTML_REQUIRE_MARKETING_2</field> (numbers only)" type="number" value="<field>MKT_FIELD_2</field>"/>
+  </div>
+  -->
+  <!-- comment: Marketing #3 (upper case text)
+  <div class="form-group">
+   <label for="MKT_FIELD_3">
+    <field>D_MKT3</field>
+   </label>
+   <input class="form-control" id="MKT_FIELD_3" name="MKT_FIELD_3" placeholder="<field>D_MKT3</field> <field>F_HTML_REQUIRE_MARKETING_3</field> (text)" MAXLENGTH=10 type="text" value="<field>MKT_FIELD_3</field>" onblur="this.value=this.value.toUpperCase()"/>
+  </div>
+  -->
+  <!-- comment: Marketing #4 (upper case text)
+  <div class="form-group">
+   <label for="MKT_FIELD_4">
+    <field>D_MKT4</field>
+   </label>
+   <input class="form-control" id="MKT_FIELD_4" name="MKT_FIELD_4" placeholder="<field>D_MKT4</field> <field>F_HTML_REQUIRE_MARKETING_4</field> (text)" MAXLENGTH=10 type="text" value="<field>MKT_FIELD_4</field>" onblur="this.value=this.value.toUpperCase()"/>
+  </div>
+  -->
+  <!-- comment: Marketing #5 (text)
+  <div class="form-group">
+   <label for="MKT_FIELD_5">
+    <field>D_MKT5</field>
+   </label>
+   <input class="form-control" id="MKT_FIELD_5" name="MKT_FIELD_5" placeholder="<field>D_MKT5</field> <field>F_HTML_REQUIRE_MARKETING_5</field> (text)" type="text" value="<field>MKT_FIELD_5</field>"/>
+  </div>
+  -->
+  <!-- comment: Marketing #6 (dropdown)
+  <div class="form-group">
+   <label for="MKT_FIELD_6_FC_SEQ">
+    <field>D_MKT6</field>
+   </label>
+   <select class="form-control" id="MKT_FIELD_6_FC_SEQ" name="MKT_FIELD_6_FC_SEQ" size="1">
+    <field>F_HTML_MARKETING_6_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: Marketing #7 (dropdown)
+  <div class="form-group">
+   <label for="MKT_FIELD_7_FC_SEQ">
+    <field>D_MKT7</field>
+   </label>
+   <select class="form-control" id="MKT_FIELD_7_FC_SEQ" name="MKT_FIELD_7_FC_SEQ" size="1">
+    <field>F_HTML_MARKETING_7_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: Marketing #8 (dropdown)
+  <div class="form-group">
+   <label for="MKT_FIELD_8_FC_SEQ">
+    <field>D_MKT8</field>
+   </label>
+   <select class="form-control" id="MKT_FIELD_8_FC_SEQ" name="MKT_FIELD_8_FC_SEQ" size="1">
+    <field>F_HTML_MARKETING_8_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: Marketing Volunteer #1 (dropdown)
+  <div class="form-group">
+   <label for="MKT_VOL1_FC_SEQ">
+    <field>D_VOL1_DESC</field>
+   </label>
+   <select class="form-control" id="MKT_VOL1_FC_SEQ" name="MKT_VOL1_FC_SEQ" size="1">
+    <field>F_HTML_VOLUNTEER_1_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: Marketing Volunteer #2 (dropdown)
+  <div class="form-group">
+   <label for="MKT_VOL2_FC_SEQ">
+    <field>D_VOL2_DESC</field>
+   </label>
+   <select class="form-control" id="MKT_VOL2_FC_SEQ" name="MKT_VOL2_FC_SEQ" size="1">
+    <field>F_HTML_VOLUNTEER_2_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: Marketing Volunteer #3 (dropdown)
+  <div class="form-group">
+   <label for="MKT_VOL3_FC_SEQ">
+    <field>D_VOL3_DESC</field>
+   </label>
+   <select class="form-control" id="MKT_VOL3_FC_SEQ" name="MKT_VOL3_FC_SEQ" size="1">
+    <field>F_HTML_VOLUNTEER_3_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: Marketing Volunteer #4 (dropdown)
+  <div class="form-group">
+   <label for="MKT_VOL4_FC_SEQ">
+    <field>D_VOL4_DESC</field>
+   </label>
+   <select class="form-control" id="MKT_VOL4_FC_SEQ" name="MKT_VOL4_FC_SEQ" size="1">
+    <field>F_HTML_VOLUNTEER_4_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: Marketing Volunteer #5 (dropdown)
+  <div class="form-group">
+   <label for="MKT_VOL5_FC_SEQ">
+    <field>D_VOL5_DESC</field>
+   </label>
+   <select class="form-control" id="MKT_VOL5_FC_SEQ" name="MKT_VOL5_FC_SEQ" size="1">
+    <field>F_HTML_VOLUNTEER_5_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: Marketing Volunteer #6 (dropdown)
+  <div class="form-group">
+   <label for="MKT_VOL6_FC_SEQ">
+    <field>D_VOL6_DESC</field>
+   </label>
+   <select class="form-control" id="MKT_VOL6_FC_SEQ" name="MKT_VOL6_FC_SEQ" size="1">
+    <field>F_HTML_VOLUNTEER_6_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: Marketing Volunteer #7 (dropdown)
+  <div class="form-group">
+   <label for="MKT_VOL7_FC_SEQ">
+    <field>D_VOL7_DESC</field>
+   </label>
+   <select class="form-control" id="MKT_VOL7_FC_SEQ" name="MKT_VOL7_FC_SEQ" size="1">
+    <field>F_HTML_VOLUNTEER_7_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: Marketing Volunteer #8 (dropdown)
+  <div class="form-group">
+   <label for="MKT_VOL8_FC_SEQ">
+    <field>D_VOL8_DESC</field>
+   </label>
+   <select class="form-control" id="MKT_VOL1_FC_SEQ" name="MKT_VOL8_FC_SEQ" size="1">
+    <field>F_HTML_VOLUNTEER_8_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: Marketing Volunteer #9 (dropdown)
+  <div class="form-group">
+   <label for="MKT_VOL9_FC_SEQ">
+    <field>D_VOL9_DESC</field>
+   </label>
+   <select class="form-control" id="MKT_VOL9_FC_SEQ" name="MKT_VOL9_FC_SEQ" size="1">
+    <field>F_HTML_VOLUNTEER_9_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: Marketing Volunteer #10 (dropdown)
+  <div class="form-group">
+   <label for="MKT_VOL10_FC_SEQ">
+    <field>D_VOL10_DESC</field>
+   </label>
+   <select class="form-control" id="MKT_VOL10_FC_SEQ" name="MKT_VOL10_FC_SEQ" size="1">
+    <field>F_HTML_VOLUNTEER_10_LIST</field>
+   </select>
+  </div>
+  -->
+  <!-- comment: the do not trade checkbox if you are using it for some reason
+  you make give it a different name and decide what to use it for in Theatre Manager
+  <div class="form-group">
+   <label for="MKT_DO_NOT_TRADE">
+    Do Not Trade
+   </label>
+   <div class="form-inline">
+    <div class="radio">
+     <label>
+      <input id="tradeyes" name="MKT_DO_NOT_TRADE" type="radio" value="NO" <field>pick(MKT_DO_NOT_TRADE='YES','checked','')</field>/>
+      Do not give my information to other venues
+     </label>
+    </div>
+    <div class="radio">
+     <label>
+      <input id="tradeno" name="MKT_DO_NOT_TRADE" type="radio" value="YES" <field>pick(MKT_DO_NOT_TRADE='YES','','checked')</field>/>
+      Other venues may send me information about their events
+     </label>
+    </div>
+   </div>
+  </div>
+  -->
+  <!-- comment: ending div tag for the well, if it is used
+     </div>
+  -->

@@ -1,0 +1,39 @@
+<tr>
+ <td class="text-left">
+  Subscription
+ </td>
+ <td class="text-center">
+  <field>SCD_QUANTITY</field>
+ </td>
+ <td class="text-left">
+  <field>pick(F_HTML_ALLOW_SEASON_REMOVAL,'','<!-- comment: only show for non-customized season packages')</field>
+  <a class="link" href="<field>F_HTML_FIREWALL</field>tmSubscription/tmSubscription<field>SG_SEQ</field>.html?SG_SEQ=<field>SG_SEQ</field>" onclick="return popup(this, 'notes')">
+   <field>SG_DESCRIPTION</field>
+  </a>
+  <br/>
+  <field>pick(F_HTML_ALLOW_SEASON_REMOVAL,'','-->')</field>
+  <a class="link" href="<field>F_HTML_FIREWALL</field>tmEvent/tmEvent<field>PB_P_SEQ</field>.html?PB_P_SEQ=<field>PB_P_SEQ</field>" onclick="return popup(this, 'notes')">
+   <field>P_PLAY_TITLE</field>
+  </a>
+  <br/>
+  on
+  <b>
+   <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+  </b>
+  <br/>
+  <!--#include virtual="TMtemplates/rowSectionRowSeat.html" -->
+  <!--#include virtual="TMtemplates/rowPromotionPriceCode.html" -->
+  <!--#include virtual="TMtemplates/rowTicketFaceValue.html" -->
+  <em>
+   <field>pick(MS_NOTE_USE_FLAG,'',MS_SEAT_NOTE)</field>
+  </em>
+ </td>
+ <td class="text-right">
+  <field>SCD_TOTAL_COST</field>
+ </td>
+ <td class="text-center">
+  <input name="SCD_SEQ" type="hidden" value="<field>SCD_SEQ</field>"/>
+  <input name="SCD_PURCHASE_GROUP" type="hidden" value="<field>SCD_PURCHASE_GROUP</field>"/>
+  <!-- comment: input name="F_HTML_REMOVE_CART_ITEM_YN" type="hidden" value="NO"/ -->
+ </td>
+</tr>

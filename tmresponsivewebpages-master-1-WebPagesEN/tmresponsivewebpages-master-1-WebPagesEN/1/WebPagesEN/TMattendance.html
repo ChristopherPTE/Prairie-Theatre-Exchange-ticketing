@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Web Attendance Tracking
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <div class="container">
+   <div class="page-header">
+    <h1>
+     Scan Patrons in/out of venue
+    </h1>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+     <div class="alert alert-warning fade in">
+      <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+      Use this screen to check a <field>low(D_PATRON)</field> into and/or out of your <field>low(D_VENUE)</field> for a
+      <field>low(D_PERF_DESC)</field>. You can scan the ticket number from the ticket (or type it in).
+     </div>
+     <div class="alert alert-warning fade in">
+      <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+      You do not need to use this page you are using a wireless scanner device to track attendance.
+     </div>
+    </div>
+    <div class="col-md-8">
+     <div class="well well-sm">
+      <h3>
+       ENTERING the <field>D_VENUE</field>
+      </h3>
+      <form action="<field>F_HTML_FIREWALL</field>checkin" method="POST" role="form">
+       <div class="form-group">
+        <label for="PS_SEQ">
+         Ticket Number
+        </label>
+        <input class="form-control" id="PS_SEQ" name="PS_SEQ" placeholder="type a ticket number" type="text" value=""/>
+       </div>
+       <div class="form-group">
+        <label for="PB_SEQ">
+         Performance Number
+        </label>
+        <input class="form-control" id="PB_SEQ" name="PB_SEQ" placeholder="0 for today, or enter specific performance" type="text" value="<field>PB_SEQ</field>"/>
+       </div>
+       <div class="form-group">
+        <label for="E_INITIALS">
+         Employee Initials
+        </label>
+        <input class="form-control" id="E_INITIALS" name="E_INITIALS" placeholder="initials of employee who can scan tickets" type="text" value="<field>E_INITIALS</field>"/>
+       </div>
+       <div class="form-group">
+        <label for="p">
+         Password
+        </label>
+        <input autocomplete="off" class="form-control" id="p" name="p" placeholder="password" type="password" value="<field>F_HTML_PASSWORD</field>"/>
+       </div>
+       <input id="source" name="source" type="hidden" value="webpage"/>
+       <input class="btn btn-success" name="btnFile" type="submit" value="Check <field>D_PATRON</field> In"/>
+      </form>
+     </div>
+     <div class="well well-sm">
+      <h3>
+       LEAVING the <field>D_VENUE</field>
+      </h3>
+      <form action="<field>F_HTML_FIREWALL</field>checkout" method="POST" role="form">
+       <div class="form-group">
+        <label for="PS_SEQ">
+         Ticket Number
+        </label>
+        <input class="form-control" id="PS_SEQ" name="PS_SEQ" placeholder="type a ticket number" type="text" value=""/>
+       </div>
+       <div class="form-group">
+        <label for="PB_SEQ">
+         Performance Number
+        </label>
+        <input class="form-control" id="PB_SEQ" name="PB_SEQ" placeholder="0 for today, or enter specific performance" type="text" value="<field>PB_SEQ</field>"/>
+       </div>
+       <div class="form-group">
+        <label for="E_INITIALS">
+         Employee Initials
+        </label>
+        <input class="form-control" id="E_INITIALS" name="E_INITIALS" placeholder="initials of employee who can scan tickets" type="text" value="<field>E_INITIALS</field>"/>
+       </div>
+       <div class="form-group">
+        <label for="p">
+         Password
+        </label>
+        <input autocomplete="off" class="form-control" id="p" name="p" placeholder="password" type="password" value="<field>F_HTML_PASSWORD</field>"/>
+       </div>
+       <input id="source" name="source" type="hidden" value="webpage"/>
+       <input class="btn btn-danger" name="btnFile" type="submit" value="Check <field>D_PATRON</field> Out"/>
+      </form>
+     </div>
+     <p>
+      Beep=<field>F_PALM_BEEP</field>, Allow=<field>F_PALM_ALLOW</field>
+     </p>
+    </div>
+   </div>
+  </div>
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

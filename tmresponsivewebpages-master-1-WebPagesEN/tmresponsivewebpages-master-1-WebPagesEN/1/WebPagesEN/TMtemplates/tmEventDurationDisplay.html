@@ -1,0 +1,15 @@
+  <div class="alert alert-info">
+   <field>pick(P_PERFORMANCES=1,'Runs from','Occurs on')</field>
+   <field>dat(P_SHOW_FIRST,'w n D y')</field>
+   <field>pick(P_PERFORMANCES=1,con('to ',dat(P_SHOW_LAST,'w n D y')))</field>
+   <p class="text-muted">
+    <field>pick(P_PLAY_DURATION>=360,'','All Day Event')</field>
+    <field>pick(P_PLAY_DURATION>=360,'','<!-- comment:')</field>
+    Approximate running time: <field>int(P_PLAY_DURATION/60)</field>
+    <field>tEditCheck.$setPlural('hour',int(P_PLAY_DURATION/60))</field>
+    <field>pick(P_PLAY_DURATION % 60>0,'<!-- comment:')</field>
+    and <field>P_PLAY_DURATION % 60</field> minutes
+    <field>pick(P_PLAY_DURATION % 60>0,'-->')</field>
+    <field>pick(P_PLAY_DURATION>=360,'','-->')</field>
+   </p>
+  </div>

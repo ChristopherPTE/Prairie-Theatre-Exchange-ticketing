@@ -1,0 +1,31 @@
+<field>pick(SCH_TIX_QUANTITY>0&D_WEB_CALENDAR_ATTACHMENT_ENABLED,'<!-- comment:')</field>
+<div class="alert alert-info">
+ <b>
+  The <field>low(D_PERF_DESC)</field> dates are attached to this email as a calendar document.
+ </b>
+ Double clicking the calendar attachment will add it to your device's default calendar software.  Alternatively,
+ you can review all <field>low(D_PERF_DESC)</field> dates on the online calendar.
+ <br/>
+ <br/>
+ <a class="btn btn-info btn-xs" data-placement="bottom" href="<field>F_HTML_FIREWALL</field>calendars/my_upcoming_events" title="Events will be shown in calendar format in the online web portal">
+  View Online Calendar
+ </a>
+ <a class="btn btn-info btn-xs" data-placement="bottom" href="<field>F_HTML_FIREWALL</field>online?futuretickets" title="Events will be shown in a list in the online web portal">
+  View Purchase History
+ </a>
+</div>
+<field>pick(SCH_TIX_QUANTITY>0&D_WEB_CALENDAR_ATTACHMENT_ENABLED,'-->')</field>
+<field>pick(SCH_TIX_QUANTITY>0&not(D_WEB_CALENDAR_ATTACHMENT_ENABLED),'<!-- comment:')</field>
+<div class="alert alert-info">
+ You can review all the tickets you have purchased in your online calendar
+ (and syncronize them to your own calendar if you wish).
+ <br/>
+ <br/>
+ <a class="btn btn-info btn-xs" data-placement="bottom" href="<field>F_HTML_FIREWALL</field>calendars/my_upcoming_events" title="Events will be shown in calendar format in the online web portal">
+  View Online Calendar
+ </a>
+ <a class="btn btn-info btn-xs" data-placement="bottom" href="<field>F_HTML_FIREWALL</field>online?futuretickets" title="Events will be shown in a list in the online web portal">
+  View Purchase History
+ </a>
+</div>
+<field>pick(SCH_TIX_QUANTITY>0&not(D_WEB_CALENDAR_ATTACHMENT_ENABLED),'-->')</field>

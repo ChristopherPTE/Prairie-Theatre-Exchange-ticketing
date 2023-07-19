@@ -1,0 +1,8 @@
+  <!-- comment: page counter: show the menu item selection and use ciel to round up for last page -->
+  <script type="text/javascript">
+   $(document).ready(function(){
+	var lastLine = $("#pages").attr("data-last-displayed");
+	var activePage = Math.ceil(lastLine / <field>D_WEB_MAX_ITEMS_IN_LIST</field>);
+	$('.page-' + activePage).addClass('active');
+});
+  </script>

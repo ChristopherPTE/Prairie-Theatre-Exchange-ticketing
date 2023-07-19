@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Coupon Entry
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+   <div class="page-header">
+    <h1>
+     Coupon Information
+    </h1>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+    </div>
+    <div class="col-md-8">
+     <!-- comment: include the next 'param' input field if you want TM to show only events that this coupon
+        	opens up on the event listing page for a one time shot and remove it 
+        	if you want the web pages to stay on this coupon page -->
+     <form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+      <input name="param" type="hidden" value="altbtn=btnGetEventList"/>
+      <div class="form-group">
+       <label for="CH_CODE">
+        Coupon Code
+       </label>
+       <input id="CH_CODE" maxlength="40" name="CH_CODE" onblur="this.value=this.value.toUpperCase()" size="40" type="text" value="<field>CH_CODE</field>"/>
+      </div>
+      <input class="btn btn-success" name="btnCouponAccept" type="submit" value="Add Coupon"/>
+      <input class="btn btn-danger" name="<field>pick(F_LOGGED_IN=2,'btnGetEventList','btnCart')</field>" type="submit" value="Cancel"/>
+     </form>
+    </div>
+    <!-- comment: .col-md-8 -->
+   </div>
+   <!-- /#content -->
+   </div>
+   <!-- comment: .row -->
+  </div>
+  <!-- comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

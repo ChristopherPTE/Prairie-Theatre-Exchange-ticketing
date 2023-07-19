@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Monthly Donation Entry
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div align="center" id="content">
+   <table border="0" cellpadding="0" cellspacing="0" width="95%">
+    <tr>
+     <td>
+      <form action="<field>F_HTML_FIREWALL</field>online" method="POST">
+       <div align="center">
+        <p>
+         <b class="message">
+          <field>F_HTML_PAGE_MESSAGE</field>
+         </b>
+        </p>
+        <table border="0" cellpadding="1" width="589">
+         <tr>
+          <td align="right" width="167">
+           Donation Campaign
+          </td>
+          <td valign="top" width="408">
+           <select class="form-control" id="DD_DC_SEQ" name="DD_DC_SEQ">
+            <field>F_HTML_CAMPAIGN_LIST</field>
+           </select>
+          </td>
+         </tr>
+         <tr>
+          <td align="right" width="167">
+           Total Donation Amount
+          </td>
+          <td valign="top">
+           <input id="DD_AMOUNT_PLEDGE" maxlength="30" name="DD_AMOUNT_PLEDGE" size="30" type="text" value="<field>DD_AMOUNT_PLEDGE</field>"/>
+          </td>
+         </tr>
+         <tr>
+          <td align="right" width="167">
+           Donation Frequency
+          </td>
+          <td valign="top">
+           <select class="form-control" id="DD_REPEAT_FREQ" name="DD_REPEAT_FREQ">
+            <option selected="" value="0">
+             One Time
+            </option>
+            <option value="1">
+             Monthly
+            </option>
+            <option value="2">
+             Twice a Month
+            </option>
+            <option value="3">
+             Quarterly
+            </option>
+            <option value="4">
+             Annually
+            </option>
+           </select>
+          </td>
+         </tr>
+         <tr>
+          <td align="right" width="167">
+           Start Date
+          </td>
+          <td valign="top">
+           <input id="DD_REPEAT_START_DATE" maxlength="30" name="DD_REPEAT_START_DATE" size="30" type="text" value="<field>DD_REPEAT_START_DATE</field>"/>
+          </td>
+         </tr>
+         <tr>
+          <td align="right" width="167">
+           Stop Date
+          </td>
+          <td valign="top">
+           <input id="DD_REPEAT_STOP_DATE" maxlength="30" name="DD_REPEAT_STOP_DATE" size="30" type="text" value="<field>DD_REPEAT_STOP_DATE</field>"/>
+          </td>
+         </tr>
+         <tr>
+          <td align="right" width="167">
+           How would you like your name recognized in
+                    the program?
+          </td>
+          <td valign="top">
+           <input id="DD_NAME_OF" maxlength="30" name="DD_NAME_OF" size="30" placeholder="if left blank, this is determined based on your account profile" type="text" value="<field>DD_NAME_OF</field>"/>
+          </td>
+         </tr>
+         <tr>
+          <td align="right" width="167">
+           Would you prefer this donation to be Anonymous?
+          </td>
+          <td valign="top">
+           <select class="form-control" id="Anonymous" name="Anonymous">
+            <option value="1">
+             Yes
+            </option>
+            <option selected="" value="0">
+             No
+            </option>
+           </select>
+          </td>
+         </tr>
+         <tr>
+          <td align="right">
+           Is this a Corporate Donation?
+          </td>
+          <td valign="top">
+           <select class="form-control" name="DD_CORPORATE">
+            <option value="1">
+             Yes
+            </option>
+            <option selected="" value="0">
+             No
+            </option>
+           </select>
+           (for corporate accounts only)
+          </td>
+         </tr>
+         <p>
+         </p>
+         <tr>
+          <td align="center" colspan="2">
+           <!-- comment: if you enable any of the mandatory fields in donations, edit the values for the hidden
+           fields in tmDonationHiddenFields.html so that it is a separate file -->
+           <!--#include virtual="TMtemplates/tmDonationHiddenFields.html" -->
+           <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+           <input class="btn btn-success" name="btnDonationAccept" onclick="process()" type="submit" value="Add Donation to Shopping Cart"/>
+           &nbsp;
+           <input class="btn btn-danger" name="<field>pick(F_LOGGED_IN=2,'btnHome','btnGetEventList')</field>" type="submit" value="Cancel"/>
+          </td>
+         </tr>
+        </table>
+       </div>
+      </form>
+     </td>
+    </tr>
+   </table>
+  </div>
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

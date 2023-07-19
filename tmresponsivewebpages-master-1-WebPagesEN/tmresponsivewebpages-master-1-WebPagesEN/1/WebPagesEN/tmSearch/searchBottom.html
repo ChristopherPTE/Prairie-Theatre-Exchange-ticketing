@@ -1,0 +1,115 @@
+  <!-- comment: Search panel when screen is collapsed (small for iphone ipad, etc)-->
+  <div class="panel-group visible-xs visible-sm" id="accordion2" style="margin-bottom: 15px;">
+   <div class="panel panel-default">
+    <div class="panel-heading">
+     <h3 class="panel-title">
+      <a data-parent="#accordion2" data-toggle="collapse" href="#collapseSearchBottomDesktop">
+       <i class="fa fa-search">
+       </i>
+       Search for an event
+      </a>
+     </h3>
+    </div>
+    <div class="panel-collapse collapse" id="collapseSearchBottomDesktop">
+     <div class="panel-body">
+      <form action="<field>F_HTML_FIREWALL</field>online" class="" method="POST">
+       <div class="row">
+        <div class="col-md-2">
+         <!--#include virtual="tmSearch/searchYear.html" -->
+        </div>
+        <!-- /col -->
+        <div class="col-md-2">
+         <!--#include virtual="tmSearch/searchMonth.html" -->
+        </div>
+        <!-- /col -->
+        <div class="col-md-3">
+         <!--#include virtual="tmSearch/searchEvent.html" -->
+        </div>
+        <!-- /col -->
+        <div class="col-md-2">
+         <!--#include virtual="tmSearch/searchVenue.html" -->
+        </div>
+        <!-- /col -->
+        <div class="col-md-1">
+         <!--#include virtual="tmSearch/searchGenre.html" -->
+        </div>
+        <!-- /col -->
+        <div class="col-md-2">
+         <div class="form-group" style="margin-top: 25px;">
+          <input class="btn btn-success btn-block" id="Search" name="btnGetEventList" type="submit" value="Search"/>
+         </div>
+         <!-- /form-group -->
+        </div>
+        <!-- /col -->
+       </div>
+      </form>
+     </div>
+     <!-- /panel-body -->
+  </div>
+    <!-- /panel-collapse -->
+    </div>
+   <!-- /panel -->
+  </div>
+  <!-- comment: show presale access if mobile -->
+  <!--#include virtual="TMtemplates/tmTicketsPresalesCouponMobile.html" -->
+  <!-- /panel-group -->
+  <!-- comment: Search panel when expanded on a computer monitor -->
+  <div class="panel-group visible-md visible-lg" id="accordion3" style="margin-bottom: 15px;">
+   <div class="panel panel-default">
+    <div class="panel-heading">
+     <h3 class="panel-title">
+      <a data-parent="#accordion3" data-toggle="collapse" href="#collapseSearchBottomMobile">
+       <i class="fa fa-search">
+       </i>
+       Search for an event
+      </a>
+     </h3>
+    </div>
+    <!-- comment: class is "panel-collapse collapse in" if you want search expanded at start.  
+             currently set so user has to expand it -->
+    <div class="panel-collapse collapse in" id="collapseSearchBottomMobile">
+     <div class="panel-body">
+      <div class="row">
+       <form action="<field>F_HTML_FIREWALL</field>online" class="" method="POST">
+        <div class="col-md-2">
+         <!--#include virtual="tmSearch/searchYear.html" -->
+        </div>
+        <!-- /col -->
+        <div class="col-md-2">
+         <!--#include virtual="tmSearch/searchMonth.html" -->
+        </div>
+        <!-- /col -->
+        <div class="col-md-4">
+         <!--#include virtual="tmSearch/searchEvent.html" -->
+        </div>
+        <!-- /col -->
+        <div class="col-md-2">
+         <!--#include virtual="tmSearch/searchVenue.html" -->
+        </div>
+        <!-- /col -->
+        <!-- comment: remove genre in upper search. people can add if they want.
+           Remember to make column count add to 12 if you add this in.
+   <div class="col-md-1">
+     <!--#include virtual="tmSearch/searchGenre.html" -->
+   </div>
+   -->
+        <!-- /col -->
+        <div class="col-md-2">
+         <div class="form-group" style="margin-top: 25px;">
+          <input class="new btn btn-success btn-block" id="Search" name="btnGetEventList" onclick="process()" type="submit" value="Search"/>
+         </div>
+         <!-- comment: /form-group -->
+        </div>
+       </form>
+       <!-- comment: /col -->
+      </div>
+      <!-- comment: .row -->
+     </div>
+     <!-- /panel-body -->
+    </div>
+    <!-- /panel-collapse -->
+   </div>
+   <!-- /panel -->
+  </div>
+  <!--#include virtual="TMtemplates/tmTicketsPresalesCoupon.html" -->
+  <!-- /panel-group -->

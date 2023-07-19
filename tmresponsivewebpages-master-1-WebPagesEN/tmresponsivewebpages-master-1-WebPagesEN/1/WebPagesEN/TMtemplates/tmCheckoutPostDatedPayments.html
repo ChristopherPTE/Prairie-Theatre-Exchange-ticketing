@@ -1,0 +1,106 @@
+<div class="form-group">
+ <label class="col-sm-3 control-label" for="">
+  Installment Payments
+ </label>
+ <div class="col-sm-9">
+  <!--#include virtual="TMtemplates/tmCheckoutPostDatedPaymentRules.html" -->
+  <div class="well well-sm">
+  <div class="form-group">
+   <label class="col-sm-2 control-label" for="PostDatedPlanAccept">
+    Participate?
+   </label>
+   <div class="col-sm-8">
+    <div class="checkbox">
+     <label class="control-label" for="PostDatedPlanAccept">
+      <input id="PostDatedPlanAccept" name="F_POST_DATED_PLAN_ACCEPTED" type="checkbox" value="1" <field>pick(F_POST_DATED_PLAN_ACCEPTED=1,'','checked')</field>/>
+      I wish to participate in the Deferred Payment Plan
+     </label>
+    </div>
+   </div>
+  </div>
+  <div class="form-group">
+   <label class="col-sm-2 control-label" for="PostDatedFrequency">
+    Frequency
+   </label>
+   <div class="col-sm-8">
+    <div>
+     <select class="form-control" id="PostDatedFrequency" name="F_POST_DATED_PLAN_FREQUENCY" onchange="submitForm('TMForm','btnCheckoutCalcPayPlan','YES');">
+      <option value="1" <field>pick(F_POST_DATED_PLAN_FREQUENCY=1,'','selected')</field>>
+       Monthly
+      </option>
+      <!-- comment: Options allowed for patrons to select payment frequency 
+ <option value="1" <field>pick(F_POST_DATED_PLAN_FREQUENCY=1,'','selected')</field>>Monthly</option>
+ <option value="2" <field>pick(F_POST_DATED_PLAN_FREQUENCY=2,'','selected')</field>>Bi-Weekly</option>
+ <option value="3" <field>pick(F_POST_DATED_PLAN_FREQUENCY=3,'','selected')</field>>Quarterly</option>
+ <option value="4" <field>pick(F_POST_DATED_PLAN_FREQUENCY=4,'','selected')</field>>Annually</option>
+ <option value="5" <field>pick(F_POST_DATED_PLAN_FREQUENCY=5,'','selected')</field>>Daily</option>
+ <option value="6" <field>pick(F_POST_DATED_PLAN_FREQUENCY=6,'','selected')</field>>Weekly</option>
+ <option value="7" <field>pick(F_POST_DATED_PLAN_FREQUENCY=7,'','selected')</field>>Bi-Monthly</option>
+ <option value="8" <field>pick(F_POST_DATED_PLAN_FREQUENCY=8,'','selected')</field>>Pay Nothing Down</option>
+ <option value="9" <field>pick(F_POST_DATED_PLAN_FREQUENCY=9,'','selected')</field>>Deposit Payment</option>
+-->
+     </select>
+    </div>
+   </div>
+  </div>
+  <div class="form-group">
+   <label class="col-sm-2 control-label">
+    Schedule
+   </label>
+   <div class="col-sm-8">
+    <table class="table table-striped table-condensed table-responsive table-hover">
+     <thead>
+      <tr>
+       <th class="text-left">
+        Pre-Authorized Date
+       </th>
+       <th class="text-right">
+        Amount
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <field>F_HTML_PAYMENT_PLAN_LIST</field>
+      <tr>
+       <td class="text-right text-warning">
+        <b>
+         Total Amount Deferred
+        </b>
+       </td>
+       <td class="text-right text-warning">
+        <b>
+         $<field>SCH_TOTAL_COST-F_POST_DATED_AMOUNT_DUE_TODAY</field>
+        </b>
+       </td>
+      </tr>
+      <tr>
+       <td class="text-right">
+        <b>
+         Amount due today
+        </b>
+       </td>
+       <td class="text-right">
+        <b>
+         $<field>F_POST_DATED_AMOUNT_DUE_TODAY</field>
+        </b>
+       </td>
+      </tr>
+      <tr>
+       <td class="text-right text-warning">
+        <b>
+         Total Cost
+        </b>
+       </td>
+       <td class="text-right text-warning">
+        <b>
+         $<field>SCH_TOTAL_COST</field>
+        </b>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+ </div>
+ </div>
+</div>

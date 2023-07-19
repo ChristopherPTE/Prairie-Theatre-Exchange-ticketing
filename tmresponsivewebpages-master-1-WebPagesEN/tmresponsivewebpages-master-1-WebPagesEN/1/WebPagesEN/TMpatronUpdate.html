@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Account Update Window
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <!--#include virtual="TMtemplates/tmPatronUpdateHouseholdMembers.html" -->
+     </div>
+     <div class="col-md-8">
+      <h4>
+       Account Information
+      </h4>
+      <form action="<field>F_HTML_FIREWALL</field>online" method="POST">
+       <input name="C_SEQ" type="hidden" value="<field>C_SEQ</field>"/>
+       <input name="param" type="hidden" value="<field>F_HTML_PARAMETER</field>"/>
+       <div class="well well-sm">
+        <field>F_HTML_EMAIL_LIST</field>
+       </div>
+       <div class="well well-sm">
+        <!--#include virtual="TMtemplates/tmPatronNameFields.html" -->
+       </div>
+       <field>F_HTML_ADDRESS_LIST</field>
+       <div class="well well-sm">
+        <field>F_HTML_CONTACT_LIST</field>
+       </div>
+       <!--#include virtual="TMtemplates/tmMarketingFields.html" -->
+       <h4>
+        How May We Contact You?
+       </h4>
+       <div class="well well-sm">
+        <!--#include virtual="TMtemplates/tmMailNotificationFields.html" -->
+       </div>
+       <div class="well well-sm">
+        <h4>
+         Email Notifications
+        </h4>
+        Visit
+        <a class="link" href="<field>F_HTML_FIREWALL</field>login?maillist=0">
+         My Email Notifications
+        </a>
+        at any time to fine tune how you wish to be informed of events and activities at
+         <field>D_COMPANY_LONG</field> that interest you. Any contact information provided will be held confidential per our
+        <a class="link" href="<field>F_HTML_FIREWALL</field>tmFee/tmPrivacyPolicy.html" onclick="return popup(this, 'notes')">
+         privacy policy.
+        </a>
+        <br/>
+        <br/>
+        <!--#include virtual="TMtemplates/tmNotificationHeader.html" -->
+       </div>
+       <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+       <input class="btn btn-success" name="btnAccountUpdate" onclick="process()" type="submit" value="Update Account"/>
+       <input class="btn btn-danger" name="btnHome" type="submit" value="Cancel Changes"/>
+      </form>
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

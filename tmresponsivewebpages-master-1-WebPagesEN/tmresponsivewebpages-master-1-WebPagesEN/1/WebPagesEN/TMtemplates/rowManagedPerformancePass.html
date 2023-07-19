@@ -1,0 +1,82 @@
+  <tr>
+   <td class="text-center">
+    <!-- comment: Note that the class `select-membership-form` is required on the form for proper confirmation dialog support on TMeventManagementDetailPayment.html -->
+    <!-- comment: The data-confirmation-name attribute is referenced from TMeventManagementDetailPayment to confirm the selected pass to the instructor. -->
+    <form action="<field>F_HTML_FIREWALL</field>online" class="select-membership-form" data-confirmation-name='Pass #<field>M_CONTROL_NUMBER</field> "<field>MT_DESCRIPTION_EXTERNAL</field>"' method="POST" role="form">
+     <input name="manageperfpay" type="hidden" value="<field>PB_SEQ</field>"/>
+     <input name="C_SEQ" type="hidden" value="<field>C_SEQ</field>"/>
+     <input name="M_SEQ" type="hidden" value="<field>M_SEQ</field>"/>
+     <input name="SC_SEQ" type="hidden" value="<field>SC_SEQ</field>"/>
+     <input name="PC_SEQ" type="hidden" value="<field>PC_SEQ</field>"/>
+     <button class="btn btn-success" name="btnManagePerformancePayment" type="submit">
+      <i class="glyphicon glyphicon-ok-circle">
+      </i>
+      Select
+     </button>
+    </form>
+   </td>
+   <td>
+    <b>
+     Pass # <field>M_CONTROL_NUMBER</field>
+    </b>
+    <br/>
+    <a class="link" href="<field>F_HTML_FIREWALL</field>tmPass/tmPass<field>M_MT_SEQ</field>.html" onclick="return popup(this, 'notes')">
+     <field>MT_DESCRIPTION_EXTERNAL</field>
+    </a>
+    <field>pick(len(M_NOTES)>0,'<!-- comment: pass notes')</field>
+    <div class="hidden-xs alert alert-info fade in">
+     <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+     <field>M_NOTES</field>
+    </div>
+    <field>pick(len(M_NOTES)>0,'-->')</field>
+    <field>pick(len(MT_NOTES)>0,'<!-- comment: pass type notes')</field>
+    <div class="hidden-xs alert alert-info fade in">
+     <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+     <field>MT_NOTES</field>
+    </div>
+    <field>pick(len(MT_NOTES)>0,'-->')</field>
+   </td>
+   <td>
+    <field>pick(len(M_DATE_EXPIRY)>0,'<!-- comment: Expiry date on pass','')</field>
+    <field>jst(M_DATE_EXPIRY,'D:m D, y')</field>
+    <field>pick(len(M_DATE_EXPIRY)>0,'-->','')</field>
+    <field>pick(len(M_DATE_EXPIRY)=0,'<!-- comment: No expiration date on pass','')</field>
+    Doesn't Expire
+    <field>pick(len(M_DATE_EXPIRY)-0,'-->','')</field>
+   </td>
+   <td class="hidden-xs text-right">
+    <field>M_ISSUED_PASS_AMOUNT</field>
+   </td>
+   <td class="hidden-xs text-right">
+    <field>pick(M_PASS_METHOD=4,'<!-- comment: unlimited use pass types')</field>
+    Unlimited
+    <field>pick(M_PASS_METHOD=4,'-->')</field>
+    <field>pick(M_PASS_METHOD<>4,'<!-- comment: passes issued with quantity')</field>
+    <field>M_ISSUED_PASS_QTY</field>
+    <field>pick(M_PASS_METHOD<>4,'-->')</field>
+   </td>
+   <!-- comment:  the used amounts
+<td class="text-right">
+ <field>M_USED_PASS_AMOUNT+M_IN_CART_REDEEM_AMOUNT</field>
+</td>
+<td class="text-right">
+ <field>M_USED_PASS_QTY+M_IN_CART_REDEEM_QTY</field>
+</td>
+-->
+   <td class="text-right">
+    <field>pick(M_PASS_METHOD=4,'<!-- comment: unlimited use pass types')</field>
+    Unlimited
+    <field>pick(M_PASS_METHOD=4,'-->')</field>
+    <field>pick(M_PASS_METHOD<>4,'<!-- comment: passes issued with amounts')</field>
+    <field>M_REMAIN_PASS_AMOUNT-M_IN_CART_REDEEM_AMOUNT</field>
+    <field>pick(M_PASS_METHOD<>4,'-->')</field>
+   </td>
+   <td class="text-right">
+    <field>pick(M_PASS_METHOD=4,'<!-- comment: unlimited use pass types')</field>
+    Unlimited
+    <field>pick(M_PASS_METHOD=4,'-->')</field>
+    <field>pick(M_PASS_METHOD<>4,'<!-- comment: passes issued with quantity')</field>
+    <field>M_REMAIN_PASS_QTY-M_IN_CART_REDEEM_QTY</field>
+    <field>pick(M_PASS_METHOD<>4,'-->')</field>
+   </td>
+  </tr>

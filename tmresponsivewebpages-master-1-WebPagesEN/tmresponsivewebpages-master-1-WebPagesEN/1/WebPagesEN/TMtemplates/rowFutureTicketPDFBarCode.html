@@ -1,0 +1,19 @@
+  <field>pick(PB_PRINT_AT_HOME&not(D_WEB_USE_QRCODES)&not(SC_WEB_REQUIRE_COUPON),'<!-- comment: do not show bar code to avoid server hits')</field>
+  <tr>
+   <td colspan="3" valign="middle">
+    <img align="right" alt="Barcode" src="<field>F_HTML_TIX_BAR_CODE</field>"/>
+   </td>
+  </tr>
+  <field>pick(PB_PRINT_AT_HOME&not(D_WEB_USE_QRCODES)&not(SC_WEB_REQUIRE_COUPON),'-->')</field>
+  <!-- comment: parameters to F_HTML_TIX_BAR_CODE
+quiet_zone			spate to left and right of bar code.  default is 2
+img_angle			the rotation of the image in degrees (valid values 0, 90,180, 270, default 0)
+bar_stem_width		the width of the barcode stem in mils* 0.1 is the default
+bar_height			the height of the barcode characters in mils* 2.5 is the default
+txt_on				specifies  to print text below barcode (valid values 1=on, 0=off)
+txt_point_size		size of text in points.  10 is the default (valid range 4 to 72)
+
+for QR codes
+box_size			size of area where bar code box is displayed.  Default 6
+border				border around the box with white space
+-->

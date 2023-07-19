@@ -1,0 +1,27 @@
+<field>pick(len(SG_NOTES)>0,'<!-- comment: subscription notes')</field>
+<div class="alert alert-warning fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <h4>
+ <field>SG_DESCRIPTION</field>
+ </h4>
+ <field>SG_NOTES</field>
+</div>
+<field>pick(len(SG_NOTES)>0,'-->')</field>
+<div class="well well-sm">
+<h4>
+ Venue
+</h4>
+<div class="text">
+ <strong>
+  <field>VE_NAME</field>
+ </strong>
+ <br/>
+ <field>VE_ADDRESS1</field>
+ <br/>
+ <field>pick(len(VE_ADDRESS2)>0,'<!-- comment:')</field>
+ <field>VE_ADDRESS2</field>
+ <br/>
+ <field>pick(len(VE_ADDRESS2)>0,'-->')</field>
+ <field>VE_CITY</field> <field>VE_PROVINCE</field> <field>VE_POSTAL_CODE</field>
+</div>
+</div>

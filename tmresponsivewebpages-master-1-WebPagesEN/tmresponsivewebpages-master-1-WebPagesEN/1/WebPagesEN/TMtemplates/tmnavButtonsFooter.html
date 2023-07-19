@@ -1,0 +1,144 @@
+  <div class="row">
+   <div class="col-md-4">
+    <div class="panel panel-info">
+     <div class="panel-heading">
+      <b>
+       My <field>D_PATRON</field> Services
+      </b>
+     </div>
+     <div class="panel-body">
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>online?btnFutureTickets">
+       <i class="fa fa-print">
+       </i>
+       Tickets for Upcoming <field>tEditCheck.$setPlural(D_PERF_DESC)</field>
+      </a>
+      <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION=1,'<!-- comment: only show if enabled to redeem passes','')</field>
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>online?btnPassRemainingValues">
+       <i class="fa fa-gift">
+       </i>
+       My Passes/Gift Certificates
+      </a>
+      <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION=1,'-->','')</field>
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>online?btnFutureCourses">
+       <i class="fa fa-graduation-cap">
+       </i>
+       Upcoming <field>tEditCheck.$setPlural(D_COURSE_DESC)</field>
+      </a>
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>online?btnCalendars">
+       <i class="fa fa-calendar">
+       </i>
+       Calendars
+      </a>
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>online?btnMailList">
+       <i class="fa fa-envelope">
+       </i>
+       Email Notifications
+      </a>
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>online?btnVolunteerActivities">
+       <i class="fa fa-tasks">
+       </i>
+       Activity Calendar
+      </a>
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>online?btnHistoricalCart">
+       <i class="fa fa-shopping-cart">
+       </i>
+       Past Shopping Carts
+      </a>
+      <!-- comment: 
+   Note that there are several order balance fields you can use to hide/show the "Pay Order" button:
+
+   F_HTML_ORDER_COUNT
+   F_HTML_ORDER_COUNT_OWING
+   F_HTML_ORDER_COUNT_OWED
+   F_HTML_ORDER_BALANCE
+   F_HTML_ORDER_BALANCE_OWING
+   F_HTML_ORDER_BALANCE_OWED
+   F_HTML_ORDER_VALUE
+   F_HTML_ORDER_VALUE_OWING
+   F_HTML_ORDER_VALUE_OWED
+-->
+      <field>pick(F_HTML_ORDER_ALLOW_PAYMENT,'<!-- comment: dont need pay balance if none to pay')</field>
+      <a class="btn btn-block btn-warning" href="<field>F_HTML_FIREWALL</field>online?order">
+       <i class="fa fa-money">
+       </i>
+       Pay an Order Balance
+      </a>
+      <field>pick(F_HTML_ORDER_ALLOW_PAYMENT,'-->')</field>
+      <field>pick(F_HTML_IS_INSTRUCTOR,'<!-- comment: dont need instructor courses if none')</field>
+      <br/>
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>online?manageevent">
+       <i class="fa fa-university">
+       </i>
+       Manage <field>tEditCheck.$setPlural(D_EVENT)</field>/<field>tEditCheck.$setPlural(D_COURSE_DESC)</field>
+      </a>
+      <field>pick(F_HTML_IS_INSTRUCTOR,'-->')</field>
+     </div>
+    </div>
+   </div>
+   <div class="col-md-4">
+    <div class="panel panel-info">
+     <div class="panel-heading">
+      <b>
+       Account Management
+      </b>
+     </div>
+     <div class="panel-body">
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>online?btnAccount">
+       <i class="fa fa-user">
+       </i>
+       My Account
+      </a>
+      <field>pick(tStringFields.$featureEnabled('~FORMS',F_HTML_CURRENT_OUTLET),'<!-- comment: only if forms is enabled')</field>
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>online?forms">
+       <i class="fa fa-wpforms">
+       </i>
+       Forms
+      </a>
+      <field>pick(tStringFields.$featureEnabled('~FORMS',F_HTML_CURRENT_OUTLET),'-->')</field>
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>tmFee/tmBoxOfficePolicy.html" onclick="return popup(this, 'notes')">
+       <i class="fa fa-info">
+       </i>
+       Box Office Policy
+      </a>
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>tmFee/tmPrivacyPolicy.html" onclick="return popup(this, 'notes')">
+       <i class="fa fa-eye">
+       </i>
+       Our Privacy Policy
+      </a>
+     </div>
+    </div>
+    <!--#include virtual="TMtemplates/tmTicketsLiveNotification.html" -->
+   </div>
+   <div class="col-md-4">
+    <div class="panel panel-info">
+     <div class="panel-heading">
+      <b>
+       Contact Us
+      </b>
+     </div>
+     <div class="panel-body">
+      <a class="btn btn-block btn-primary" href="mailto:<field>D_EMAIL_ADDR</field>?subject=General%20Information%20Question">
+       <i class="fa fa-envelope">
+       </i>
+       Send us an E-mail
+      </a>
+      <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>TMtemplates/tmtermsandconditions.html" onclick="return popup(this, 'notes')">
+       <i class="fa fa-info">
+       </i>
+       Sale Terms and Conditions
+      </a>
+      <a class="btn btn-block btn-primary" href="http://maps.google.com/maps?q=<field>D_ADDRESS1</field> <field>D_ADDRESS2</field> <field>D_CITY</field> <field>D_PROVINCE</field> <field>D_POSTAL_CODE</field>" target="_blank">
+       <i class="fa fa-map-marker">
+       </i>
+       Directions to our Ticket Office
+      </a>
+      <a class="btn btn-block btn-primary" href="http://<field>D_WEB_SITE</field>" target="_blank">
+       <i class="fa fa-globe">
+       </i>
+       Our Main Website
+      </a>
+      <!--#include virtual="TMtemplates/tmSocialMedia.html" -->
+     </div>
+    </div>
+   </div>
+  </div>

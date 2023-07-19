@@ -1,0 +1,39 @@
+<button class="btn btn-link" data-target="#myMail" data-toggle="modal" type="button">
+ <i aria-hidden="true" class="fa fa-question-circle">
+ </i>
+</button>
+<div aria-labelledby="AccountModalDialog" class="modal fade" id="myMail" role="dialog" tabindex="-1">
+ <div class="modal-dialog" role="document">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+     <span aria-hidden="true">
+      &times;
+     </span>
+    </button>
+    <h3 class="modal-title modal-info">
+     Regular Mail
+    </h3>
+   </div>
+   <div class="modal-body">
+    Items mailed to you may take up to <field>D_WEB_MAIL_DELIVERY_CUTOFF_DAYS</field> business days to arrive at your mailing address.
+    <field>pick(SCH_TIX_QUANTITY>0,'<!-- comment: nothing to mail')</field>
+    <br/>
+    <br/>
+    <em>
+     However, tickets for events within the next <field>D_WEB_MAIL_DELIVERY_CUTOFF_DAYS</field> days will not be mailed out.
+     Any tickets not received can be picked up at Will Call.
+    </em>
+    <field>pick(SCH_TIX_QUANTITY>0,'-->')</field>
+    <br/>
+    <br/>
+    <field>D_COMPANY_LONG</field> is not responsible for <field>pick(SCH_TIX_QUANTITY=0,'tickets','items')</field> lost in the mail.
+   </div>
+   <div class="modal-footer">
+    <button class="btn btn-info" data-dismiss="modal" type="button">
+     Close
+    </button>
+   </div>
+  </div>
+ </div>
+</div>

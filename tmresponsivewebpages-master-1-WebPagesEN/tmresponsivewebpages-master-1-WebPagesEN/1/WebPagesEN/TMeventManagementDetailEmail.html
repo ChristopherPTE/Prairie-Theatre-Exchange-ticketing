@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | <field>D_EVENT</field>/<field>D_COURSE_DESC</field> Management
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmLayout/tmHeadScriptsEmail.html" -->
+  <!--#include virtual="tmLayout/tmLastHeadEmail.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBodyEmail.html" -->
+  <div class="container">
+   <div class="row">
+    <div class="img-thumbnail pull-right">
+     <img alt="poster for event" class="img-responsive" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field><field>F_HTML_IMAGE_READ_MARKER</field>" style="height: 130px;"/>
+    </div>
+    <div class="page-header">
+     <h1>
+      <field>P_PLAY_TITLE</field>
+     </h1>
+     <h3>
+      <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+     </h3>
+     <span class="text-muted">
+      Prepared:
+      <field>dat(F_HTML_CURRENT_DATETIME, 'w m D y h:N A')</field> <field>F_HTML_CURRENT_TZ_SHORT_NAME</field>
+     </span>
+    </div>
+   </div>
+   <field>pick(F_HTML_CAN_VIEW_REVENUE, '<!-- comment: hide revenue')</field>
+   <div class="row">
+    <h2>
+     Revenue
+    </h2>
+   </div>
+   <div class="row">
+    <!--#include virtual="TMtemplates/tabEventManagementRevenue.html" -->
+   </div>
+   <field>pick(F_HTML_CAN_VIEW_REVENUE, '-->')</field>
+
+   <field>pick(F_HTML_CAN_VIEW_REVENUE&F_HTML_CAN_VIEW_ATTENDANCE, '<!-- comment: divider between sections')</field>
+   <br/>
+   <hr/>
+   <br/>
+   <field>pick(F_HTML_CAN_VIEW_REVENUE&F_HTML_CAN_VIEW_ATTENDANCE, '-->')</field>
+
+   <field>pick(F_HTML_CAN_VIEW_ATTENDANCE, '<!-- comment: hide attendance')</field>
+   <div class="row">
+    <h2>
+     Attendance
+    </h2>
+   </div>
+   <div class="row">
+    <!--#include virtual="TMtemplates/tabEventManagementAttendance.html" -->
+   </div>
+   <field>pick(F_HTML_CAN_VIEW_ATTENDANCE, '-->')</field>
+  </div>
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="TMtemplates/tmMarkEmailRead.html" -->
+  <!--#include virtual="tmLayout/tmBodyScriptsEmail.html" -->
+  <!--#include virtual="tmLayout/tmLastBodyEmail.html" -->
+ </body>
+</html>

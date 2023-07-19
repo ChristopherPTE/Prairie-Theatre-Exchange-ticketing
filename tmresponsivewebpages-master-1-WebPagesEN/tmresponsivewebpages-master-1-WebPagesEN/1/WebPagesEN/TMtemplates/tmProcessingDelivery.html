@@ -1,0 +1,29 @@
+ <field>pick(SCH_TIX_QUANTITY+SCH_PASS_QUANTITY,'<!-- comment: if more than donations, show delivery')</field>
+ <p>
+ </p>
+ <div class="alert alert-warning fade in">
+  <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+  You selected
+  <field>pick(SCH_TIX_PRINT_STATUS=0,'<!-- comment: eticket')</field>
+  <b>
+   E-Ticket delivery via PDF
+  </b>
+  and will look for the PDF in your confirmation email.
+  <br/>
+  <br/>
+  The PDF can be downloaded to your mobile device or printed to your printer.
+  <field>pick(SCH_TIX_PRINT_STATUS=0,'-->')</field>
+<field>pick(SCH_TIX_PRINT_STATUS=1,'<!-- comment: mailed')</field>
+  <b>
+   to have your tickets mailed
+  </b>
+  subject to post office deadlines
+  <field>pick(SCH_TIX_PRINT_STATUS=1,'-->')</field>
+<field>pick(SCH_TIX_PRINT_STATUS=2,'<!-- comment: pick up')</field>
+  <b>
+   to pick up your tickets
+  </b>
+  at the Box Office or at Will Call on the night of performance, or no delivery is required
+  <field>pick(SCH_TIX_PRINT_STATUS=2,'-->')</field>
+ </div>
+ <field>pick(SCH_TIX_QUANTITY+SCH_PASS_QUANTITY,'-->')</field>

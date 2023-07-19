@@ -1,0 +1,241 @@
+<!-- comment: load Moneris Checkout code -->
+<field>pick(F_HTML_MONERIS_CHECKOUT_MODE="qa","<!-- comment: ")</field>
+<script src="https://gatewayt.moneris.com/chkt/js/chkt_v1.00.js"></script>
+<field>pick(F_HTML_MONERIS_CHECKOUT_MODE="qa","-->")</field>
+<field>pick(F_HTML_MONERIS_CHECKOUT_MODE<>"qa","<!-- comment: ")</field>
+<script src="https://gateway.moneris.com/chkt/js/chkt_v1.00.js"></script>
+<field>pick(F_HTML_MONERIS_CHECKOUT_MODE<>"qa","-->")</field>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    var retryCount = 0;
+    var maxRetries = 3;
+    var retryDelayMs = 500;
+
+    var orderId = "<field>F_HTML_MONERIS_CHECKOUT_ORDER_ID</field>";
+    var monerisTicket = "<field>F_HTML_MONERIS_CHECKOUT_TICKET</field>";
+
+    // As quickly as possible, indicate that the page is loading.
+    $('.moneris-loading').removeClass('hidden');
+
+    var myCheckout = new monerisCheckout();
+    myCheckout.setMode("<field>F_HTML_MONERIS_CHECKOUT_MODE</field>");
+    myCheckout.setCheckoutDiv("<field>F_HTML_MONERIS_CHECKOUT_DIV_ID</field>");
+    
+    /*
+     * Template callouts -- messages in TMtemplates/tmMonerisCheckoutMessageTemplates.html 
+     */
+    function retryErrorMessage(retryCount, maxRetries, monerisTicket, status, errorThrown) {
+        return $.fn.handlebars.asText("#moneris-checkout-retry-message", { retryCount, maxRetries, monerisTicket, status, errorThrown });
+    }
+
+    function failErrorMessage(monerisTicket, status, errorThrown) {
+        return $.fn.handlebars.asText("#moneris-checkout-server-fail-message", { retryCount, maxRetries, monerisTicket, status, errorThrown });
+    }
+
+    function failEventMessage(monerisTicket, responseCode) {
+        return $.fn.handlebars.asText("#moneris-checkout-fail-event-message", { monerisTicket, responseCode });
+    }
+
+    /*
+     * HTTP Request functions
+     */
+    function requestReceipt(currentTicket) { 
+        var url = "<field>F_HTML_PAYMENT_POST_URL</field>moneris-checkout/receipt";
+
+        $.ajax({
+            // Issue POST request to record receipt
+            type: "POST",		 
+            dataType: "json",
+
+            // Inject the URL of the server
+            url: url,
+
+            // JSON POST body
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                "retry_count": retryCount,
+                "order_id": orderId,
+                "ticket": currentTicket
+            })
+        })
+        // Successful request?  Should be a redirect to the next destination
+        .done(function( response ) {
+            // Reset retry on successful request
+            retryCount = 0;
+
+            if (response['status'] == 'refresh') {
+                // Special route for refreshing the existing ticket
+                refreshMonerisTicket(response['ticket']);
+            } else if (response['status'] == 'approve') {
+                // Move to checkout (server will forward depending on stored result in cart)
+                window.location.href = '<field>F_HTML_FIREWALL</field>online?payment_finalize';
+            } else if (response['status'] == 'decline') {
+                // Move to checkout (server will forward depending on stored result in cart)
+                window.location.href = '<field>F_HTML_FIREWALL</field>online?payment_declined';
+            } else {
+                var errorMessage = failErrorMessage(currentTicket, 'error', response['error'])
+                window.location.href = '<field>F_HTML_FIREWALL</field>online?checkout&pay_error=' + encodeURIComponent(errorMessage);
+            }            
+        })
+        // Failed request?  Show the user an error message
+        .fail(function( xhr, status, errorThrown ) {
+            var errorMessage;
+            if ((status === 502 || status === 503 ) && retryCount < maxRetries) {
+                // If server is busy, then retry a few times
+                retryCount += 1;
+                errorMessage = retryErrorMessage(retryCount,monerisTicket, status, errorThrown);
+                setTimeout(function () { requestReceipt(currentTicket) }, retryDelayMs);
+            } else {
+                // On failure take user back to the checkout page
+                errorMessage = failErrorMessage(monerisTicket, status, errorThrown);
+                window.location.href = '<field>F_HTML_FIREWALL</field>online?checkout&pay_error=' + encodeURIComponent(errorMessage);
+            }
+
+            $('.moneris-checkout-error-message').html(errorThrown);
+            $('.moneris-checkout-error').removeClass('hidden');
+        })
+    }
+
+    function refreshMonerisTicket(currentTicket) { 
+        $.ajax({
+            // Issue POST request to record receipt
+            type: "POST",		 
+            dataType: "json",
+
+            // Inject the URL of the server
+            url: "<field>F_HTML_PAYMENT_POST_URL</field>moneris-checkout/refresh",
+
+            // JSON POST body
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                "retry_count": retryCount,
+                "order_id": orderId,
+                "ticket": currentTicket
+            })
+        })
+        // Successful request?  Should be a redirect to the next destination
+        .done(function( response ) {		
+            // Reset retry on successful request
+            retryCount = 0;
+
+            if (response['refreshOrderId'] == true) {
+                // Move user to "declined" page, which will refresh the order ID
+                window.location.href = '<field>F_HTML_FIREWALL</field>online?payment_declined'
+                return;
+            }
+            
+            // Close previous checkout ticket (stale)
+            myCheckout.closeCheckout(currentTicket);
+
+            // Switch to refreshed ticket
+            monerisTicket = response['ticket'];
+            
+            // Restart checkout with new ticket
+            myCheckout.startCheckout(monerisTicket);
+
+            $('.moneris-loading').addClass('hidden');
+            $('.moneris-available').removeClass('hidden');
+        })
+        // Failed request?  Show the user an error message
+        .fail(function( xhr, status, errorThrown ) {
+            if ((status === 502 || status === 503 ) && retryCount < maxRetries) {
+                setTimeout(function () { refreshMonerisTicket(currentTicket) }, retryDelayMs);
+            } else {
+                var errorMessage = failErrorMessage(monerisTicket, status, errorThrown);
+                window.location.href = '<field>F_HTML_FIREWALL</field>online?checkout&pay_error=' + encodeURIComponent(errorMessage);
+            }
+        })
+    }
+
+    /*
+     * Moneris Checkout Event Handling
+     */
+    myCheckout.setCallback("page_loaded", function(evt) {
+        var that = this;
+        var data = JSON.parse(evt);
+        
+        /* 
+           Response Codes: https://developer.moneris.com/livedemo/checkout/callbacks/guide/dotnet -> See: Callback Response Codes
+         
+           001  = Success
+           902  = 3-D Secure failed on response
+           2001 = Invalid ticket
+           2002 = Ticket re-use
+           2003 = Ticket expired
+        */
+        if (data['response_code'] === '2002') {
+            /* Ticket is being re-used.  This can mean 1 of 2 things:
+             
+               1. The previous request was a cancellation and the ticket is no longer viable
+               2. A receipt is already available so attempt to finalize the checkout.
+
+               The receipt route will handle the case, regardless.
+            */
+            requestReceipt(data['ticket']);
+        } else if (data['response_code'] === '2001' || data['response_code'] === '2003') {
+            // Refresh Moneris Checkout ticket
+            refreshMonerisTicket(data['ticket']);
+        } else {
+            // 
+            $('.moneris-loading').addClass('hidden');
+            $('.moneris-available').removeClass('hidden');
+        }
+    });
+
+    myCheckout.setCallback("page_closed", function(evt) {
+        var that = this;
+        var data = JSON.parse(evt);
+        $('.moneris-available').addClass('hidden');
+        myCheckout.closeCheckout();
+    });
+
+    myCheckout.setCallback("payment_submitted", function(evt) {
+        var that = this;
+        var data = JSON.parse(evt);
+
+        // Show the ticket number after payment submitted, and a bit of delay, in case something stalls.  (for debugging purposes)
+        setTimeout(function() {
+            $('.moneris-checkout-ticket-number').html(data['ticket']);
+            $('.moneris-checkout-ticket').removeClass('hidden');
+        }, 500)        
+    });
+    
+    myCheckout.setCallback("cancel_transaction", function(evt) {
+        var that = this;
+        var data = JSON.parse(evt);
+        
+        $('.moneris-available').addClass('hidden');
+        myCheckout.closeCheckout();
+
+        window.location.href = '<field>F_HTML_FIREWALL</field>online?checkout';
+    });
+
+    myCheckout.setCallback("error_event", function(evt) {
+        var that = this;
+        var data = JSON.parse(evt);
+
+        $('.moneris-available').addClass('hidden');
+
+        var errorMessage = failEventMessage(data['ticket'], data['response_code']);
+        $('.moneris-checkout-error-message').html(errorThrown);
+        $('.moneris-checkout-error').removeClass('hidden');
+        
+        myCheckout.closeCheckout();
+    });
+    
+    myCheckout.setCallback("payment_receipt", function(evt) {
+        var that = this;
+        var data = JSON.parse(evt);
+        myCheckout.closeCheckout();
+    });
+    
+    myCheckout.setCallback("payment_complete", function(evt) {
+        var that = this;
+        var data = JSON.parse(evt);
+        requestReceipt(data['ticket']);
+    });
+
+    myCheckout.startCheckout(monerisTicket);
+});
+</script>

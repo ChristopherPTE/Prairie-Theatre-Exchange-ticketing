@@ -1,0 +1,29 @@
+  <!-- comment: 
+  To display all orders you can remove the checks for order balance.
+-->
+  <field>pick(ORD_BALANCE<0,'','<!-- comment: dont need pay balance if none to pay')</field>
+  <tr>
+   <td class="text-right">
+    <field>ORD_SEQ</field>
+   </td>
+   <td>
+    <field>jst(ORD_DATE,'D:m D, y')</field>
+   </td>
+   <td>
+    <field>ORD_NOTES</field>
+   </td>
+   <td class="text-right">
+    $<field>ORD_TOTAL</field>
+   </td>
+   <td class="text-right">
+    $<field>ORD_BALANCE</field>
+   </td>
+   <td class="text-center">
+    <form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+     <input name="ORD_SEQ" type="hidden" value="<field>ORD_SEQ</field>"/>
+     <input name="order_action" type="hidden" value="pay"/>
+     <input class="btn btn-success" name="btnOrderAdd" onclick="process()" type="submit" value="Add to Cart"/>
+    </form>
+   </td>
+  </tr>
+  <field>pick(ORD_BALANCE<0,'','-->')</field>

@@ -1,0 +1,6 @@
+{#- tm-template: 1.1 -#}
+{% if P_PLAY_TITLE -%}
+{{ FC_RESULT1_NAME }} @ {{ P_PLAY_TITLE }}
+{%- else -%}
+{{ FC_RESULT1_NAME }}
+{%- endif %}

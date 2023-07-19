@@ -1,0 +1,39 @@
+<tr>
+ <td class="text-left">
+  Coupon
+ </td>
+ <td class="text-center">
+  &nbsp;
+ </td>
+ <td class="text-left">
+  <field>CH_NAME_EXTERNAL</field>
+  <field>pick(len(CH_NOTES)>0,'<!-- comment:')</field>
+  <br/>
+  <field>CH_NOTES</field>
+  <field>pick(len(CH_NOTES)>0,'-->')</field>
+  <field>pick(SCD_SAVINGS<>0,'<!-- comment:')</field>
+  - Savings from
+  <a class="link" href="<field>F_HTML_FIREWALL</field>tmFee/tmOrderFee<field>FEE_SEQ</field>.html" onclick="return popup(this, 'notes')">
+   <field>FEE_DESCRIPTION_EXTERNAL</field>
+  </a>
+  is
+  <field>jst(SCD_SAVINGS,'$')</field>
+  <field>pick(SCD_SAVINGS<>0,'-->')</field>
+  <field>pick(CH_COUPON_USE>2,'<!-- comment: this has a preaccess code so show the button ')</field>
+  <a class="btn btn-info btn-xs" href="<field>F_HTML_FIREWALL</field>online?presale&code=<field>CH_CODE</field>&F_HTML_REDIRECT_COUPON=btnGetEventList">
+   Pre-Access Events
+  </a>
+  <field>pick(CH_COUPON_USE>2,' -->')</field>
+ </td>
+ <td class="text-right">
+  <field>SCD_TOTAL_COST</field>
+ </td>
+ <td class="text-center">
+  <form action="<field>F_HTML_FIREWALL</field>online" id="TMForm" method="POST">
+   <input name="SCD_SEQ" type="hidden" value="<field>SCD_SEQ</field>"/>
+   <input name="SCD_PURCHASE_GROUP" type="hidden" value="<field>SCD_PURCHASE_GROUP</field>"/>
+   <input id="F_HTML_REMOVE_CART_ITEM_YN" type="hidden" name="F_HTML_REMOVE_CART_ITEM_YN" value="1"/>
+   <input class="btn fa btn-danger btn-xs" name="btnCartRemoveItem" onclick="process()" type="submit" value="&#xf014; Remove"/>
+  </form>
+ </td>
+</tr>

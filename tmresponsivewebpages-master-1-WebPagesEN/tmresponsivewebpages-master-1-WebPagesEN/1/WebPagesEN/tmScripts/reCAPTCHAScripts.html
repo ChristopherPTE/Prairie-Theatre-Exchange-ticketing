@@ -1,0 +1,49 @@
+<!-- comment:
+reCAPTCHA Support
+
+Docs: https://developers.google.com/recaptcha/docs/v3
+
+reCAPTCHA v3 support is implemented generically in Theatre Manager and can be used on any form.
+
+Usage:
+
+Include this script at the top of the page, just before </head>, and add "tm-recaptcha" class to the form
+that should trigger the event.
+
+Additionally, the form "success" input must have special data- attributes:
+
+    data-sitekey="<field>D_WEB_RECAPTCHA_CLIENT_KEY</field>" ,
+    data-callback="tmReCAPTCHASubmit", 
+    data-action="submit", 
+
+... and the "g-recaptcha" class.
+
+Since the Javascript form submission _does not_ include the input name in the form= field, a special hidden input 
+field must be included for routing to the correct btn... component.
+
+Form example:
+
+    <form class="tm-recaptcha" action="<field>F_HTML_FIREWALL</field>online" method="POST">
+        <input name="btnRoute" type="hidden" value="btnRoute" />
+        <input class="g-recaptcha btn btn-success" 
+               data-sitekey="<field>D_WEB_RECAPTCHA_CLIENT_KEY</field>" ,
+               data-callback="tmReCAPTCHASubmit", 
+               data-action="submit", 
+               name="btnRoute"
+               onclick="process()"
+               type="submit"
+               value="Send to Server" />
+    </form>
+
+Limitations:
+
+    * This system _does not_ support forms with multiple type="submit" inputs.
+-->
+<field>pick(len(D_WEB_RECAPTCHA_CLIENT_KEY)>0,'<!-- comment:')</field>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function tmReCAPTCHASubmit(token) {
+        $('.tm-recaptcha').submit();
+    }
+</script>
+<field>pick(len(D_WEB_RECAPTCHA_CLIENT_KEY)>0,'-->')</field>

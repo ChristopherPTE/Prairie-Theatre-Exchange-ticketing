@@ -1,0 +1,9 @@
+<field>dat(PB_PERFORM_DATE,'w, n D, y')</field>
+<field>pick(P_PLAY_DURATION>=360,'','<br>All Day Event')</field>
+<field>pick(P_PLAY_DURATION>=360,'','<!-- comment:')</field>
+<field>pick(len(dat(PB_PERFORM_TIME,'h:N A'))>0,'<!-- comment:')</field>
+ at 
+<field>tim(PB_PERFORM_TIME,'h:N A')</field>
+<field>F_HTML_TZ_SHORT_NAME</field>
+<field>pick(len(dat(PB_PERFORM_TIME,'h:N A'))>0,'-->')</field>
+<field>pick(P_PLAY_DURATION>=360,'','-->')</field>

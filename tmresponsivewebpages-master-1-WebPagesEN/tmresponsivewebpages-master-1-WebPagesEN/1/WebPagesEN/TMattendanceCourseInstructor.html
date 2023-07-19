@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Future <field>tEditCheck.$setPlural(D_COURSE_DESC)</field> Attendance
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div class="page-header">
+    <h1>
+     Set Attendance
+    </h1>
+    <h3>
+     <field>P_PLAY_TITLE</field>
+    </h3>
+    <h5 class="text-muted">
+     <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+    </h5>
+    <h3>
+     <field>C_FORMAL_NAME</field>
+    </h3>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+     <div class="alert alert-warning fade in">
+      <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+      <p>
+       Is
+       <strong>
+        <field>C_FORMAL_NAME</field>
+       </strong>
+       going to attend?
+      </p>
+      <p>
+      </p>
+     </div>
+    </div>
+    <div class="col-md-8">
+     <field>pick(PS_ATTEND_FC_SEQ>0,'<!-- comment: ')</field>
+     <form action="<field>F_HTML_FIREWALL</field>online" id="WillAttendForm" method="POST" role="form">
+      <div class="form-group">
+       <label for="status">
+        Is <field>C_FORMAL_NAME</field> able to attend now?
+       </label>
+       <input name="PS_SEQ" type="hidden" value="<field>PS_SEQ</field>"/>
+       <input name="clear" type="hidden" value="1"/>
+       <br/>
+       <input class="btn btn-success" name="btnCourseAttendance" type="submit" value="<field>C_FORMAL_NAME</field> Will Attend"/>
+      </div>
+     </form>
+     <field>pick(PS_ATTEND_FC_SEQ>0,'-->')</field>
+     <form action="<field>F_HTML_FIREWALL</field>online" id="WontAttendForm" method="POST" role="form">
+      <input name="hiddenSubmit" type="hidden" value=""/>
+      <div class="form-group">
+       <label for="status">
+        Attendance Status:
+       </label>
+       <select class="form-control" id="status" name="status" ondblclick="submitForm('WontAttendForm','btnCourseAttendance','YES');" size="10">
+        <field>F_HTML_ATTENDANCE_REASON_LIST</field>
+       </select>
+       <input name="PS_SEQ" type="hidden" value="<field>PS_SEQ</field>"/>
+       <br/>
+       <input class="btn btn-warning" name="btnCourseAttendance" type="submit" value="Set Attendance Status"/>
+      </div>
+     </form>
+     <br/>
+     <a class="btn btn-primary" href="<field>F_HTML_FIREWALL</field>online?manageperf=<field>PB_SEQ</field>">
+      Back to <field>D_PERF_DESC</field> Management
+     </a>
+    </div>
+    <!-- .container -->
+    <!--#include virtual="TMtemplates/tmFooter.html" -->
+   </div>
+  </div>
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

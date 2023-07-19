@@ -1,0 +1,33 @@
+<field>pick(SCH_TIX_QUANTITY>0&SCH_TIX_PRINT_STATUS=0,'<!-- comment:')</field>
+<div class="alert alert-success fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <b>
+  Your e-tickets have been emailed to you.
+ </b>
+ <br/>
+ <br/>
+ If you wish, you may download a PDF containing your bar coded tickets now.
+ <br/>
+ <!--#include virtual="TMtemplates/tmCartTicketsPrintCart.html" -->
+</div>
+<field>pick(SCH_TIX_QUANTITY>0&SCH_TIX_PRINT_STATUS=0,'-->')</field>
+<div>
+ <div class="alert alert-warning fade in">
+  <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+  Print a receipt for your records.  It is not a ticket for admission.
+  <field>pick(SCH_TIX_QUANTITY>0&SCH_TIX_PRINT_STATUS=2,'<!-- comment:')</field>
+  <br/>
+  If you have purchased tickets for live in-person attendance, then they will be available to pick up at the box office 1 hour prior to performance time.
+  <br/>
+  <field>pick(SCH_TIX_QUANTITY>0&SCH_TIX_PRINT_STATUS=2,'-->')</field>
+  <field>pick(SCH_TIX_QUANTITY>0&SCH_TIX_PRINT_STATUS=1,'<!-- comment:')</field>
+  <br/>
+  Your tickets should arrive via mail in 5 to 10 business days.
+  <br/>
+  <field>pick(SCH_TIX_QUANTITY>0&SCH_TIX_PRINT_STATUS=1,'-->')</field>
+  <br/>
+  <a action="<field>F_HTML_FIREWALL</field>online" class="btn btn-warning btn-xs" data-placement="bottom" onclick="window.print()" title="Print a copy of this web page as a receipt or confirmation of your purchase">
+   Print Receipt
+  </a>
+ </div>
+</div>

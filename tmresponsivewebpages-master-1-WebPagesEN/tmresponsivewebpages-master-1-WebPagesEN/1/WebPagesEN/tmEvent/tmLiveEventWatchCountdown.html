@@ -1,0 +1,104 @@
+<!-- comment: AJAX loading start -->
+<script type="text/javascript">
+    $(document).ready(function() {
+      // Save performance date so it can reused on each clock tick
+      var getUrl = "<field>F_HTML_FIREWALL</field>online";
+      var performanceNumber = "<field>PB_SEQ</field>";
+      var watchWindowEnabled = <field>pick(F_HTML_PERFORMANCE_WATCH_WINDOW_ENABLE, 'false', 'true')</field>;
+
+      var locale = '<field>F_HTML_LOCALE</field>'
+      var watchEnd = null;
+      var watchSecs = null;
+      var templates = [
+          ['.countdown_clock_render', "#countdown-template-clock"]
+      ];
+    
+      /* 
+       * RUN TIMER
+       *
+       * Intended for use with setInterval, this method will invoke a page reload on 
+       * performance watch window end and update all countdown text until the performance 
+       * watch window ends
+       */
+      var timerStart = moment.utc();
+      var timerCancel;
+      var runTimer = function() {
+        var localNow = moment.utc();
+        var progressStart = (localNow - timerStart) / 1000;
+        var progressEnd = (watchEnd - timerStart) / 1000;
+        var watchDiff = (watchEnd - localNow) / 1000;
+        if (watchDiff <= 0) {
+          // Stop timer
+          clearInterval(timerCancel);
+          // Render last countdown
+          watchDiff = 0;
+          updateCountdowns(locale, templates, watchDiff, progressStart, progressEnd);
+          // Trigger page reload
+          location.reload();
+          return;
+        }
+      
+        updateCountdowns(locale, templates, watchDiff, progressStart, progressEnd);
+      };
+
+      var checkWatch = function() {
+        if (!watchWindowEnabled) {
+          // EARLY EXIT: Watch window isn't enabled, so nothing to do  
+          return;
+        }
+
+        $.ajax({
+	        // Issue GET request for JSON
+	        type: "GET",		 
+			dataType : "json",
+	    
+			// Inject the URL of the server
+			url: getUrl,
+            
+            // Look for this performance
+			data: {
+				liveperformancewatchdata: performanceNumber
+			}
+		})
+		// Successful request?  Set the watch end timestamp, and invoke the countdown timer.
+		.done(function( json ) {		
+          if (!!json.data && json.data.length > 0) {
+              var tickets = json.data;  
+              var firstTicket = tickets[0];
+              if (!firstTicket) {
+                // Watch data not yet available.  Re-request after a random period of time
+                var retrySecs = getRandomInt(120);
+                setTimeout(checkWatch, getRandomInt(retrySecs * 1000))
+              }
+
+              watchEnd = moment.utc(firstTicket['watch_end']);
+              watchSecs = firstTicket['watch_secs'];
+              if (watchSecs > 0) {
+                // Received watch data.  Start timer countdown
+                timerCancel = setInterval(runTimer, 1000); 
+
+              } else if (watchSecs == null) {
+                // Watch data not yet available.  Re-request after a random period of time
+                var retrySecs = getRandomInt(120);
+                setTimeout(checkWatch, getRandomInt(retrySecs * 1000))
+              }
+          } else {
+            console.log("Watch data invalid.  Content: ", payload);
+          }
+        })    
+        // Failed request?  Show the user an error message
+        .fail(function( xhr, status, errorThrown ) {
+            if (status === 502 || status == 503) {
+                var retrySecs = getRandomInt(120);
+                setTimeout(checkWatch, retrySecs * 1000);
+            } else {
+                console.log("Failed to request watch data.  Error: ", errorThrown);
+            }
+        })
+      };
+
+      // Invoke check
+      checkWatch();      
+    });
+    </script>
+    <!-- comment: AJAX loading end -->

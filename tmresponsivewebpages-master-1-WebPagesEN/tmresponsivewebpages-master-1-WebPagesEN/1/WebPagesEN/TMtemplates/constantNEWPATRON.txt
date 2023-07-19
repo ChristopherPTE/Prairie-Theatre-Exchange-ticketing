@@ -1,0 +1,6 @@
+#	This file must contain two names.  This represents what is placed 
+#	in the C_FIRST_NAME and C_LAST_NAME respectively.  The names are 
+#	also combined for use with C_FORMAL_NAME in the template.
+#	please separate them by a 'tab'
+
+New	Patron

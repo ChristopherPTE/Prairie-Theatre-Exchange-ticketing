@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Email Notifications
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+   <div class="page-header">
+    <h1>
+     Email Notifications
+    </h1>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+    </div>
+    <div class="col-md-8">
+     <div class="row">
+      <div class="col-md-6">
+       <form action="<field>F_HTML_FIREWALL</field>online" id="TMadd" method="POST" role="form">
+        <input class="btn btn-primary" name="btnMailListAdd" type="submit" value="Add selected Notifications"/>
+        <input name="hiddenSubmit" type="hidden" value=""/>
+        <div class="form-group">
+         <label for="F_HTML_SUBSCRIBE_LIST">
+          Notifications you can add
+         </label>
+         <select class="form-control" id="PM_SEQ" multiple="" name="PM_SEQ" ondblclick="submitForm('TMadd','btnMailListAdd','YES');" size="10">
+          <field>F_HTML_SUBSCRIBE_LIST</field>
+         </select>
+        </div>
+       </form>
+       <div class="alert alert-warning fade in">
+        <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+        Select items you wish to receive emails about and
+        click 'Add selected Notifications'.
+       </div>
+      </div>
+      <!-- comment: .col-md-6 -->
+      <div class="col-md-6">
+       <form action="<field>F_HTML_FIREWALL</field>online" id="TMremove" method="POST" role="form">
+        <input class="btn btn-primary" name="btnMailListRemove" type="submit" value="Remove selected Notifications"/>
+        <input name="hiddenSubmit" type="hidden" value=""/>
+        <div class="form-group">
+         <label for="F_HTML_UNSUBSCRIBE_LIST">
+          Notifications you already receive
+         </label>
+         <select class="form-control" id="ML_PM_SEQ" multiple="" name="ML_PM_SEQ" ondblclick="submitForm('TMremove','btnMailListRemove','YES');" size="10">
+          <field>F_HTML_UNSUBSCRIBE_LIST</field>
+         </select>
+        </div>
+       </form>
+       <div class="alert alert-warning fade in">
+        <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+        Select items you no longer wish to be emailed about and
+        click 'Remove selected Notifications'.
+       </div>
+      </div>
+      <!-- comment: .col-md-6 -->
+     </div>
+     <!-- comment: .row -->
+     <div class="alert alert-info fade in">
+      <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+      Please read our privacy policy that explains how information may be used.
+     </div>
+     <a class="btn btn-warning" href="<field>F_HTML_FIREWALL</field>tmFee/tmPrivacyPolicy.html" onclick="return popup(this, 'notes')">
+      Privacy Policy
+     </a>
+    </div>
+    <!-- comment: .col-md-8 -->
+   </div>
+   <!-- /#content -->
+   </div>
+   <!-- comment: .row -->
+  </div>
+  <!-- comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Description - <field>P_PLAY_TITLE</field>
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="row">
+     <div class="col-md-4">
+      <p>
+       <field>pick(PP_SEQ>0,'<!-- comment: use picture if avail')</field>
+       <img class="img-responsive" alt="poster for event" src="<field>F_HTML_FIREWALL</field>picture?id=<field>PP_SEQ</field>"/>
+       <field>pick(PP_SEQ>0,' -->')</field>
+        <field>pick(PP_SEQ=0,'<!-- comment: no picture, use TT icon instead')</field>
+       <img class="img-responsive" alt="poster for event" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>"/>
+       <field>pick(PP_SEQ=0,' -->')</field>
+      </p>
+     </div>
+     <div class="col-md-8">
+      <div class="page-header">
+       <h1>
+        <field>P_PLAY_TITLE</field>
+       </h1>
+      </div>
+      <h3>
+       When
+      </h3>
+      <!--#include virtual="TMtemplates/tmEventDurationDisplay.html" -->
+      <h3>
+       Venue
+      </h3>
+      <div class="alert alert-info">
+       <strong>
+        <a class="link" href="<field>F_HTML_FIREWALL</field>tmVenue/tmVenue<field>TM_SEQ</field>.html">
+         <field>VE_NAME</field>
+        </a>
+       </strong>
+       <br/>
+       <field>VE_ADDRESS1</field>
+       <br/>
+       <field>pick(len(VE_ADDRESS2)>0,'<!-- comment: two lines of address')</field>
+        <field>VE_ADDRESS2</field>
+       <br/>
+       <field>pick(len(VE_ADDRESS2)>0,'-->')</field>
+        <field>VE_CITY</field>
+        <field>VE_PROVINCE</field>
+        <field>VE_POSTAL_CODE</field>
+      </div>
+      <field>pick(len(P_SALES_NOTES)>0,'<!-- comment: no sales notes')</field>
+      <h3>
+       <field>D_EVENT</field> Notes
+      </h3>
+      <small>
+       <!--#include virtual="TMtemplates/rowEventSalesNotes.html" -->
+      </small>
+      <field>pick(len(P_SALES_NOTES)>0,'-->')</field>
+      <p>
+       <a class="btn btn-success" href="<field>F_HTML_FIREWALL</field>login?event=<field>P_SEQ</field>">
+        Buy Tickets to this Event
+       </a>
+       <a class="btn btn-info" href="http://maps.google.com/maps?q=<field>VE_ADDRESS1</field> <field>VE_ADDRESS2</field> <field>VE_CITY</field> <field>VE_PROVINCE</field> <field>VE_POSTAL_CODE</field> <field>VE_COUNTRY</field>" target="_blank">
+          Directions
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+   <!-- /#content -->
+  </div>
+  <!-- .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

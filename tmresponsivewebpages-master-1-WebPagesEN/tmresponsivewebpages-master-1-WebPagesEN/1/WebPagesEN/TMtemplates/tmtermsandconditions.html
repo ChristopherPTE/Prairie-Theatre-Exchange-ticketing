@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Terms and Conditions of Sale
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="backgroundPopup">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <div class="container">
+   <div id="content">
+    <h3>
+     Terms and Conditions
+    </h3>
+    <!-- comment: Option 1: Direct include conditions.  More control, but not user enterable in TM Desktop -->
+    <!-- comment: you may wish to edit SpecialAnnounements and put COVID 19 policies in it -->
+    <!--#include virtual="TMtemplates/tmtermsandconditionsSpecialAnnouncements.html" -->
+    <!--#include virtual="TMtemplates/tmtermsandconditionsEsignature.html" -->
+    <!--#include virtual="TMtemplates/tmtermsandconditionsAccessibleSeating.html" -->
+    <!--#include virtual="TMtemplates/tmtermsandconditionsScalping.html" -->
+    <!--#include virtual="TMtemplates/tmtermsandconditionsOtherPolicies.html" -->
+    
+    <!-- comment: Option 2: Markdown/HTML from TM Desktop.  Less control, but easier for non-technical users -->
+    <field>pick(len(D_WEB_TERMS_AND_CONDITIONS)>0,'<!-- comment: hide terms and conditions')</field>
+        <div class="alert alert-danger fade in">
+            <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+            <field>D_WEB_TERMS_AND_CONDITIONS</field>
+        </div>
+    <field>pick(len(D_WEB_TERMS_AND_CONDITIONS)>0,'-->')</field>
+   </div>
+  </div>
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

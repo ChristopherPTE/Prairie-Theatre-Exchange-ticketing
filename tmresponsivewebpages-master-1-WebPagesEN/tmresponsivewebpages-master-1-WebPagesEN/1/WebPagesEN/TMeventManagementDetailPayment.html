@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | <field>D_EVENT</field>/<field>D_COURSE_DESC</field> Management | Select Payment Method
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div class="page-header">
+    <h1>
+     Price and Payment Method
+    </h1>
+    <h2>
+     <field>C_FORMAL_NAME</field>
+    </h2>
+    <h3>
+     <field>P_PLAY_TITLE</field>
+      -
+     <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+     <small>
+      <field>pick(F_HTML_IS_COURSE&F_HTML_COURSE_START<>PB_PERFORM_DATETIME,'<!-- comment: Hide started date if this is the primary date')</field>
+      <br/>
+      (Started <field>dat(F_HTML_COURSE_START,'w m D y @ h:N A')</field> <field>F_HTML_TZ_SHORT_NAME</field>)
+      <field>pick(F_HTML_IS_COURSE&F_HTML_COURSE_START<>PB_PERFORM_DATETIME,'-->')</field>
+     </small>
+    </h3>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+     <div class="alert alert-info fade in">
+      <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+      <p>
+       Please select a price and payment method for <field>C_FORMAL_NAME</field>
+      </p>
+     </div>
+    </div>
+    <div class="col-md-8">
+     <div>
+      <h4>
+       Price
+      </h4>
+      <div class="row">
+       <div class="col-md-8">
+        <field>pick(F_HTML_PRICE_COUNT>1,'<!-- comment: Hide promotion selection for single price')</field>
+        <form action="<field>F_HTML_FIREWALL</field>online" id="SelectPriceForm" method="POST" role="form">
+         <input name="PB_SEQ" type="hidden" value="<field>PB_SEQ</field>"/>
+         <input name="C_SEQ" type="hidden" value="<field>C_SEQ</field>"/>
+         <select class="form-control" id="SC_DESCRIPTION" name="SC_DESCRIPTION" onchange="submitForm('SelectPriceForm','btnManagePerformancePayment','YES');" size="1">
+          <field>F_HTML_PROMOTIONS_LIST</field>
+         </select>
+         <input name="hiddenSubmit" type="hidden" value=""/>
+        </form>
+        <field>pick(F_HTML_PRICE_COUNT>1,'-->')</field>
+        <field>pick(F_HTML_PRICE_COUNT=1,'<!-- comment: Hide injected single valid price if more than one price')</field>
+        <!--#include virtual="TMtemplates/rowPromotionPriceCode.html" -->
+        $<field>PS_TOTAL_COST</field>
+        <input id="SC_DESCRIPTION" name="SC_DESCRIPTION" type="hidden" value="<field>SC_DESCRIPTION</field>"/>
+        <field>pick(F_HTML_PRICE_COUNT=1,'-->')</field>
+       </div>
+      </div>
+     </div>
+     <br/>
+     <field>pick(F_HTML_ALLOW_ON_ACCOUNT,'<!-- comment: Hide promotion selection for single price')</field>
+     <div class="pull-right">
+      <!-- comment: Not that M_SEQ uses the special -1 value to mean "On Account" payment -->
+      <form action="<field>F_HTML_FIREWALL</field>online" class="select-membership-form" data-on-account="1" method="POST" role="form">
+       <input name="manageperfpay" type="hidden" value="<field>PB_SEQ</field>"/>
+       <input name="C_SEQ" type="hidden" value="<field>C_SEQ</field>"/>
+       <input name="M_SEQ" type="hidden" value="-1"/>
+       <input name="PC_SEQ" type="hidden" value="<field>PC_SEQ</field>"/>
+       <input name="SC_SEQ" type="hidden" value="<field>SC_SEQ</field>"/>
+       <button class="btn btn-warning" name="btnManagePerformancePaymentAccept" type="submit">
+        <i class="glyphicon glyphicon-question-sign">
+        </i>
+        On Account
+       </button>
+      </form>
+     </div>
+     <field>pick(F_HTML_ALLOW_ON_ACCOUNT,'-->')</field>
+     <div>
+      <h4>
+       Payment Method
+      </h4>
+      <field>pick(F_HTML_MEMBERSHIP_COUNT>0,'','<!-- comment: Hide promotion selection for single price')</field>
+      <div class="alert alert-info fade in">
+       No payment methods available for <field>C_FORMAL_NAME</field>.
+      </div>
+      <field>pick(F_HTML_MEMBERSHIP_COUNT>0,'','-->')</field>
+      <field>pick(F_HTML_MEMBERSHIP_COUNT>0,'<!-- comment: Hide promotion selection for single price')</field>
+      <div class="table-responsive">
+       <table class="table table-striped table-condensed table-responsive table-hover">
+        <thead>
+         <tr>
+          <th>
+           &nbsp;
+          </th>
+          <th>
+           Description
+          </th>
+          <th>
+           Expiry
+          </th>
+          <th class="hidden-xs text-right">
+           Original Amount
+          </th>
+          <th class="hidden-xs text-right">
+           Qty
+          </th>
+          <th class="text-right">
+           <div class="hidden-xs">
+            Remain
+           </div>
+           Amount
+          </th>
+          <th class="text-right">
+           Qty
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <field>F_HTML_PERFORMANCE_MANAGEMENT_PASS_LIST</field>
+        </tbody>
+       </table>
+      </div>
+      <field>pick(F_HTML_MEMBERSHIP_COUNT>0-,'-->')</field>
+     </div>
+     <br/>
+     <div>
+      <a class="btn btn-danger" href="<field>F_HTML_FIREWALL</field>online?manageperfpay=<field>PB_SEQ</field>">
+       <i class="glyphicon glyphicon-remove-circle">
+       </i>
+       Back to <field>D_PERF_DESC</field> Management
+      </a>
+     </div>
+     <!-- .container -->
+     <!--#include virtual="TMtemplates/tmFooter.html" -->
+    </div>
+   </div>
+   <!-- Modal -->
+   <div aria-labelledby="ConfirmPaymentModalLabel" class="modal fade" id="ConfirmPaymentModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+     <div class="modal-content">
+      <div class="modal-header">
+       <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+        <span aria-hidden="true">
+         &times;
+        </span>
+       </button>
+       <h4 class="modal-title" id="ConfirmPaymentModalLabel">
+        Confirm
+        <span id="membership_title">
+         Payment
+        </span>
+       </h4>
+      </div>
+      <div class="modal-body">
+       <p>
+        Use
+        <strong>
+         <span id="membership_description">
+          the selected membership
+         </span>
+        </strong>
+        to pay for
+        <strong>
+         <field>C_FORMAL_NAME</field>
+        </strong>
+        for
+        <strong>
+         <field>P_PLAY_TITLE</field>
+         -
+         <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+        </strong>
+        ?
+       </p>
+       <div class="text-center">
+        <button class="btn btn-danger" id="ConfirmationCancel" type="button">
+         <i class="glyphicon glyphicon-remove-circle" id="ConfirmationCancelGlyph">
+         </i>
+         Cancel
+        </button>
+        <button class="btn btn-success" id="ConfirmationPay" type="button">
+         <i class="glyphicon glyphicon-ok-circle" id="ConfirmationPayGlyph">
+         </i>
+         Pay
+         <span id="membership_button">
+          with the selected membership
+         </span>
+        </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- /.modal -->
+   <!-- comment: TRICK: This confirmation Javascript uses the data-confirmation-name attribute
+                       from TMtemplates/rowManagedPerformancePass.html to improve the content
+                       of the confirmation message.
+  -->
+   <script type="text/javascript">
+    $(document).ready(function() {
+      // Override select payment button to give a confirmation.
+      var showingDialog = false;
+      var formReference = null;
+      
+      $('.select-membership-form button[type="submit"]').on('click', function (event) {
+       event.preventDefault(event);
+              
+       if (!showingDialog) {
+    	 showingDialog = true;
+    	 formReference = $(this).parents('form');
+    	 
+    	 // Extract data attribute from the selected membership for use on the confirmation 
+    	 // dialog.
+    	 var onAccount = formReference.attr('data-on-account');
+    	 var membershipName = formReference.attr('data-confirmation-name');
+    	 var membershipTitle, membershipDescription, membershipButton;
+    	 if (onAccount === '1' || (!!onAccount && onAccount[0].toLowerCase() === 't')) {
+    	   membershipTitle = 'On Account';
+    	   membershipDescription = 'On Account';
+    	   membershipButton = 'Later';
+    	   // Swap colours to warning for On Account
+    	   $('#ConfirmationPay').addClass('btn-warning').removeClass('btn-success');
+    	   $('#ConfirmationPayGlyph').addClass('glyphicon-question-sign').removeClass('glyphicon-ok-circle');
+    	   
+    	 } else if (membershipName.length > 0) {
+    	   membershipTitle = 'Payment';
+    	   membershipDescription = membershipName;
+    	   membershipButton = 'with ' + membershipName;
+    	   // Swap colours to success for real payment
+    	   $('#ConfirmationPay').addClass('btn-success').removeClass('btn-warning');
+    	   $('#ConfirmationPayGlyph').addClass('glyphicon-ok-circle').removeClass('glyphicon-question-sign');
+    	   
+    	 } else if (!(membershipName.length > 0)) {
+           membershipTitle = 'Payment';
+    	   membershipDescription = 'the selected membership';
+    	   membershipButton = "with the selected membership";
+    	   // Swap colours to success for real payment
+    	   $('#ConfirmationPay').addClass('btn-success').removeClass('btn-warning');
+    	   $('#ConfirmationPayGlyph').addClass('glyphicon-ok-circle').removeClass('glyphicon-question-sign');
+
+    	 }
+    	 $('#membership_title').text(membershipTitle);
+		 $('#membership_description').text(membershipDescription);
+		 $('#membership_button').text(membershipButton);
+    	 
+    	 $('#ConfirmPaymentModal').modal('show');
+       }
+       return false;
+	  });
+		
+      $('#ConfirmPaymentModal').on('hidden.bs.modal', function() {
+        showingDialog = false;
+        formReference = null;
+      })
+      
+      $('#ConfirmationCancel').click(function() {
+        $('#ConfirmPaymentModal').modal('hide');
+      })
+      
+      $('#ConfirmationPay').click(function() {
+        if (!!formReference) {
+          formReference.submit();
+        }
+      })
+    });
+   </script>
+  </div>
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

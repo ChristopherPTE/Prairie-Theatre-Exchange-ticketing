@@ -1,0 +1,97 @@
+<br/>
+<table class="table table-striped table-condensed table-responsive table-hover">
+ <tr>
+  <th>
+   <a class="btn btn-warning btn-xs" data-placement="bottom" href="<field>F_HTML_FIREWALL</field>login?btnAccount" title="Edit your account information">
+    Purchaser Info
+   </a>
+  </th>
+  <td>
+   <field>C_FIRST_NAME</field> <field>C_INITIAL</field> <field>C_LAST_NAME</field>
+   <field>pick(len(AD_ADDRESS1)>0,'<!-- comment:')</field>
+   <br/>
+   <field>AD_ADDRESS1</field>
+   <field>pick(len(AD_ADDRESS1)>0,'-->')</field>
+   <field>pick(len(AD_ADDRESS2)>0,'<!-- comment:')</field>
+   <br/>
+   <field>AD_ADDRESS2</field>
+   <field>pick(len(AD_ADDRESS2)>0,'-->')</field>
+   <br/>
+   <field>AD_CITY</field>, <field>AD_PROVINCE</field> <field>AD_POSTAL_CODE</field>
+  </td>
+ </tr>
+ <field>pick(F_HTML_HAS_BILLING_ADDRESS, "<!-- comment: hide billing address when it doesn't exist")</field>
+ <tr>
+  <th>
+   Billing Address
+  </th>
+  <td>
+   <field>F_HTML_BILLING_ADDRESS</field>
+  </td>
+ </tr>
+ <field>pick(F_HTML_HAS_BILLING_ADDRESS, "-->")</field>
+ <field>pick(F_HTML_HAS_SHIPPING_ADDRESS, "<!-- comment: hide shipping address when it doesn't exist")</field>
+ <tr>
+  <th>
+   Mailing Address
+  </th>
+  <td>
+   <field>F_HTML_SHIPPING_ADDRESS</field>
+  </td>
+ </tr>
+ <field>pick(F_HTML_HAS_SHIPPING_ADDRESS, "-->")</field>
+ <tr>
+  <th>
+   Order Reference
+  </th>
+  <td>
+   <field>SCH_ORD_SEQ</field>
+  </td>
+ </tr>
+ <tr>
+  <th>
+   Order Date
+  </th>
+  <td>
+   <field>dat(SCH_DATE_CHECKOUT,'n D, y h:N A')</field>
+  </td>
+ </tr>
+ <tr>
+  <field>pick(PAY_TOTAL_PAID>0,'<!-- comment: remove card number and authorization if no payment')</field>
+  <th>
+   Payment Amount
+  </th>
+  <td>
+   <strong>
+    $<field>PAY_TOTAL_PAID</field> <field>F_HTML_CURRENCY</field>
+   </strong>
+  </td>
+ </tr>
+ <tr>
+  <th>
+   Card Number
+  </th>
+  <td>
+   <field>mid(PAY_CARD_NO,5,20)</field>
+  </td>
+ </tr>
+ <tr>
+  <th>
+   Authorization Code
+  </th>
+  <td>
+   <field>PAY_AUTH_NO</field>
+  </td>
+ </tr>
+ <field>pick(PAY_TOTAL_PAID>0,'-->')</field>
+ <field>pick(len(SCH_ORD_NOTES)>0,'<!-- comment: order notes blank')</field>
+ <tr>
+  <th>
+   Notes
+  </th>
+  <td>
+   <field>SCH_ORD_NOTES</field>
+  </td>
+ </tr>
+ <field>pick(len(SCH_ORD_NOTES)>0,'-->')</field>
+</table>

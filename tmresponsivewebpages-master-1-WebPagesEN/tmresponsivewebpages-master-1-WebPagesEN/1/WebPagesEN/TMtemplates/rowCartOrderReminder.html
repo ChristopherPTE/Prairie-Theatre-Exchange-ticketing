@@ -1,0 +1,26 @@
+  <!-- comment:
+  Note that there are several order balance fields you can use to hide/show the "Pay Order" button:
+
+  F_HTML_ORDER_COUNT
+  F_HTML_ORDER_COUNT_OWING
+  F_HTML_ORDER_COUNT_OWED
+  F_HTML_ORDER_BALANCE
+  F_HTML_ORDER_BALANCE_OWING
+  F_HTML_ORDER_BALANCE_OWED
+  F_HTML_ORDER_VALUE
+  F_HTML_ORDER_VALUE_OWING
+  F_HTML_ORDER_VALUE_OWED
+-->
+  <field>pick(F_HTML_ORDER_ALLOW_PAYMENT&F_HTML_ORDER_BALANCE_OWING>0,'<!-- comment: dont need pay balance if none to pay')</field>
+  <div class="alert alert-danger fade in">
+   <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+   <div>
+    <a class="btn btn-warning btn-xs" href="<field>F_HTML_FIREWALL</field>online?order">
+     Pay an Order Balance
+    </a>
+   </div>
+   <p>
+    There is currently a balance of $<field>F_HTML_ORDER_BALANCE_OWING</field> on your account.  You can pay the balance by adding it to your cart.
+   </p>
+  </div>
+  <field>pick(F_HTML_ORDER_ALLOW_PAYMENT&F_HTML_ORDER_BALANCE_OWING>0,'-->')</field>

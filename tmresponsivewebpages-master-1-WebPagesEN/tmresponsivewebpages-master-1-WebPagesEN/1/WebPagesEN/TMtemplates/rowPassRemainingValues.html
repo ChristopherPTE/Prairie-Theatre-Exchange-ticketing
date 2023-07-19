@@ -1,0 +1,87 @@
+  <tr>
+   <td class="text-center">
+    <form action="<field>F_HTML_FIREWALL</field>online" method="POST">
+     <field>pick(F_HTML_PASS_REDEEMABLE&M_IN_CART_REDEEM_SCH_SEQ=0,'<!-- comment: nothing left to redeem so hide button after message')</field>
+     <input class="btn btn-success" name="btnPassForRedemption" onclick="process()" type="submit" value="Apply"/>
+     <input name="M_SEQ" type="hidden" value="<field>M_SEQ</field>"/>
+     <field>pick(F_HTML_PASS_REDEEMABLE&M_IN_CART_REDEEM_SCH_SEQ=0,' -->')</field>
+
+     <field>pick(M_IN_CART_REDEEM_SCH_SEQ>0,'<!-- comment: already in cart')</field>
+     <input name="SCD_SEQ" type="hidden" value="<field>SCD_SEQ</field>"/>
+     <input name="SCD_PURCHASE_GROUP" type="hidden" value="<field>SCD_PURCHASE_GROUP</field>"/>
+     <input id="F_HTML_REMOVE_CART_ITEM_YN" name="F_HTML_REMOVE_CART_ITEM_YN" type="hidden" value="1"/>
+     <input class="btn fa btn-warning btn-xs" name="btnCartRemoveItem" onclick="process()" type="submit" value="&#xf014; Remove"/>
+     <field>pick(M_IN_CART_REDEEM_SCH_SEQ>0,' -->')</field>
+    </form>
+   </td>
+   <td>
+    <b>
+     Pass # <field>M_CONTROL_NUMBER</field>
+    </b>
+    <br/>
+    <a class="link" href="<field>F_HTML_FIREWALL</field>tmPass/tmPass<field>M_MT_SEQ</field>.html" onclick="return popup(this, 'notes')">
+     <field>MT_DESCRIPTION_EXTERNAL</field>
+    </a>
+   </td>
+   <td>
+    <field>pick(len(M_DATE_EXPIRY)>0,'<!-- comment: Expiry date on pass','')</field>
+    <field>jst(M_DATE_EXPIRY,'D:m D, y')</field>
+    <field>pick(len(M_DATE_EXPIRY)>0,'-->','')</field>
+    <field>pick(len(M_DATE_EXPIRY)=0,'<!-- comment: No expiration date on pass','')</field>
+    Doesn't Expire
+    <field>pick(len(M_DATE_EXPIRY)-0,'-->','')</field>
+   </td>
+   <td class="hidden-xs text-right">
+    <field>M_ISSUED_PASS_AMOUNT</field>
+   </td>
+   <td class="hidden-xs text-right">
+    <field>pick(M_PASS_METHOD=4,'<!-- comment: unlimited use pass types')</field>
+    Unlimited
+    <field>pick(M_PASS_METHOD=4,'-->')</field>
+    <field>pick(M_PASS_METHOD<>4,'<!-- comment: passes issued with quantity')</field>
+    <field>M_ISSUED_PASS_QTY</field>
+    <field>pick(M_PASS_METHOD<>4,'-->')</field>
+   </td>
+   <!-- comment:  the used amounts
+<td class="text-right">
+ <field>M_USED_PASS_AMOUNT+M_IN_CART_REDEEM_AMOUNT</field>
+</td>
+<td class="text-right">
+ <field>M_USED_PASS_QTY+M_IN_CART_REDEEM_QTY</field>
+</td>
+-->
+   <td class="text-right">
+    <field>pick(M_PASS_METHOD=4,'<!-- comment: unlimited use pass types')</field>
+    Unlimited
+    <field>pick(M_PASS_METHOD=4,'-->')</field>
+    <field>pick(M_PASS_METHOD<>4,'<!-- comment: passes issued with amounts')</field>
+    <field>M_REMAIN_PASS_AMOUNT-M_IN_CART_REDEEM_AMOUNT</field>
+    <field>pick(M_PASS_METHOD<>4,'-->')</field>
+   </td>
+   <td class="text-right">
+    <field>pick(M_PASS_METHOD=4,'<!-- comment: unlimited use pass types')</field>
+    Unlimited
+    <field>pick(M_PASS_METHOD=4,'-->')</field>
+    <field>pick(M_PASS_METHOD<>4,'<!-- comment: passes issued with quantity')</field>
+    <field>M_REMAIN_PASS_QTY-M_IN_CART_REDEEM_QTY</field>
+    <field>pick(M_PASS_METHOD<>4,'-->')</field>
+   </td>
+  </tr>
+  <tr class="hidden-xs">
+  <td>
+  </td>
+  <td colspan="6"">
+    <field>pick(len(M_NOTES)>0,'<!-- comment: pass notes')</field>
+    <div class="alert alert-info fade in">
+     <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+     <field>M_NOTES</field>
+    </div>
+    <field>pick(len(M_NOTES)>0,'-->')</field>
+    <field>pick(len(MT_NOTES)>0,'<!-- comment: pass type notes')</field>
+    <div class="alert alert-info fade in">
+     <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+     <field>MT_NOTES</field>
+    </div>
+    <field>pick(len(MT_NOTES)>0,'-->')</field>
+  </td>
+  </tr>

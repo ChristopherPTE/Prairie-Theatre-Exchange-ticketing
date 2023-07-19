@@ -1,0 +1,23 @@
+<tr>
+ <td>
+  <field>MS_SECTION</field>/<field>MS_ROW_NUMBER</field>/<field>MS_SEAT_NUMBER</field>
+  <field>pick(MS_NOTE_USE_FLAG,'<!-- comment:')</field>
+  <div class="text text-info">
+   <field>MS_SEAT_NOTE</field>
+  </div>
+  <field>pick(MS_NOTE_USE_FLAG,'-->')</field>
+ </td>
+ <td>
+  <!--#include virtual="TMtemplates/rowPromotionPriceCode.html" -->
+ </td>
+ <td class="text-right">
+  $<field>PS_TOTAL_COST</field>
+  <!--#include virtual="TMtemplates/rowTicketFaceValue.html" -->
+ </td>
+ <td class="text-right">
+  <field>ORD_SEQ</field>
+ </td>
+ <td>
+  <field>dat(PS_DATE_BOUGHT,'w m D y @ h:N A')</field>
+ </td>
+</tr>

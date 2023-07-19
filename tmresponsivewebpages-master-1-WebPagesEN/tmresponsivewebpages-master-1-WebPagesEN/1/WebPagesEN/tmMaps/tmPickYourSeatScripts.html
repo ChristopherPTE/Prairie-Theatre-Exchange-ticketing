@@ -1,0 +1,92 @@
+  <!-- comment: If you wish to enable user seat swapping (AKA Pick your own) and SVG zoom controls on the desktop, then the F_HTML_SEATMAP_SCRIPTS must be 
+              included at the end of the page (but before the "page adapter" javascript) -->
+  <field>F_HTML_SEATMAP_SCRIPTS</field>
+  <!-- comment: This "page adapter" javascript allows control over the seat swapping widget and desktop navigation controls.  It uses a built-in, auto-updated version of 
+              JQuery for Theatre Manager that is designed not to conflict with any JQuery already in this page. -->
+  <script type="text/javascript">
+   // Trigger javascript styles to enable "swap" button and navigation controls
+	$(document.body).addClass('js-on').removeClass('js-off');
+
+    var TheatreManagerJQuery = $.noConflict(true);
+
+    (function($) {
+        $(document).ready(function() {
+            // Function to determine if this is a touch device or not
+            var is_touch_device = function () {
+              return !!('ontouchstart' in window       // Most browsers 
+                  || navigator.msMaxTouchPoints);      // Internet Explorer
+            };
+
+            // Function to hide all the SVG controls
+            var hide_controls = function () {
+				$('.desktop_navigation').each(function() {
+                    $( this ).hide();
+                });
+            };
+
+            // Hide navigation controls on multi-touch devices (they can pinch to zoom and pan with touch)
+            if (is_touch_device()) {
+                hide_controls();
+            }
+
+            // Attach the widget to the SVG object.
+            var map_selector = '#venue_map'
+            var map_svg = $(map_selector)[0];
+            if (map_svg != null) {
+	            map_svg.addEventListener('load', function() {
+	                try {
+	                	// Construct the widget
+	                    var widget = new $.SeatSelection(map_selector);                   
+
+	                    // Initialize the widget with new pan and zoom values
+	                    widget.init();
+
+	                    // Set default Map Display View on non-mobile devices (i.e. Desktop)
+	                    // 
+	                    // Auto-Zoom to selected seats (default mode) = widget.zoom_reserved_seats();
+	                    // View Entire Map                            = widget.reset_pan_zoom();
+	                    // View Entire Map + 1 Zoom In                = widget.zoom_in();
+	                    // View Entire Map + 1 Zoom Out               = widget.zoom_out();
+	                    if (!is_touch_device()) {
+                            widget.reset_pan_zoom();
+                        }
+
+	                    // Setup all the events for the desktop navigation controls
+	                    $('#left').click(function(evt) {
+	                        widget.pan_left();
+	                    });
+	                    $('#right').click(function(evt) {
+	                        widget.pan_right();
+	                    });
+	                    $('#up').click(function(evt) {
+	                        widget.pan_up();
+	                    });
+	                    $('#down').click(function(evt) {
+	                        widget.pan_down();
+	                    });
+	                    $('#in').click(function(evt) {
+	                        widget.zoom_in();
+	                    });
+	                    $('#out').click(function(evt) {
+	                        widget.zoom_out();
+	                    });
+	                    $('#reset').click(function(evt) {
+	                        widget.zoom_reserved_seats();
+	                    });
+	                    $('#resetmap').click(function(evt) {
+	                        widget.reset_pan_zoom();
+	                    });
+	                    $('#clear').click(function(evt) {
+	                        widget.clear_seats();
+	                    });
+	                } catch (err) {
+	                    // An error has occured with the widget.  
+
+	                    // Hide the controls (there is no map to work with)
+	                    hide_controls();
+	                };
+	            });
+			}
+    	});
+	})(TheatreManagerJQuery);
+  </script>

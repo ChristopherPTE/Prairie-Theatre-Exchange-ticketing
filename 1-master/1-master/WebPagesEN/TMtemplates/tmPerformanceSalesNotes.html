@@ -1,0 +1,19 @@
+<field>pick(len(PB_PERF_NOTES)>0,'<!-- comment: no performance notes')</field>
+<div class="panel panel-default">
+ <div class="panel-heading">
+  <h3 class="panel-title">
+   <field>pick(PB_SALES_METHOD=6,'<!-- comment:')</field>
+   <field>D_COURSE_DESC</field> Notes/Registration Information
+   <field>pick(PB_SALES_METHOD=6,'-->')</field>
+   <field>pick(PB_SALES_METHOD<>6,'<!-- comment:')</field>
+   <field>D_PERF_DESC</field> Notes
+   <field>pick(PB_SALES_METHOD<>6,'-->')</field>
+  </h3>
+ </div>
+ <div class="alert alert-info fade in">
+  <small>
+   <field>PB_PERF_NOTES</field>
+  </small>
+ </div>
+</div>
+<field>pick(len(PB_PERF_NOTES)>0,'-->')</field>

@@ -1,0 +1,9 @@
+ <div class="alert alert-warning fade in">
+  <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+  <field>pick(PAY_TOTAL_PAID>0|F_POST_DATED_PLAN_ACCEPTED,'<!-- comment: remove card holder agreement if no payment')</field>
+  Cardholder will pay <field>D_COMPANY_LONG</field> in accordance with the cardholder agreement.
+  <field>pick(PAY_TOTAL_PAID>0|F_POST_DATED_PLAN_ACCEPTED,'-->')</field>
+ <p>
+  Please contact us via telephone or e-mail if you have any questions about your purchase.
+ </p>
+ </div>

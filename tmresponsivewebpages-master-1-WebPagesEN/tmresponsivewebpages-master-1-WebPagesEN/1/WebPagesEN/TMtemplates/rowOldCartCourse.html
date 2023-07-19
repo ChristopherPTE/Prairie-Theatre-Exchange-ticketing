@@ -1,0 +1,30 @@
+<tr>
+ <td>
+  <field>D_COURSE_DESC</field>
+ </td>
+ <td class="text-center">
+  <field>SCD_QUANTITY</field>
+ </td>
+ <td>
+  <a class="link" href="<field>F_HTML_FIREWALL</field>tmEvent/tmEvent<field>PB_P_SEQ</field>.html?PB_P_SEQ=<field>PB_P_SEQ</field>" onclick="return popup(this, 'notes')">
+   <field>P_PLAY_TITLE</field>
+  </a>
+  <br/>
+  on
+  <b>
+   <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+  </b>
+  <br/>
+  at
+  <a class="link" href="<field>F_HTML_FIREWALL</field>tmVenue/tmVenue<field>TM_SEQ</field>.html" onclick="return popup(this, 'notes')">
+   <field>VE_NAME</field>
+  </a>
+  <br/>
+  <field>D_COURSE_DESC</field>
+  <!--#include virtual="TMtemplates/rowPromotionPriceCode.html" -->
+  <!--#include virtual="TMtemplates/rowTicketFaceValue.html" -->
+ </td>
+ <td class="text-right">
+  <field>SCD_TOTAL_COST</field>
+ </td>
+</tr>

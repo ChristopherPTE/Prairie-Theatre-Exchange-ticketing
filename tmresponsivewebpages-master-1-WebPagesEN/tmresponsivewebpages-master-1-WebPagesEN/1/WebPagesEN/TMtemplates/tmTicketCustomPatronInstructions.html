@@ -1,0 +1,28 @@
+  <!-- comment: this is so that there is a standard place to put a custom patron comment on the ticket window
+<div class="alert alert-warning fade in">
+  <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+  I'm a custom comment to tell patrons about the ticket process
+</div>
+-->
+
+<!-- comment: or enter Markdown/HTML policy directly in TM Desktop -->
+<field>pick(len(D_WEB_ANNOUNCEMENT_NOTE)>0,'<!-- comment: hide announcement')</field>
+  <div class="alert alert-info fade in">
+      <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+      <field>D_WEB_ANNOUNCEMENT_NOTE</field>
+  </div>
+<field>pick(len(D_WEB_ANNOUNCEMENT_NOTE)>0,'-->')</field>
+
+<field>pick(len(D_WEB_ANNOUNCEMENT_WARNING)>0,'<!-- comment: hide warning announcement')</field>
+  <div class="alert alert-warning fade in">
+      <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+      <field>D_WEB_ANNOUNCEMENT_WARNING</field>
+  </div>
+<field>pick(len(D_WEB_ANNOUNCEMENT_WARNING)>0,'-->')</field>
+
+<field>pick(len(D_WEB_ANNOUNCEMENT_DANGER)>0,'<!-- comment: hide danger announcement')</field>
+  <div class="alert alert-danger fade in">
+      <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+      <field>D_WEB_ANNOUNCEMENT_DANGER</field>
+  </div>
+<field>pick(len(D_WEB_ANNOUNCEMENT_DANGER)>0,'-->')</field>

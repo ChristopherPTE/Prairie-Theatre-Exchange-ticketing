@@ -1,0 +1,28 @@
+#	This file must contain a list of the type and location to be listed on all LIMITED PATRON
+#	patron records.  Must include the contact/address type and the location # from Theatre
+#	Manager's code tables or the plain text equivalent(e.g Home). The location can be left blank and the
+#	code table default for that type will be selected.
+#
+#	Types are as follows:
+#	----------------------
+#	1 = Address
+#	2 = Phone
+#	3 = Fax
+#	4 = E-mail
+#	5 = Website
+#	
+# Type	Location
+#
+#	Example:
+#
+# 4 Home
+# 1	Home
+# 2	
+# 2	Work
+# 3	Fax
+# 5	Work
+#
+#	NOTE for limited profile patrons, only suggest an address and a phone number
+1
+2
+4

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Verify Mail List Addition
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmLayout/tmHeadScriptsEmail.html" -->
+  <!--#include virtual="tmLayout/tmLastHeadEmail.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBodyEmail.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Add Request to a <field>D_COMPANY_LONG</field> emailing list
+      <br/>
+      <small class="text-muted">
+       <field>C_FIRST_NAME</field> <field>C_LAST_NAME</field>
+      </small>
+     </h1>
+    </div>
+    <div class="alert alert-info">
+     Thank you for your interest in <field>D_COMPANY_LONG</field>. You have asked to be added to one or more mailing lists so that you can be provided with timely information specific to the purpose of the mail list.
+     <br/>
+     <br/>
+     To complete this process please do one of the following:
+    </div>
+    <div class="alert alert-info">
+     Add the email address within the next <field>D_WEB_PENDING_MAIL_LIST_TIMEOUT</field> 
+     hours to complete the subscription process.
+    </div>
+    <a class="btn btn-success" href="<field>F_HTML_FIREWALL</field>login?verifyEmail=yes&C_SEQ=<field>C_SEQ</field>&e=<field>tEditCheck.$urlQuote(CI_CONTENTS)</field>&vpw=<field>CCL_VALIDATE_PASS</field>" target="_top">
+     Add this email address
+    </a>
+    <a class="btn btn-info" href="<field>F_HTML_FIREWALL</field>login?event=0" target="_top">
+     Purchase tickets
+    </a>
+    <p>
+     &nbsp;
+    </p>
+    <div class="alert alert-info">
+     Remove from the mailing list immediately if you did not initiate a request to subscribe to our mailing list.
+      For your protection, if you do nothing or not reply,
+     <em>
+      you will be removed automatically after 
+      <field>D_WEB_PENDING_MAIL_LIST_TIMEOUT</field> hours
+     </em>
+    </div>
+    <a class="btn btn-danger" href="<field>F_HTML_FIREWALL</field>login?removeEmail=yes&C_SEQ=<field>C_SEQ</field>&e=<field>tEditCheck.$urlQuote(CI_CONTENTS)</field>" target="_top">
+     Remove this email address
+    </a>
+    <p>
+     &nbsp;
+    </p>
+    <!--#include virtual="TMtemplates/tmPrivacyNoteEmail.html" -->
+    <!--#include virtual="TMtemplates/tmContactHours.html" -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="TMtemplates/tmMarkEmailRead.html" -->
+  <!--#include virtual="tmLayout/tmBodyScriptsEmail.html" -->
+  <!--#include virtual="tmLayout/tmLastBodyEmail.html" -->
+ </body>
+</html>

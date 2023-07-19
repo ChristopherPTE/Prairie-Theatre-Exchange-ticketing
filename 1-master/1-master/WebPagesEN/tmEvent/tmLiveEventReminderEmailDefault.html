@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <title>
+   <field>D_COMPANY_LONG</field> | <field>P_PLAY_TITLE</field> Starts Soon!
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+ </head>
+ <body class="background">
+  <div class="container">
+   <div id="content">
+    <div class="jumbotron text-center">
+     <h1>
+      Starting soon!
+     </h1>
+     <p>
+     </p>
+     <div class="img-thumbnail">
+      <field>pick(PP_SEQ>0,'<!-- comment: use picture if avail')</field>
+      <img alt="poster for event" class="img-responsive" src="<field>F_HTML_FIREWALL</field>picture?id=<field>PP_SEQ</field><field>F_HTML_IMAGE_READ_MARKER</field>"/>
+      <field>pick(PP_SEQ>0,' -->')</field>
+          <field>pick(PP_SEQ=0,'<!-- comment: no picture, use TT icon instead')</field>
+      <img alt="poster for event" class="img-responsive" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field><field>F_HTML_IMAGE_READ_MARKER</field>"/>
+      <field>pick(PP_SEQ=0,' -->')</field>
+     </div>
+     <p class="lead">
+      <field>pick(F_HTML_IS_TODAY, '<!-- comment:')</field>
+          Just a small reminder to let you know that
+      <strong>
+       <field>P_PLAY_TITLE</field>
+      </strong>
+      <br/>
+      starts
+      <strong>
+       today
+      </strong>
+      at
+      <strong>
+       <field>tim(PB_PERFORM_TIME,'h:N A')</field>
+      </strong>
+      <field>pick(F_HTML_IS_TODAY, '-->')</field>
+        <field>pick(not(F_HTML_IS_TODAY), '<!-- comment:')</field>
+          Just a small reminder to let you know that
+      <strong>
+       <field>P_PLAY_TITLE</field>
+      </strong>
+      <br/>
+      starts on
+      <strong>
+       <field>dat(PB_PERFORM_DATE, 'w D n, y')</field>
+      </strong>
+      at
+      <strong>
+       <field>tim(PB_PERFORM_TIME,'h:N A')</field>
+      </strong>
+      <field>pick(not(F_HTML_IS_TODAY), '-->')</field>
+     </p>
+     <p>
+       <!-- comment: watch link changed only for Frequences, password added -->
+  <!--    <a class="btn btn-lg btn-info" href="https://tickets.pte.mb.ca/TheatreManager/1/online?btnLogin=Login" role="button">
+       <i aria-hidden="true" class="glyphicon glyphicon-film">
+       </i>
+       Watch Now
+      </a>
+    </p>-->
+    <p>
+      <a class="btn btn-lg btn-info" href="https://www.pte.mb.ca/files/file/64874401689ce/Digital-Step-by-Step-final.pdf" role="button">
+       <i aria-hidden="true" class="glyphicon glyphicon-film">
+       </i>
+       HOW TO WATCH - STEP BY STEP
+      </a>
+    </p>
+    <p>
+      <a class="btn btn-lg btn-info" href="https://www.pte.mb.ca/performances/reckoning" role="button">
+       <i aria-hidden="true" class="glyphicon glyphicon-film">
+       </i>
+       FREQUENTLY ASKED QUESTIONS & Artist Information
+      </a>
+    </p>
+     <p>
+  <!--     <a class="btn btn-lg btn-info" href="https://www.pte.mb.ca/files/file/625727d0ead36/Deer-Woman-program-final.pdf" role="button">
+        <i aria-hidden="true" class="glyphicon glyphicon-film">
+        </i>
+        The Program
+      </a> -->
+      </p>
+                  <!--Password: 77ywmyb5n -->
+     </p></div>
+    <div class="col-xs-offset-4 col-xs-8 col-sm-offset-3 col-sm-9">
+     <!--#include virtual="TMtemplates/tmContactHours.html" -->
+    </div>
+   </div>
+  <!--    NOTE: If you're attending on a Jets game night use the parking code 1000 on the kiosk to receive the discounted price of $8 for the evening-->
+  </div>
+  <!--  comment: .container -->
+ </body>
+</html>

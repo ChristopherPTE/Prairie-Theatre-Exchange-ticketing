@@ -1,0 +1,9 @@
+<field>pick(F_BTN_PRINT_AT_HOME,'<!-- comment: print at home as per company prefs')</field>
+<div class="form-group">
+ <label class="control-label" for="eticket">
+  <input id="eticket" name="SCH_TIX_PRINT_STATUS" onclick="submitForm('TMForm','btnDeliverySelect','YES');" type="radio" value="0" <field>pick(SCH_TIX_PRINT_STATUS=0,'','checked')</field>/>
+  E-Ticket: print at home or download to mobile
+ </label>
+ <!--#include virtual="TMtemplates/tmTicketHandlingPrintAtHomeModal.html" -->
+</div>
+<field>pick(F_BTN_PRINT_AT_HOME,'-->')</field>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Confirm Logoff and Close Carts
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div class="page-header">
+    <h1>
+     Logoff
+    </h1>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+    </div>
+    <div class="col-md-8">
+     <h4>
+      You are about to sign off <field>D_COMPANY_LONG</field> Online Ticketing.
+     </h4>
+     <div class="alert alert-info fade in">
+      <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+      You have an open shopping cart containing items selected 
+      for purchase.  Logging out will return all items and empty the cart.
+     </div>
+     <div>
+      <!-- comment: the logout is a post to make it work. -->
+      <form action="<field>F_HTML_FIREWALL</field>logoff" method="POST">
+       <a class="btn btn-success" href="<field>F_HTML_FIREWALL</field>login?btnCheckout=Checkout">
+        Pay for my order
+       </a>
+       <a class="btn btn-warning" href="<field>F_HTML_FIREWALL</field>login?btnCart=Cart">
+        Review my order
+       </a>
+       <input name="e" type="hidden" value="<field>F_EMAIL_ADDRESS</field>"/>
+       <input class="btn btn-danger" name="btnLogoutCancelOrder" type="submit" value="Cancel the order and logout now"/>
+      </form>
+     </div>
+    </div>
+    <!-- comment: .col-md-8 -->
+   </div>
+   <!-- comment: .row -->
+  </div>
+  <!-- comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

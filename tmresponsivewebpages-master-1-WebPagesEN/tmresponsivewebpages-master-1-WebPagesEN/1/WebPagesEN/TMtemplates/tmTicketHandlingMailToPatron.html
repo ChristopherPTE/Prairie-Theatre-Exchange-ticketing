@@ -1,0 +1,9 @@
+<field>pick(F_BTN_MAIL_TO_PATRON,'<!-- comment: mail to as patron per company prefs')</field>
+<div class="form-group">
+ <label class="control-label" for="mailtopatron">
+  <input id="mailtopatron" name="SCH_TIX_PRINT_STATUS" onclick="submitForm('TMForm','btnDeliverySelect','YES');" type="radio" value="1" <field>pick(SCH_TIX_PRINT_STATUS=1,'','checked')</field>/>
+  Mail me my <field>pick(SCH_TIX_QUANTITY=0,'tickets','items')</field>
+ </label>
+ <!--#include virtual="TMtemplates/tmTicketHandlingMailToPatronModal.html" -->
+</div>
+<field>pick(F_BTN_MAIL_TO_PATRON,'-->')</field>

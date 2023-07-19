@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <title>
+   <field>D_COMPANY_LONG</field> | Print at Home Tickets
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/PDFstyles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+ </head>
+ <body class="background" onload="window.print()">
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Print your tickets
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-4">   
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+       <div class="alert alert-info fade in">
+       <a aria-label="close" class="close" data-dismiss="alert" href="#">
+        &times;
+       </a>
+       Tickets
+       <b>
+        print on separate pages
+       </b>
+       and, depending on your browser, may not appear on this window.
+       </div>
+      <div class="alert alert-danger fade in">
+       <a aria-label="close" class="close" data-dismiss="alert" href="#">
+        &times;
+       </a>
+        Tickets must be printed on WHITE PAPER
+      </div>
+       <div class="alert alert-warning fade in">
+       <a aria-label="close" class="close" data-dismiss="alert" href="#">
+        &times;
+       </a>
+       If the printer dialog does not appear (or if you close it), 
+       click the 'Print Tickets' button.
+       </div>
+      <input class="btn btn-success" onclick="window.print()" type="button" value="Print Tickets"/>
+      <a class="btn btn-info" href="<field>F_HTML_FIREWALL</field>tmFee/tmBoxOfficePolicy.html"  onclick="return popup(this, 'notes')">
+       Policies
+      </a>
+     </div>
+     <div class="col-md-8">
+      <div class="well alert fade in">
+       <a aria-label="close" class="close" data-dismiss="alert" href="#">
+        &times;
+       </a>
+       <h3>
+         Print at Home Tickets
+        </h3>
+       <p>
+        These 'print-at-home' tickets are on file under your name for upcoming <field>low(tEditCheck.$setPlural(D_EVENT))</field> and are organized by <field>low(D_PERF_DESC)</field> and date.  If you have tickets for multiple <field>low(tEditCheck.$setPlural(D_PERF_DESC))</field>, please make sure to bring the correct tickets to the correct <field>low(D_PERF_DESC)</field>.
+       </p>
+       <p>
+        If you have any questions of concerns about the tickets or would like to exchange any of them
+        pursuant to our box office policies, please contact us using the information below.
+       </p>
+      </div>
+      <div class="well alert fade in">
+       <a aria-label="close" class="close" data-dismiss="alert" href="#">
+        &times;
+       </a>
+       <h3>
+         Notes
+        </h3>
+       <ul>
+        <li>
+         Only completed ticket sales are printed -AND- only if the ticket may be printed at home.
+        </li>
+        <li>
+         Tickets in this list may have been purchased online and/or at the box office.
+        </li>
+        <li>
+         Anything currently in an incomplete shopping cart will not appear in this list until the purchase is completed.
+        </li>
+        <li>
+         The box office will no longer print hard paper tickets for any tickets shown on this page.
+        </li>
+        <li>
+         Tickets are scanned/verified at the box office for validity, please make sure to print them legibly and show the entire bar code on the page.
+        </li>
+       </ul>
+       </div>
+
+      </div>
+     </div>
+    </div>
+   <p style="page-break-after:always;">
+   </p>
+  </div>
+  </div>
+  <field>F_HTML_HISTORICAL_CART_LIST</field>
+ </body>
+</html>

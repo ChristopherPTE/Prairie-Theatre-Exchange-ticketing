@@ -1,0 +1,11 @@
+<option value="<field>FC_SEQ</field>">
+ <field>pick(len(FC_RESULT1_NAME)>0&len(FC_RESULT2_NAME)>0, '<!-- comment:')</field> 
+ <field>FC_RESULT2_NAME</field>
+ <field>pick(len(FC_RESULT1_NAME)>0&len(FC_RESULT2_NAME)>0, '-->')</field>
+ <field>pick(len(FC_RESULT1_NAME)>0&len(FC_RESULT2_NAME)=0, '<!-- comment:')</field> 
+ <field>FC_RESULT1_NAME</field>
+ <field>pick(len(FC_RESULT1_NAME)>0&len(FC_RESULT2_NAME)=0, '-->')</field>
+ <field>pick(len(FC_RESULT1_NAME)=0&len(FC_RESULT2_NAME)>0, '<!-- comment:')</field> 
+ <field>FC_RESULT2_NAME</field>
+ <field>pick(len(FC_RESULT1_NAME)=0&len(FC_RESULT2_NAME)>0, '-->')</field>
+</option>

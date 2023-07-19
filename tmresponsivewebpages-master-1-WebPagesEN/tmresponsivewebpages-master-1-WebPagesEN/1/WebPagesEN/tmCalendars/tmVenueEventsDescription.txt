@@ -1,0 +1,18 @@
+{#- tm-template: 1.1 -#}
+{%- if D_SWITCH_BOARD -%}
+Phone: {{ D_SWITCH_BOARD }}
+{%- endif -%}
+{%- if D_EMAIL_ADDR %}
+Email: {{ D_EMAIL_ADDR }}
+{%- endif %}
+{%- if F_HTML_PERFORMANCE_MANAGE_LINK %}
+Manage: {{ F_HTML_PERFORMANCE_MANAGE_LINK }}
+{%- endif %}
+{%- if F_HTML_PERFORMANCE_BUY_LINK %}
+Buy: {{ F_HTML_PERFORMANCE_BUY_LINK }}
+{%- endif %}
+{%- if F_HTML_EVENT_NOTES_TEXT %}
+
+Description:
+{{ F_HTML_EVENT_NOTES_TEXT }}
+{% endif -%}

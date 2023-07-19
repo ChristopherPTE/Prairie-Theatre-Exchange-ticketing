@@ -1,0 +1,4 @@
+#	enter the value to represent searching for 'All Events'
+#	it goes at the top of the search window for events
+
+All <field>tEditCheck.$setPlural(D_EVENT)</field>

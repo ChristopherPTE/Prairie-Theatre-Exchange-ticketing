@@ -1,0 +1,8 @@
+<field>pick(F_HTML_DONATION_RECEIPT_ATTACHED>0,'<!-- comment:')</field>
+<div class="alert alert-success fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ NOTE: The email confimation has <field>F_HTML_DONATION_RECEIPT_ATTACHED</field>
+ <field>low(D_DONATION_DESC)</field> tax <field>tEditCheck.$setPlural('receipt', F_HTML_DONATION_RECEIPT_ATTACHED)</field>
+ included in any attachments.
+</div>
+<field>pick(F_HTML_DONATION_RECEIPT_ATTACHED>0,'-->')</field>

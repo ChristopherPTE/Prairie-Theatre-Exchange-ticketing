@@ -1,0 +1,9 @@
+{#- tm-template: 1.1 -#}
+{% if D_SWITCH_BOARD %}Phone: {{ D_SWITCH_BOARD }}{% endif %}
+{% if D_EMAIL_ADDR %}Email: {{ D_EMAIL_ADDR }}{% endif %}
+
+Online: {{ F_HTML_VOLUNTEER_ACTIVITY_LINK }}
+
+{% if P_PLAY_TITLE %}{{ D_EVENT }}: {{ P_PLAY_TITLE }}{% endif %}
+{% if PB_PERFORM_DATETIME %}{{ D_PERF_DESC }} Date: {{ PB_PERFORM_DATE | omnis_dateformat('eee MMM d y') }}
+{{ D_PERF_DESC }} Time: {{ PB_PERFORM_TIME | omnis_timeformat('h:mm a') }} {{ F_HTML_TZ_SHORT_NAME }}{% endif %}

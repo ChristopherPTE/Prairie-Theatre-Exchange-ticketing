@@ -1,0 +1,55 @@
+<script language="JavaScript">
+  <!--
+  var isAMSsubmitting = false;
+  function process() {
+    if (isAMSsubmitting) return false;
+    $(this).disabled = true;
+    $(this).attr('disabled', 'disabled')
+    var processingMessage = '<b>Please wait...this may take a few moments</b>';
+    var messageHeight = '20px';
+
+    $("#pleaseWait").html(processingMessage);
+    $("#pleaseWait").height(messageHeight);
+    $("#pleaseWait").css('visibility', 'visible');
+
+    isAMSSubmitting = true;
+    return true;
+  } 
+  //-->
+</script>
+<script type="text/javascript">
+  <!--
+  function processForward(inputId, route) {
+    $( '#' + inputId ).val('altbtn=' + route);
+    return process();
+  }
+  //-->
+</script>
+<script type="text/javascript">
+  <!--
+  function popup(mylink, windowname) {
+    if (! window.focus)return true;
+    var href;
+    if (typeof(mylink) == 'string')
+      href=mylink;
+    else
+      href=mylink.href;
+
+    window.open(href, windowname, 'width=400,height=500,scrollbars=yes');
+    return false;
+  }
+  //-->
+</script>
+<script type="text/javascript">
+  <!--
+  function openInParent(mylink) {
+    if (typeof(mylink) == 'string')
+      href=mylink;
+    else
+      href=mylink.href;
+
+    window.opener.location.href = href;
+    return false;
+  }
+  //-->
+</script>

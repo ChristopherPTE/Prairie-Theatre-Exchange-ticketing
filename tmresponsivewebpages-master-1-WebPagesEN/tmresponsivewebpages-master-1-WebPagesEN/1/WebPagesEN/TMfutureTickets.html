@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Tickets for Future <field>tEditCheck.$setPlural(D_EVENT)</field>
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+    <div class="alert alert-info fade in">
+     <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+     These are the tickets under your name for upcoming <field>low(D_PERF_DESC)</field>, organized by <field>low(D_PERF_DESC)</field>. 
+         If you have any question about the tickets or would like to 
+            exchange any of them pursuant to our
+     <a class="link" href="<field>F_HTML_FIREWALL</field>tmFee/tmBoxOfficePolicy.html" onclick="return popup(this, 'notes')">
+      box office policies,
+     </a>
+     please
+     <a class="link" href="<field>F_HTML_FIREWALL</field>TMtemplates/tmContactPopup.html" onclick="return popup(this, 'notes')">
+      contact us.
+     </a>
+     <br/>
+     <br/>
+     Note: only completed ticket sales are in this list. Tickets currently in a shopping cart do not appear
+         until the purchase is completed.
+    </div>
+    <field>F_HTML_HISTORICAL_CART_LIST</field>
+    <p>
+     &nbsp;
+    </p>
+    <a class="btn btn-info" href="<field>F_HTML_FIREWALL</field>online?btnHome=Home">
+     Return to Main Page
+    </a>
+    <field>pick(F_HTML_HISTORICAL_CART_LIST_PRINTABLE_COUNT>1,'<!-- comment: hide button if not able to print at home')</field>
+    <a class="btn btn-primary" href="<field>F_HTML_FIREWALL</field>login?futureticketsprint" target="_blank">
+     Print All <field>F_HTML_HISTORICAL_CART_LIST_PRINTABLE_COUNT</field> Future Tickets
+    </a>
+    <a class="btn btn-primary" href="<field>F_HTML_FIREWALL</field>login?futureticketspdf">
+     Download All <field>F_HTML_HISTORICAL_CART_LIST_PRINTABLE_COUNT</field> Tickets to PDF
+    </a>
+    <field>pick(F_HTML_HISTORICAL_CART_LIST_PRINTABLE_COUNT>1,'-->')</field>
+    <!--#include virtual="TMtemplates/tmContactHours.html" -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!-- comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

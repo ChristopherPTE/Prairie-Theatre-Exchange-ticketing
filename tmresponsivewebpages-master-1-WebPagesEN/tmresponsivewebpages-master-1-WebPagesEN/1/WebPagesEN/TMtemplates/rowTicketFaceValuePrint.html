@@ -1,0 +1,18 @@
+<field>pick(D_WEB_SHOW_FACE_VALUE,'<!-- comment: hide face value')</field>
+<tr>
+ <td class="ticketlineprint">
+  face value
+ </td>
+ <td class="tablerowticketprint">
+  $<field>F_HTML_TICKET_FACE_VALUE</field>
+ </td>
+</tr>
+<field>pick(D_WEB_SHOW_FACE_VALUE,'-->')</field>
+<field>pick(D_WEB_SHOW_FACE_VALUE,'','<!-- comment: show blank row for face value, to conform with rowspan and reportlab')</field>
+<tr>
+ <td class="ticketlineprint">
+ </td>
+ <td class="tablerowticketprint">
+ </td>
+</tr>
+<field>pick(D_WEB_SHOW_FACE_VALUE,'','-->')</field>

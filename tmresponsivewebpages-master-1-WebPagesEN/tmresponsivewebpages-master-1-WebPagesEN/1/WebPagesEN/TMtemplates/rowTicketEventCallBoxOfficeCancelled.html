@@ -1,0 +1,16 @@
+ <field>pick(PB_SALES_STATUS=2,'<!-- comment: this message is for CANCELLED events','')</field>
+ <div class="col-sm-9">
+  <div class="alert alert-danger fade in">
+   <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+   On
+   <field>dat(PB_DATE_SALES_STATUS,'w n D, y')</field>,
+   this performance was
+   <b>
+    CANCELLED
+   </b>
+   <p>
+    Futher information may be displayed above.
+   </p>
+  </div>
+ </div>
+ <field>pick(PB_SALES_STATUS=2,'-->','')</field>

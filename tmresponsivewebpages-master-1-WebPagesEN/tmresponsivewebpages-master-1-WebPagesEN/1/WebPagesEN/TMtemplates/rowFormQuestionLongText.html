@@ -1,0 +1,13 @@
+<div class="form-group">
+ <!--#include virtual="TMtemplates/rowFormQuestionKey.html" -->
+ <label class="col-sm-4 text-right form-check-label" for="<field>con(FQ_SEQ,'-question')</field>">
+  <field>FQ_QUESTION</field>
+ </label>
+ <div class="col-sm-8">
+  <textarea class="form-control" id="<field>con(FQ_SEQ,'-question')</field>" name="FA_ANSWER_STRING_<field>F_HTML_ROW</field>" aria-describedby="<field>con(FQ_SEQ,'-description')</field>" rows="3"><field>FA_ANSWER_STRING</field></textarea>
+  <field>pick(len(FQ_DESCRIPTION)>0,'<!-- comment: show help if available')</field>
+  <small id="<field>con(FQ_SEQ,'-description')</field>" class="form-text text-muted"><field>FQ_DESCRIPTION</field></small>
+  <field>pick(len(FQ_DESCRIPTION)>0,'-->')
+  </field>
+ </div>
+</div>

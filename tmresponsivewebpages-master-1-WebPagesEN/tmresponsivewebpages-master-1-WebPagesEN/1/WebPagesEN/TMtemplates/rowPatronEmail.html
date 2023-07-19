@@ -1,0 +1,43 @@
+  <div class="form-group">
+   <input name="CI_SEQ_<field>F_HTML_ROW</field>" type="hidden" value="<field>CI_SEQ</field>"/>
+   <input name="CCL_LOCATION_FC_SEQ_<field>F_HTML_ROW</field>" type="hidden" value="<field>CCL_LOCATION_FC_SEQ</field>"/>
+   <input name="CI_TYPE_<field>F_HTML_ROW</field>" type="hidden" value="<field>CI_TYPE</field>"/>
+   <label for="CI_CONTENTS_<field>F_HTML_ROW</field>">
+    <field>pick(MKT_PRIMARY_EMAIL_CI_SEQ=0,con(F_HTML_CONTACT_LOCATION,' ',F_HTML_CONTACT_TYPE),'Email Address')</field>
+   </label>
+   <input class="form-control" id="CI_CONTENTS_<field>F_HTML_ROW</field>" maxlength="100" name="CI_CONTENTS_<field>F_HTML_ROW</field>" placeholder="email address to send confirmation to <field>F_HTML_REQUIRE_EMAIL</field>" type="email" value="<field>CI_CONTENTS</field>" <field>pick(F_HTML_ALLOW_PASSWORD_CHANGE,'readonly')</field>/>
+   <field>pick(CI_SEQ>0&F_HTML_ALLOW_PASSWORD_CHANGE,'<!-- comment: when editing, change password is a button','')</field>
+   <a class="btn btn-warning btn-xs" href="<field>F_HTML_FIREWALL</field>login?<field>F_HTML_PASSWORD_RESET</field>">
+    Change Password
+   </a>
+   <field>pick(CI_SEQ>0&F_HTML_ALLOW_PASSWORD_CHANGE,'-->','')</field>
+  </div>
+  <field>pick(CI_SEQ<=0,'<!-- comment: if inserting, password is an entry field','')</field>
+  <div class="form-group" id="new_password_group_<field>F_HTML_ROW</field>">
+   <label for="CI_PASSWORD_<field>F_HTML_ROW</field>">
+    Password
+    <div class="control-label" style="display:inline">
+     <div class="figure" id="new_password_strength_<field>F_HTML_ROW</field>">
+      &nbsp;
+     </div>
+     <div class="figure" id="new_password_score_<field>F_HTML_ROW</field>">
+      &nbsp;
+     </div>
+    </div>
+   </label>
+   <input autocomplete="off" class="form-control" data-title="Caps lock is on" data-toggle="tooltip" data-trigger="manual" id="CI_PASSWORD_<field>F_HTML_ROW</field>" maxlength="<field>SPR_PASSWORD_MAX_LENGTH</field>" name="CI_PASSWORD_<field>F_HTML_ROW</field>" placeholder="<field>F_HTML_REQUIRE_PASSWORD</field>" type="password" value="<field>CI_PASSWORD</field>"/>
+  </div>
+  <script type="text/javascript">
+   <!--
+$(document).ready(function() {
+	addPasswordCheck($('#CI_PASSWORD_<field>F_HTML_ROW</field>'), $('#new_password_strength_<field>F_HTML_ROW</field>'), $('#new_password_score_<field>F_HTML_ROW</field>'), $('#new_password_group_<field>F_HTML_ROW</field>'));
+})
+//-->
+  </script>
+  <div class="form-group">
+   <label for="p_<field>F_HTML_ROW</field>">
+    Re-Type for Verification
+   </label>
+   <input autocomplete="off" class="form-control" data-title="Caps lock is on" data-toggle="tooltip" data-trigger="manual" id="p_<field>F_HTML_ROW</field>" maxlength="<field>SPR_PASSWORD_MAX_LENGTH</field>" name="p_<field>F_HTML_ROW</field>" type="password" value="<field>F_WEBPAGE_PASSWORD</field>"/>
+  </div>
+  <field>pick(CI_SEQ<=0,'-->','')</field>

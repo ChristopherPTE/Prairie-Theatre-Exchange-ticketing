@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Description - <field>VE_NAME</field>
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="row">
+     <div class="col-md-4">
+      <div class="page-header">
+       <h1>
+        <field>VE_NAME</field>
+       </h1>
+      </div>
+      <div class="alert alert-info fade in">
+       <field>VE_ADDRESS1</field>
+       <br/>
+       <field>pick(len(VE_ADDRESS2)>0,'<!-- comment: two lines of address')</field>
+         <field>VE_ADDRESS2</field>
+       <br/>
+       <field>pick(len(VE_ADDRESS2)>0,'-->')</field>
+        <field>VE_CITY</field> <field>VE_PROVINCE</field> <field>VE_POSTAL_CODE</field>
+      </div>
+      <field>pick(len(VE_NOTES)>0,'<!-- comment: no sales notes')</field>
+      <h3>
+       <field>D_VENUE</field> Notes
+      </h3>
+      <div class="alert alert-info fade in">
+       <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+       <field>VE_NOTES</field>
+       <br/>
+       Capacity: <field>TM_SEATS_REPORT</field>
+      </div>
+      <field>pick(len(VE_NOTES)>0,'-->')</field>
+      <a class="btn btn-success" href="<field>F_HTML_FIREWALL</field>login?venue=<field>VE_SEQ</field>">
+       Buy Tickets For Events in this Venue
+      </a>
+      <a class="btn btn-info" href="http://maps.google.com/maps?q=<field>VE_ADDRESS1</field> <field>VE_ADDRESS2</field> <field>VE_CITY</field> <field>VE_PROVINCE</field>
+          <field>VE_POSTAL_CODE</field> <field>VE_COUNTRY</field>" target="_blank">
+          Directions
+      </a>
+     </div>
+     <!-- comment: display the map of the venue -->
+     <div class="col-md-8">
+      <img alt="seat map" class="img-thumbnail visible-lg visible-md" src="<field>F_HTML_SEATMAP</field>&selected_only=no&img_quality=75&format=pick"/>
+      <img alt="seat map" class="img-thumbnail visible-sm visible-xs" src="<field>F_HTML_SEATMAP</field>&selected_only=no&img_quality=75&format=pick" style="width: 300px;"/>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

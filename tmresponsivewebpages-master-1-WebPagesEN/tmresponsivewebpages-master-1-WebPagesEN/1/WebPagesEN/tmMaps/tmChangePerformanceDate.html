@@ -1,0 +1,29 @@
+<field>pick(D_WEB_SHOW_TT_IMAGES,'<!-- comment: Ticket Trove Image ')</field>
+<img class="media-object visible-lg visible-md img-thumbnail" alt="poster for event" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>"/>
+<img class="media-object visible-sm visible-xs img-thumbnail" alt="poster for event" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>" style="width: 64px;"/>
+<field>pick(D_WEB_SHOW_TT_IMAGES,' -->')</field>
+<h4>
+ You've selected
+</h4>
+<p>
+ <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+</p>
+<small>
+ <!--#include virtual="TMtemplates/rowEventSalesNotes.html" -->
+</small>
+<h4>
+ Venue
+</h4>
+<p>
+ <strong>
+  <field>VE_NAME</field>
+ </strong>
+ <br/>
+ <field>VE_ADDRESS1</field>
+ <br/>
+ <field>pick(len(VE_ADDRESS2)>0,'<!-- comment:')</field>
+ <field>VE_ADDRESS2</field>
+ <br/>
+ <field>pick(len(VE_ADDRESS2)>0,'-->')</field>
+ <field>VE_CITY</field> <field>VE_PROVINCE</field> <field>VE_POSTAL_CODE</field>
+</p>

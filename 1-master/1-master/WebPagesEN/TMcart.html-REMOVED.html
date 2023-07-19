@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <title>
+   <field>D_COMPANY_LONG</field> | Shopping Cart Window
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Shopping Cart
+        <field>pick(SCH_SEQ>0,'<!-- comment:')</field>
+         #<field>SCH_SEQ</field>
+        <field>pick(SCH_SEQ>0,'-->')</field>
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmCartMessageRequiresRepricing.html" -->
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <field>pick(not(F_REMOVE_CART_ITEM_ALLOWED),'<!-- comment: there is no cart')</field>-->
+      <!--#include virtual="TMtemplates/tmCartEmpty.html" -->
+      <field>pick(not(F_REMOVE_CART_ITEM_ALLOWED),'-->')</field>
+      <field>pick(F_REMOVE_CART_ITEM_ALLOWED,'<!-- comment: there is a cart')</field>-->
+      <!--#include virtual="TMtemplates/tmCartMessageInfo.html" -->
+      <field>pick(F_REMOVE_CART_ITEM_ALLOWED,'-->')</field>
+     </div>
+     <div class="col-md-8">
+      <!--#include virtual="TMtemplates/rowCartDonationSuggestion.html" -->
+      <field>pick(F_REMOVE_CART_ITEM_ALLOWED,'<!-- comment: there is a cart')</field>-->
+      <!--#include virtual="TMtemplates/tmCartWithItems.html" -->
+     <field>pick(F_REMOVE_CART_ITEM_ALLOWED,'-->')</field>
+         <form action="<field>F_HTML_FIREWALL</field>online" id="TMForm" method="POST">
+          <div align="center">
+<div style="clear: both;">
+         <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+         <!-- comment: Update the hidden "pf" field with the Payment Frequency to use as the default post dated payment list.
+                              Refer to tmCheckoutPostDatedPayments.html for the full list of options available.
+                              pf=1 is the default setting for monthly installment payments.
+                -->
+         <field>pick(F_REMOVE_CART_ITEM_ALLOWED,'<!-- comment: only need checkout button if cart has things')</field>
+         <input class="btn btn-success" name="btnCheckout" onclick="process()" type="submit" value="Checkout & Pay"/>
+         <input name="pf" type="hidden" value="1"/>
+         <field>pick(F_REMOVE_CART_ITEM_ALLOWED,'-->')</field>
+         <input class="btn btn-primary" id="btnGetEventList" name="btnGetEventList" onclick="process()" type="submit" value="Continue Shopping"/>
+         <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION=1,'<!-- comment: only show if enabled to redeem passes','')</field>
+         <input class="btn btn-primary" name="btnPassRemainingValues" onclick="process()" type="submit" value="Redeem My Passes/Gift Certificates"/>
+         <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION=1,'-->','')</field>
+         <!-- comment: Update the hidden "fee" field with the Fee Number with the matching Mailing Fee Number
+                              in Theatre Manager.  If you do not want the mailing option at all on your web pages,
+                              comment out the following section  or remove the fee number from company preferences.
+                              If you want the patron to go to the checkout page right away, then add the input field
+                              <input type=hidden name=param value="altbtn=btnCheckoutProcessing"> after the
+                              D_WEB_MAIL_FEE_SEQ input field.
+                -->
+         <field>pick(F_MAIL_FEE_ALLOWED,'<!-- comment: only show mail button if required')</field>
+         <input class="btn btn-primary" name="btnMailFeeAdd" onclick="process()" type="submit" value="Mail Me My Tickets"/>
+         <input name="fee" type="hidden" value="<field>D_WEB_MAIL_FEE_SEQ</field>"/>
+         <field>pick(F_MAIL_FEE_ALLOWED,'-->')</field>
+         <br/>
+         <br/>
+        </div>
+        <input name="hiddenSubmit" type="hidden" value=""/>
+        <!--comment: hidden input used to submit drop-down selections-->
+        <!-- comment: This section to allow coupon acceptance from the cart page.
+                          The hidden parameter 'param' can be set to 'btnCart' to return to the cart window
+                          when an error occurs or can be removed to be directed to a seperate entry page
+                          or can be set to 'btnGetEventList' to go to the ticket page showing only the
+                          events that the coupon opens up for pre-sales access.
+            -->
+       </div>
+      </form>
+      <div align="center">
+       <field>pick(F_COUPON_ALLOWED,'<!-- comment: based on setting in company preferences')</field>
+       <form action="<field>F_HTML_FIREWALL</field>online" class="form-inline" method="post">
+        <input name="param" type="hidden" value="altbtn=btnCart"/>
+        <div class="form-group">
+         <input class="form-control" id="CH_CODE" maxlength="40" name="CH_CODE" onblur="this.value=this.value.toUpperCase()" placeholder="Coupon Code" size="40" type="text" value="<field>CH_CODE</field>"/>
+        </div>
+        <input class="btn btn-success" name="btnCouponAccept" onclick="process()" type="submit" value="Add Coupon"/>
+       </form>
+       <field>pick(F_COUPON_ALLOWED,'-->')</field>
+      </div>
+      <div class="text-muted" style="margin: 10px 0;">
+      Please note that all ticket purchases are final sales.
+
+	  If you wish to purchase another ticket, <field>low(D_MEMBER_DESC)</field>
+      or make a <field>low(D_DONATION_DESC)</field>, select from the menu options
+      at the top of the window.
+      </div>
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+ </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Historical Shopping Cart Detail
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="backgroundprint" onload="window.print()">
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Cart #<field>SCH_SEQ</field>
+      <br/>
+      <small class="text-muted">
+       Order <field>SCH_ORD_SEQ</field> purchased <field>dat(SCH_DATE_CHECKOUT,'w n D, y')</field>
+      </small>
+     </h1>
+    </div>
+    <div class="row">
+     <field>pick(len(SCH_ORD_NOTES)>0,'<!-- comment: cart order notes')</field>
+     <div class="alert alert-warning fade in">
+      <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+      <b>
+       Notes:
+      </b>
+      <br/>
+      <field>SCH_ORD_NOTES</field>
+     </div>
+     <field>pick(len(SCH_ORD_NOTES)>0,'-->')</field>
+     <div class="table-responsive">
+      <table class="table table-striped table-condensed table-responsive table-hover">
+       <thead>
+        <tr>
+         <th>
+          Item
+         </th>
+         <th class="text-center">
+          Qty
+         </th>
+         <th>
+          Description
+         </th>
+         <th class="text-right">
+          Total
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <field>F_HTML_HISTORICAL_CART_DETAIL_LIST</field>
+       </tbody>
+       <tfoot>
+        <tr>
+         <td class="text-right" colspan="3">
+          <b>
+           GRAND TOTAL 
+                  <field>pick(SCH_TAX1+SCH_TAX2+SCH_TAX3>0,'','(includes all applicable taxes)')</field>
+          </b>
+         </td>
+         <td class="text-right">
+          <b>
+           $<field>SCH_TOTAL_COST</field>
+          </b>
+         </td>
+        </tr>
+       </tfoot>
+      </table>
+     </div>
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

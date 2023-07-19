@@ -1,0 +1,24 @@
+<tr>
+ <td class="text-center">
+  <field>pick(F_HTML_SUBSCRIPTION_EVENT_MANDATORY,'','<!-- comment: these are mandatory events ')</field>
+  Included in Package
+  <input name="SG_SEQ_<field>SG_SEQ</field>_<field>F_HTML_ROW</field>" type="hidden" value="<field>P_SEQ</field>"/>
+  <field>pick(F_HTML_SUBSCRIPTION_EVENT_MANDATORY,'','--> ')</field>
+  <field>pick(F_HTML_SUBSCRIPTION_EVENT_MANDATORY,'<!-- comment: these are optional events ','')</field>
+  <input id="SG_SEQ_<field>SG_SEQ</field>_<field>F_HTML_ROW</field>" name="SG_SEQ_<field>SG_SEQ</field>_<field>F_HTML_ROW</field>" type="checkbox" value="<field>P_SEQ</field>" <field>F_HTML_CHECKED</field>/>
+  <label for="SG_SEQ_<field>SG_SEQ</field>_<field>F_HTML_ROW</field>">
+   &nbsp; Optional
+  </label>
+  <field>pick(F_HTML_SUBSCRIPTION_EVENT_MANDATORY,'--> ','')</field>
+ </td>
+ <td class="text-left">
+  <a href="<field>F_HTML_FIREWALL</field>tmEvent/tmEvent<field>P_SEQ</field>.html" onclick="return popup(this, 'notes')">
+   <field>P_PLAY_TITLE</field>
+  </a>
+ </td>
+ <td class="text-left">
+  <field>cap(dat(PB_PERFORM_DATE,'m D, y'))</field>
+  at
+  <field>dat(PB_PERFORM_TIME,'h:N A')</field>
+ </td>
+</tr>

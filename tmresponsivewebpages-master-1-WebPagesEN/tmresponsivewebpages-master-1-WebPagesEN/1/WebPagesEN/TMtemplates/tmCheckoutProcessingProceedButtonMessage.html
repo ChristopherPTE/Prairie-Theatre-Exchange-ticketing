@@ -1,0 +1,24 @@
+<div class="alert alert-info fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+  <field>pick(F_HTML_USE_HOSTED_PAYMENT_PAGE,'<!-- comment:')</field>  
+    Click
+    <b>
+     Proceed to credit card entry
+    </b>
+    button to continue the checkout process.
+  <field>pick(F_HTML_USE_HOSTED_PAYMENT_PAGE,'-->')</field>  
+  <field>pick(F_HTML_USE_INLINE_PAYMENT_PAGE,'<!-- comment:')</field>  
+    Enter credit card information and click
+    <b>
+     Pay
+    </b>
+    to continue the checkout process
+  <field>pick(F_HTML_USE_INLINE_PAYMENT_PAGE,'-->')</field>  
+  <field>pick(F_HTML_USE_ALTERNATE_PAYMENT_PAGE,'','<!-- comment: historical checkout page')</field>  
+    Click
+    <b>
+     Charge my card NOW
+    </b>
+    button to continue the checkout process.
+  <field>pick(F_HTML_USE_ALTERNATE_PAYMENT_PAGE,'','-->')</field>  
+</div>

@@ -1,0 +1,191 @@
+ <!-- Modal -->
+ <div aria-labelledby="AddAttendeeModalLabel" class="modal fade" id="AddAttendeeModal" role="dialog" tabindex="-1">
+  <div class="modal-dialog" role="document">
+   <div class="modal-content">
+    <div class="modal-header">
+     <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+      <span aria-hidden="true">
+       &times;
+      </span>
+     </button>
+     <h4 class="modal-title" id="AddAttendeeModalLabel">
+      Attendee Search
+     </h4>
+    </div>
+    <div class="modal-body">
+     <div class="form-group">
+      <div class="input-group">
+       <input class="form-control" id="PatronName" placeholder="Name" type="text"/>
+       <div class="input-group-btn">
+        <button class="btn btn-primary" id="PatronSearch" type="button">
+         <i class="fa fa-circle-o-notch fa-spin" id="SearchSpinnerIcon" style="display: none;">
+         </i>
+         <i class="glyphicon glyphicon-search" id="SearchIcon">
+         </i>
+         Search
+        </button>
+       </div>
+      </div>
+     </div>
+     <div id="SearchHelp">
+      <span>
+       Please type a name and click or tap
+       <strong>
+        Search
+       </strong>
+       to add an attendee
+      </span>
+     </div>
+     <div id="SearchResultsTable" style="display: none;">
+      <table class="table table-striped table-condensed table-responsive table-hover">
+       <thead>
+        <tr>
+         <th class="text-left">
+          #
+         </th>
+         <th class="text-left">
+          Name
+         </th>
+         <th class="text-left">
+          Company
+         </th>
+         <th class="text-right">
+         </th>
+        </tr>
+       </thead>
+       <tbody id="SearchResults">
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <!-- /.modal -->
+ <!-- comment: AJAX -->
+ <!-- comment: AJAX templates start -->
+ <rawfield>
+  <script id="error-template" type="text/x-handlebars-template">
+   <span class="text-danger">
+        <span class="glyphicon glyphicon-exclamation-sign"></span>
+        Unable to communicate with server.  Please try again later.
+      </span>
+  </script>
+  <script id="empty-template" type="text/x-handlebars-template">
+   <span class="text-warning">
+        <span class="glyphicon glyphicon-exclamation-sign"></span>
+        No results found.
+      </span>
+  </script>
+  <script id="results-template" type="text/x-handlebars-template">
+   {{#each results}}
+    <tr>
+        <td class="text-left">{{ this.c_seq }}</td>
+        <td class="text-left">{{ this.c_formal_name }}</td>
+        <td class="text-left">{{ this.c_company }}</td>
+        <td class="text-right">
+            <div class="btn-group" role="group">
+          <a class="btn btn-success btn-xs" href="{{ ../get_url }}?manageperfpay={{ ../pb_seq }}&patron={{ this.c_seq }}" title="Add {{ this.c_formal_name }}">
+            <span class="glyphicon glyphicon-plus">
+            </span>
+            Select Price & Payment
+          </a>
+            </div>
+        </td>
+    </tr>
+    {{/each}}
+  </script>
+ </rawfield>
+ <!-- comment: AJAX templates end -->
+ <!-- comment: AJAX loading start -->
+ <script type="text/javascript">
+  $(document).ready(function () {
+ // Convert page parameters into JS variables
+ var getUrl = "<field>F_HTML_FIREWALL</field>online";
+ var pb_seq = <field>PB_SEQ</field>;
+
+ $('#AddAttendeeModal').on('shown.bs.modal', function () {
+  $('#PatronName').focus()
+ });
+
+ // Handle Enter in entry field
+ $('#PatronName').keyup(function (e) {
+  if (e.keyCode == 13) {
+   $(this).trigger("enterKey");
+  }
+ });
+ $('#PatronName').bind("enterKey", function (e) {
+  $("#PatronSearch").trigger('click');
+ });
+
+ // Select all text when user clicks search field 
+ $('#PatronName').click(function () {
+  $(this).select();
+ });
+
+ // Handle Search
+ $("#PatronSearch").click(function () {
+  // Show Search Spinner
+  $("#SearchIcon").hide();
+  $("#SearchSpinnerIcon").show();
+
+  // Hide result areas
+  $("#SearchHelp").hide();
+  $("#SearchResultsTable").hide();
+
+  // Disable the patron search box when searching
+  $("#PatronName").prop("disabled", true);
+  $(this).prop("disabled", true);
+
+  $.ajax({
+   // Issue GET request for JSON
+   type: "GET",
+   dataType: "json",
+
+   // Inject the URL of the server
+   url: getUrl,
+
+   // Query args.  Extract the query arg from the search box
+   // Pagination args: limit and/or offset.  E.g. { limit: 50, offset: 50 }
+   data: {
+    manageperfsearch: $("#PatronName").val(),
+    exclude_performance: pb_seq
+   }
+  })
+   // Successful request?  Create each row in the list with a button to add a person
+   .done(function (json) {
+    // Add each row based on the returned data (or an empty template if nothing)   
+    if (!!json.data && json.data.length > 0) {
+     $("#SearchResults").handlebars("#results-template", { results: json.data, pb_seq: pb_seq, get_url: getUrl });
+
+     // Show results table and re-enable search
+     $("#SearchResultsTable").show();
+
+    } else {
+     $("#SearchHelp").handlebars("#empty-template");
+
+     // Show text help and re-enable search
+     $("#SearchHelp").show();
+    }
+
+    $("#SearchIcon").show();
+    $("#SearchSpinnerIcon").hide();
+    $("#PatronName").prop("disabled", false);
+    $("#PatronSearch").prop("disabled", false);
+   })
+
+   // Failed request?  Show the user an error message
+   .fail(function (xhr, status, errorThrown) {
+    $("#Searchhelp").handlebars("#error-template");
+
+    // Show text help and re-enable search
+    $("#SearchHelp").show();
+    $("#SearchIcon").show();
+    $("#SearchSpinnerIcon").hide();
+    $("#PatronName").prop("disabled", false);
+    $("#PatronSearch").prop("disabled", false);
+   })
+ });
+});
+ </script>
+ <!-- comment: AJAX loading end -->

@@ -1,0 +1,72 @@
+/* Styles for pick your own seats maps */
+body.js-off .desktop_navigation {
+	display: none;
+}
+
+body.js-off #btnBestAvailSwap {
+	display: none;
+}
+
+#venue_map_client_side > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.venue_map_container {
+  padding-top: 1em;
+}
+
+.theatre_manager_seat_map .theatre_manager_seat.unavailable:hover .theatre_manager_seat_label,
+.theatre_manager_seat_map .theatre_manager_seat.unavailable .theatre_manager_seat_label
+{ 
+  font-family: FontAwesome; 
+  font-size: 0.9em;
+}
+
+.available-color {
+  background-color: lightgrey;
+}
+
+.theatre_manager_seat_map .theatre_manager_seat.available:hover .theatre_manager_seat_graphic,
+.theatre_manager_seat_map .theatre_manager_seat.available .theatre_manager_seat_graphic {
+  fill: lightgrey;
+}
+
+.theatre_manager_seat_map .theatre_manager_seat.selected:hover .theatre_manager_seat_graphic,
+.theatre_manager_seat_map .theatre_manager_seat.selected .theatre_manager_seat_graphic { 
+  cursor: pointer;
+  stroke: purple;
+  stroke-width: 1.4em;
+  fill: lightgrey;
+}
+
+.unavailable-color {
+  background-color: #FFFFFF;
+}
+
+.theatre_manager_seat_map .theatre_manager_seat.unavailable:hover .theatre_manager_seat_graphic,
+.theatre_manager_seat_map .theatre_manager_seat.unavailable .theatre_manager_seat_graphic {
+  fill: #FFFFFF;
+}
+
+.reserved-color { 
+  background-color: #00FF00;
+}
+
+.theatre_manager_seat_map .theatre_manager_seat.reserved:hover .theatre_manager_seat_graphic,
+.theatre_manager_seat_map .theatre_manager_seat.reserved .theatre_manager_seat_graphic { 
+  cursor: pointer;
+  fill: #00FF00;
+}
+
+.selected-color { 
+  background-color: purple;
+}
+
+.theatre_manager_seat_map .theatre_manager_seat.selected.reserved:hover .theatre_manager_seat_graphic,
+.theatre_manager_seat_map .theatre_manager_seat.selected.reserved .theatre_manager_seat_graphic { 
+  cursor: pointer;
+  stroke: purple;
+  stroke-width: 1.4em;
+  fill: #00FF00;
+}

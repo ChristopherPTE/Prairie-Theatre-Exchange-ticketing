@@ -1,0 +1,55 @@
+ .button 
+	{
+	font-size:11px;
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	color:#FFFFFF;
+	height:24px;
+	background-color: #40648A;
+solid;
+	border-color:#7A93AD;
+	border-width:2px;
+	filter:progid:DXiMageTransform.microsoft.Gradient(GradientType=0,StartColorStr='#ff800000',EndColorStr='#ff800000');
+	}
+
+.buttonover
+	{
+	font-size:11px;
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	color:#FFFFFF;
+	height:24px;
+	background-color: #7A93AD;
+solid;
+	border-color:#40648A;
+	border-width:2px;
+	filter:progid:DXiMageTransform.microsoft.Gradient(GradientType=0,StartColorStr='#ff800000',EndColorStr='#ff333333');
+	}
+
+ .new
+	{
+	font-size:11px;
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	color:#FFFFFF;
+	height:24px;
+	background-color: #40648A;
+solid;
+	border-color:#40648A;
+	border-width:2px;
+	filter:progid:DXiMageTransform.microsoft.Gradient(GradientType=0,StartColorStr='#ff800000',EndColorStr='#ff333333');
+	}
+
+.newover
+	{
+	font-size:11px;
+	font-family:Verdana,sans-serif;
+	font-weight:bold;
+	color:#FFFFFF;
+	height:24px;
+	background-color: #7A93AD;
+solid;
+	border-color:#40648A;
+	border-width:2px;
+	filter:progid:DXiMageTransform.microsoft.Gradient(GradientType=0,StartColorStr='#ff800000',EndColorStr='#ff333333');
+	}

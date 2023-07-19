@@ -1,0 +1,14 @@
+<field>pick(F_DONATION_ALLOWED,'<!-- comment: based on setting in company preferences to show suggested donation','')</field>
+<div class="alert alert-warning fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <div>
+  <a class="btn btn-info btn-xs" href="<field>F_HTML_FIREWALL</field>login?donationcampaigns">
+   Donate
+  </a>
+ </div>
+ <p>
+  Please consider making a donation. <field>D_COMPANY_LONG</field> is a registered charity and your 
+  donation is completely deductible to the full extent of the law.
+ </p>
+</div>
+<field>pick(F_DONATION_ALLOWED,'-->','')</field>

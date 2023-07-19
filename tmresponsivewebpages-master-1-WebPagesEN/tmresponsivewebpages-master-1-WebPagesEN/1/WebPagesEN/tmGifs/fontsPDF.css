@@ -1,0 +1,24 @@
+/* Arial */
+@font-face {
+    font-family: Arial;
+    src: url('../tmVendor/mod-tm-free-fonts-1.0.0/arial/arial.ttf');
+ }
+
+/* Verdana */
+@font-face {
+   font-family: Verdana;
+   src: url('../tmVendor/mod-tm-free-fonts-1.0.0/verdana/verdana.ttf');
+}
+
+@font-face {
+   font-family: Verdana;
+   src: url('../tmVendor/mod-tm-free-fonts-1.0.0/verdana/verdana-bold.ttf');
+   font-weight: bold;
+}
+
+@font-face {
+   font-family: Verdana;
+   src: url('../tmVendor/mod-tm-free-fonts-1.0.0/verdana/verdana-bold-italic.ttf');
+   font-weight: bold;
+   font-style: italic;
+}

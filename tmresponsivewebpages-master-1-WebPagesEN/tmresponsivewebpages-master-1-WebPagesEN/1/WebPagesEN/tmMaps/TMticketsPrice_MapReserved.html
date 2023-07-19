@@ -1,0 +1,50 @@
+<!-- comment: used for Reserved seating sales methods -->
+<!--#include virtual="tmMaps/tmPickYourSeatMapDisplay.html" -->
+<!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+<form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+ <!--#include virtual="tmMaps/TMticketsPrice_MapFormFields.html" -->
+ <div class="well well-sm">
+  <field>pick(not(F_HTML_ALLOW_PICK_YOUR_OWN),'<!-- comment: when using suggest a seat')</field>
+  <img alt="Step 1" src="tmGifs/step1.gif" width="24"/>
+  <b>
+   Seat Selecton:
+  </b>
+  &nbsp;&nbsp;
+  <input class="btn btn-info" name="btnBestAvail" onclick="process()" type="submit" value="Suggest Other Seats"/>
+  <field>pick(not(F_HTML_ALLOW_PICK_YOUR_OWN),'-->')</field>
+  <!--#include virtual="tmMaps/tmPickYourSeatButtons.html" -->
+ </div>
+ <div class="well well-sm">
+  <img alt="Step 2" src="tmGifs/step2.gif" width="24"/>
+  <b>
+   Price Selection:
+  </b>
+  &nbsp; &nbsp;
+  <input class="btn btn-success" name="btnReserveTicket" onclick="process()" type="submit" value="Buy Tickets Shown"/>
+  <input class="btn btn-danger" name="btnReserveCancel" type="submit" value="Start Over"/>
+  <!--#include virtual="tmMaps/TMticketsSelectPriceText.html" -->
+  <table class="table table-striped table-condensed table-responsive table-hover">
+   <thead>
+    <th class="text-left">
+     <field>D_SECTION_DESC</field>
+    </th>
+    <th class="text-left">
+     <field>D_ROW_DESC</field>
+    </th>
+    <th class="text-left">
+     <field>D_SEAT_DESC</field>
+    </th>
+    <th class="text-left">
+     Seat Notes
+    </th>
+    <th class="text-left">
+     Select Price
+    </th>
+   </thead>
+   <tbody>
+    <field>F_HTML_BEST_SEATS_LIST</field>
+   </tbody>
+  </table>
+  <!--#include virtual="tmMaps/tmViewFromSeat.html" -->
+ </div>
+</form>

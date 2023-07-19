@@ -1,0 +1,38 @@
+<tr>
+ <td class="text-left">
+  Subscription
+ </td>
+ <td class="text-center">
+  &nbsp;
+ </td>
+ <td class="text-left">
+  <a class="link" href="<field>F_HTML_FIREWALL</field>tmSubscription/tmSubscription<field>SG_SEQ</field>.html?SG_SEQ=<field>SG_SEQ</field>" onclick="return popup(this, 'notes')">
+   <field>SG_DESCRIPTION</field>
+  </a>
+  <br/>
+  <p>
+   For your convenience, all <field>low($ctask.tEditCheck.$setPlural(D_EVENT))</field> in the
+   subscription package were added to your cart.  You may
+   <b>
+    remove any optional <field>low($ctask.tEditCheck.$setPlural(D_EVENT))</field>
+   </b>
+   if you do not wish to purchase them.
+  </p>
+  <p>
+   The following <field>low($ctask.tEditCheck.$setPlural(D_SEAT_DESC))</field> 
+   have been reserved for you.
+   <br/>
+  </p>
+  <!--#include virtual="TMtemplates/rowSectionRowSeat.html" -->
+  <!--#include virtual="TMtemplates/rowPromotionPriceCode.html" -->
+  <!--#include virtual="TMtemplates/rowTicketFaceValue.html" -->
+ </td>
+  <td class="text-right">
+  &nbsp;
+ </td>
+ <td class="text-center">
+  <input name="SCD_SEQ" type="hidden" value="<field>SCD_SEQ</field>"/>
+  <input name="SCD_PURCHASE_GROUP" type="hidden" value="<field>SCD_PURCHASE_GROUP</field>"/>
+  <!-- comment: input name="F_HTML_REMOVE_CART_ITEM_YN" type="hidden" value="NO"/ -->
+ </td>
+</tr>

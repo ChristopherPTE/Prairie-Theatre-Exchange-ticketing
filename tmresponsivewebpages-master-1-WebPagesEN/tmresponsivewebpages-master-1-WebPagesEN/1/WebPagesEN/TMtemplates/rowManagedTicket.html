@@ -1,0 +1,75 @@
+  <!-- comment: 
+  To display all orders you can remove the checks for order balance.
+-->
+  <field>pick(ORD_BALANCE<=0,'<!-- comment: ')</field>
+  <tr>
+   <field>pick(ORD_BALANCE<=0,'-->')</field> 
+   <field>pick(ORD_BALANCE>0,'<!-- comment: ')</field>
+  </tr>
+  <tr class="danger">
+   <field>pick(ORD_BALANCE>0,'-->')</field>
+   <td class="text-left">
+    <field>C_FORMAL_NAME</field>
+   </td>
+   <td class="text-left">
+    <field>C_COMPANY</field>
+   </td>
+   <field>pick(F_HTML_CAN_VIEW_REVENUE,'<!-- comment: ')</field>
+   <td class="text-left">
+    <field>PC_DESCRIPTION</field>
+   </td>
+   <td class="text-left">
+    <field>SC_DESCRIPTION</field>
+   </td>
+   <field>pick(F_HTML_CAN_VIEW_REVENUE,'-->')</field>
+   <td class="text-center">
+    <field>pick(PS_PATRON_CAME,'','<!-- comment:')</field>
+    <span class="glyphicon glyphicon-remove-circle text-danger">
+    </span>
+    <field>pick(PS_PATRON_CAME,'','-->')</field>
+    <field>pick(PS_PATRON_CAME&not(PS_SCAN_IP_ADDR),'<!-- comment:')</field>
+    <span class="glyphicon glyphicon-ok-circle text-success">
+    </span>
+    <field>pick(PS_PATRON_CAME&not(PS_SCAN_IP_ADDR),'-->')</field>
+    <field>pick(PS_PATRON_CAME&PS_SCAN_IP_ADDR,'<!-- comment:')</field>
+    <span class="glyphicon glyphicon-qrcode text-success">
+    </span>
+    <field>pick(PS_PATRON_CAME&PS_SCAN_IP_ADDR,'-->')</field>
+   </td>
+   <field>pick(F_HTML_CAN_SET_ATTENDANCE,'<!-- comment: ')</field>
+   <td class="text-left">
+    <!-- comment: Show a text description and a remove icon if the person can change the reason  -->
+    <field>pick(not(F_HTML_ATTENDANCE_REASON_SHORT),'<!-- comment: ')</field>
+    <a class="btn btn-primary btn-xs text-right" href="<field>F_HTML_FIREWALL</field>online?courseattendance=<field>PS_SEQ</field>">
+     <span class="glyphicon glyphicon-edit">
+     </span>
+     <field>pick(PB_PERFORM_DATETIME>F_HTML_CURRENT_DATETIME, 'Attended', 'Attending')</field>
+    </a>
+    <field>pick(not(F_HTML_ATTENDANCE_REASON_SHORT),'-->')</field>
+    <!-- comment: Show a text description with a button if they user can change the attendance  -->
+    <field>pick(F_HTML_ATTENDANCE_REASON_SHORT,'<!-- comment: ')</field>
+    <div class="btn-group" role="group">
+     <a class="btn btn-warning btn-xs text-right" href="<field>F_HTML_FIREWALL</field>online?courseattendance=<field>PS_SEQ</field>">
+      <span class="glyphicon glyphicon-edit">
+      </span>
+      <field>F_HTML_ATTENDANCE_REASON_SHORT</field>
+     </a>
+    </div>
+    <field>pick(F_HTML_ATTENDANCE_REASON_SHORT,'-->')</field>
+   </td>
+   <field>pick(F_HTML_CAN_SET_ATTENDANCE,'-->')</field>
+   <td>
+    <!-- comment: If the order balance is less than or equal to zero, then just indicate that the user has paid -->
+    <field>pick(ORD_BALANCE<=0,'<!-- comment: ')</field>
+    <span class="glyphicon glyphicon-ok-sign text-success">
+    </span>
+    Yes
+    <field>pick(ORD_BALANCE<=0,'-->')</field>
+    <!-- comment: If the order balance is greater than 0, then show either "no" or buttons to help the user pay -->
+    <field>pick(ORD_BALANCE>0,'<!-- comment: ')</field>
+    <span class="glyphicon glyphicon-exclamation-sign text-danger">
+    </span>
+    No
+    <field>pick(ORD_BALANCE>0,'-->')</field>
+   </td>
+  </tr>

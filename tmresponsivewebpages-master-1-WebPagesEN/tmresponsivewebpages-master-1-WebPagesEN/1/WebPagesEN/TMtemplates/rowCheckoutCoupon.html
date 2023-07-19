@@ -1,0 +1,23 @@
+<tr>
+ <td>
+  Coupon
+ </td>
+ <td>
+  &nbsp;
+ </td>
+ <td align="left">
+  <field>CH_NAME_EXTERNAL</field>
+  <field>pick(SCD_SAVINGS<>0,'<!-- comment:')</field>
+- Savings from
+  <a class="link" href="<field>F_HTML_FIREWALL</field>tmFee/tmOrderFee<field>FEE_SEQ</field>.html" onclick="return popup(this, 'notes')">
+   <field>FEE_DESCRIPTION_EXTERNAL</field>
+  </a>
+  is
+  <field>jst(SCD_SAVINGS,'$')</field>
+
+<field>pick(SCD_SAVINGS<>0,'-->')</field>
+ </td>
+ <td align="right">
+  <field>SCD_TOTAL_COST</field>
+ </td>
+</tr>

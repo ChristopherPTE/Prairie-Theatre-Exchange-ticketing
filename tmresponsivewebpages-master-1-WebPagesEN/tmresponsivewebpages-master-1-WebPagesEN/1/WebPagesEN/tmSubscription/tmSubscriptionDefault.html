@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Description - <field>SG_DESCRIPTION</field>
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="backgroundPopup">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <div class="container">
+   <div id="content">
+    <div align="center">
+     <a class="btn btn-success btn-xs" href="<field>F_HTML_FIREWALL</field>login?subscription=<field>SG_SEQ</field>&VE_SEQ=<field>VE_SEQ</field>" onclick="return openInParent(this);">
+      Subscribe to <field>SG_DESCRIPTION</field>
+     </a>
+    </div>
+    <p>
+     &nbsp;
+    </p>
+    <div class="alert alert-warning fade in">
+     <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+     <field>SG_NOTES</field>
+    </div>
+   </div>
+  </div>
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

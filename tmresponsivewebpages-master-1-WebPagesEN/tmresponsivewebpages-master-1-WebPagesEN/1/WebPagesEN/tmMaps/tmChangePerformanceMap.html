@@ -1,0 +1,14 @@
+<!-- comment: display the approximate sales map of the venue -->
+<field>pick(P_PERFORMANCES>1&not(F_HTML_ALLOW_PICK_YOUR_OWN),'<!-- comment: Hide map if one performance')</field>
+<div align="left" class="alert alert-info fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <h4>
+  Current Availability
+ </h4>
+ The map below is illustrative of the approximate seat availability for this performance.
+ <div>
+  <img alt="seat map" class="img-thumbnail visible-lg visible-md" src="<field>F_HTML_FIREWALL</field>seatmap?map=<field>PB_TM_SEQ</field>&performance=<field>PB_SEQ</field>&selected_only=no&format=svg&unavailable_color=FFFFFF&unavailable_text=&#xf007;&social_distance_text=&#xf05e;&seat_font=FontAwesome&seat_font_load=embed" style="width: 100%"/>
+  <img alt="seat map" class="img-thumbnail visible-sm visible-xs" src="<field>F_HTML_FIREWALL</field>seatmap?map=<field>PB_TM_SEQ</field>&performance=<field>PB_SEQ</field>&selected_only=no&format=svg&unavailable_color=FFFFFF&unavailable_text=&#xf007;&social_distance_text=&#xf05e;&seat_font=FontAwesome&seat_font_load=embed" style="width: 100%"/>
+ </div>
+</div>
+<field>pick(P_PERFORMANCES>1&not(F_HTML_ALLOW_PICK_YOUR_OWN),'-->')</field>

@@ -1,0 +1,38 @@
+<!-- comment: remove this line and the last line to add a covid 19 policy and then change wording as appropriate
+<h4>
+ Covid 19 Policy
+</h4>
+<div class="alert alert-warning fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ British Columbia
+ <b>
+  requires proof of vaccination
+ </b>
+ to attend all indoor events that occur
+ <b>
+  on or after September 13, 3021
+ </b>
+ <p>
+ &nbsp;
+ </p>
+ <ul>
+  <li>
+   Proof of vaccination will be verified at the door.
+  </li>
+  <li>
+   We are required by the Government to deny entry to anybody without a valid vaccination certificate.
+  </li>
+  <li>
+   No refunds will be given if you are denied entry.
+  </li>
+ </ul>
+</div>
+remove this last line -->
+
+<!-- comment: or enter Markdown/HTML policy directly in TM Desktop -->
+<field>pick(len(D_WEB_COVID_POLICY)>0,'<!-- comment: hide policy')</field>
+    <div class="alert alert-info fade in">
+        <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+        <field>D_WEB_COVID_POLICY</field>
+    </div>
+<field>pick(len(D_WEB_COVID_POLICY)>0,'-->')</field>

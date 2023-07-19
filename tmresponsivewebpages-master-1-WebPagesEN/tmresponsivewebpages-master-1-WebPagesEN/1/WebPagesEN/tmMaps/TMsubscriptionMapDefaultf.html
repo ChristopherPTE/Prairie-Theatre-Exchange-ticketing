@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Subscription Package Selection
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div align="center" id="content">
+   <table align="center" border="0" cellpadding="0" cellspacing="0" width="80%">
+    <tr>
+     <td>
+      <form action="<field>F_HTML_FIREWALL</field>online" method="POST">
+       <input id="SG_SEQ" name="SG_SEQ" type="hidden" value="<field>SG_SEQ</field>"/>
+       <p align="center" class="message">
+        <b>
+         <field>F_HTML_PAGE_MESSAGE</field>
+        </b>
+       </p>
+       <table align="center" border="0" cellpadding="2" cellspacing="0" width="58%">
+        <tr>
+         <td align="center" class="playinfo" colspan="3">
+          <b>
+           <field>SG_DESCRIPTION</field>
+          </b>
+          <br/>
+          <span class="main">
+           <field>SG_NOTES</field>
+          </span>
+         </td>
+        </tr>
+        <tr>
+         <td align="center" width="8%">
+          <img alt="Step 1" src="tmGifs/step1.gif" width="24"/>
+         </td>
+         <td align="left" width="72%">
+          Select the number of tickets you want to purchase
+         </td>
+         <td width="20%">
+          <select class="form-control" id="PS_QUANTITY" name="PS_QUANTITY" size="1">
+           <field>F_HTML_TICKET_QTY_LIST</field>
+          </select>
+         </td>
+        </tr>
+        <tr>
+         <td align="center" valign="middle">
+          <img alt="Step 2" src="tmGifs/step2.gif" width="24"/>
+         </td>
+         <td valign="middle">
+          Select the <field>D_PERF_DESC</field> code for the subscription
+         </td>
+         <td valign="middle">
+          <select class="form-control" id="PB_SERIES_CODE" name="PB_SERIES_CODE" size="1">
+           <field>F_HTML_SUBS_SERIES_LIST</field>
+          </select>
+         </td>
+        </tr>
+        <tr>
+         <td align="center" width="8%">
+          <img alt="Step 3" src="tmGifs/step3.gif" width="24"/>
+         </td>
+         <td align="left" width="72%">
+          Click Select Tickets
+         </td>
+         <td width="20%">
+          <input class="new" name="btnSubscriptionBestAvail" onclick="process()" onmouseout="pviiClassNew(this,'new')" onmouseover="pviiClassNew(this,'newover')" type="submit" value="Select Tickets"/>
+         </td>
+        </tr>
+        <tr>
+         <td align="center" colspan="3">
+          <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+          <input class="new" name="btnSubscription" onmouseout="pviiClassNew(this,'new')" onmouseover="pviiClassNew(this,'newover')" type="submit" value="Cancel to Start Over"/>
+         </td>
+        </tr>
+       </table>
+      </form>
+      <p align="center" class="main">
+       <!--#include virtual="TMtemplates/generalAdmissionArrivalNote.html" -->
+      </p>
+      <p>
+      </p>
+     </td>
+    </tr>
+   </table>
+   <!-- comment:
+	selected_only = if true, the image returned is a blown up version around the selected seats (can be yes,y,no,n,1 or 0)
+	selected_border = specifies the extra space around the selected seats in points (72 = 1 inch).
+	selected_color = specifies the fill color of the selected seats as a RGB hex string, i.e. FF0000 means bright red
+	img_quality = the jpeg quality 1 to 100, 100 is best but creates larger/slower downloading jpegs.
+				between 50 and 75 are good values. 
+	format=svg (pick your own seats and interactive) png or jpg
+-->
+   <img align="center" alt="seat map" border="0" src="<field>F_HTML_SEATMAP</field>&selected_only=no&img_quality=75&format=svg" width="80%"/>
+  </div>
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

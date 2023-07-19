@@ -1,0 +1,51 @@
+<h5><field>F_HTML_TASK_SUB_TYPE</field></h5>
+<field>pick(F_HTML_TASK_STATUS,'<!-- comment: show status')</field>
+<br/>
+<label>
+ Status:
+</label>
+<field>F_HTML_TASK_STATUS</field>
+<field>pick(F_HTML_TASK_STATUS,'-->')</field>
+<field>pick(F_HTML_TASK_PRIORITY, '<!-- comment: show priority')</field>
+<br/>
+<label>
+ Priority:
+</label>
+<field>F_HTML_TASK_PRIORITY</field>
+<field>pick(F_HTML_TASK_PRIORITY,'-->')</field>
+<br/>
+<field>pick(VE_NAME,'<!-- comment: show venue')</field>
+<br/>
+<label>
+ <field>D_VENUE</field>:
+</label>
+<field>VE_NAME</field>
+<field>pick(VE_NAME,'-->')</field>
+<field>pick(P_PLAY_TITLE,'<!-- comment: show event')</field>
+<br/>
+<label>
+ <field>D_EVENT</field>:
+</label>
+<field>P_PLAY_TITLE</field>
+ <field>pick(P_PLAY_TITLE,'-->')</field>
+ <field>pick(PB_PERFORM_DATETIME,'<!-- comment: show performance')</field>
+<br/>
+<br/>
+<label>
+ <field>D_PERF_DESC</field>
+</label>
+<br/>
+<label>
+ Date:
+</label>
+<field>dat(PB_PERFORM_DATE, 'w D n, y')</field>
+<br/>
+<label>
+ Time:
+</label>
+<field>dat(PB_PERFORM_TIME, 'h:N A')</field>
+<field>F_HTML_TZ_SHORT_NAME</field>
+<field>pick(PB_SEQ>0,'-->')</field>
+<field>pick(CAL_NOTES,'<!-- comment: show notes')</field>
+<p><field>CAL_NOTES</field></p>
+<field>pick(CAL_NOTES,'-->')</field>

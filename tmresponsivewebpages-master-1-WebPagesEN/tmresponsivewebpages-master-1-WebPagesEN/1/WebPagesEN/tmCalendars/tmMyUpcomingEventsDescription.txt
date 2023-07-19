@@ -1,0 +1,15 @@
+{#- tm-template: 1.1 -#}
+{{ F_HTML_PURCHASED_TICKET_COUNT }} {{ 'ticket' | plural(F_HTML_PURCHASED_TICKET_COUNT) }} purchased
+
+Account: {{ F_HTML_PERFORMANCE_ACCOUNT_LINK }}
+{% if F_HTML_PERFORMANCE_PRINT_LINK %}Print Tickets: {{ F_HTML_PERFORMANCE_PRINT_LINK }}{% endif %}
+
+Buy More Tickets: {{ F_HTML_PERFORMANCE_BUY_LINK }}
+
+{% if D_SWITCH_BOARD %}Phone: {{ D_SWITCH_BOARD }}{% endif %}
+{% if D_EMAIL_ADDR %}Email: {{ D_EMAIL_ADDR }}{% endif %}
+{% if F_HTML_EVENT_NOTES_TEXT %}
+
+Description:
+{{ F_HTML_EVENT_NOTES_TEXT }}
+{% endif %}

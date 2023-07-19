@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHeadEmail.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Notification Confirmation Request
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScriptsEmail.html" -->
+  <!--#include virtual="tmLayout/tmLastHeadEmail.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBodyEmail.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Notification Confirmation Request
+      <br/>
+      <small class="text-muted">
+       <field>C_FIRST_NAME</field> <field>C_LAST_NAME</field>
+      </small>
+     </h1>
+    </div>
+    <div class="alert alert-info">
+     Our staff recently added you to a specific email notification list which we will use to email to you for the purposes outlined.
+     Most likely, you were added as a result of a conversation that we had with you or past history with our organization.
+     <br/>
+     <br/>
+     <field>D_COMPANY_LONG</field> uses a
+     <b>
+      double-opt-in mechanism
+     </b>
+     and you must confirm your participation.
+     <br/>
+     <br/>
+     If you do not, you will automatically be removed from the notification approximately <field>D_WEB_PENDING_MAIL_LIST_TIMEOUT</field>
+     hours after you receive this email.  If you ignore the email, you can opt in at some future time you wish.
+    </div>
+    <p>
+     &nbsp;
+    </p>
+    <div class="alert alert-info fade in">
+     <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+     Purpose:
+     <br/>
+     <field>PM_DESCRIPTION</field>
+    </div>
+    <a class="btn btn-success" href="<field>F_HTML_FIREWALL</field>opt-in?<field>F_HTML_DOUBLE_OPT_IN</field>">
+     Confirm participation in <field>PM_DESCRIPTION_EXTERNAL</field>
+    </a>
+    <a class="btn btn-info" href="<field>F_HTML_FIREWALL</field>login&e=<field>tEditCheck.$urlQuote(F_EMAIL_ADDRESS)</field>&tmsource=accountupdate">
+     Review My Account
+    </a>
+    <p>
+     &nbsp;
+    </p>
+    <!--#include virtual="TMtemplates/tmPrivacyNoteEmail.html" -->
+    <!--#include virtual="TMtemplates/tmContactHours.html" -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="TMtemplates/tmMarkEmailRead.html" -->
+  <!--#include virtual="tmLayout/tmBodyScriptsEmail.html" -->
+  <!--#include virtual="tmLayout/tmLastBodyEmail.html" -->
+ </body>
+</html>

@@ -1,0 +1,38 @@
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <!-- comment: favourite icon in the tmGifs folder is unique to outlet & language
+		the format for the image must be 16x16 pixels or 32x32 pixels, 
+		using either 8-bit or 24-bit colors. The format of the image must be one of 
+		PNG (a W3C standard), GIF, or ICO.
+		-->
+  <link href="tmGifs/favicon.ico" rel="icon" type="image/png"/>
+  <!-- ASSET LOADING -->
+  <!-- comment: The web templates have a number of code and style dependencies.  How
+                those dependencies are loaded can have performance and security 
+                implications.  To help make those trade-offs more clear, you may select
+                from the asset loading strategies below  
+
+    STRATEGY 1: Use files server from the local web server only.  This strategy is good for 
+                sites that want 100% certainty that all files are the correct version and that those
+                files do not include any malicious content, but at the expense of higher bandwidth usage.
+
+       INCLUDE: tmScripts/stylesLocal.html 
+
+
+    STRATEGY 2: Use a Content Delivery Network (CDN) with Sub-Resource Integrity (SRI) hashing.  
+                This strategy is good for a low-bandwidth internet connection, or a sales pattern
+                that could include very high traffic spikes of new users.  This strategy outsources 
+                all asset requests to an external Content Delivery Network (CDN) that will likely have 
+                web servers that are both faster, and potentially physically closer to the user.
+
+
+       INCLUDE: tmScripts/stylesCDN.html 
+
+
+    NOTE: If you'd also like to customize the way that error pages handle styles you need to make 
+          similar changes to the parallel files errorStyles.shtml and errorStylesCDN.shtml or errorStylesLocal.shtml.
+  -->
+  <!--#include virtual="tmScripts/stylesLocal.html" -->
+  <!-- comment: custom css overrides for this site -->
+  <link href="tmGifs/custom.css" rel="stylesheet" type="text/css"/>

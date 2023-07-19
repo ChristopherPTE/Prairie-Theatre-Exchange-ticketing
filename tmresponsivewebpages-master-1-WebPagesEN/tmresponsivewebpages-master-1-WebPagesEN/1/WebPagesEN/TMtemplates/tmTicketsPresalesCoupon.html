@@ -1,0 +1,21 @@
+<!-- comment: this is included when pressales access coupons have been enabled and shown in normal screen size -->
+<field>pick(F_PRESALES_ALLOWED,'<!-- comment: setting in company prefs')</field>
+<div class="panel-group visible-md visible-lg">
+ <div class="row">
+  <div class="col-md-6">
+   <div class="input-group">
+    <form action="<field>F_HTML_FIREWALL</field>online" class="" method="POST">
+     <input name="param" type="hidden" value="altbtn=btnGetEventList"/>
+     <label for="CH_CODE" class="sr-only">
+      Presale Access Code
+     </label>
+     <input id="CH_CODE" maxlength="40" name="CH_CODE" onblur="this.value=this.value.toUpperCase()" placeholder="Presale Access Code" size="50" type="text" value="<field>CH_CODE</field>"/>
+     &nbsp;
+     <input class="btn btn-info" name="btnCouponAccept" onclick="process()" type="submit" value="Add Code"/>
+    </form>
+   </div>
+  </div>
+  <!-- /col -->
+ </div>
+</div>
+<field>pick(F_PRESALES_ALLOWED,' -->')</field>

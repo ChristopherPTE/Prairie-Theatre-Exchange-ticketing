@@ -1,0 +1,17 @@
+  <!-- comment: when IE 9 or less, best available button only -->
+  <!--[if lte IE 9]>
+    <input class="btn btn-info" name="btnBestAvail" onclick="process()" type="submit" value="Suggest Other Seats"/>
+<![endif]-->
+  <!-- comment: if not IE, show pick your own or next best -->
+  <!--[if !IE]><!-->
+  <field>pick(F_HTML_ALLOW_PICK_YOUR_OWN,'<!-- comment:')</field>
+  <img alt="Step 1" src="tmGifs/step1.gif" width="24"/>
+  <b>
+   Seat Selection:
+  </b>
+  &nbsp;&nbsp;
+  <input class="btn btn-success" id="btnBestAvailSwap" name="btnBestAvailSwap" onclick="process()" type="submit" value="Pick Selected Seats"/>
+  <input class="btn btn-info" name="btnBestAvail" onclick="process()" type="submit" value="Suggest Seats"/>
+  <!--#include virtual="tmMaps/TMticketsSelectSeatsText.html" -->
+  <field>pick(F_HTML_ALLOW_PICK_YOUR_OWN,'-->')</field>
+  <!--<![endif]-->

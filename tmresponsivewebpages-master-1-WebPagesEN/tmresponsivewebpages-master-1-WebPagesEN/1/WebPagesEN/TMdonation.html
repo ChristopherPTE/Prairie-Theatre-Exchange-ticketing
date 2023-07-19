@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Donation Entry
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div class="page-header">
+    <h1>
+     Make a Donation
+    </h1>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+    </div>
+    <div class="col-md-8">
+     <form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+      <div class="form-group">
+       <label for="DD_DC_SEQ">
+        Donation Campaign
+       </label>
+       <select class="form-control" id="DD_DC_SEQ" name="DD_DC_SEQ">
+        <field>F_HTML_CAMPAIGN_LIST</field>
+       </select>
+      </div>
+      <div class="row">
+       <div class="col-md-4">
+        <div class="form-group">
+         <label for="DD_AMOUNT_PLEDGE">
+          Donation Amount
+         </label>
+         <!-- #include virtual="tmHelp/tmDonationAmountHelp.html" -->
+         <input class="form-control" id="DD_AMOUNT_PLEDGE" max="99999999.99" min="0" name="DD_AMOUNT_PLEDGE" placeholder="amount you want to donate" step="any" type="number" value="<field>DD_AMOUNT_PLEDGE</field>"/>
+        </div>
+       </div>
+       <!-- comment: .col-md-4 -->
+       <div class="col-md-8">
+        <div class="form-group">
+         <label for="DDR_FREQUENCY">
+          How often do you want to make this donation?
+         </label>
+         <!-- #include virtual="tmHelp/tmDonationRecurringFrequencyHelp.html" -->
+         <select class="form-control" id="DDR_FREQUENCY" name="DDR_FREQUENCY" size="2">
+          <!-- #include virtual="TMtemplates/setDonationRecurringFrequencyList.html" -->
+         </select>
+        </div>
+       </div>
+       <!-- comment: .col-md-8 -->
+      </div>
+      <!-- comment: .row -->
+      <div class="form-group">
+       <label for="DD_NAME_OF">
+        How would you like your name recognized in the program?
+       </label>
+       <input class="form-control" id="DD_NAME_OF" maxlength="100" name="DD_NAME_OF" placeholder="if left blank, this is determined based on your account profile" type="text" value="<field>DD_NAME_OF</field>"/>
+      </div>
+      <div class="form-group">
+       <label for="Anonymous">
+        Would you prefer this donation to be Anonymous?
+       </label>
+       <select class="form-control" id="Anonymous" name="Anonymous">
+        <option value="1">
+         Yes
+        </option>
+        <option selected="" value="0">
+         No
+        </option>
+       </select>
+      </div>
+      <div class="form-group">
+       <label for="DD_CORPORATE">
+        Is this a Corporate Donation?
+       </label>
+       <select class="form-control" id="DD_CORPORATE" name="DD_CORPORATE">
+        <option value="1">
+         Yes
+        </option>
+        <option selected="" value="0">
+         No
+        </option>
+       </select>
+       <p class="help-block">
+        For corporate accounts only.
+       </p>
+      </div>
+      <!-- comment: if you enable any of the mandatory fields in donations, edit the values for the hidden
+           fields in tmDonationHiddenFields.html so that it is a separate file -->
+      <!--#include virtual="TMtemplates/tmDonationHiddenFields.html" -->
+      <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+      <input class="btn btn-success" name="btnDonationAccept" onclick="process()" type="submit" value="Add Donation to Shopping Cart"/>
+      <input class="btn btn-danger" name="<field>pick(F_LOGGED_IN=2,'btnHome','btnGetEventList')</field>" type="submit" value="Cancel"/>
+     </form>
+    </div>
+    <!-- comment: .col-md-8 -->
+   </div>
+   <!-- comment: .row -->
+  </div>
+  <!-- comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

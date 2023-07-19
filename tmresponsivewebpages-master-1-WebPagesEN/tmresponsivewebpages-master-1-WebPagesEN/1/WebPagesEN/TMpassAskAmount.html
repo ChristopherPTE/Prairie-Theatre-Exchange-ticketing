@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+ <!-- comment: DEPRECATED in favour of TMmembershipTypeAskAmount.html -->
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Pass/Gift Certificate Price/Quantity
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Gift Certificate
+      <small>
+       <span class="text-muted">
+        Choose Quantity & Amount
+       </span>
+      </small>
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <!--#include virtual="TMtemplates/tmPassSpecificNotes.html" -->
+      <!--#include virtual="TMtemplates/tmPassGeneralNotes.html" -->
+     </div>
+     <div class="col-md-8">
+      <form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+       <label for="MT_DESCRIPTION_EXTERNAL">
+        Pass Type
+       </label>
+       <input class="form-control" id="MT_DESCRIPTION_EXTERNAL" maxlength="30" name="MT_DESCRIPTION_EXTERNAL" readonly="true" type="text" value="<field>MT_DESCRIPTION_EXTERNAL</field>"/>
+       <div class="form-group">
+        <label for="PS_QUANTITY">
+         Quantity
+        </label>
+        <input class="form-control" id="PS_QUANTITY" max="20" min="1" name="PS_QUANTITY" placeholder="number of items to purchase" type="number" value="<field>PS_QUANTITY</field>"/>
+       </div>
+       <div class="form-group">
+        <label for="M_PURCHASE_AMOUNT">
+         Amount Each
+        </label>
+        <input class="form-control" id="M_PURCHASE_AMOUNT" max="9999999.99" min="0" name="M_PURCHASE_AMOUNT" step="any" type="number" value="<field>M_PURCHASE_AMOUNT</field>"/>
+       </div>
+       <div class="form-group">
+        <label for="M_NOTES">
+         Personalized Message
+        </label>
+        <textarea class="form-control" cols="50" id="M_NOTES" name="M_NOTES" placeholder="enter any specific instructions or notes" rows="5"><field>M_NOTES</field></textarea>
+       </div>
+       <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+       <!-- comment: if you enable any of the mandatory fields in passes, edit the values for the hidden
+           fields in tmPassHiddenFields.html so that it is a separate file -->
+       <!--#include virtual="TMtemplates/tmPassHiddenFields.html" -->
+       <input id="MT_SEQ" name="MT_SEQ" readonly="true" type="hidden" value="<field>MT_SEQ</field>"/>
+       <input class="btn btn-success" name="btnPassAmountAccept" onclick="process()" type="submit" value="Add to Shopping Cart"/>
+       <input class="btn btn-danger" name="btnPassAmountCancel" type="submit" value="Cancel Purchase"/>
+      </form>
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

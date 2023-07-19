@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   
+   <field>D_COMPANY_LONG</field> | Email Notification subscription
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div class="page-header">
+    <h1>
+     Subscribe to Email Notification
+    </h1>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+    </div>
+    <div class="col-md-8">
+     <form action="<field>F_HTML_FIREWALL</field>login" method="POST" name="form">
+      <div>
+       <div class="form-group">
+        <label for="C_FIRST_NAME">
+         First Name
+        </label>
+        <input class="form-control" id="C_FIRST_NAME" maxlength="60" name="C_FIRST_NAME" placeholder="first name (required)" type="text" value="<field>C_FIRST_NAME</field>"/>
+       </div>
+       <div class="form-group">
+        <label for="C_LAST_NAME">
+         Last Name
+        </label>
+        <input class="form-control" id="C_LAST_NAME" maxlength="60" name="C_LAST_NAME" placeholder="last name (required)" type="text" value="<field>C_LAST_NAME</field>"/>
+       </div>
+       <div class="form-group">
+        <label for="CI_CONTENTS">
+         E-Mail
+        </label>
+        <input class="form-control" id="CI_CONTENTS" maxlength="60" name="e" placeholder="email address (required)" type="email" value="<field>CI_CONTENTS</field>"/>
+        <input name="C_SEQ" type="hidden" value="<field>C_SEQ</field>"/>
+       </div>
+      </div>
+      <div class="well well-sm">
+       <!--#include virtual="TMtemplates/tmNotificationHeader.html" -->
+      </div>
+      <!--comment: 
+			The location of the email address is set to code table default, however it can be specified here by passing a hidden parameter:
+			
+			<input type=hidden name="CCL_LOCATION_FC_SEQ" value="5"> 
+			
+			Where 5 is the code table number associated with that location.
+		-->
+      <input name="C_SEQ" type="hidden" value="<field>C_SEQ</field>"/>
+      <input name="param" type="hidden" value="<field>F_HTML_PARAMETER</field>"/>
+      <input name="btnAccountMailListAdd" type="hidden" value="btnAccountMailListAdd"/>
+      <input class="btn btn-success" name="btnAccountMailListAdd" onclick="return verify();" type="submit" value="Subscribe"/>
+     </form>
+    </div>
+    <!-- comment: .col-md-8 -->
+   </div>
+   <!-- comment: .row -->
+  </div>
+  <!-- comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!-- Error Modal -->
+  <div class="modal fade" id="InputErrors" role="dialog">
+   <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+      <button class="close" data-dismiss="modal" type="button">
+       &times;
+      </button>
+      <h4 class="modal-title">
+       Missing Name and Email
+      </h4>
+     </div>
+     <div class="modal-body">
+      <p id="error">
+       Please enter first name, last name, and email address
+      </p>
+     </div>
+     <div class="modal-footer">
+      <button class="btn btn-default" data-dismiss="modal" type="button">
+       Close
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- Error checking Javascript -->
+  <script lang="text/javascript">
+   function verify() {
+	  var themessage = "";
+	  var connector = "";
+	  if (document.form.C_FIRST_NAME.value == "" || document.form.C_LAST_NAME.value  == "" || document.form.e.value == "") {
+		$('#InputErrors').modal('show')
+		return false;
+	  }
+	  return true;
+	}
+  </script>
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

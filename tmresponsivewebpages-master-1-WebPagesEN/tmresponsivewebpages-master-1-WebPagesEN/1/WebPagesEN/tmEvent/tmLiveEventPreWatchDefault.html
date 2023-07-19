@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Description - <field>P_PLAY_TITLE</field>
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="row">
+     <div class="col-sm-3">
+      <p>
+       <field>pick(PP_SEQ>0,'<!-- comment: use picture if avail')</field>
+       <img alt="poster for event" class="img-responsive" src="<field>F_HTML_FIREWALL</field>picture?id=<field>PP_SEQ</field>"/>
+       <field>pick(PP_SEQ>0,' -->')</field>
+        <field>pick(PP_SEQ=0,'<!-- comment: no picture, use TT icon instead')</field>
+       <img alt="poster for event" class="img-responsive" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>"/>
+       <field>pick(PP_SEQ=0,' -->')</field>
+      </p>
+      <h2>
+       <field>P_PLAY_TITLE</field>
+      </h2>
+      <small class="text-muted">
+       <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+      </small>
+      <p>
+       <!-- comment:
+	    <div class="alert alert-info">
+          <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+          Some live notes!
+         </div>
+        -->
+      </p>
+     </div>
+     <div class="col-sm-9">
+      <div class="jumbotron">
+       <h2 class="text-center">
+        <field>P_PLAY_TITLE</field><br><small>is ready to be watched</small>
+       </h2>
+       <br>
+       <p class='text-center'>
+        Once you click <strong>Watch Now</strong> you will have <strong><field>F_HTML_PERFORMANCE_WATCH_MINUTES</field> minutes</strong> to watch the show.
+       </p>
+       <hr class="my-4">
+       <p class="text-center">
+        <a class="btn btn-primary btn-lg" href="<field>F_HTML_FIREWALL</field>online?liveperformance=<field>PB_SEQ</field>&watch=1" role="button">Watch Now</a>
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- /#content -->
+  </div>
+  <!-- .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

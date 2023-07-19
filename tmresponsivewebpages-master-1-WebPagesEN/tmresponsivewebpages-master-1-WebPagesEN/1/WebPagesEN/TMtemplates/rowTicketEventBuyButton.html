@@ -1,0 +1,36 @@
+<div class="col-sm-9">
+</div>
+<div class="col-sm-3">
+ <!-- comment: Select quantity and price for non-reserved -->
+ <field>pick(PB_SALES_METHOD<>2, '<!-- comment: ')</field>
+ <a class="pull-right btn btn-block <field>pick(F_HTML_SOLD_PERCENT<80,'','btn-success')</field><field>pick(F_HTML_SOLD_PERCENT>=80&F_HTML_SOLD_PERCENT<=99,'','btn-warning')</field><field>pick(F_HTML_SOLD_PERCENT>=100,'','btn-danger')</field>" data-sold="<field>F_HTML_SOLD_PERCENT</field>" data-sold-percent="<field>F_HTML_SOLD_PERCENT</field>" href="<field>F_HTML_FIREWALL</field>online?performance=<field>PB_SEQ</field>">
+ <field>pick(PB_SALES_METHOD<>2, '-->')</field>
+ 
+ <!-- comment: Select quantity and price first (Default) -->
+ <field>pick(PB_SALES_METHOD=2&D_WEB_RESERVED_BUY_STYLE=0, '<!-- comment: ')</field>
+ <a class="pull-right btn btn-block <field>pick(F_HTML_SOLD_PERCENT<80,'','btn-success')</field><field>pick(F_HTML_SOLD_PERCENT>=80&F_HTML_SOLD_PERCENT<=99,'','btn-warning')</field><field>pick(F_HTML_SOLD_PERCENT>=100,'','btn-danger')</field>" data-sold="<field>F_HTML_SOLD_PERCENT</field>" data-sold-percent="<field>F_HTML_SOLD_PERCENT</field>" href="<field>F_HTML_FIREWALL</field>online?performance=<field>PB_SEQ</field>">
+ <field>pick(PB_SALES_METHOD=2&D_WEB_RESERVED_BUY_STYLE=0, '-->')</field>
+ 
+ <!-- comment: Select quantity and price first -->
+ <field>pick(PB_SALES_METHOD=2&D_WEB_RESERVED_BUY_STYLE=1, '<!-- comment: ')</field>
+ <a class="pull-right btn btn-block <field>pick(F_HTML_SOLD_PERCENT<80,'','btn-success')</field><field>pick(F_HTML_SOLD_PERCENT>=80&F_HTML_SOLD_PERCENT<=99,'','btn-warning')</field><field>pick(F_HTML_SOLD_PERCENT>=100,'','btn-danger')</field>" data-sold="<field>F_HTML_SOLD_PERCENT</field>" data-sold-percent="<field>F_HTML_SOLD_PERCENT</field>" href="<field>F_HTML_FIREWALL</field>online?performance=<field>PB_SEQ</field>">
+ <field>pick(PB_SALES_METHOD=2&D_WEB_RESERVED_BUY_STYLE=1, '-->')</field>
+ 
+ <!-- comment: Straight to pick your own -->
+ <field>pick(PB_SALES_METHOD=2&D_WEB_RESERVED_BUY_STYLE=2, '<!-- comment: ')</field>
+ <a class="pull-right btn btn-block <field>pick(F_HTML_SOLD_PERCENT<80,'','btn-success')</field><field>pick(F_HTML_SOLD_PERCENT>=80&F_HTML_SOLD_PERCENT<=99,'','btn-warning')</field><field>pick(F_HTML_SOLD_PERCENT>=100,'','btn-danger')</field>" data-sold="<field>F_HTML_SOLD_PERCENT</field>" data-sold-percent="<field>F_HTML_SOLD_PERCENT</field>" href="<field>F_HTML_FIREWALL</field>online?bestavail=<field>PB_SEQ</field>&qty=0">
+ <field>pick(PB_SALES_METHOD=2&D_WEB_RESERVED_BUY_STYLE=2, '-->')</field>
+
+  <field>pick(F_HTML_SOLD_PERCENT>=100,'','Sold Out')</field>
+  <field>pick(F_HTML_SOLD_PERCENT<95,'<!-- comment:')</field>
+  <i class="fa fa-ticket">
+  </i>
+  <field>pick(PB_SALES_METHOD=6,'Buy','Register')</field>
+  <field>pick(F_HTML_SOLD_PERCENT<95,' -->')</field>
+  <field>pick(F_HTML_SOLD_PERCENT>=95&F_HTML_SOLD_PERCENT<100,'<!-- comment:')</field>
+  <i class="fa fa-ticket">
+  </i>
+  <field>F_HTML_SEATS_AVAILABLE</field> Remain
+  <field>pick(F_HTML_SOLD_PERCENT>=95&F_HTML_SOLD_PERCENT<100,' -->')</field>
+ </a>
+</div>

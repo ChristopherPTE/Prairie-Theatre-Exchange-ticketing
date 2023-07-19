@@ -1,0 +1,51 @@
+  <script type="text/javascript">
+   <!--
+    $( document ).ready(function() {
+        // Translate seconds integer into [minutes]:[seconds] text
+		function textFromSeconds(timer) {
+		    var minutes = parseInt(timer / 60, 10);
+		    var seconds = parseInt(timer % 60, 10);
+
+		    seconds = seconds < 10 ? "0" + seconds : seconds;
+		    return minutes + ":" + seconds
+		}
+
+		// Start and run a timer for the reamining cart time
+		function startTimer(duration, display) {
+			var timer = duration;
+
+			// Prime display quickly so it's not flashy
+			var displayText = textFromSeconds(timer);
+			display.each(function( index ) {
+			  $( this ).text(displayText);
+			});
+
+			// Create timer function
+			var runTimer = function() {
+				if (!(timer > 0)) {
+				   clearInterval(runTimer); 
+				   return;
+				}
+
+		        var displayText = textFromSeconds(timer);
+				display.each(function( index ) {
+				  $( this ).text(displayText);
+				});
+
+				timer = timer - 1;
+			}
+
+			// Start up the repating timer.  NOTE: This must be 1000 as it matches with timer - 1
+			setInterval(runTimer, 1000);
+		}
+
+		// Setup the countdown duration
+		var durationSecs = <field>F_HTML_CART_COUNTDOWN_REMAINING</field>,
+			display = $(".cart_countdown");
+
+		if (<field>pick(F_HTML_SHOW_CART_COUNTDOWN, "false", "true")</field> && durationSecs >= 0) {	
+			startTimer(durationSecs, display);
+		}
+	});
+//-->
+  </script>

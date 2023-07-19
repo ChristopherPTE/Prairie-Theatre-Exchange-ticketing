@@ -1,0 +1,89 @@
+<div align="center" width="700">
+ <table border="0" cellpadding="5" cellspacing="0" width="700">
+  <tr>
+   <td colspan="3">
+    <field>F_HTML_TICKET_BANNER</field>
+   </td>
+  </tr>
+ </table>
+ <table border="0" cellpadding="5" cellspacing="0" width="700">
+  <tr>
+   <td align="center" rowspan="8" valign="top" width="150">
+    <!--#include virtual="TMtemplates/rowFutureTicketPDFQRCodeOrVoucher.html" -->
+   </td>
+   <td class="ticketlineprint" width="50">
+    event
+   </td>
+   <td class="tablerowticketprint">
+    <a href="<field>F_HTML_FIREWALL</field>tmEvent/tmEvent<field>PB_P_SEQ</field>.html" target="_blank">
+     <field>P_PLAY_TITLE</field>
+    </a>
+   </td>
+  </tr>
+  <tr>
+   <td class="ticketlineprint">
+    venue
+   </td>
+   <td class="tablerowticketprint">
+    <a class="link" href="<field>F_HTML_FIREWALL</field>tmVenue/tmVenue<field>TM_SEQ</field>.html" target="_blank">
+     <field>VE_NAME</field>
+    </a>
+    <br/>
+    <div style="font-size: 12px">
+     <field>con(VE_ADDRESS1,' ',VE_ADDRESS2,' ',VE_CITY)</field>
+    </div>
+   </td>
+  </tr>
+  <tr>
+   <td class="ticketlineprint">
+    date
+   </td>
+   <td class="tablerowticketprint">
+    <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+   </td>
+  </tr>
+  <tr>
+   <td class="ticketlineprint">
+    seat
+   </td>
+   <td class="tablerowticketprint">
+    <field>D_FESTIVAL_DESC</field>
+   </td>
+  </tr>
+  <tr>
+   <td class="ticketlineprint">
+    price
+   </td>
+   <td class="tablerowticketprint">
+    <!--#include virtual="TMtemplates/rowPromotionPriceCode.html" -->
+   </td>
+  </tr>
+  <!--#include virtual="TMtemplates/rowTicketFaceValuePDF.html" -->
+  <tr>
+   <td class="ticketlineprint">
+    patron
+   </td>
+   <td class="tablerowticketprint">
+    <field>con(C_FIRST_NAME,' ',C_LAST_NAME)</field>
+   </td>
+  </tr>
+  <tr>
+   <td class="ticketlineprint">
+   </td>
+   <td class="tablerowticketprint">
+    <div style="font-size: 12px">
+     Please print this ticket and bring it with you to the event
+    </div>
+   </td>
+  </tr>
+ </table>
+ <table border="0" cellpadding="5" cellspacing="0" width="700">
+  <!--#include virtual="TMtemplates/rowFutureTicketPDFBarCode.html" -->
+  <tr>
+   <td colspan="3">
+    <field>F_HTML_TICKET_AD</field>
+   </td>
+  </tr>
+ </table>
+</div>
+<field>F_PDF_PAGE_BREAK</field>

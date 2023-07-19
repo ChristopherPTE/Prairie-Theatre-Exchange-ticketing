@@ -1,0 +1,27 @@
+<tr>
+ <td class="text-left">
+  <field>D_DONATION_DESC</field>
+ </td>
+ <td class="text-center">
+  &nbsp;
+ </td>
+ <td class="text-left">
+  <a class="link" href="<field>F_HTML_FIREWALL</field>tmCampaign/tmCampaign<field>DC_SEQ</field>.html" onclick="return popup(this, 'notes')">
+   <field>DC_DESCRIPTION_EXTERNAL</field>
+  </a>
+  <br/>
+  <field>pick(len(SCD_PROGRAM_NAME)<=1,con('Recognized in our program as "<em>',SCD_PROGRAM_NAME,'</em>".'),'Recognition will be assigned later based on your name.')</field>
+  <!-- #include virtual="TMtemplates/cellRecurringDonationDetails.html" -->
+ </td>
+ <td class="text-right">
+  <field>SCD_DON_AMOUNT</field>
+ </td>
+ <td class="text-center">
+  <form action="<field>F_HTML_FIREWALL</field>online" id="TMForm" method="POST">
+   <input name="SCD_SEQ" type="hidden" value="<field>SCD_SEQ</field>"/>
+   <input name="SCD_PURCHASE_GROUP" type="hidden" value="<field>SCD_PURCHASE_GROUP</field>"/>
+   <input id="F_HTML_REMOVE_CART_ITEM_YN" type="hidden" name="F_HTML_REMOVE_CART_ITEM_YN" value="1"/>
+   <input class="btn fa btn-danger btn-xs" name="btnCartRemoveItem" onclick="process()" type="submit" value="&#xf014; Remove"/>
+  </form>
+ </td>
+</tr>

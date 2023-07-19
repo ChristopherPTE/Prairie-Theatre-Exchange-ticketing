@@ -1,0 +1,4 @@
+#	enter the value to represent searching for 'All Activities'
+#	it goes at the top of the search window for volunteer activities
+
+All Activities

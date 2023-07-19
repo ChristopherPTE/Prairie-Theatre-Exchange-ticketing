@@ -1,0 +1,65 @@
+  <div>
+   &nbsp;
+  </div>
+  <div class="form-group">
+   <div class="col-sm-2">
+   </div>
+   <label class="col-sm-2 text-left">
+    Address
+   </label>
+   <div class="col-sm-8">
+    <b>
+     <field>D_COMPANY_LONG</field>
+    </b>
+    <field>pick(len(D_ADDRESS1)=0,'','<!-- comment: no second line of address')</field>
+    <br/>
+    <field>D_ADDRESS1</field>
+    <field>pick(len(D_ADDRESS1)=0,'',' -->')</field>
+    <field>pick(len(D_ADDRESS2)=0,'','<!-- comment: no second line of address')</field>
+    <br/>
+    <field>D_ADDRESS2</field>
+    <field>pick(len(D_ADDRESS2)=0,'',' -->')</field>
+    <br/>
+    <field>D_CITY</field>
+    <field>D_PROVINCE</field>
+    <field>D_POSTAL_CODE</field>
+    <field>D_COUNTRY</field>
+    <!-- comment: PCI requires country -->
+    <br/>
+    <a class="link" href="http://maps.google.com/maps?q=<field>D_ADDRESS1</field> <field>D_ADDRESS2</field> <field>D_CITY</field> <field>D_PROVINCE</field> <field>D_POSTAL_CODE</field>" target="_blank">
+     Directions to our Box Office
+    </a>
+   </div>
+  </div>
+  <div>
+   &nbsp;
+  </div>
+  <div class="form-group">
+   <div class="col-sm-2">
+   </div>
+   <label class="col-sm-2 text-left">
+    Contact
+   </label>
+   <div class="col-sm-8">
+    Telephone:
+    <a href="tel:<field>D_SWITCH_BOARD</field>">
+     <field>D_SWITCH_BOARD</field>
+    </a>
+    <field>pick(len(D_FAX_PHONE)>0,'<!-- comment: no fax')</field>
+    <br/>
+    Fax: <field>D_FAX_PHONE</field>
+		   <field>pick(len(D_FAX_PHONE)>0,'-->')</field>
+		   <field>pick(len(D_WEB_SITE)>0,'<!-- comment: no web site')</field>
+    <br/>
+    <a class="link" href="http://<field>D_WEB_SITE</field>" target="_blank">
+     <field>D_WEB_SITE</field>
+    </a>
+    <field>pick(len(D_WEB_SITE)>0,'-->')</field>
+		   <field>pick(len(D_EMAIL_ADDR)>0,'<!-- comment: no email address')</field>
+    <br/>
+    <a class="link" href="mailto:<field>D_EMAIL_ADDR</field>?subject=Online%20Website%20Inquiry">
+     <field>D_EMAIL_ADDR</field>
+    </a>
+    <field>pick(len(D_EMAIL_ADDR)>0,'-->')</field>
+   </div>
+  </div>

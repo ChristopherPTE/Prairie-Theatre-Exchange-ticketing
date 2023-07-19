@@ -1,0 +1,45 @@
+<button class="btn btn-link" data-target="#myDonationAmount" data-toggle="modal" type="button" aria-label="Donation Amount Help">
+ <i aria-hidden="true" class="fa fa-question-circle">
+ </i>
+</button>
+<div aria-labelledby="AccountModalDialog" class="modal fade" id="myDonationAmount" role="dialog" tabindex="-1">
+ <div class="modal-dialog" role="document">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+     <span aria-hidden="true">
+      &times;
+     </span>
+    </button>
+    <h3 class="modal-title modal-info">
+     <field>D_DONATION_DESC</field> Amount
+    </h3>
+   </div>
+   <div class="modal-body">
+    <p>
+     You can make a tax-deductible <field>D_DONATION_DESC</field> for an amount of your choosing, 
+     to any one of our <field>tEditCheck.$setPlural(D_CAMPAIGN_DESC)</field>.
+    </p>
+    <p>
+     <strong>
+      <field>D_COMPANY_LONG</field> relies on the support of our friends and 
+      <field>low(tEditCheck.$setPlural(D_PATRON))</field>.
+     </strong>
+    </p>
+    <p>
+     When you make your gift to <field>D_COMPANY_LONG</field>, your support makes it possible 
+     for us to bring an exceptional experience to all our audiences.
+    </p>
+    <p>
+     <field>D_COMPANY_LONG</field> is a registered charity and all <field>low(tEditCheck.$setPlural(D_DONATION_DESC))</field> 
+     will receive a charitable tax receipt/acknowledgement.
+    </p>
+   </div>
+   <div class="modal-footer">
+    <button class="btn btn-info" data-dismiss="modal" type="button">
+     Close
+    </button>
+   </div>
+  </div>
+ </div>
+</div>

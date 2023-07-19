@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field>
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <field>pick(F_HTML_LANDING_TITLE,'<!-- comment: show page heading')</field>
+   <div class="page-header">
+    <h1>
+     <field>F_HTML_LANDING_TITLE</field>
+    </h1>
+   </div>
+   <field>pick(F_HTML_LANDING_TITLE,'-->')</field>
+   <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+    </div>
+   </div>
+   <!-- comment: .row -->
+   <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+     <div class="page-header">
+      <h2>
+       What Next?
+      </h2>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-2">
+     <h4>
+      <field>tEditCheck.$setPlural(D_EVENT)</field>
+     </h4>
+     <p>
+      Check out what's on
+     </p>
+     <p>
+      <a class="btn btn-primary" href="<field>F_HTML_FIREWALL</field>login?event=0">
+       <i class="fa fa-ticket">
+       </i>
+       View <field>D_EVENT</field> List
+      </a>
+     </p>
+     <p>
+      &nbsp;
+     </p>
+     <h4>
+      <field>D_EVENT</field> Calendar
+     </h4>
+     <p>
+      Plan the next few months
+     </p>
+     <p>
+      <a class="btn btn-primary" href="<field>F_HTML_FIREWALL</field>calendars/upcoming_events">
+       <i class="fa fa-calendar">
+       </i>
+       View <field>D_EVENT</field> Calendar
+      </a>
+     </p>
+     <p>
+      &nbsp;
+     </p>
+     <h4>
+      Email Subscription Lists
+     </h4>
+     <p>
+      Help customize how we may best contact you?
+     </p>
+     <p>
+      <a class="btn btn-primary" href="<field>F_HTML_FIREWALL</field>login?maillist=0">
+       <i class="fa fa-envelope">
+       </i>
+       Manage email lists
+      </a>
+     </p>
+     <p>
+      &nbsp;
+     </p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+     <h4>
+      <field>D_DONATION_DESC</field> <field>tEditCheck.$setPlural(D_CAMPAIGN_DESC)</field>
+     </h4>
+     <p>
+      Help us create more of what you love
+     </p>
+     <p>
+      <a class="btn btn-primary" href="<field>F_HTML_FIREWALL</field>login?donationcampaigns">
+       <i class="fa fa-usd">
+       </i>
+       View <field>D_DONATION_DESC</field> <field>tEditCheck.$setPlural(D_CAMPAIGN_DESC)</field>
+      </a>
+     </p>
+     <p>
+      &nbsp;
+     </p>
+     <h4>
+      <field>tEditCheck.$setPlural(D_MEMBER_DESC)</field>
+     </h4>
+     <p>
+      Need a gift for a friend?
+     </p>
+     <p>
+      <a class="btn btn-primary" href="<field>F_HTML_FIREWALL</field>login?membershiptypes">
+       <i class="fa fa-gift">
+       </i>
+       View Available <field>tEditCheck.$setPlural(D_MEMBER_DESC)</field>
+      </a>
+     </p>
+     <p>
+      &nbsp;
+     </p>
+    </div>
+    <!-- comment: .col-md-6 -->
+   </div>
+   <!-- comment: .row -->
+  </div>
+  <!-- comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

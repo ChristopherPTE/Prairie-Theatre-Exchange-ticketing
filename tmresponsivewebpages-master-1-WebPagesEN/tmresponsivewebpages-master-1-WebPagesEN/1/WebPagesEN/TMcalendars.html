@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Calendars
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+    </div>
+   </div>
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Calendars
+     </h1>
+    </div>
+    <div class="text">
+     <div class="row">
+      <div class="col-md-12">
+       <p>
+        <field>pick(F_LOGGED_IN<>1,'<!-- comment: show if not logged in')</field>
+        You are not currently logged.  More calendars are available if you are logged in.
+        <field>pick(F_LOGGED_IN<>1,'-->')</field>
+        <field>pick(F_LOGGED_IN=1,'<!-- comment: show if logged in')</field>
+        You are currently logged in using the email address
+        <b>
+         <field>CI_CONTENTS</field>.
+        </b>
+        <field>pick(F_LOGGED_IN=1,'-->')</field>
+       </p>
+       <field>pick(F_LOGGED_IN=1&MKT_PUBLIC_TOKEN,'<!-- comment: Hide calendar token if not token generated.')</field>
+       <p>
+        Your calendar subscription token is
+        <code>
+         <field>MKT_PUBLIC_TOKEN</field>
+        </code>
+        <br/>
+        <a class="btn btn-warning btn-xs" href="<field>F_HTML_FIREWALL</field>online?calendar_token">
+         <i class="glyphicon glyphicon-refresh">
+         </i>
+         Reset Calendar Token
+        </a>
+       </p>
+       <field>pick(F_LOGGED_IN=1&MKT_PUBLIC_TOKEN,'-->')</field>
+       <field>pick(F_LOGGED_IN=1&not(MKT_PUBLIC_TOKEN),'<!-- comment: Hide calendar token if not token generated.')</field>
+       <p>
+        Your calendar token is
+        <code>
+         &lt;Not generated&gt;
+        </code>
+        <br/>
+        <a class="btn btn-warning btn-xs" href="<field>F_HTML_FIREWALL</field>online?calendar_token">
+         <i class="glyphicon glyphicon-success">
+         </i>
+         Create Calendar Token
+        </a>
+       </p>
+       <field>pick(F_LOGGED_IN=1&not(MKT_PUBLIC_TOKEN),'-->')</field>
+       <field>pick(F_LOGGED_IN=1,'<!-- comment: show if not logged in')</field>
+       <p class="bs-callout bs-callout-info">
+        Your calendar subscription token enables you to securely subscribe to calendars from 
+        <field>D_COMPANY_LONG</field> using widely available calendar software, such as iCal, Outlook, 
+        or Google Calendar.  Just click the
+        <strong>
+         Subscribe
+        </strong>
+        button on a calendar to 
+        subscribe to it on your device.
+       </p>
+       <p class="bs-callout bs-callout-warning">
+        <span class="text-warning">
+         <strong>
+          WARNING:
+         </strong>
+        </span>
+        If you reset your calendar token, then you will need to re-subscribe to
+        all of your calendars.
+       </p>
+       <field>pick(F_LOGGED_IN=1,'-->')</field>
+      </div>
+     </div>
+     <hr/>
+     <div class="row">
+      <field>pick(F_LOGGED_IN=1&F_HTML_VENUE_CALENDARS_COUNT>0,'<!-- comment: show if not logged in')</field>
+      <div class="col-md-4">
+       <field>pick(F_LOGGED_IN=1&F_HTML_VENUE_CALENDARS_COUNT>0,'-->')</field>
+       <field>pick(F_LOGGED_IN=1&F_HTML_VENUE_CALENDARS_COUNT<=0,'<!-- comment: show if not logged in')</field>
+       <div class="col-md-6">
+        <field>pick(F_LOGGED_IN=1&F_HTML_VENUE_CALENDARS_COUNT<=0,'-->')</field>
+        <field>pick(F_LOGGED_IN<>1,'<!-- comment: show if not logged in')</field>
+        <div class="col-md-offset-2 col-md-8">
+         <field>pick(F_LOGGED_IN<>1,'-->')</field>
+         <div class="panel panel-info">
+          <div class="panel-heading">
+           <b>
+            Public Calendars
+           </b>
+          </div>
+          <div class="panel-body">
+           <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>calendars/upcoming_events">
+            <i class="fa fa-ticket">
+            </i>
+            Upcoming Events
+           </a>
+          </div>
+         </div>
+        </div>
+        <field>pick(F_LOGGED_IN=1&F_HTML_VENUE_CALENDARS_COUNT>0,'<!-- comment: show if not logged in')</field>
+        <div class="col-md-4">
+         <field>pick(F_LOGGED_IN=1&F_HTML_VENUE_CALENDARS_COUNT>0,'-->')</field>
+         <field>pick(F_LOGGED_IN=1&F_HTML_VENUE_CALENDARS_COUNT<=0,'<!-- comment: show if not logged in')</field>
+         <div class="col-md-6">
+          <field>pick(F_LOGGED_IN=1&F_HTML_VENUE_CALENDARS_COUNT<=0,'-->')</field>
+          <field>pick(F_LOGGED_IN=1,'<!-- comment: show if not logged in')</field>
+          <div class="panel panel-success">
+           <div class="panel-heading">
+            <b>
+             Private Calendars
+            </b>
+           </div>
+           <div class="panel-body">
+            <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>calendars/my_upcoming_events">
+             <i class="fa fa-ticket">
+             </i>
+             My Upcoming Events
+            </a>
+            <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>calendars/my_upcoming_activities">
+             <i class="fa fa-tasks">
+             </i>
+             My Upcoming Activities
+            </a>
+            <a class="btn btn-block btn-primary" href="<field>F_HTML_FIREWALL</field>calendars/my_upcoming_tasks">
+             <i class="fa fa-tasks">
+             </i>
+             My Upcoming Tasks
+            </a>
+           </div>
+          </div>
+         </div>
+         <field>pick(F_LOGGED_IN=1,'-->')</field>
+         <field>pick(F_LOGGED_IN=1&F_HTML_VENUE_CALENDARS_COUNT>0,'<!-- comment: show if logged in and venue calendars available')</field>
+         <div class="col-md-4">
+          <div class="panel panel-success">
+           <div class="panel-heading">
+            <b>
+             Managed Event Calendars
+            </b>
+           </div>
+           <div class="panel-body">
+            <field>F_HTML_VENUE_CALENDARS_LIST</field>
+           </div>
+          </div>
+          <field>pick(F_LOGGED_IN=1&F_HTML_VENUE_CALENDARS_COUNT>0,'-->')</field>
+         </div>
+        </div>
+       </div>
+       <!--#include virtual="TMtemplates/tmPoweredBy.html" -->
+      </div>
+      <!-- comment: .content -->
+     </div>
+     <!--  comment: .container -->
+     <!--#include virtual="TMtemplates/tmFooter.html" -->
+    </div>
+   </div>
+  </div>
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Waiting Page
+  </title>
+  <link href="tmGifs/spacing.css" rel="stylesheet" type="text/css"/>
+  <link href="tmGifs/waitingRoomTemplateStyle.css" rel="stylesheet" type="text/css"/>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <div class="container">
+   <div id="content">
+    <div class="row mt-5">
+     <div class="col-sm-12">
+      <div class="jumbotron">
+       <div class="text-center">
+        <img alt="Outlet Logo" class="mr-auto ml-auto" id="tm-company-logo" src="<field>F_HTML_FIREWALL</field>image?outlet"/>
+       </div>
+       <h2 class="text-center pb-5">
+        Hold on tight!
+       </h2>
+       <field>pick(len(D_WEB_QUEUE_NOTE)>0,'<!-- comment: hide queue note')</field>
+       <div class="col-sm-offset-3 col-sm-6 col-xs-12">
+        <div class="alert alert-info">
+         <field>D_WEB_QUEUE_NOTE</field>
+        </div>
+       </div>
+       <div class="clearfix">
+       </div>
+       <field>pick(len(D_WEB_QUEUE_NOTE)>0,'-->')</field>
+       <field>pick(len(D_WEB_QUEUE_WARNING)>0,'<!-- comment: hide queue warning')</field>
+       <div class="col-sm-offset-3 col-sm-6 col-xs-12">
+        <div class="alert alert-warning">
+         <field>D_WEB_QUEUE_WARNING</field>
+        </div>
+       </div>
+       <div class="clearfix">
+       </div>
+       <field>pick(len(D_WEB_QUEUE_WARNING)>0,'-->')</field>
+       <hr/>
+       <div class="text-center position_template_text_render">
+        <p>
+         You are in the waiting room queue!
+        </p>
+       </div>
+       <!-- comment: Vertical Words -->
+       <div class="text-center position_template_bar_render mt-5 mb-5">
+       </div>
+       <div class="text-center refresh_template_text_render">
+        <p>
+         This page will automatically refresh in
+         <b class="lead">
+          30
+         </b>
+         seconds
+        </p>
+       </div>
+       <div class="text-center">
+        (you must have cookies enabled in your browser)
+       </div>
+      </div>
+     </div>
+     <!-- /#content -->
+    </div>
+    <!-- .container -->
+    <!-- comment:
+    daysNumber: Days left in countdown
+    hoursNumber: Hours left in countdown
+    minutesNumber: Minutes left in countdown
+    secondsNumber: Seconds left in countdown
+
+    daysWords: Days left in words
+    hoursWords: Hours left in words
+    minutesWords: Minutes left in words
+    secondsWords: Seconds left in words
+
+    hasDays: True if days is greater than 0
+    hasHours: True if days is greater than 0 or hours is greater than 0
+    hasMinutes: True if days is great than 0, hours is greater than 0, or minutes is greater than 0
+  -->
+    <rawfield>
+     <!-- Template text: Position Progress Text -->
+     <script id="position-template-text" type="text/x-handlebars-template">
+      <div>
+         <p>
+          You are
+          <b id="queue-position">
+           {{ progressNth }}
+          </b>
+          in queue!
+         </p>
+       </div>
+     </script>
+     <!-- Template bar: Position Progress Bar -->
+     <script id="position-template-bar" type="text/x-handlebars-template">
+      <div class="progress user-progress">
+         <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{ progressPercentInt }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ progressPercent }}%;">
+           <div class="icon-container">
+             <i class="icon fa fa-user-circle" aria-hidden="true"></i>
+           </div>
+         </div>
+       </div>
+     </script>
+     <script id="refresh-template-text" type="text/x-handlebars-template">
+      <p>
+       This page will automatically refresh in
+       <b class="lead">
+        {{ seconds }}
+       </b>
+       {{ secondsText}}
+      </p>
+     </script>
+    </rawfield>
+    <!--#include virtual="TMtemplates/tmFooter.html" -->
+   </div>
+  </div>
+  <!--#include virtual="tmScripts/waitingRoomTemplateFunctions.html" -->
+  <!-- comment: AJAX loading start -->
+  <script type="text/javascript">
+   $(document).ready(function() {
+      // Save performance date so it can reused on each clock tick
+      var locale = '<field>F_HTML_LOCALE</field>';
+      var refreshDate = moment().add(30, 'seconds');  // + 30 seconds
+      var queueTemplates = [
+          ['.position_template_bar_render', "#position-template-bar"],
+          ['.position_template_text_render', "#position-template-text"]
+      ];
+      var timerTemplates = [
+          ['.refresh_template_text_render', "#refresh-template-text"],
+      ];
+
+      var time_left = '<field>F_HTML_QUEUE_TIME_LEFT</field>';
+
+      var queue_size = parseInt(getCookie("tm_queue_size"))
+      var queue_position = parseInt(getCookie("tm_queue_position"));
+
+      // Validate returned positions
+      if (!queue_size || !queue_position) {
+        queue_size = -1
+        queue_position = -1
+      }
+
+      // Don't display position information if the position isn't valid
+      if (!(queue_position >= 0 && queue_position < 2147483647)) {
+        queueTemplates = [];
+      }
+
+      var timerStart = moment();
+      var timerCancel;
+      if (time_left === "" || time_left === "0") {
+        /*
+        * RUN TIMER
+        *
+        * Intended for use with setInterval, this method will invoke a page reload each second
+        * and update all countdown text until the page reloads
+        */
+        var runTimer = function() {
+          var localNow = moment();
+          var progressStart = (localNow - timerStart) / 1000;
+          var progressEnd = (refreshDate - timerStart) / 1000;
+          var timeDiff = (refreshDate - localNow) / 1000;
+          if (timeDiff <= 0) {
+            // Stop timer
+            clearInterval(timerCancel);
+            // Render last countdown
+            timeDiff = 0;
+            updateCountdowns(locale, timerTemplates, timeDiff, progressStart, progressEnd);
+            // Trigger page reload
+            location.reload();
+            return;
+          }
+
+          updateCountdowns(locale, timerTemplates, timeDiff, progressStart, progressEnd);
+        };
+
+        timerCancel = setInterval(runTimer, 1000);
+      } else {
+        time_left = 30 - parseInt(time_left)
+        var localNow = moment(timerStart).add(time_left, 'seconds');
+        var progressStart = (localNow - timerStart) / 1000;
+        var progressEnd = (refreshDate - timerStart) / 1000;
+        var timeDiff = (refreshDate - localNow) / 1000;
+
+        updateCountdowns(locale, timerTemplates, timeDiff, progressStart, progressEnd);
+      }
+
+      // Set the queue position if it exists
+      queue_size = parseInt(queue_size);
+      queue_position = parseInt(queue_position);
+
+      if (!Number.isNaN(queue_position)) {
+        // If the queue position is a number but the queue size is not
+        // Set the queue size to be the queue position
+        if (Number.isNaN(queue_size)) {
+          queue_size = queue_position;
+        }
+
+        updateQueueProgress(queueTemplates, queue_position, queue_size)
+      }
+    });
+  </script>
+  <!-- comment: AJAX loading end -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

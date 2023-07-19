@@ -1,0 +1,11 @@
+<!-- comment:
+	Can be overridden with:
+	  - Event: tmEvent/tmLiveEventBoxCast123.html, where 123 is an Event/Play #
+	  - Performance: tmEvent/tmLiveEventPerformanceBoxCast123.html, where 123 is a Performance #
+-->
+<div class="well">
+ <div class="embed-responsive <field>pick(F_HTML_BOXCAST_ASPECT_RATIO, 'embed-responsive-16by9', 'embed-responsive-4by3')</field>" style="<field>pick(F_HTML_BOXCAST_MESSAGE_HEIGHT>0, '', con('height: ', 400 + F_HTML_BOXCAST_MESSAGE_HEIGHT, 'px;'))</field>">
+ <iframe class="embed-responsive-item" src="https://boxcast.tv/view-embed/<field>F_HTML_BOXCAST_VIDEO_ID</field>?showTitle=0&showDescription=<field>F_HTML_BOXCAST_SHOW_DESCRIPTION</field>&showHighlights=<field>F_HTML_BOXCAST_SHOW_HIGHLIGHTS</field>&showChat=<field>F_HTML_BOXCAST_SHOW_CHAT</field>&showDocuments=<field>F_HTML_BOXCAST_SHOW_DOCUMENTS</field>&showRelated=0&defaultVideo=next&market=smb&showDocuments=0&showIndex=0&showDonations=0" frameBorder="0" scrolling="auto" allow="autoplay; encrypted-media; fullscreen" mozallowfullscreen webkitallowfullscreen allowfullscreen>
+ </iframe>
+ </div>
+</div>

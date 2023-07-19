@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Ticket Search Options
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <!--#include virtual="tmMaps/tmTicketsEventTitle.html" -->
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <!--#include virtual="tmMaps/tmChangePerformanceDate.html" -->
+     </div>
+     <div class="col-md-8">
+      <div class="well well-sm">
+       <form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+        <input id="PB_SEQ" name="PB_SEQ" type="hidden" value="<field>PB_SEQ</field>"/>
+        <div class="form-group">
+         <label for="section">
+          <h4>
+           <img src="tmGifs/step1.gif" alt="step one" width="24"/>
+           Where would you like to sit?
+          </h4>
+         </label>
+         <br/>
+         <!-- comment: should have class="form-control" in select -->
+         <div class="form-inline">
+          <field>F_HTML_BEST_AREA_SEARCH_LIST</field>
+          <field>F_HTML_BEST_PRICE_CODE_SEARCH_LIST</field>
+          <p class="help-block">
+           Select the section you wish to sit in.
+          </p>
+         </div>
+        </div>
+        <div class="form-group">
+         <label for="PS_QUANTITY">
+          <h4>
+           <img src="tmGifs/step2.gif" alt="step two" width="24"/>
+           How many tickets do you want?
+          </h4>
+         </label>
+         <br/>
+         <div class="form-inline">
+          <select class="form-control" id="PS_QUANTITY" name="PS_QUANTITY" size="1">
+           <field>F_HTML_TICKET_QTY_LIST</field>
+           <!-- comment: use include below instead of F_HTML_TICKET_QTY_LIST if you only want even seat offerings -->
+           <!-- comment: #include virtual="TMtemplates/tmEvenSeatsOnly.html" -->
+          </select>
+         </div>
+        </div>
+        <div class="form-group">
+         <strong>
+          <h4>
+           <img src="tmGifs/step3.gif" alt="step three" width="24"/>
+           Keep seats together or can they be separated?
+          </h4>
+         </strong>
+        </div>
+        <div class="form-inline">
+         <div class="radio">
+          <label>
+           <input id="together" name="F_TOGETHER" type="radio" value="0" <field>pick(F_TOGETHER,"checked","")</field>/>
+           Keep My Seats Together
+          </label>
+         </div>
+         <div class="radio">
+          <label>
+           <input id="separate" name="F_TOGETHER" type="radio" value="1" <field>pick(F_TOGETHER,"","checked")</field>/>
+           My Seats Can be Separated
+          </label>
+         </div>
+        </div>
+        <div class="form-group" style="margin-top: 15px;">
+         <field>pick(PB_SALES_METHOD=2&not(F_HTML_ALLOW_PICK_YOUR_OWN),'<!-- comment: when not pick your own')</field>
+         <input class="btn btn-success" name="btnBestAvail" onclick="process()" type="submit" value="Suggest Some Seats"/>
+         <field>pick(PB_SALES_METHOD=2&not(F_HTML_ALLOW_PICK_YOUR_OWN),'-->')</field>
+         <field>pick(PB_SALES_METHOD=2&F_HTML_ALLOW_PICK_YOUR_OWN,'<!-- comment: when it is pick your own venue')</field>
+         <input class="btn btn-success" name="btnBestAvail" onclick="process()" type="submit" value="Choose Your Seats"/>
+         <field>pick(PB_SALES_METHOD=2&F_HTML_ALLOW_PICK_YOUR_OWN,'-->')</field>
+         <input class="btn btn-danger" name="btnBestAvailCancel" type="submit" value="Cancel and Start Over"/>
+         <!--#include virtual="tmMaps/tmChangePerformanceDateButton.html" -->
+        </div>
+       </form>
+      </div>
+      <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+      <!--#include virtual="TMtemplates/tmPerformanceSalesNotes.html" -->
+      <field>pick(PB_SALES_METHOD=2,'<!-- comment: no map unless reserved seating')</field>
+       <!--#include virtual="tmMaps/tmChangePerformanceMap.html" -->
+      <field>pick(PB_SALES_METHOD=2,'-->')</field>
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

@@ -1,0 +1,23 @@
+<!-- comment:
+	Can be overridden with:
+	  - Event: tmEvent/tmLiveEventVimeoEventDefault123.html, where 123 is an Event/Play #
+	  - Performance: tmEvent/tmLiveEventPerformanceVimeoEvent123.html, where 123 is a Performance #
+-->
+<div class="embed-responsive <field>pick(F_HTML_VIMEO_EVENT_ASPECT_RATIO, 'embed-responsive-16by9', 'embed-responsive-4by3')</field>">
+<field>pick(F_HTML_VIMEO_EVENT_CONTENT_ID, '','<!-- comment:')</field>
+ <iframe loading="lazy" class="embed-responsive-item" src="https://vimeo.com/event/<field>F_HTML_VIMEO_EVENT_EVENT_ID</field>/embed" allow="autoplay; encrypted-media; fullscreen" mozallowfullscreen webkitallowfullscreen allowfullscreen>
+ </iframe>
+ <field>pick(F_HTML_VIMEO_EVENT_CONTENT_ID, '', '-->')</field>
+ <field>pick(F_HTML_VIMEO_EVENT_CONTENT_ID, '<!-- comment:')</field>
+ <iframe loading="lazy" class="embed-responsive-item" src="https://vimeo.com/event/<field>F_HTML_VIMEO_EVENT_EVENT_ID</field>/embed/<field>F_HTML_VIMEO_EVENT_CONTENT_ID</field>" allow="autoplay; encrypted-media; fullscreen" mozallowfullscreen webkitallowfullscreen allowfullscreen>
+ </iframe>
+ <field>pick(F_HTML_VIMEO_EVENT_CONTENT_ID, '-->')</field>
+</div>
+<field>pick(F_HTML_VIMEO_EVENT_CHAT_ENABLED, '<!-- comment:')</field>
+<hr>
+<div class="embed-responsive embed-responsive-16by9">
+ <iframe class="embed-responsive-item" src="https://vimeo.com/event/<field>F_HTML_VIMEO_EVENT_EVENT_ID</field>/chat" allow="encrypted-media">
+ </iframe>
+</div>
+<field>pick(F_HTML_VIMEO_EVENT_CHAT_ENABLEDD, '-->')</field>
+	

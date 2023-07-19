@@ -1,0 +1,11 @@
+<field>pick(SCD_RECURRING_FREQUENCY>0,'<!-- comment: Only show the recurring donation frequency if one has been selected','')</field>
+<p>
+ Please accept our thanks in advance for starting a consistent
+ <em>
+  <strong>
+   <field>pick(SCD_RECURRING_FREQUENCY,'','Monthly','Every 2 Week','Quarterly','Annual','Daily','Weekly','Every 2 Month')</field>
+  </strong>
+ </em>
+ <field>low(D_DONATION_DESC)</field>. Your ongoing support will help us ensure the necessary resources will be available for our programs.
+</p>
+<field>pick(SCD_RECURRING_FREQUENCY>0,' --> ','')</field>

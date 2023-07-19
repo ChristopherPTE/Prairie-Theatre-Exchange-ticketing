@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Invalid Request
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div align="center" id="content">
+   <div align="center" class="message">
+    <b>
+     <field>F_HTML_PAGE_MESSAGE</field>
+    </b>
+   </div>
+   <table border="0" cellpadding="0" cellspacing="0" class="tablerowdetail" width="90%">
+    <tr>
+     <td>
+      <form action="<field>F_HTML_FIREWALL</field>online" method="POST">
+       <p align="center" class="title">
+        <field>D_COMPANY_LONG</field> Online Ticketing
+       </p>
+       <p align="center" class="main">
+        It appears that you may have either
+            clicked your web browser's BACK button, FORWARD button, or the REFRESH
+            button. These buttons should be avoided when using the online ticketing
+            system
+            as they
+            will not refresh the windows
+            with the most current and up-to-date information available from our
+            web site. If those buttons were not clicked, perhaps a button was
+            clicked MULTIPLE times.&nbsp; A button or link requires only to be
+            clicked a single time to activate your request throughout our website.&nbsp;&nbsp;
+       </p>
+       <p align="center" class="main">
+        To view information, purchase tickets, update your account
+            information, and to use the other features for online ticking, please
+            use the buttons provided on the pages displayed.
+       </p>
+       <p align="center" class="main">
+        If you have any questions regarding
+            how to use the online ticketing from our website, please contact
+            our box office listed below and our representatives will
+            be more than happy to assist you.
+       </p>
+       <center>
+        <!--#include virtual="TMtemplates/tmContactHours.html" -->
+       </center>
+       <p align="center" class="main">
+        You can continue and access your shopping cart 
+            by clicking on any of the navigation buttons above.
+       </p>
+      </form>
+     </td>
+    </tr>
+   </table>
+  </div>
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

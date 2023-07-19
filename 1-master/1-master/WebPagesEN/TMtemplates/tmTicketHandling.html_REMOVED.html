@@ -1,0 +1,85 @@
+  <div class="form-group">
+   <label class="col-sm-2 control-label" for="">
+    <field>pick(SCH_TIX_QUANTITY=0,'Ticket Handling ')</field>Delivery Method
+   </label>
+   <div class="col-sm-10">
+    <field>pick(F_BTN_PRINT_AT_HOME,'<!-- comment: print at home as per company prefs')</field>
+    <div class="form-group">
+     <div class="radio col-sm-3">
+      <label class="control-label" for="eticket">
+       <input id="eticket" name="SCH_TIX_PRINT_STATUS" onclick="submitForm('TMForm','btnMailFeeRemove','<field>F_MAIL_FEE_EXISTS</field>');" type="radio" value="0" <field>pick(SCH_TIX_PRINT_STATUS=0,'','checked')</field>/>
+       E-Ticket/print at home
+      </label>
+     </div>
+     <div class="col-sm-9">
+      <div class="alert <field>pick(SCH_TIX_PRINT_STATUS=0,'alert-info','alert-info')</field> fade in">
+       <a aria-label="close" class="close" data-dismiss="alert" href="#">
+        &times;
+       </a>
+       <b>
+        E-Tickets
+       </b>
+       are not mailed.
+       <em>
+        You must print the tickets on your own printer and bring them with you to the event.
+       </em>
+      </div>
+     </div>
+    </div>
+    <field>pick(F_BTN_PRINT_AT_HOME,'-->')</field>
+    <field>pick(F_BTN_MAIL_TO_PATRON,'<!-- comment: mail to as patron per company prefs')</field>
+    <div class="form-group">
+     <div class="radio col-sm-3">
+      <label class="control-label" for="mailtopatron">
+       <input id="mailtopatron" name="SCH_TIX_PRINT_STATUS" onclick="submitForm('TMForm','btnMailFeeAdd','<field>F_MAIL_FEE_ALLOWED</field>');" type="radio" value="1" <field>pick(SCH_TIX_PRINT_STATUS=1,'','checked')</field>/>
+       Mail me my <field>pick(SCH_TIX_QUANTITY=0,'tickets','items')</field>
+      </label>
+     </div>
+     <div class="col-sm-9">
+      <div class="alert <field>pick(SCH_TIX_PRINT_STATUS=1,'alert-info','alert-info')</field> fade in">
+       <a aria-label="close" class="close" data-dismiss="alert" href="#">
+        &times;
+       </a>
+       <b>
+        Items mailed to you
+       </b>
+       may take 5 to 7 business days to arrive at your mailing address.
+       <em>
+        <field>pick(SCH_TIX_QUANTITY=0,'Tickets for events within the next 7 days will not be mailed out.  Any tickets not received can be picked up at Will Call.')</field>
+       </em>
+       <field>D_COMPANY_LONG</field> is not responsible for <field>pick(SCH_TIX_QUANTITY=0,'tickets','items')</field> lost in the mail.
+      </div>
+     </div>
+    </div>
+    <field>pick(F_BTN_MAIL_TO_PATRON,'-->')</field>
+    <field>pick(F_BTN_WILLCALL,'<!-- comment: Will Call as per company prefs')</field>
+    <div class="form-group">
+     <div class="radio col-sm-3">
+      <label class="control-label" for="willcall">
+       <input id="willcall" name="SCH_TIX_PRINT_STATUS" onclick="submitForm('TMForm','btnMailFeeRemove','<field>F_MAIL_FEE_EXISTS</field>');" type="radio" value="2" <field>pick(SCH_TIX_PRINT_STATUS=2,'','checked')</field>/>
+       Hold <field>pick(SCH_TIX_QUANTITY=0,'tickets','items')</field> at Will Call
+      </label>
+     </div>
+     <div class="col-sm-9">
+      <div class="alert <field>pick(SCH_TIX_PRINT_STATUS=2,'alert-info','alert-info')</field> fade in">
+       <a aria-label="close" class="close" data-dismiss="alert" href="#">
+        &times;
+       </a>
+       <b>
+        Ticket Pickup:
+       </b>
+<!-- comment: removed during COVID
+       Should you choose to pick up your tickets, they will
+            	be available for pickup at the theatre Box Office during regular Box Office
+                hours. Any tickets not picked up before the performance will be available for pick-up at the
+                Box Office window one (1) hour prior to the performance on the day of the performance.
+				<br/>
+-->
+      Online performances do not require a printed ticket.
+<!-- comment: only use during subscription sales period	<b><u>SUBSCRIPTION TICKETS will be automatically mailed out in early September.</u></b>
+      </div>
+     </div>
+    </div>
+    <field>pick(F_BTN_WILLCALL,'')</field>
+   </div>
+  </div>

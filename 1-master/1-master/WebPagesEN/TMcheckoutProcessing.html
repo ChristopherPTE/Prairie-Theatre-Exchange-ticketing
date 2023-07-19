@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <title>
+   <field>D_COMPANY_LONG</field> | Confirm Processing of Payment
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Step 2 of 3:
+      <span class="text-muted">
+       confirm that your card can be charged now
+      </span>
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <div class="alert alert-info fade in">
+       <a aria-label="close" class="close" data-dismiss="alert" href="#">
+        &times;
+       </a>
+       Click the 'Charge my card NOW' button to begin charging your card.
+	   (Please note that all ticket purchases are final sales.)
+      </div>
+      <!--#include virtual="TMtemplates/tmCheckoutPostDatedPaymentsAccepted.html" -->
+      <!--#include virtual="TMtemplates/tmProcessingDelivery.html" -->
+     </div>
+     <div class="col-md-8">
+      <!-- comment: charge the cart, or cancel the checkout process -->
+      <form action="<field>F_HTML_FIREWALL</field>ccauth" method="POST">
+       <input name="cc" type="hidden" value="<field>F_HTML_CHECKOUT_INFO</field>"/>
+       <input name="pg" type="hidden" value="checkout"/>
+       <input class="btn btn-success" name="btnCheckoutAccept" onclick="process()" type="submit" value="Charge $<field>pick(F_POST_DATED_PLAN_ACCEPTED,SCH_TOTAL_COST,F_POST_DATED_AMOUNT_DUE_TODAY)</field> <field>F_HTML_CURRENCY</field> to my credit card NOW"/>
+       <div class="alert alert-text fade in">
+        <a aria-label="close" class="close" data-dismiss="alert" href="#">
+         &times;
+        </a>
+        If this page does not change within one minute (1) after clicking the
+					'Charge my card NOW' button above, please contact our
+        <a class="link" href="mailto:<field>D_EMAIL_ADDR</field>?subject=Checkout%20Issue%20with%20Cart%20<field>SCH_SEQ</field>">
+         box office
+        </a>
+        to verify that your order was processed and avoid erroneous credit card charges.
+        <b>
+         DO NOT
+        </b>
+        click the browser BACK button to return to this window.
+        <br/>
+        <br/>
+        When the processing has completed,
+            a confirmation notice will appear. You will also receive an email confirming
+            your order and instructions for retrieving your ticket information at any time in the future.
+			Please note that all ticket purchases are final sales.
+          <p>If this page does not change after
+              one (1) minute, please contact our <a href="mailto:<field>D_EMAIL_ADDR</field>" class="link">box
+              office</a> to verify if your order
+              was processed and to avoid erroneous credit card charges.
+       </div>
+       <!-- comment: the cancel button must be in the form to send back the hidden fields -->
+       <input class="btn btn-danger" name="btnCheckout" onclick="process()" type="submit" value="Return to step 1 to change payment options"/>
+       <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+      </form>
+      <!--#include virtual="TMtemplates/tmContactHours.html" -->
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+ </body>
+</html>

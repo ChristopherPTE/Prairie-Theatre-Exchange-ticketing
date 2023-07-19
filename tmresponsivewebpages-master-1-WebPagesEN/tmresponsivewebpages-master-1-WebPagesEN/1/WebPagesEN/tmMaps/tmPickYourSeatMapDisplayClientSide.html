@@ -1,0 +1,48 @@
+  <!-- comment:
+      Parameters for Maps:
+
+      reserved_only = if true, the image returned is a blown up version around the reserved seats (can be yes,y,no,n,1 or 0)
+      reserved_boundary = if true, the image returned has a rectangle representing the viewable area that would be shown with reserved_only. (Not recommended with pick your own)
+      reserved_seat_border = specifies the extra space around the reserved seats in approximate seats (e.g. 2 seats around the reserved seat or 4 seats around the reserved seats.)
+
+      seat_color = the hex code for the unsold seats
+      selected_color = specifies the stroke color of the selected seats as a RGB hex string, i.e. FF0000 means bright red  007700 is green.  This this the border colour of the seats that a patron in selecting to change the seats they want 
+      reserved_color = specifies the fill color of the temporarily held best seats as a RGB hex string, i.e. FF0000 means bright red  007700 is green
+      unavailable_color = specifies the fill color of the unavailable seats as a RGB hex string, i.e. FF0000 means bright red  007700 is green
+
+      reserve_boundary_color = the rectangle colour that encloses all seats on a suggest your seat map
+
+      seat_font = Font to use for seat labels
+      seat_font_size = Font size to use for seat labels
+      seat_font_scale = SVG scaling factor to apply to the font size (depends on the scale used when constructing the SVG map)
+      seat_font_load = "embed": base64 embedded font, "local": locally loaded font from tmVendor, "cdn": remotely loaded font from Content Delivery Network (CDN)
+
+      Note: Additional parameters for defaulting Map Display View (Auto-Zoom vs. View Entire Map) are set within tmMaps/tmPickYourSeatScripts.html
+-->
+  <!-- comment: RESERVED SEATING WITH PICK YOUR OWN (CLIENT SIDE)-->
+  <div align="center">
+   <div class="panel panel-default">
+    <div class="panel-body">
+     <div id="venue_map_progress" style="display: none;">
+      <div class="progress">
+       <div aria-valuemax="1" aria-valuemin="0" aria-valuenow="1" class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%">
+        <span class="sr-only">
+         Loading Map...
+        </span>
+       </div>
+      </div>
+      <p class="lead text-center">
+       Loading Map...
+      </p>
+     </div>
+     <div id="venue_map_client_side">
+     </div>
+     <!-- comment: use the file tmPickYourSeatDesktopNavigationSpaced.html if you want it the original way -->
+     <hr/>
+     <!--#include virtual="tmMaps/tmPickYourSeatDesktopNavigation.html" -->
+     <br/>
+     <!--#include virtual="tmMaps/tmPickYourSeatLegend.html" -->
+    </div>
+   </div>
+  </div>
+  <!--#include virtual="tmMaps/tmPickYourSeatClientScripts.html" -->

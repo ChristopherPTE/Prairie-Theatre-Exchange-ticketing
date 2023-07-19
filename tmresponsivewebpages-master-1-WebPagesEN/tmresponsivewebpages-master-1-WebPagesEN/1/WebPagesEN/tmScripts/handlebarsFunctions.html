@@ -1,0 +1,133 @@
+<script type="text/javascript">
+<!--
+(function ( $ ) { 
+    /**
+    * Handlebars helper function to check if two parameters are equivalent
+    */
+    Handlebars.registerHelper('if_eq', function(a, b, opts) {
+        if (a == b) {
+            return opts.fn(this);
+        } else {
+            return opts.inverse(this);
+        }
+    });
+
+    /**
+    * Handlebars helper function to format currency into the current locale
+    * Does not include currency code: $10,000.00
+    */
+    Handlebars.registerHelper('currency', function(value) {
+        var locale = '<field>F_HTML_LOCALE</field>';
+        var currency = '<field>F_HTML_CURRENCY</field>';
+        return parseFloat(value).toLocaleString(locale, { 
+            style: 'currency', 
+            currency: currency,
+            currencyDisplay: 'symbol'
+        }).replace(/([A-Z])+/g, '');
+    });
+
+    /**
+    * Handlebars helper function to format currency into the current locale
+    * Includes currency code: CA$10,000.00
+    */
+    Handlebars.registerHelper('locale_currency', function(value) {
+        var locale = '<field>F_HTML_LOCALE</field>';
+        var currency = '<field>F_HTML_CURRENCY</field>';
+        return parseFloat(value).toLocaleString(locale, { 
+            style: 'currency', 
+            currency: currency,
+            currencyDisplay: 'symbol'
+        });
+    });
+
+    // Compile template cache -- saves compiling templates more than once
+    var templateCache = {};
+
+    /**
+    * Render a template instance
+    * 
+    * To render the template use the instance and pass an object with keys for all mergeable template data
+    * 
+    * Example:
+    * 
+    *   var = renderedTemplate = $.fn.templateRender('.my-template', data);
+    * 
+    * @param selector - selector string for the Handlebars template <script>
+    * @param data - data to render into the template
+    * @param options - options object with different named params
+    *   - unsafe: boolean sets if template should not be html escaped while compiling. Defaults to false 
+    */
+    function templateRender(selectorString, data, options) {
+        var optionsKey = JSON.stringify(options);
+        var template = templateCache[selectorString] ? templateCache[selectorString][optionsKey] : undefined;
+        var template; 
+        try {
+            template = templateCache[selectorString][optionsKey];
+        } catch (e) { 
+            if (e instanceof TypeError) { 
+                template = undefined;
+            } else { 
+                template = undefined;
+                console.error(e);
+            }
+        }
+        if (!template) {
+            var element = $(selectorString);
+            if (element.length > 0 ) {
+                var unsafe = options ? options.unsafe : false;
+                template = Handlebars.compile(element.html(), {noEscape: unsafe});
+            } else {
+                template = Handlebars.compile('');
+            }
+            if (templateCache.hasOwnProperty(selectorString)) {
+                templateCache[selectorString][optionsKey] = template;
+            } else {
+                templateCache[selectorString] = {[optionsKey]: template};
+            }
+        }
+        rendered = template(data);
+        return rendered;
+    }
+
+    /**
+     * Render a template into a jQuery destination
+     * 
+     * Example w/o data:
+     * 
+     *  $('.my-destination').handlebars('#my-template');
+     * 
+     * Example w/ data:
+     * 
+     *  $('.my-destination').handlebars('#my-template', data);
+     */
+    $.fn.handlebars = function (templateSelector, data) {
+        var rendered = templateRender(templateSelector, data);
+        return this.html(rendered);
+    };
+
+    /**
+    * Caches a template then returns the compiled HTML
+    * 
+    * Example:
+    * 
+    *  var myHTML = $.fn.handlebars.asHTML("#my-template", data);
+    */
+    $.fn.handlebars.asHTML = function(templateSelector, data) {
+        return templateRender(templateSelector, data);
+    }
+
+    /**
+    * Caches a template then returns the compiled non-escaped HTML
+    * 
+    * Example:
+    * 
+    *  var myHTML = $.fn.handlebars.asText("#my-template", data);
+    */
+    $.fn.handlebars.asText = function(templateSelector, data) {
+        return templateRender(templateSelector, data, {
+            unsafe: true
+        });
+    }
+}( jQuery ));
+//-->
+</script>

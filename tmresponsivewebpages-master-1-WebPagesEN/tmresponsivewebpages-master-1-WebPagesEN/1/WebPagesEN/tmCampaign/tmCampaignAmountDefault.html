@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | <field>DC_DESCRIPTION_EXTERNAL</field>
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      <field>DC_DESCRIPTION_EXTERNAL</field>
+      <small>
+       <span class="text-muted">
+        Choose Amount
+       </span>
+      </small>
+     </h1>
+     <field>pick(F_HTML_CAMPAIGN_TARGET_VISIBLE, '<!-- comment:')</field>
+     <!--#include virtual="TMtemplates/tmDonationCampaignProgressBar.html" -->
+     <field>pick(F_HTML_CAMPAIGN_TARGET_VISIBLE, '-->')</field>
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmDonationCampaignIcon.html" -->
+      <br/>
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <!--#include virtual="TMtemplates/tmDonationCampaignSpecificNotes.html" -->
+      <!--#include virtual="TMtemplates/tmDonationCampaignGeneralNotes.html" -->
+      <!--#include virtual="TMtemplates/tmDonationCampaignTaxReceiptNotes.html" -->
+     </div>
+     <div class="col-md-8">
+      <form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+       <div class="row">
+        <div class="col-md-4">
+         <div class="form-group">
+          <label for="DD_AMOUNT_PLEDGE">
+           Donation Amount
+          </label>
+          <!-- #include virtual="tmHelp/tmDonationAmountHelp.html" -->
+          <input class="form-control" id="DD_AMOUNT_PLEDGE" max="99999999.99" min="0" name="DD_AMOUNT_PLEDGE" placeholder="amount you want to donate" step="any" type="number" value="<field>DD_AMOUNT_PLEDGE</field>"/>
+         </div>
+        </div>
+        <!-- comment: .col-md-4 -->
+        <div class="col-md-8">
+         <div class="form-group">
+          <label for="DDR_FREQUENCY">
+           How often do you want to make this donation?
+          </label>
+          <!-- #include virtual="tmHelp/tmDonationRecurringFrequencyHelp.html" -->
+          <select class="form-control" id="DDR_FREQUENCY" name="DDR_FREQUENCY" size="2">
+           <!-- #include virtual="TMtemplates/setDonationRecurringFrequencyList.html" -->
+          </select>
+         </div>
+        </div>
+        <!-- comment: .col-md-8 -->
+       </div>
+       <!-- comment: .row -->
+       <div class="form-group">
+        <label for="DD_NAME_OF">
+         How would you like your name recognized in the program?
+        </label>
+        <input class="form-control" id="DD_NAME_OF" maxlength="100" name="DD_NAME_OF" placeholder="if left blank, this is determined based on your account profile" type="text" value="<field>DD_NAME_OF</field>"/>
+       </div>
+       <!-- comment: hide anonymous
+        <div class="form-group">
+         <label for="Anonymous">
+          Would you prefer this donation to be Anonymous?
+         </label>
+         <select class="form-control" id="Anonymous" name="Anonymous">
+          <option value="1">
+           Yes
+          </option>
+          <option selected="" value="0">
+           No
+          </option>
+         </select>
+        </div>
+        -->
+       <!-- comment: hide corporate
+        <div class="form-group">
+         <label for="DD_CORPORATE">
+          Is this a Corporate Donation?
+         </label>
+         <select class="form-control" id="DD_CORPORATE" name="DD_CORPORATE">
+          <option value="1">
+           Yes
+          </option>
+          <option selected="" value="0">
+           No
+          </option>
+         </select>
+         <p class="help-block">
+          For corporate accounts only.
+         </p>
+        </div>
+        -->
+       <!-- comment: if you enable any of the mandatory fields in donations, edit the values for the hidden
+             fields in tmDonationHiddenFields.html so that it is a separate file -->
+       <!--#include virtual="TMtemplates/tmDonationHiddenFields.html" -->
+       <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+       <input name="DC_SEQ" type="hidden" value="<field>DC_SEQ</field>"/>
+       <input id="ForwardParam" name="param" type="hidden" value=""/>
+       <div class="hidden-xs hidden-sm">
+        <div class="row">
+          <input class="btn btn-success" name="btnDonationCampaignAccept" onclick="process()" type="submit" value="Add Donation to Shopping Cart"/>
+          <input class="btn btn-danger" name="btnDonationCampaigns" type="submit" value="Cancel"/>
+        </div>
+        <field>pick(F_HTML_ALLOW_WEB_PAYMENT, '<!-- comment: hide add & pay')</field>
+        <div class="row" style="margin-top: 5px;">
+          <input class="btn btn-primary" name="btnDonationCampaignAccept" onclick="processForward('ForwardParam', '<field>pick(F_LOGGED_IN=1,'btnCheckout','btnCartQuickPay')</field>')" type="submit" value="Add &amp; Pay"/>
+        </div>
+        <field>pick(F_HTML_ALLOW_WEB_PAYMENT, '-->')</field>
+       </div>
+       <div class="container-fluid hidden-md hidden-lg">
+        <div class="row">
+          <input class="btn btn-success btn-block btn-lg" name="btnDonationCampaignAccept" onclick="process()" type="submit" value="Add Donation to Shopping Cart"/>
+          <field>pick(F_HTML_ALLOW_WEB_PAYMENT, '<!-- comment: hide add & pay')</field>
+          <input class="btn btn-primary btn-block btn-lg" name="btnDonationCampaignAccept" onclick="processForward('ForwardParam', '<field>pick(F_LOGGED_IN=1,'btnCheckout','btnCartQuickPay')</field>')" type="submit" value="Add &amp; Pay"/>
+          <field>pick(F_HTML_ALLOW_WEB_PAYMENT, '-->')</field>
+          <input class="btn btn-danger btn-block btn-lg" name="btnDonationCampaigns" type="submit" value="Cancel"/>
+          &nbsp;
+        </div>
+       </div>
+      </form>
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

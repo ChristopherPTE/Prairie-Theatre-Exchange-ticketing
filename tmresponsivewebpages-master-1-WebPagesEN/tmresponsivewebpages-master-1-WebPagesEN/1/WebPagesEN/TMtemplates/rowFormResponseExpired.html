@@ -1,0 +1,31 @@
+<tr>
+ <td>
+  <field>FRM_NAME_EXTERNAL</field>
+ </td>
+ <td>
+  <field>FRM_PURPOSE</field>
+  <br>
+  <br>
+  <strong class="text-warning">Signed On:</strong>
+  <field>dat(FR_DATE_COMPLETED,'w n D, y @ h:N A')</field>
+  <br>
+  <strong class="text-warning">Signed By:</strong>
+  <field>F_HTML_FORM_RESPONSE_COMPLETED_BY</field>
+  <span class="text-muted"><field>pick(FR_COMPLETED_C_SEQ=C_SEQ,'','(you)')</field></span>
+  <br>
+  <strong class="text-warning">On Behalf Of:</strong>
+  <field>F_HTML_FORM_RESPONSE_ON_BEHALF_OF</field>
+  <span class="text-muted"><field>pick(FR_C_SEQ=C_SEQ,'','(you)')</field></span>
+  <field>pick(F_HTML_SHOW_EXPIRY&(FRM_EXPIRATION_TYPE=1|FRM_EXPIRATION_TYPE=2), '<!-- comment:')</field>
+  <br>
+  <strong class="text-warning">Expired:</strong> <field>dat(FR_DATE_EXPIRED,'w n D, y @ h:N A')</field>
+  <field>pick(F_HTML_SHOW_EXPIRY&(FRM_EXPIRATION_TYPE=1|FRM_EXPIRATION_TYPE=2), '-->')</field>
+ </td>
+ <td>
+  <a class="btn btn-block btn-success" href="<field>F_HTML_FIREWALL</field>online?formresponse=<field>FR_SEQ</field>">
+   <i class="fa fa-wpforms">
+   </i>
+   Refresh
+  </a>
+ </td>
+</tr>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Historical Shopping Cart <field>SCH_SEQ</field> Detail
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Cart #<field>SCH_SEQ</field>
+      <br/>
+      <small class="text-muted">
+       Order <field>SCH_ORD_SEQ</field> purchased <field>dat(SCH_DATE_CHECKOUT,'w n D, y @ h:N A')</field>
+      </small>
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <field>pick(len(SCH_ORD_NOTES)>0,'<!-- comment: cart order notes')</field>
+      <div class="alert alert-warning fade in">
+       <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+       <b>
+        Notes:
+       </b>
+       <br/>
+       <field>SCH_ORD_NOTES</field>
+      </div>
+      <field>pick(len(SCH_ORD_NOTES)>0,'-->')</field>
+      <field>pick((SCH_TIX_QUANTITY+SCH_PASS_QUANTITY)>0&SCH_TIX_PRINT_STATUS=0,'<!-- comment: ')</field>
+      <div class="alert alert-success fade in">
+       <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+       You selected E-Ticket delivery and your tickets were emailed to you with your confirmation.
+       <br/>
+       <br/>
+       However, if you have not printed your tickets, you may download the PDF again,
+       print, and bring them to the event to be admitted.
+      </div>
+      <!--#include virtual="TMtemplates/tmCartTicketsPrintCart.html" -->
+      <field>pick((SCH_TIX_QUANTITY+SCH_PASS_QUANTITY)>0&SCH_TIX_PRINT_STATUS=0,' -->')</field>
+     </div>
+     <div class="col-md-8">
+      <div class="table-responsive">
+       <table class="table table-striped table-condensed table-responsive table-hover">
+        <thead>
+         <tr>
+          <th>
+           Item
+          </th>
+          <th class="text-center">
+           Qty
+          </th>
+          <th>
+           Description
+          </th>
+          <th class="text-right">
+           Total
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <field>F_HTML_HISTORICAL_CART_DETAIL_LIST</field>
+        </tbody>
+        <tfoot>
+         <tr>
+          <td class="text-right" colspan="3">
+           <b>
+            GRAND TOTAL 
+                  <field>pick(SCH_TAX1+SCH_TAX2+SCH_TAX3>0,'','(includes all applicable taxes)')</field>
+           </b>
+          </td>
+          <td class="text-right">
+           <b>
+            $<field>SCH_TOTAL_COST</field>
+           </b>
+          </td>
+         </tr>
+        </tfoot>
+       </table>
+      </div>
+      <a class="btn btn-success" href="<field>F_HTML_FIREWALL</field>online?btnHistoricalCart=History">
+       Return to Shopping Cart History
+      </a>
+      <a class="btn btn-info" href="<field>F_HTML_FIREWALL</field>login?historicalprint=<field>SCH_SEQ</field>" target="_blank">
+       Print Your Cart
+      </a>
+      <a class="btn btn-warning" href="<field>F_HTML_FIREWALL</field>login?confirmation=<field>SCH_SEQ</field>">
+	   View Original Receipt
+	  </a>
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

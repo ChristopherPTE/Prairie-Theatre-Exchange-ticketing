@@ -1,0 +1,50 @@
+<div class="panel panel-info">
+ <div class="panel-heading">
+  <b>
+   Seat Change Request
+  </b>
+ </div>
+ <div class="panel-body panel-default">
+  <div class="form-group">
+   <textarea class="form-control" cols="40" name="SS_SEATING_REQUEST" placeholder="tell us how you might like to change to your subscription and we will try to accomodate it" rows="5"><field>SS_SEATING_REQUEST</field></textarea>
+  </div>
+  <div class="form-group">
+   <label>
+    If we are unable to accommodate the requested change
+   </label>
+   <div class="radio">
+    <label>
+     <input checked="" id="retain" name="SS_ACCOMMODATE_CHANGE" type="radio" value="0"/>
+     Please retain my original seats
+    </label>
+   </div>
+   <div class="radio">
+    <label>
+     <input id="closest" name="SS_ACCOMMODATE_CHANGE" type="radio" value="1"/>
+     I am willing to take the next best seats or closest seats to accomodate my request
+    </label>
+   </div>
+   <div class="radio">
+    <label>
+     <input id="callfirst" name="SS_ACCOMMODATE_CHANGE" type="radio" value="2"/>
+     Please call me before making any changes
+    </label>
+   </div>
+  </div>
+  <input name="SS_SEQ" type="hidden" value="<field>SS_SEQ</field>"/>
+  <input name="F_HTML_SUBSCRIPTION_TOTAL_COST" type="hidden" value="<field>F_HTML_SUBSCRIPTION_TOTAL_COST</field>"/>
+  <input name="F_HTML_SUBSCRIPTION_SEATS_ARE_OK" type="hidden" value="<field>F_HTML_SUBSCRIPTION_SEATS_ARE_OK</field>"/>
+  <field>pick((SS_RENEWAL_STATUS_FC_SEQ<=2|SS_RENEWAL_STATUS_FC_SEQ=7)&F_HTML_SUBSCRIPTION_SEATS_ARE_OK,'<!-- comment: if not started, or notice printed, can be renewed or cancelled')</field>
+  <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+  <input class="btn btn-success" id="btnSubscriptionReserve" name="btnSubscriptionReserve" onclick="process()" type="submit" value="Renew Subscription"/>
+  &nbsp;
+  <input class="btn btn-danger" id="btnSubscriptionCancel" name="btnSubscriptionCancel" onclick="process()" type="submit" value="Cancel This Subscription"/>
+  &nbsp;
+  <field>pick((SS_RENEWAL_STATUS_FC_SEQ<=2|SS_RENEWAL_STATUS_FC_SEQ=7)&F_HTML_SUBSCRIPTION_SEATS_ARE_OK,' -->')</field>
+  <a class="btn btn-warning" href="<field>F_HTML_FIREWALL</field>login?subscription=0">
+   <i class="fa fa-ticket">
+   </i>
+   Show Other Subscriptions
+  </a>
+ </div>
+</div>

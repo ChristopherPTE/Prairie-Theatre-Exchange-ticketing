@@ -1,0 +1,55 @@
+/********************
+  Accessibility fixes
+
+  This CSS file overrides the theme defaults to provide the high contrast requirements for a WCAG 2.1 AAA rating.
+********************/
+
+.navbar-default .navbar-nav > li > a {
+    color: #545454;
+  }
+  
+  /* 
+  The text color of the warning buttons needs to be black because the white 
+  text didn't have enough contrast with the yellow background. 
+  */
+  .btn-warning, .btn.btn-warning:active:focus, .btn.btn-warning:focus, .btn-warning:hover, .btn-warning:active {
+    color: #000000;
+  }
+  
+  h4 small {
+    color: #535353;
+  }
+  
+  a {
+    color: #00549c;
+  }
+  
+  .btn-success, .btn.btn-success:active:focus, .btn.btn-success:focus, .btn-success:hover, .btn.btn-success:active, .label-success {
+    background-color: #006800;
+    border-color: #006800;
+  }
+  
+  .btn-danger, .btn.btn-danger:active:focus, .btn.btn-danger:focus, .btn-danger:hover, .btn.btn-danger:active, .label-danger {
+    background-color: #ae0701;
+    border-color: #ae0701;
+  }
+  
+  .btn-info, .btn.btn-info:active:focus, .btn.btn-info:focus, .btn-info:hover, .btn.btn-info:active, .label-warning {
+    color: #000000;
+  }
+  
+  .alert-danger {
+    color: #940d09;
+  }
+  
+  .text-muted {
+    color: #595959;
+  }
+  
+  h1 small {
+    color: #585858;
+  }
+  
+  .help-block {
+    color: #535353;
+  }

@@ -1,0 +1,21 @@
+<field>pick(F_HTML_PERFORMANCE_DATE_SAME_YEAR&not(F_HTML_PERFORMANCE_DATE_SAME_MONTH), '<!-- comment:')</field>
+ <field>dat(PB_PERFORM_DATE,'w, n D')</field>
+ to
+ <field>dat(F_HTML_PERFORMANCE_DATE_END,'w, n D, y')</field>
+<field>pick(F_HTML_PERFORMANCE_DATE_SAME_YEAR&not(F_HTML_PERFORMANCE_DATE_SAME_MONTH), '-->')</field>
+<field>pick(F_HTML_PERFORMANCE_DATE_SAME_MONTH&not(F_HTML_PERFORMANCE_DATE_SAME_DAY), '<!-- comment:')</field>
+ <field>dat(PB_PERFORM_DATE,'w, n D')</field>
+ to
+ <field>dat(F_HTML_PERFORMANCE_DATE_END,'w, n D, y')</field>
+<field>pick(F_HTML_PERFORMANCE_DATE_SAME_MONTH&not(F_HTML_PERFORMANCE_DATE_SAME_DAY), '-->')</field>
+<field>pick(F_HTML_PERFORMANCE_DATE_SAME_DAY, '<!-- comment:')</field>
+ <field>dat(PB_PERFORM_DATE,'w, n D, y')</field> 
+ from <field>tim(PB_PERFORM_TIME, 'h:N A')</field>  <field>F_HTML_TZ_SHORT_NAME</field>
+ to
+ <field>dat(F_HTML_PERFORMANCE_DATE_END,'h:N A')</field> <field>F_HTML_TZ_SHORT_NAME</field>
+<field>pick(F_HTML_PERFORMANCE_DATE_SAME_DAY, '-->')</field>
+<field>pick(F_HTML_PERFORMANCE_DATE_SAME_DAY|F_HTML_PERFORMANCE_DATE_SAME_MONTH|F_HTML_PERFORMANCE_DATE_SAME_YEAR, '', '<!-- comment:')</field>
+ <field>dat(PB_PERFORM_DATE,'V, n D, y')</field>
+ to
+ <field>dat(F_HTML_PERFORMANCE_DATE_END,'V, n D, y')</field>
+<field>pick(F_HTML_PERFORMANCE_DATE_SAME_DAY|F_HTML_PERFORMANCE_DATE_SAME_MONTH|F_HTML_PERFORMANCE_DATE_SAME_YEAR, '', '-->')</field>

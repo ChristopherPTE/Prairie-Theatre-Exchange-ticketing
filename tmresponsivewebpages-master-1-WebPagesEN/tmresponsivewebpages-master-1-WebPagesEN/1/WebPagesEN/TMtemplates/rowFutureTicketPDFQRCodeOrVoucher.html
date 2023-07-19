@@ -1,0 +1,31 @@
+  <field>pick(PB_PRINT_AT_HOME&not(SC_WEB_REQUIRE_COUPON),'<!-- comment: not printing at home, do not show bar code to avoid server hits')</field>
+  <img alt="Barcode" src="<field>F_HTML_TIX_BAR_CODE</field>&img_angle=270"/>
+  <field>pick(PB_PRINT_AT_HOME&not(SC_WEB_REQUIRE_COUPON),'-->')</field>
+      <field>pick(PB_PRINT_AT_HOME&not(SC_WEB_REQUIRE_COUPON)&D_WEB_USE_QRCODES,'<!-- comment: only show if qr codes')</field>
+  <br/>
+  <center>
+   <field>PS_SEQ</field>-<field>pick(PS_INTENDED_FOR_C_SEQ>0,PS_C_SEQ,PS_INTENDED_FOR_C_SEQ)</field>
+   <field>pick(PS_QUANTITY>1,'<!-- comment: indicate group tickets')</field>
+    <br>
+    <strong>(Group of <field>PS_QUANTITY</field>)</strong>
+   <field>pick(PS_QUANTITY>1,'-->')</field>
+  </center>
+  <img alt="Event Poster" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>" width="120"/>
+  <field>pick(PB_PRINT_AT_HOME&not(SC_WEB_REQUIRE_COUPON)&D_WEB_USE_QRCODES,'-->')</field>
+      <field>pick(PB_PRINT_AT_HOME&SC_WEB_REQUIRE_COUPON,'<!-- comment: printing at home, but requires coupon with custom description')</field>
+  <p class="barcodecoupon">
+   <field>F_HTML_WEB_REQUIRE_COUPON_NOTES</field>
+  </p>
+  <field>pick(PB_PRINT_AT_HOME&SC_WEB_REQUIRE_COUPON,'-->')</field>
+  <!-- comment: parameters to F_HTML_TIX_BAR_CODE
+quiet_zone          space to left and right of bar code.  default is 2
+img_angle           the rotation of the image in degrees (valid values 0, 90,180, 270, default 0)
+bar_stem_width      the width of the barcode stem in mils* 0.1 is the default
+bar_height          the height of the barcode characters in mils* 2.5 is the default
+txt_on	            specifies  to print text below barcode (valid values 1=on, 0=off)
+txt_point_size	    size of text in points.  10 is the default (valid range 4 to 72)
+
+for QR codes
+box_size            size of area where bar code box is displayed.  Default 6
+border              border around the box with white space
+-->

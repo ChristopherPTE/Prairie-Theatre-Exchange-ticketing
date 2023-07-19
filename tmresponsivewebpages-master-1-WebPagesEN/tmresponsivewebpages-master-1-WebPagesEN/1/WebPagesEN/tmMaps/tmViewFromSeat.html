@@ -1,0 +1,10 @@
+  <!-- comment: the key is that there is a field called MS_SEAT_VIEW.   
+use that to define what the image file is for the name of the seats,
+it is assumed to be in the 'tmSeatView' directory in tmGifs.  if you want
+another URL, you'll need to update the URL
+-->
+  <field>pick(len(MS_SEAT_VIEW)>1,'<!-- comment: view from your seat')</field>
+  <a class="btn btn-info btn-xs" href="tmGifs/tmSeatView/<field>MS_SEAT_VIEW</field>" target="_blank">
+   Seat View (approx)
+  </a>
+  <field>pick(len(MS_SEAT_VIEW)>1,'-->')</field>

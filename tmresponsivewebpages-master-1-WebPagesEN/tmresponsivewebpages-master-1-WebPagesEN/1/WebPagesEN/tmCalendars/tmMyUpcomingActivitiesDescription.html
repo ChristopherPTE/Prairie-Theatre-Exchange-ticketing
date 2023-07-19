@@ -1,0 +1,48 @@
+<field>pick(D_SWITCH_BOARD,'<!-- comment: show phone number')</field>
+<label>
+ Phone:
+</label>
+<a href="tel://<field>D_SWITCH_BOARD</field>">
+ <field>D_SWITCH_BOARD</field>
+</a>
+<field>pick(D_SWITCH_BOARD,'-->')</field>
+<br/>
+<field>pick(D_EMAIL_ADDR,'<!-- comment: show email')</field>
+<label>
+ Email:
+</label>
+<a href="mailto:<field>D_EMAIL_ADDR</field>">
+ <field>D_EMAIL_ADDR</field>
+</a>
+<field>pick(D_EMAIL_ADDR,'-->')</field>
+<br/>
+<br/>
+<a class="btn btn-primary btn-sm" href="<field>F_HTML_VOLUNTEER_ACTIVITY_LINK</field>">
+ View Activtiy Schedule
+</a>
+<br/>
+<field>pick(P_PLAY_TITLE,'<!-- comment: show event')</field>
+<br/>
+<label>
+ <field>D_EVENT</field>:
+</label>
+<field>P_PLAY_TITLE</field>
+<field>pick(P_PLAY_TITLE,'-->')</field>
+<field>pick(PB_PERFORM_DATETIME,'<!-- comment: show performance')</field>
+<br/>
+<br/>
+<label>
+ <field>D_PERF_DESC</field>
+</label>
+<br/>
+<label>
+ Date:
+</label>
+<field>dat(PB_PERFORM_DATE, 'w D n, y')</field>
+<br/>
+<label>
+ Time:
+</label>
+<field>dat(PB_PERFORM_TIME, 'h:N A')</field>
+<field>F_HTML_TZ_SHORT_NAME</field>
+<field>pick(PB_SEQ>0,'-->')</field>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHeadEmail.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Account Information Updated
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScriptsEmail.html" -->
+  <!--#include virtual="tmLayout/tmLastHeadEmail.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBodyEmail.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Account Information Updated
+      <br/>
+      <small class="text-muted">
+       <field>C_FIRST_NAME</field> <field>C_LAST_NAME</field>
+      </small>
+     </h1>
+    </div>
+    <div class="alert alert-info">
+     Recently, your account information was updated when you visited our online web site
+     or talked to the staff at <field>D_COMPANY_LONG</field>.  If you are not aware of this recent activity,
+     please contact the box office or log in, verify your account and change your password.
+     <br/>
+     <br/>
+     You may wish to directly type the URL of our site in your web browser if you prefer additional browsing safety.
+    </div>
+    <a class="btn btn-info" href="<field>F_HTML_FIREWALL</field>login&e=<field>tEditCheck.$urlQuote(CI_CONTENTS)</field>&tmsource=accountupdate">
+     Review My Account
+    </a>
+    <field>pick(len(F_HTML_DOUBLE_OPT_IN)>0,'<!-- comment: no double opt in mail list items')</field>
+    <div class="alert alert-info fade in">
+     <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+     You made some selections asking to be kept informed about our programs and events.
+     <field>D_COMPANY_LONG</field> uses a double opt-in confirmation so you must confirm 
+     your choices by clicking the button.  If you do not, our system respects your wishes and removes you from those notifications
+     approximately <field>D_WEB_PENDING_MAIL_LIST_TIMEOUT</field> hours after you receive this email.
+    </div>
+    <a class="btn btn-success" href="<field>F_HTML_FIREWALL</field>opt-in?<field>F_HTML_DOUBLE_OPT_IN</field>">
+     Confirm my email notification choices
+    </a>
+    <field>pick(len(F_HTML_DOUBLE_OPT_IN)>0,'-->')</field>
+    <p>
+     &nbsp;
+    </p>
+    <!--#include virtual="TMtemplates/tmPrivacyNoteEmail.html" -->
+    <!--#include virtual="TMtemplates/tmContactHours.html" -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="TMtemplates/tmMarkEmailRead.html" -->
+  <!--#include virtual="tmLayout/tmBodyScriptsEmail.html" -->
+  <!--#include virtual="tmLayout/tmLastBodyEmail.html" -->
+ </body>
+</html>

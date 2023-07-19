@@ -1,0 +1,777 @@
+<rawfield>
+  <!--
+    ********** Placeholder Helpers **********
+
+    A few placeholder helpers can be used to help format values. These change how values are outputted to the page.
+
+
+    Available Helpers:
+      {{<value>}} : This is the default placeholder. It displays the value as is without modifying it.
+      {{currency <value>}} : This is the currency helper. It will convert a number into a currency format. ie: 5 -> $5.00
+      {{locale_currency <value>}} : This is the locale currency helper. It will convert a number into a currency and include a 2 letter currency code. ie: 5 -> CA$5.00
+  -->
+
+
+
+  <!-- Donation Label
+
+    Template used to create the checkout label used for single donation cart items.
+  
+
+    Available Fields:
+      - amount: The donation amount
+      - campaign:
+        - amount_actual: The current amount the donation campaign is at (not including this donation) ie: 1520
+        - amount_target: The target amount for the donation campaign ie: 15000
+        - title: The external campaign name of this donation (This is the same name displayed on the donations list. ie: Capital Campaign)
+        - notes: The donation campaign note
+
+      Example:
+      {{campaign.title}} Donation
+      
+      Would appear in the cart as:
+      Capital Campaign Donation
+  -->
+  <script id="DonationLabelTemplate" type="text/x-handlebars-template">
+    {{campaign.title}} Donation
+  </script>
+  
+
+
+  <!-- Recurring Donation Label
+
+    Template used to create the checkout label used for recurring donation cart items.
+
+
+    Available Fields:
+      - amount: The donation amount
+      - campaign:
+        - amount_actual: The current amount the donation campaign is at (not including this donation) ie: 1520
+        - amount_target: The target amount for the donation campaign ie: 15000
+        - title: The external campaign name of this donation (This is the same name displayed on the donations list. ie: Capital Campaign)
+        - notes: The donation campaign note
+      - recurring:
+        - amount: The amount being donated monthly (this should be the same as this donations amount (first field))
+        - frequency: The frequency of the donation in english. Possible values:
+            * Monthly
+            * Biweekly
+            * Quarterly
+            * Annual
+            * Daily
+            * Weekly
+            * Bimonthly
+
+
+    Example:
+      {{campaign.title}} {{recurring.frequency}} Donation
+      
+      Would appear in the cart as:
+      Capital Campaign Monthly Donation
+  -->
+  <script id="RecurringLabelTemplate" type="text/x-handlebars-template">
+    {{campaign.title}} {{recurring.frequency}} Donation
+  </script>
+
+
+
+  <!-- Reserved Seating Ticket Label
+    
+    Template used to create the checkout label for reserved seating ticket cart items.
+
+
+    Available Fields:
+      - amount: The ticket's price
+      - event:
+        - director: The event's director
+        - genre: The genre code for the event
+        - notes: External event notes
+        - playwrite: The event's playwrite
+        - sponsor: The event's sponsor if it has one
+        - timezone: The event's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+        - title: Name of the event. ie: Death of a Salesman
+      - performance: 
+        - notes: External performance notes
+        - sales_method: The performance's sales_method code
+        - sold_percent: The percentage of sold tickets to the performance
+        - starts_at: Date String of the performances's starting time
+        - timezone: The performances's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+      - venue:
+        - address1: The first line of the venues address 
+        - address2: The second line of the venues address. May be blank if venue doesn't have a second address line
+        - city: The city the venue is located in
+        - country: The country the venue is located in
+        - name: The name of the venue
+        - notes: External venue notes
+        - postal_code: The postal code of the venue
+        - province: The 2 letter state/province code from https://en.wikipedia.org/wiki/ISO_3166-2:US or https://en.wikipedia.org/wiki/ISO_3166-2:CA
+        - timezone: THe timezone of the venue
+      - seat:
+        - door: The seat's door (if applicable)
+        - logical_seat: The seat's logical seat number
+        - note: Note attached to a seat
+        - row: The row of the seat 
+        - seat: The seats number/id
+        - section: The section the seat is in
+
+
+    Example:
+      {{event.title}} - {{seat.section}} {{seat.row}}{{seat.seat}}
+      
+      Would appear in the cart as:
+      Death of a Salesman - Center D14
+  -->
+  <script id="ReservedSeatTicketLabelTemplate" type="text/x-handlebars-template">
+    {{event.title}} - {{seat.section}} {{seat.row}}{{seat.seat}}
+  </script>
+
+
+
+  <!-- Unreserved Seating Ticket Label
+    
+    Template used to create the checkout label for ticket's where seats aren't reserved.
+
+
+    Available Fields:
+      - amount: The ticket's price
+      - event:
+        - director: The event's director
+        - genre: The genre code for the event
+        - notes: External event notes
+        - playwrite: The event's playwrite
+        - sponsor: The event's sponsor if it has one
+        - timezone: The event's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+        - title: Name of the event. ie: Death of a Salesman
+      - performance: 
+        - notes: External performance notes
+        - sales_method: The performance's sales_method code
+        - sold_percent: The percentage of sold tickets to the performance
+        - starts_at: Date String of the performances's starting time
+        - timezone: The performances's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+      - venue:
+        - address1: The first line of the venues address 
+        - address2: The second line of the venues address. May be blank if venue doesn't have a second address line
+        - city: The city the venue is located in
+        - country: The country the venue is located in
+        - name: The name of the venue
+        - notes: External venue notes
+        - postal_code: The postal code of the venue
+        - province: The 2 letter state/province code from https://en.wikipedia.org/wiki/ISO_3166-2:US or https://en.wikipedia.org/wiki/ISO_3166-2:CA
+        - timezone: THe timezone of the venue
+
+
+    Example:
+      {{event.title}} - Non-Reserved Seating
+      
+      Would appear in the cart as:
+      Death of a Salesman - Non-Reserved Seating
+  -->
+  <script id="FestivalTicketLabelTemplate" type="text/x-handlebars-template">
+    {{event.title}} - Non-Reserved Seating
+  </script>
+
+
+
+  <!-- Grouped Ticket Label
+    
+    Template used to create the checkout label for a group of tickets.
+    The single Grouped Ticket Label is for when a group only has one ticket. This is separate so labels
+    can use the singular of an item. ie: 1 Ticket
+
+
+    Available Fields:
+      - amount: The combined price of all ticket's in this group
+      - count: The number of tickets being bought (in this label this number should always be 1)
+      - event:
+        - director: The event's director
+        - genre: The genre code for the event
+        - notes: External event notes
+        - playwrite: The event's playwrite
+        - sponsor: The event's sponsor if it has one
+        - timezone: The event's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+        - title: Name of the event. ie: Death of a Salesman
+      - performance: 
+        - notes: External performance notes
+        - sales_method: The performance's sales_method code
+        - sold_percent: The percentage of sold tickets to the performance
+        - starts_at: Date String of the performances's starting time
+        - timezone: The performances's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+      - venue:
+        - address1: The first line of the venues address 
+        - address2: The second line of the venues address. May be blank if venue doesn't have a second address line
+        - city: The city the venue is located in
+        - country: The country the venue is located in
+        - name: The name of the venue
+        - notes: External venue notes
+        - postal_code: The postal code of the venue
+        - province: The 2 letter state/province code from https://en.wikipedia.org/wiki/ISO_3166-2:US or https://en.wikipedia.org/wiki/ISO_3166-2:CA
+        - timezone: THe timezone of the venue
+
+
+    Example:
+      {{count}} Ticket - {{event.title}}
+      
+      Would appear in the cart as:
+      1 Ticket - Death of a Salesman 
+  -->
+  <script id="GroupedTicketLabelTemplate" type="text/x-handlebars-template">
+    {{count}} Ticket - {{event.title}}
+  </script>
+
+
+
+  <!-- Grouped Tickets Label
+    
+    Template used to create the checkout label for a group of tickets.
+    The multiple Grouped Tickets Label is for when a group only has more than one ticket. This is separate so labels
+    can use the plural of an item. ie: 2 Tickets
+
+
+    Available Fields:
+      - amount: The combined price of all ticket's in this group
+      - count: The number of tickets being bought
+      - event:
+        - director: The event's director
+        - genre: The genre code for the event
+        - notes: External event notes
+        - playwrite: The event's playwrite
+        - sponsor: The event's sponsor if it has one
+        - timezone: The event's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+        - title: Name of the event. ie: Death of a Salesman
+      - performance: 
+        - notes: External performance notes
+        - sales_method: The performance's sales_method code
+        - sold_percent: The percentage of sold tickets to the performance
+        - starts_at: Date String of the performances's starting time
+        - timezone: The performances's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+      - venue:
+        - address1: The first line of the venues address 
+        - address2: The second line of the venues address. May be blank if venue doesn't have a second address line
+        - city: The city the venue is located in
+        - country: The country the venue is located in
+        - name: The name of the venue
+        - notes: External venue notes
+        - postal_code: The postal code of the venue
+        - province: The 2 letter state/province code from https://en.wikipedia.org/wiki/ISO_3166-2:US or https://en.wikipedia.org/wiki/ISO_3166-2:CA
+        - timezone: THe timezone of the venue
+
+
+    Example:
+      {{count}} Tickets - {{event.title}}
+      
+      Would appear in the cart as:
+      2 Tickets - Death of a Salesman
+  -->
+  <script id="GroupedTicketsLabelTemplate" type="text/x-handlebars-template">
+    {{count}} Tickets - {{event.title}}
+  </script>
+
+
+  
+  <!-- Season Subscription Label
+    
+    Template used to create the checkout label for a season subscriptions.
+
+    Available Fields:
+      - amount: The cost of the ticket
+      - event:
+        - director: The event's director
+        - genre: The genre code for the event
+        - notes: External event notes
+        - playwrite: The event's playwrite
+        - sponsor: The event's sponsor if it has one
+        - timezone: The event's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+        - title: Name of the event. ie: Death of a Salesman
+      - performance: 
+        - notes: External performance notes
+        - sales_method: The performance's sales_method code
+        - sold_percent: The percentage of sold tickets to the performance
+        - starts_at: Date String of the performances's starting time
+        - timezone: The performances's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+      - seat:
+        - door: The seat's door (if applicable)
+        - logical_seat: The seat's logical seat number
+        - note: Note attached to a seat
+        - row: The row of the seat 
+        - seat: The seats number/id
+        - section: The section the seat is in
+      - season:
+        - title: The external description of the season. ie: 30th Anniversary Season
+      - venue:
+        - address1: The first line of the venues address 
+        - address2: The second line of the venues address. May be blank if venue doesn't have a second address line
+        - city: The city the venue is located in
+        - country: The country the venue is located in
+        - name: The name of the venue
+        - notes: External venue notes
+        - postal_code: The postal code of the venue
+        - province: The 2 letter state/province code from https://en.wikipedia.org/wiki/ISO_3166-2:US or https://en.wikipedia.org/wiki/ISO_3166-2:CA
+        - timezone: THe timezone of the venue
+
+
+    Example:
+      {{season.title}} - {{event.title}}
+      
+      Would appear in the cart as:
+      30th Anniversary Season - Swan Lake
+  -->
+  <script id="SubscriptionLabelTemplate" type="text/x-handlebars-template">
+    {{season.title}} - {{event.title}} - Seat {{seat.row}}{{seat.seat}}
+  </script>
+
+
+  
+  <!-- Grouped Season Subscription Label
+    
+    Template used to create the checkout label for a season subscriptions when grouping is enabled.
+    The single Grouped Season Subscription Label is for when a group only has one subscription. This is separate so labels
+    can use the singular of an item. ie: 1 Subscription
+
+    Available Fields:
+      - amount: The total cost of the subscriptions
+      - count: The number of subscriptions. This should be 1 for this label.
+      - event:
+        - director: The event's director
+        - genre: The genre code for the event
+        - notes: External event notes
+        - playwrite: The event's playwrite
+        - sponsor: The event's sponsor if it has one
+        - timezone: The event's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+        - title: Name of the event. ie: Death of a Salesman
+      - performance: 
+        - notes: External performance notes
+        - sales_method: The performance's sales_method code
+        - sold_percent: The percentage of sold tickets to the performance
+        - starts_at: Date String of the performances's starting time
+        - timezone: The performances's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+      - season:
+        - title: The external description of the season. ie: 30th Anniversary Season
+      - venue:
+        - address1: The first line of the venues address 
+        - address2: The second line of the venues address. May be blank if venue doesn't have a second address line
+        - city: The city the venue is located in
+        - country: The country the venue is located in
+        - name: The name of the venue
+        - notes: External venue notes
+        - postal_code: The postal code of the venue
+        - province: The 2 letter state/province code from https://en.wikipedia.org/wiki/ISO_3166-2:US or https://en.wikipedia.org/wiki/ISO_3166-2:CA
+        - timezone: THe timezone of the venue
+
+
+
+    Example:
+      {{count}} Subscription - {{season.title}}
+      
+      Would appear in the cart as:
+      1 Subscription - 30th Anniversary Season
+  -->
+  <script id="GroupedSubscriptionLabelTemplate" type="text/x-handlebars-template">
+    {{count}} Subscription - {{season.title}}
+  </script>
+
+
+  
+  <!-- Grouped Season Subscriptions Label
+    
+    Template used to create the checkout label for a season subscriptions when grouping is enabled.
+    The multiple Grouped Season Subscriptions Label is for when a group only has more than one subscription. This is separate so labels
+    can use the plural of an item. ie: 2 Subscriptions
+
+    Available Fields:
+      - amount: The total cost of the subscriptions
+      - count: The number of subscriptions in this group
+      - event:
+        - director: The event's director
+        - genre: The genre code for the event
+        - notes: External event notes
+        - playwrite: The event's playwrite
+        - sponsor: The event's sponsor if it has one
+        - timezone: The event's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+        - title: Name of the event. ie: Death of a Salesman
+      - performance: 
+        - notes: External performance notes
+        - sales_method: The performance's sales_method code
+        - sold_percent: The percentage of sold tickets to the performance
+        - starts_at: Date String of the performances's starting time
+        - timezone: The performances's timezone from the official timezone database, maintained by the IANA: http://www.iana.org/time-zones. ie: Canada/Mountain
+      - season:
+        - title: The external description of the season. ie: 30th Anniversary Season
+      - venue:
+        - address1: The first line of the venues address 
+        - address2: The second line of the venues address. May be blank if venue doesn't have a second address line
+        - city: The city the venue is located in
+        - country: The country the venue is located in
+        - name: The name of the venue
+        - notes: External venue notes
+        - postal_code: The postal code of the venue
+        - province: The 2 letter state/province code from https://en.wikipedia.org/wiki/ISO_3166-2:US or https://en.wikipedia.org/wiki/ISO_3166-2:CA
+        - timezone: THe timezone of the venue
+
+
+    Example:
+      {{count}} Subscriptions - {{season.title}}
+      
+      Would appear in the cart as:
+      2 Subscriptions - 30th Anniversary Season
+  -->
+  <script id="GroupedSubscriptionsLabelTemplate" type="text/x-handlebars-template">
+    {{count}} Subscriptions - {{season.title}}
+  </script>
+
+
+  <!-- Membership Label
+    
+    Template used to create the checkout label for a membership.
+
+
+    Available Fields:
+      - amount: The cost of the membership
+      - membership:
+        - current_amount: The current value of the pass. This will be the same as total_amount when buying a membership
+        - current_quantity: The number of admissions currently on the pass. This will be the same as total_quantity when buying a membership
+        - redeeming_amount: The amount being redeemed from the pass. This will be 0 when buying a membership
+        - redeeming_quantity: The number of admissions being redeemed from the pass. This will be 0 when buying a membership
+        - remaining_amount: The remaining value of the pass after the redemption. This will be the same as total_quantity when buying a membership
+        - remaining_quantity: The remaining number of admissions on the pass after the redemption. This will be the same as total_quantity when buying a membership
+        - total_amount: The total value of the pass. ie: 50.00
+        - total_quantity: The total number admissions on the pass. ie: 3
+      - membership_type
+        - title: The external description of the membership. ie: 3 Play Restricted Pass
+        - notes: External notes about the membership
+    
+
+    Example:
+      Membership - {{membership.description}}
+      
+      Would appear in the cart as:
+      Membership - 3 Play Restricted Pass
+    
+  -->
+  <script id="MembershipLabelTemplate" type="text/x-handlebars-template">
+    {{membership_type.title}}
+  </script>
+
+
+  <!-- Gift Certificate Label
+    
+    Template used to create the checkout label when a gift certificate is being used.
+
+    What's the difference between a gift certificate label and pass label?
+    A gift certificate label is used when the total number of redeemable admissions on a pass is 0. ie: Gift Certificate, Discount Coupon
+
+
+    Available Fields:
+      - amount: The discount amount
+      - membership:
+        - current_amount: The current value of the pass. ie: 34.51
+        - current_quantity: The number of admissions currently on the pass. This number should be 0 for coupons
+        - redeeming_amount: The amount being redeemed from the pass. ie 29.99
+        - redeeming_quantity: The number of admissions being redeemed from the pass. This number should be 0 for coupons
+        - remaining_amount: The remaining value of the pass after the redemption. ie 4.52
+        - remaining_quantity: The remaining number of admissions on the pass after the redemption. This should be 0 for coupons
+        - total_amount: The total value of the pass. ie: 50.00
+        - total_quantity: The total number admissions on the pass. This should be 0 for coupons
+      - membership_type:
+        - title: The external description of the membership that the coupon belongs to. ie: Gift Certificates
+        - notes: External notes about the membership that the coupon belongs to
+
+
+    Example:
+      {{membership_type.title}} - {{currency membership.remaining_amount}} Remain
+      
+      Would appear in the cart as:
+      Gift Certificates - $4.52 Remain
+      
+      Did you notice the {{currency }} helper? You can read more about placeholder helpers at the top of this file.
+  -->
+  <script id="CertificateLabelTemplate" type="text/x-handlebars-template">
+    {{membership_type.title}} - {{currency membership.remaining_amount}} Remain
+  </script>
+
+
+
+  <!-- Pass Label
+    
+    Template used to create the checkout label for a pass being used.
+
+    What's the difference between a gift certificate label and pass label?
+    A pass label is used when the total number of redeemable admissions on a pass is greater than 0. ie: 5 Play Restricted Pass
+
+
+    Available Fields:
+      - amount: The discount amount
+      - membership:
+        - current_amount: The current value of the pass. ie: 34.51
+        - current_quantity: The number of admissions currently on the pass. ie: 3
+        - redeeming_amount: The amount being redeemed from the pass. ie 29.99
+        - redeeming_quantity: The number of admissions being redeemed from the pass. ie: 1
+        - remaining_amount: The remaining value of the pass after the redemption. ie 4.52
+        - remaining_quantity: The remaining number of admissions on the pass after the redemption. ie: 2
+        - total_amount: The total value of the pass. ie: 50.00
+        - total_quantity: The total number admissions on the pass. ie: 5
+      - membership_type:
+        - title: The external description of the membership that the pass belongs to. ie: 5 Play Restricted Pass
+        - notes: External notes about the membership that the pass belongs to
+
+
+    Example:
+      {{membership_type.title}} - {{membership.remaining_quantity}} Admissions Remain
+      
+      Would appear in the cart as:
+      5 Play Restricted Pass - 2 Admissions Remain
+  -->
+  <script id="PassLabelTemplate" type="text/x-handlebars-template">
+    {{membership_type.title}} - {{membership.remaining_quantity}} Admissions Remain
+  </script>
+
+
+  <!-- Fee Label
+    
+    Template used to create the fee label for a fee in a cart.
+
+
+    Available Fields:
+      - amount: The price of the fee
+      - fee:
+        - notes: Any notes attached to the fee
+        - title: The external description of the fee. ie: Convenience Fee
+    
+
+    Example:
+      {{fee.title}}
+      
+      Would appear in the cart as:
+      Convenience Fee
+  -->
+  <script id="FeeLabelTemplate" type="text/x-handlebars-template">
+    {{fee.title}}
+  </script>
+
+
+
+  <!-- Mailing Fee Label
+    
+    Template used to create a mailing fee label.
+
+
+    Available Fields:
+      - amount: The price of the fee
+      - fee:
+        - notes: Any notes attached to the fee
+        - title: The external description of the fee. ie: Mailing Fee
+    
+
+    Example:
+      {{fee.title}}
+      
+      Would appear in the cart as:
+      Mailing Fee
+  -->
+  <script id="MailFeeLabelTemplate" type="text/x-handlebars-template">
+    {{fee.title}}
+  </script>
+
+
+
+  <!-- Will Call Fee Label
+    
+    Template used to create a will call fee label.
+
+
+    Available Fields:
+      - amount: The price of the fee
+      - fee:
+        - title: The external description of the fee. ie: Will Call Fee
+        - notes: Any notes attached to the fee
+    
+
+    Example:
+      {{fee.title}}
+      
+      Would appear in the cart as:
+      Will Call Fee
+    
+  -->
+  <script id="WillCallFeeLabelTemplate" type="text/x-handlebars-template">
+    {{fee.title}}
+  </script>
+
+
+
+  <!-- Print at Home Fee Label
+    
+    Template used to create a print at home fee label.
+
+
+    Available Fields:
+      - amount: The price of the fee
+      - fee:
+        - title: The external description of the fee. ie: Print At Home Fee
+        - notes: Any notes attached to the fee
+    
+
+    Example:
+      {{fee.title}}
+      
+      Would appear in the cart as:
+      Print At Home Fee
+    
+  -->
+  <script id="PrintAtHomeFeeLabelTemplate" type="text/x-handlebars-template">
+    {{fee.title}}
+  </script>
+
+
+
+  <!-- Coupon Label
+
+    Template used to create coupon labels in the cart.
+
+    Coupon Labels are used when the coupon is applied to individual items
+
+    Available Fields:
+      - amount: The discount from the coupon
+      - coupon:
+        - code: The coupon code used. ie: 10OFF
+        - name: The name of the coupon code. ie: 10OFF
+        - notes: Any notes attached to the coupon
+    
+
+    Example:
+      {{coupon.name}}
+      
+      Would appear in the cart as:
+      Corp Discount
+  -->
+  <script id="CouponLabelTemplate" type="text/x-handlebars-template">
+    {{coupon.name}}
+  </script>
+
+
+
+  <!-- Coupon Label
+
+    Template used to create coupon labels in the cart.
+
+    Coupon Fee Labels are used when the coupon is applied to the order
+
+    Available Fields:
+      - amount: The discount from the coupon
+      - coupon:
+        - code: The coupon code used. ie: 10OFF
+        - name: The name of the coupon code. ie: 10OFF
+        - notes: Any notes attached to the coupon
+      - fee:
+        - title: The external description of the coupons linked fee. ie: 10 Off
+        - notes: Any notes attached to the coupons linked fee
+    
+
+    Example:
+      {{coupon.code}} - {{fee.title}} Coupon
+      
+      Would appear in the cart as:
+      10OFF - 10 Off Coupon
+  -->
+  <script id="CouponFeeLabelTemplate" type="text/x-handlebars-template">
+    {{coupon.code}} Coupon 
+  </script>
+
+
+  <!-- Order Payment Label
+
+    Template used to create labels for order payments in the cart.
+
+    Order Payment Labels are used when a customer is paying for an order that has been manually added to their account
+
+    Available Fields:
+      - amount: The discount from the coupon
+      - order:
+        key: The ID of the order
+
+    Example:
+      Payment for Order {{order.key}}
+      
+      Would appear in the cart as:
+      Payment for Order 200
+  -->
+  <script id="OrderPaymentLabelTemplate" type="text/x-handlebars-template">
+    Payment for Order {{order.key}}
+  </script>
+	
+  <!-- Resource Sale Label
+    
+    Template used to create the checkout label for a resource sale.
+
+
+    Available Fields:
+      - amount: The cost of the resource
+      - resource:
+        - key: The unique key for the resource
+        - code: A user-defined code for the resource
+        - description: A short description (a.k.a title) of what the resource is
+        - notes: A longer description of the resource
+      - resource_link
+        - key: The unique key of the resource link
+        - quantity: The quantity requested by the user
+        - price: The price, per unit, for the selected item
+        - unit: The unit being used for pricing
+        - display_unit: The unit that should be displayed
+    
+
+    Example:
+      Resource - {{resource.description}}
+      
+      Would appear in the cart as:
+      Merchandise - Large T-Shirt (Red)
+    
+  -->
+  <script id="ResourceSaleLabelTemplate" type="text/x-handlebars-template">
+    {{resource.description}}
+  </script>
+	
+	
+  <!-- Resource Rental Label
+    
+    Template used to create the checkout label for a resource rental.
+
+
+    Available Fields:
+      - amount: The cost of the resource
+      - resource:
+        - key: The unique key for the resource
+        - code: A user-defined code for the resource
+        - description: A short description (a.k.a title) of what the resource is
+        - notes: A longer description of the resource
+      - resource_link
+        - key: The unique key of the resource link
+        - quantity: The quantity requested by the user
+        - price: The price, per unit, for the selected item
+        - unit: The unit being used for pricing
+        - display_unit: The unit that should be displayed
+        - duration: The length of time the rental is for
+        - duration_display_unit: The time unit that the duration should be displayed in
+    
+
+    Example:
+      Resource - {{resource.description}}
+      
+      Would appear in the cart as:
+      Rental - Shakespearean Costume
+    
+  -->
+  <script id="ResourceRentalLabelTemplate" type="text/x-handlebars-template">
+    {{resource.description}}
+  </script>	
+	
+
+  <!-- Default Cart Label
+    
+    Template used to create the checkout label when the cart item's type is unknown and only basic information is available about the cart item.
+
+
+    Available Fields:
+      - amount: The ticket's price
+  -->
+  <script id="ItemLabelTemplate" type="text/x-handlebars-template">
+    Item
+  </script>
+</rawfield>

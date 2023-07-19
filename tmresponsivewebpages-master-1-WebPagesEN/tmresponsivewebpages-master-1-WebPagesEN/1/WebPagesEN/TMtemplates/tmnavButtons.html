@@ -1,0 +1,125 @@
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+ <div class="container">
+  <div class="navbar-header">
+   <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+    <span class="sr-only">
+     Toggle navigation
+    </span>
+    <span class="icon-bar">
+    </span>
+    <span class="icon-bar">
+    </span>
+    <span class="icon-bar">
+    </span>
+   </button>
+   <a class="navbar-brand" href="http://<field>D_WEB_SITE</field>" target="_blank">
+    <img alt="Company Logo" src="tmGifs/tmCompanyLogo.jpg" style="height: 50px;"/>
+   </a>
+  </div>
+  <div class="navbar-collapse collapse">
+   <ul class="nav navbar-nav">
+    <li>
+     <a href="<field>F_HTML_FIREWALL</field>login?event=0">
+      <i class="fa fa-ticket">
+      </i>
+      Tickets
+     </a>
+    </li>
+    <li>
+     <a href="<field>F_HTML_FIREWALL</field>login?membershiptypes">
+      <i class="fa fa-gift">
+      </i>
+      Gift Certificates
+     </a>
+    </li>
+    <li>
+     <a href="<field>F_HTML_FIREWALL</field>login?donationcampaigns">
+      <i class="fa fa-usd">
+      </i>
+      Donations
+     </a>
+    </li>
+    <li>
+     <a href="<field>F_HTML_FIREWALL</field>login?subscription=0">
+      <i class="fa fa-ticket">
+      </i>
+      Subscriptions
+     </a>
+    </li>
+    <li>
+     <a href="<field>F_HTML_FIREWALL</field>login?merchandise">
+      <i class="fa fa-glass">
+      </i>
+      Merchandise
+     </a>
+    </li>
+   </ul>
+   <ul class="nav navbar-nav navbar-right">
+    <field>pick(F_LOGGED_IN=1,'<!-- comment: show when logged in','')</field>
+    <li>
+     <a href="<field>F_HTML_FIREWALL</field>online?btnHome=Home">
+      <i class="fa fa-home">
+      </i>
+      Home
+     </a>
+    </li>
+    <field>pick(F_LOGGED_IN=1,'-->','')</field>
+    <field>pick(F_LOGGED_IN=1,'<!-- comment: show when logged in','')</field>
+    <li>
+     <a href="<field>F_HTML_FIREWALL</field>online?btnAccount=Account">
+      <i class="fa fa-address-card-o">
+      </i>
+      Account
+     </a>
+    </li>
+    <field>pick(F_LOGGED_IN=1,'-->','')</field>
+    <!-- comment: make sure cart is in same position whether logged in or not -->
+    <li>
+     <a href="<field>F_HTML_FIREWALL</field>login?btnCart=Cart">
+      <i class="fa fa-shopping-cart">
+      </i>
+      Cart
+      <!-- comment: Add cart countdown badge if it's turned on -->
+      <field>pick(F_HTML_SHOW_CART_COUNTDOWN&F_HTML_CART_COUNTDOWN_REMAINING>=0,'<!-- comment: Only show cart if there is one')</field>
+      <div class="badge">
+       <span class="cart_countdown">
+        <field>int(F_HTML_CART_COUNTDOWN_REMAINING/60)</field>:00
+       </span>
+      </div>
+      <field>pick(F_HTML_SHOW_CART_COUNTDOWN&F_HTML_CART_COUNTDOWN_REMAINING>=0,'-->')</field>
+     </a>
+    </li>
+    <field>pick(F_LOGGED_IN=1,'<!-- comment: show when logged in','')</field>
+    <li>
+     <a href="<field>F_HTML_FIREWALL</field>online?btnLogout=Logout">
+      <i class="fa fa-unlock-alt">
+      </i>
+      Logout
+     </a>
+    </li>
+    <field>pick(F_LOGGED_IN=1,'-->','')</field>
+    <field>pick(F_LOGGED_IN=2,'<!-- comment: show when logged OUT','')</field>
+    <li>
+     <a href="<field>F_HTML_FIREWALL</field>login">
+      <i class="fa fa-lock">
+      </i>
+      Login
+     </a>
+    </li>
+    <field>pick(F_LOGGED_IN=2,'-->','')</field>
+    <!--#include virtual="TMtemplates/tmnavLanguages.html" -->
+   </ul>
+   <input name="param" type="hidden" value="<field>F_HTML_PARAMETER</field>"/>
+  </div>
+  <!--/.nav-collapse -->
+ </div>
+</div>
+<div class="container visible-xs" style="margin-bottom: 15px;">
+ <div style="margin: 0 15px 15px 15px;">
+  <a class="btn btn-primary btn-lg pull-right" href="tel:<field>D_SWITCH_BOARD</field>">
+   <i class="fa fa-phone">
+    Call
+   </i>
+  </a>
+ </div>
+</div>

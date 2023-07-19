@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Package Options
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      <field>PKG_TITLE</field>
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <field>pick(len(PKG_NOTES)>0,'<!-- comment: no notes')</field>
+      <div class="alert alert-info fade in">
+       <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+       <field>PKG_NOTES</field>
+      </div>
+      <field>pick(len(PKG_NOTES)>0,'-->')</field>
+     </div>
+     <div class="col-md-8">
+      <form action="<field>F_HTML_FIREWALL</field>online" method="post">
+       <input name="PKG_SEQ" type="hidden" value="<field>PKG_SEQ</field>"/>
+       <field>F_HTML_PACKAGE_ITEM_LIST</field>
+       <p>
+        &nbsp;
+       </p>
+       <input class="btn btn-success" id="btnSelectPackage" name="btnSelectPackage" onclick="process()" type="submit" value="Add to Cart"/>
+       <field>pick(F_LOGGED_IN=1,'<!-- comment: trick. if not logged on, home doesnt show','')</field>
+       <input class="btn btn-warning" name="btnHome" type="submit" value="Cancel Buying Tickets"/>
+       <field>pick(F_LOGGED_IN=1,'-->','')</field>
+	 		      <field>pick(F_LOGGED_IN=2,'<!-- comment: and if not logged on, show logout button','')</field>
+       <input class="btn btn-danger" id="btnLogout" name="btnLogout" type="submit" value="Logout and Empty Shopping Cart"/>
+       <field>pick(F_LOGGED_IN=2,'-->','')</field>
+       <p>
+        &nbsp;
+       </p>
+       <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+      </form>
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

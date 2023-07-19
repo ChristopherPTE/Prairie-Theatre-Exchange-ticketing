@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | <field>D_EVENT</field>/<field>D_COURSE_DESC</field> Management
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+   <div class="page-header">
+    <h1>
+     <field>P_PLAY_TITLE</field>
+    </h1>
+    <h3>
+     <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+    </h3>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+     <!-- Nav tabs -->
+     <ul class="nav nav-pills nav-stacked">
+      <field>pick(F_HTML_ALLOW_ATTENDANCE_TAB, '<!-- comment: hide attendance')</field>
+      <li class="<field>pick(F_HTML_CURRENT_TAB='attendance','','active disabled')</field>">
+       <a aria-controls="attendance" href="<field>F_HTML_TAB_URL_BASE</field>tab=attendance">
+        Attendance
+       </a>
+      </li>
+      <field>pick(F_HTML_ALLOW_ATTENDANCE_TAB, '-->')</field> 
+      <field>pick(F_HTML_ALLOW_REVENUE_TAB, '<!-- comment: hide revenue')</field>
+      <li class="<field>pick(F_HTML_CURRENT_TAB='revenue','','active disabled')</field>">
+       <a aria-controls="revenue" href="<field>F_HTML_TAB_URL_BASE</field>tab=revenue">
+        Revenue
+       </a>
+      </li>
+      <field>pick(F_HTML_ALLOW_REVENUE_TAB, '-->')</field>
+     </ul>
+    </div>
+    <div class="col-md-8">
+     <div class="tab-content">
+      <field>pick(F_HTML_CURRENT_TAB='attendance', '<!-- comment: hide attendance')</field>
+      <!--#include virtual="TMtemplates/tabEventManagementAttendance.html" -->
+      <field>pick(F_HTML_CURRENT_TAB='attendance', '-->')</field> 
+        <field>pick(F_HTML_CURRENT_TAB='revenue', '<!-- comment: hide revenue')</field>
+      <!--#include virtual="TMtemplates/tabEventManagementRevenue.html" -->
+      <field>pick(F_HTML_CURRENT_TAB='revenue', '-->')</field>
+     </div>
+     <br/>
+     <div>
+      <a class="btn btn-info" href="<field>F_HTML_FIREWALL</field>online?manageevent">
+       Back to <field>D_EVENT</field>/<field>D_COURSE_DESC</field> Management
+      </a>
+     </div>
+   </div>
+   <!-- /#content -->
+    </div>
+    <!-- .container -->
+    <!--#include virtual="TMtemplates/tmFooter.html" -->
+   </div>
+  </div>
+  <!--#include virtual="tmScripts/addAttendanceModal.html"-->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

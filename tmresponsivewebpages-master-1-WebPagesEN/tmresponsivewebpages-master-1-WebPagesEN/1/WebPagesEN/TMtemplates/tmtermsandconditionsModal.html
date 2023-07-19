@@ -1,0 +1,38 @@
+<field>pick(D_REQD_ACKNOWLEDGE_CRITERIA,'<!-- comment:')</field>
+<div aria-labelledby="AccountModalDialog" class="modal fade" id="termsConditions" role="dialog" tabindex="-1">
+ <div class="modal-dialog" role="document">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+     <span aria-hidden="true">
+      &times;
+     </span>
+    </button>
+    <h3 class="modal-title modal-info">
+     Terms and Conditions
+    </h3>
+    <div class="modal-body">
+     <!-- comment: you may wish to edit SpecialAnnounements and put COVID 19 policies in it -->
+     <!--#include virtual="TMtemplates/tmtermsandconditionsSpecialAnnouncements.html" -->
+     <!--#include virtual="TMtemplates/tmtermsandconditionsEsignature.html" -->
+     <!--#include virtual="TMtemplates/tmtermsandconditionsAccessibleSeating.html" -->
+     <!--#include virtual="TMtemplates/tmtermsandconditionsScalping.html" -->
+     <!--#include virtual="TMtemplates/tmtermsandconditionsOtherPolicies.html" -->
+     <!-- comment: Option 2: Markdown/HTML from TM Desktop.  Less control, but easier for non-technical users -->
+     <field>pick(len(D_WEB_TERMS_AND_CONDITIONS)>0,'<!-- comment: hide terms and conditions')</field>
+        <div class="alert alert-danger fade in">
+            <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+            <field>D_WEB_TERMS_AND_CONDITIONS</field>
+        </div>
+     <field>pick(len(D_WEB_TERMS_AND_CONDITIONS)>0,'-->')</field>
+    </div>
+    <div class="modal-footer">
+     <button class="btn btn-info" data-dismiss="modal" type="button">
+      Close
+     </button>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<field>pick(D_REQD_ACKNOWLEDGE_CRITERIA,'-->')</field>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+<meta charset="utf-8" />
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <title>
+   <field>D_COMPANY_LONG</field> | Subscription Package Selection
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div class="page-header">
+    <h1>
+     New Subscription
+     <span class="text-muted">
+      <field>SG_DESCRIPTION</field>
+     </span>
+    </h1>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+     <!--#include virtual="tmMaps/tmChangeSubscriptionDate.html" -->
+    </div>
+    <div class="col-md-8">
+    <div class="well well-sm">
+     <form action="<field>F_HTML_FIREWALL</field>online" method="POST" role="form">
+      <input id="SG_SEQ" name="SG_SEQ" type="hidden" value="<field>SG_SEQ</field>"/>
+      <input id="PB_SERIES_CODE" name="PB_SERIES_CODE" type="hidden" value="<field>PB_SERIES_CODE</field>"/>
+      <input name="hiddenSubmit" type="hidden" value=""/>
+      <div class="form-group">
+       <label for="section">
+        <h4>
+         <img alt="Step 1" src="tmGifs/step1.gif" width="24"/>
+         Where would you like to sit?
+        </h4>
+       </label>
+       <br/>
+       <!-- comment: should have class="form-control" in select -->
+       <div class="form-inline">
+        <field>F_HTML_BEST_AREA_SEARCH_LIST</field>
+        <field>F_HTML_BEST_PRICE_CODE_SEARCH_LIST</field>
+        <p class="help-block">
+         Select the section you wish to sit in.
+        </p>
+       </div>
+      </div>
+      <div class="form-group">
+       <label for="PS_QUANTITY">
+        <h4>
+         <img alt="Step 2" src="tmGifs/step2.gif" width="24"/>
+         How many subscription tickets do you want?
+        </h4>
+       </label>
+       <br/>
+       <div class="form-inline">
+        <select class="form-control" id="PS_QUANTITY" name="PS_QUANTITY" size="1">
+         <field>F_HTML_TICKET_QTY_LIST</field>
+        </select>
+       </div>
+      </div>
+      <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+      <input class="btn btn-success" name="btnSubscriptionBestAvail" onclick="process()" type="submit" value="Suggest Some Subscription Seats"/>
+      <a class="btn btn-danger" href="<field>F_HTML_FIREWALL</field>login?subscription=0">
+       <i class="fa fa-ticket">
+       </i>
+       Cancel & Start Over
+      </a>
+     </form>
+     </div>
+     <!-- comment: display the map of the venue -->
+	 <div>
+	  <img alt="seat map" class="img-thumbnail visible-lg visible-md" src="<field>F_HTML_SEATMAP</field>&selected_only=no&img_quality=75&format=pick"/>
+	  <img alt="seat map" class="img-thumbnail visible-sm visible-xs" src="<field>F_HTML_SEATMAP</field>&selected_only=no&img_quality=75&format=pick" style="width: 175px;"/>
+     </div>
+    </div>
+    <!-- comment .col-md-8 -->
+   </div>
+   <!-- comment .row -->
+  </div>
+  <!-- comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

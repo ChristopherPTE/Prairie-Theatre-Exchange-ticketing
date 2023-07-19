@@ -1,0 +1,16 @@
+  <!-- comment: This shows the patron selection list so that you can pick from one or add another one.
+				  comment out this section if you do not want household patrons 
+				  -->
+  <label for="household-member-select">
+   <h4>
+    Household Member
+   </h4>
+  </label>
+  <form action="<field>F_HTML_FIREWALL</field>online" id="TMForm" method="POST">
+   <div class="form-group">
+    <select id="household-member-select" class="form-control" name="C_SEQ" onchange="submitForm('TMForm','btnAccount','YES');" size="10">
+     <field>F_HTML_HOUSEHOLD_PATRON_LIST</field>
+    </select>
+   </div>
+   <input name="hiddenSubmit" type="hidden" value=""/>
+  </form>

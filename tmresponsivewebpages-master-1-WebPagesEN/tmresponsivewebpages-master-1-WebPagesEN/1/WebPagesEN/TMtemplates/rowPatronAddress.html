@@ -1,0 +1,65 @@
+<div class="well well-sm">
+ <h4>
+  <field>F_HTML_ADDRESS_LOCATION</field> Address
+  <small>
+  <field>pick(F_HTML_IS_PRIMARY,'<!-- comment: indicate it is primary address')</field>
+  <span class="label label-primary">primary</span>
+  <field>pick(F_HTML_IS_PRIMARY,'-->')</field>
+  <field>pick(F_HTML_IS_NEW,'<!-- comment: indicate it is a new address')</field>
+    <span class="label label-success">new</span>
+  <field>pick(F_HTML_IS_NEW,'-->')</field>
+  </small>
+ </h4>
+ <div class="form-group">
+  <input name="AD_SEQ_<field>F_HTML_ROW</field>" type="hidden" value="<field>AD_SEQ</field>"/>
+  <input name="ACL_LOCATION_FC_SEQ_<field>F_HTML_ROW</field>" type="hidden" value="<field>ACL_LOCATION_FC_SEQ</field>"/>
+  <label for="AD_NICK_NAME_<field>F_HTML_ROW</field>">
+   Nickname
+  </label>
+  <input class="form-control" id="AD_NICK_NAME_<field>F_HTML_ROW</field>" maxlength="50" name="AD_NICK_NAME_<field>F_HTML_ROW</field>" placeholder="eg home, work, cottage, billing, shipping, etc" type="text" value="<field>AD_NICK_NAME</field>"/>
+  </div>
+  <div class="form-group">
+  <label for="AD_ADDRESS1_<field>F_HTML_ROW</field>">
+   Address Line 1
+  </label>
+  <input class="form-control" id="AD_ADDRESS1_<field>F_HTML_ROW</field>" maxlength="50" name="AD_ADDRESS1_<field>F_HTML_ROW</field>" placeholder="address <field>F_HTML_REQUIRE_ADDRESS</field>" type="text" value="<field>AD_ADDRESS1</field>"/>
+ </div>
+ <div class="form-group">
+  <label for="AD_ADDRESS2_<field>F_HTML_ROW</field>">
+   Address Line 2
+  </label>
+  <input class="form-control" id="AD_ADDRESS2_<field>F_HTML_ROW</field>" maxlength="50" name="AD_ADDRESS2_<field>F_HTML_ROW</field>" type="text" value="<field>AD_ADDRESS2</field>"/>
+ </div>
+ <div class="form-group">
+  <label for="AD_CITY_<field>F_HTML_ROW</field>">
+   City
+  </label>
+  <input class="form-control" id="AD_CITY_<field>F_HTML_ROW</field>" maxlength="50" name="AD_CITY_<field>F_HTML_ROW</field>" placeholder="city <field>F_HTML_REQUIRE_CITY</field>" type="text" value="<field>AD_CITY</field>"/>
+ </div>
+ <div class="form-group">
+  <label for="AD_PROVINCE_<field>F_HTML_ROW</field>">
+   Province/State
+  </label>
+  <select class="form-control" id="AD_PROVINCE_<field>F_HTML_ROW</field>" name="AD_PROVINCE_<field>F_HTML_ROW</field>" size="1">
+   <field>F_HTML_PROVINCE_LIST</field>
+  </select>
+ </div>
+ <div class="form-group">
+  <label for="AD_POSTAL_CODE_<field>F_HTML_ROW</field>">
+   Postal/Zip Code
+  </label>
+  <input class="form-control" id="AD_POSTAL_CODE_<field>F_HTML_ROW</field>" maxlength="50" name="AD_POSTAL_CODE_<field>F_HTML_ROW</field>" placeholder="postal/zip code <field>F_HTML_REQUIRE_POSTAL_CODE</field>" type="text" value="<field>AD_POSTAL_CODE</field>"/>
+ </div>
+ <div class="form-group">
+  <label for="AD_COUNTRY_<field>F_HTML_ROW</field>">
+   Country
+  </label>
+  <select class="form-control" id="AD_COUNTRY_<field>F_HTML_ROW</field>" name="AD_COUNTRY_<field>F_HTML_ROW</field>" size="1">
+   <field>F_HTML_COUNTRY_LIST</field>
+  </select>
+  <span class="help-text">
+   <field>F_HTML_REQUIRE_COUNTRY</field>
+  </span>
+ </div>
+</div>
+<!-- comment: end of well -->

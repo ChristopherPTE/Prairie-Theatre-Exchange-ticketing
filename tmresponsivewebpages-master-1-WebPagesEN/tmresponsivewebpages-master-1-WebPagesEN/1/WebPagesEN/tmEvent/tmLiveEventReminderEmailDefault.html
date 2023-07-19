@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | <field>P_PLAY_TITLE</field> Starts Soon!
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="jumbotron text-center">
+     <h1>
+      Starting soon!
+     </h1>
+     <p>
+     </p>
+     <div class="img-thumbnail">
+      <field>pick(PP_SEQ>0,'<!-- comment: use picture if avail')</field>
+      <img alt="poster for event" class="img-responsive" src="<field>F_HTML_FIREWALL</field>picture?id=<field>PP_SEQ</field><field>F_HTML_IMAGE_READ_MARKER</field>"/>
+      <field>pick(PP_SEQ>0,' -->')</field>
+          <field>pick(PP_SEQ=0,'<!-- comment: no picture, use TT icon instead')</field>
+      <img alt="poster for event" class="img-responsive" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field><field>F_HTML_IMAGE_READ_MARKER</field>"/>
+      <field>pick(PP_SEQ=0,' -->')</field>
+     </div>
+     <p class="lead">
+      <field>pick(F_HTML_IS_TODAY, '<!-- comment:')</field>
+          Just a small reminder to let you know that
+      <strong>
+       <field>P_PLAY_TITLE</field>
+      </strong>
+      <br/>
+      starts
+      <strong>
+       today
+      </strong>
+      at
+      <strong>
+       <field>tim(PB_PERFORM_TIME,'h:N A')</field>
+       <field>F_HTML_TZ_SHORT_NAME</field>
+      </strong>
+      <field>pick(F_HTML_IS_TODAY, '-->')</field>
+        <field>pick(not(F_HTML_IS_TODAY), '<!-- comment:')</field>
+          Just a small reminder to let you know that
+      <strong>
+       <field>P_PLAY_TITLE</field>
+      </strong>
+      <br/>
+      starts on
+      <strong>
+       <field>dat(PB_PERFORM_DATE, 'w D n, y')</field>
+      </strong>
+      at
+      <strong>
+       <field>tim(PB_PERFORM_TIME,'h:N A')</field>
+       <field>F_HTML_TZ_SHORT_NAME</field>
+      </strong>
+      <field>pick(not(F_HTML_IS_TODAY), '-->')</field>
+     </p>
+     <field>pick(PB_WEB_LIVE_ENABLE>0,'<!--comment: show watch button for video')</field>
+     <p>
+      <a class="btn btn-lg btn-info" href="<field>F_HTML_FIREWALL</field>online?liveperformance=<field>PB_SEQ</field>" role="button">
+       <i aria-hidden="true" class="glyphicon glyphicon-film">
+       </i>
+       Watch Now
+      </a>
+     </p>
+     <field>pick(PB_WEB_LIVE_ENABLE>0,'-->')</field>
+     <field>pick(F_HTML_REMINDER_TICKET_LIST, '<!-- comment:')</field>
+        <hr/>
+        <field>F_HTML_REMINDER_TICKET_LIST</field>
+     <field>pick(F_HTML_REMINDER_TICKET_LIST, '-->')</field>
+    </div>
+    <div class="col-xs-offset-4 col-xs-8 col-sm-offset-3 col-sm-9">
+     <!--#include virtual="TMtemplates/tmContactHours.html" -->
+    </div>
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmMarkEmailRead.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

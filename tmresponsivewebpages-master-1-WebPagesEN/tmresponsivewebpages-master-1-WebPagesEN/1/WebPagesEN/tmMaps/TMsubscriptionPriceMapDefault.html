@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Subscription Seating Selection
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="page-header">
+     <h1>
+      Subscription Seat Selection
+      <br/>
+      <span class="small text-muted">
+       <field>SG_DESCRIPTION</field> <field>PB_SERIES_CODE</field>
+      </span>
+     </h1>
+    </div>
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+      <!--#include virtual="tmMaps/tmChangeSubscriptionSeatingNote.html" -->
+      <!--#include virtual="tmMaps/tmNewSubscriptionOptionalEventNote.html" -->
+     </div>
+     <div class="col-md-8">
+      <form action="<field>F_HTML_FIREWALL</field>online" method="POST">
+       <!--#include virtual="tmTemplates/rowSubRenewOptionalEventList.html" -->
+       <div class="panel panel-info">
+        <div class="panel-heading">
+         <b>
+          Current Seats for Subscription
+         </b>
+        </div>
+        <div class="panel-body panel-default">
+         <input id="SG_SEQ" name="SG_SEQ" type="hidden" value="<field>SG_SEQ</field>"/>
+         <!-- comment: Subscription Package -->
+         <input id="PB_SERIES_CODE" name="PB_SERIES_CODE" type="hidden" value="<field>PB_SERIES_CODE</field>"/>
+         <!-- comment: Performance Series Code -->
+         <input id="F_HTML_NEXT_BEST_SEAT" name="F_HTML_NEXT_BEST_SEAT" type="hidden" value="<field>F_HTML_NEXT_BEST_SEAT</field>"/>
+         <input id="F_HTML_NEXT_BEST_AREA" name="F_HTML_NEXT_BEST_AREA" type="hidden" value="<field>F_HTML_NEXT_BEST_AREA</field>"/>
+         <input id="F_HTML_BEST_PRICE_CODE" name="F_HTML_BEST_PRICE_CODE" type="hidden" value="<field>F_HTML_BEST_PRICE_CODE</field>"/>
+         <input id="F_HTML_NEXT_BEST_PASS_NUMBER" name="F_HTML_NEXT_BEST_PASS_NUMBER" type="hidden" value="<field>F_HTML_NEXT_BEST_PASS_NUMBER</field>"/>
+         <input id="F_HTML_NEXT_BEST_TWO_PASS_OK" name="F_HTML_NEXT_BEST_TWO_PASS_OK" type="hidden" value="<field>F_HTML_NEXT_BEST_TWO_PASS_OK</field>"/>
+         <input id="F_HTML_NEXT_BEST_SEAT_PRIORITY" name="F_HTML_NEXT_BEST_SEAT_PRIORITY" type="hidden" value="<field>F_HTML_NEXT_BEST_SEAT_PRIORITY</field>"/>
+         <input id="F_HTML_NEXT_BEST_SEAT_PRIORITY_SEARCH_TYPE" name="F_HTML_NEXT_BEST_SEAT_PRIORITY_SEARCH_TYPE" type="hidden" value="<field>F_HTML_NEXT_BEST_SEAT_PRIORITY_SEARCH_TYPE</field>"/>
+         <table class="table table-striped table-condensed table-responsive table-hover">
+          <thead>
+           <tr>
+            <th class="text-left">
+             <field>D_SECTION_DESC</field>
+            </th>
+            <th class="text-left">
+             <field>D_ROW_DESC</field>
+            </th>
+            <th class="text-left">
+             <field>D_SEAT_DESC</field>
+            </th>
+            <th class="text-left">
+             Seat Notes
+            </th>
+            <th class="text-left">
+             Price Selection
+            </th>
+           </tr>
+          </thead>
+          <tbody>
+           <field>F_HTML_BEST_SEATS_LIST</field>
+          </tbody>
+         </table>
+        </div>
+       </div>
+       <!--#include virtual="tmMaps/tmViewFromSeat.html" -->
+       <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+       <input class="btn btn-success" name="btnSubscriptionNewReserve" onclick="process()" type="submit" value="Add Subscription to Shopping Cart"/>
+       <field>pick(PB_SALES_METHOD=2,'<!-- comment:')</field>
+       <input class="btn btn-info" name="btnSubscriptionBestAvail" onclick="process()" type="submit" value="Suggest Other Seats"/>
+       <field>pick(PB_SALES_METHOD=2,'-->')</field>
+       <a class="btn btn-danger" href="<field>F_HTML_FIREWALL</field>login?subscription=0">
+        <i class="fa fa-ticket">
+        </i>
+        Cancel & Start Over
+       </a>
+       <br/>
+       <br/>
+      </form>
+      <!-- comment:
+	selected_only = if true, the image returned is a blown up version around the selected seats (can be yes,y,no,n,1 or 0)
+	selected_border = specifies the extra space around the selected seats in points (72 = 1 inch).
+	selected_color = specifies the fill color of the selected seats as a RGB hex string, i.e. FF0000 means bright red
+	format=svg (pick your own seats and interactive) png or jpg
+-->
+      <img alt="Seat map with selected seats" class="img-responsive" src="<field>F_HTML_SEATMAP</field>&reserved_colour=007700&reserved_boundary=true&reserved_seat_border=5&format=svg"/>
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

@@ -1,0 +1,11 @@
+<field>pick(F_HTML_SHOW_GIFT_SELECTION,'<!-- comment: trick. If only one patron in the household then do not show the selection list','')</field>
+  <p>
+   Attendee: 
+   <field>C_FIRST_NAME</field>
+   <field>C_LAST_NAME</field>
+   <field>pick(len(C_BIRTHDAY)>0,'<!-- comment: no birthday, dont show','')</field>
+    Birthday: 
+    <field>dat(C_BIRTHDAY,'n d, y')</field>
+   <field>pick(len(C_BIRTHDAY)>0,'-->','')</field>
+  </p>
+<field>pick(F_HTML_SHOW_GIFT_SELECTION,'-->','')</field>

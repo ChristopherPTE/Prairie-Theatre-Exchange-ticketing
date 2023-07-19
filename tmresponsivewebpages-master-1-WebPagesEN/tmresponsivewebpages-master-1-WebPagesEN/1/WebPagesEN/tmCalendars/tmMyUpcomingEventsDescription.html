@@ -1,0 +1,48 @@
+<h5>
+ <field>F_HTML_PURCHASED_TICKET_COUNT</field> <field>tEditCheck.$setPlural('ticket', F_HTML_PURCHASED_TICKET_COUNT)</field> purchased
+</h5>
+<p>
+</p>
+<div aria-label="Account Button Group" class="btn-group btn-group-sm" role="group">
+ <field>pick(F_HTML_PERFORMANCE_PRINT_LINK,'<!-- comment: show print link')</field>
+ <a class="btn btn-primary" href="<field>F_HTML_PERFORMANCE_PRINT_LINK</field>">
+  Print Tickets
+ </a>
+ <field>pick(F_HTML_PERFORMANCE_PRINT_LINK,'-->')</field>
+ <a class="btn btn-primary" href="<field>F_HTML_PERFORMANCE_ACCOUNT_LINK</field>">
+  Account
+ </a>
+</div>
+<p>
+ <a class="btn btn-success btn-sm" href="<field>F_HTML_PERFORMANCE_BUY_LINK</field>">
+  Buy Tickets
+ </a>
+</p>
+<p>
+ <field>pick(D_SWITCH_BOARD,'<!-- comment: show phone number')</field>
+ <label>
+  Phone:
+ </label>
+ <a href="tel://<field>D_SWITCH_BOARD</field>">
+  <field>D_SWITCH_BOARD</field>
+ </a>
+ <field>pick(D_SWITCH_BOARD,'-->')</field>
+ <br/>
+ <field>pick(D_EMAIL_ADDR,'<!-- comment: show email')</field>
+ <label>
+  Email:
+ </label>
+ <a href="mailto:<field>D_EMAIL_ADDR</field>">
+  <field>D_EMAIL_ADDR</field>
+ </a>
+ <field>pick(D_EMAIL_ADDR,'-->')</field>
+</p>
+<field>pick(F_HTML_EVENT_NOTES_TEXT,'<!-- comment: show event notes')</field>
+<p>
+ <label>
+  Description:
+ </label>
+ <br/>
+ <field>tStringFields.$truncate(F_HTML_EVENT_NOTES_TEXT, 200)</field>
+</p>
+<field>pick(F_HTML_EVENT_NOTES_TEXT,'-->')</field>

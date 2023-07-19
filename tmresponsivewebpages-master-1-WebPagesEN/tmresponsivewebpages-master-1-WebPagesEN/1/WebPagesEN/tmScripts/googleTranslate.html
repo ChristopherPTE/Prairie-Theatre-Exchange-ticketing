@@ -1,0 +1,15 @@
+  <!-- comment: enable this in tmNavLanguages.html if you want rough translation for many languages. you might have
+  to play with some css to get it pretty.   Might also be useful on footer.
+-->
+  <field>pick(len(D_GOOGLE_ACCOUNT)>0,'<!-- comment: no google account provided')</field>
+  <div id="google_translate_element">
+  </div>
+  <script type="text/javascript">
+   function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: '<field>D_GOOGLE_ACCOUNT</field>'}, 'google_translate_element');
+}
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript">
+  </script>
+  <field>pick(len(D_GOOGLE_ACCOUNT)>0,'-->')</field>
+  

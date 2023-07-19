@@ -1,0 +1,170 @@
+  <script>
+   $(function() {  
+    // Helper for reading arguments
+    function readArg(name, defaultValue){
+	  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+
+	  if (!!results && !!results[1]) {
+	  	return decodeURIComponent(results[1]);
+	  } else {
+	    return defaultValue;
+	  }
+    }
+
+    function parse_query_string(query) {
+	  var vars = query.split("&");
+	  var query_string = {};
+	  for (var i = 0; i < vars.length; i++) {
+		var pair = vars[i].split("=");
+		var key = decodeURIComponent(pair[0]);
+		var value = decodeURIComponent(pair[1]);
+		if (!!key && !!value) {
+			// If first entry with this name
+			if (typeof query_string[key] === "undefined") {
+			  query_string[key] = decodeURIComponent(value);
+			  // If second entry with this name
+			} else if (typeof query_string[key] === "string") {
+			  var arr = [query_string[key], decodeURIComponent(value)];
+			  query_string[key] = arr;
+			  // If third or later entry with this name
+			} else {
+			  query_string[key].push(decodeURIComponent(value));
+			}
+		}
+	  }
+	  return query_string;
+	}
+
+	function create_query_string(obj) {
+	  var str = [];
+	  for (var p in obj)
+		if (obj.hasOwnProperty(p)) {
+		  str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+		}
+	  return str.join("&");
+	} 
+
+	// Load additional arguments that have been echoed from the server
+	var args = parse_query_string('<field>F_HTML_CALENDAR_ARGS</field>');
+
+    var calendarUrl = '<field>F_HTML_CALENDAR_URL</field>';
+    var argView = readArg('view', 'month');
+    var argStart = readArg('start', undefined);
+
+    var viewTranslation = {
+      month: 'month', 
+      week: 'agendaWeek', 
+      list: 'listMonth'
+    };
+    var fullCalTranslation = {
+      month: 'month', 
+      agendaWeek: 'week', 
+      listMonth: 'list'
+    };
+    var selectedView = viewTranslation[argView];
+    if (!selectedView) {
+      selectedView = 'month';
+    }
+
+    // Initialize last view and last start, for better control of history back/forward
+    var lastView = selectedView;
+    var lastStart = argStart;
+
+    if (!!$('#calendar').fullCalendar) {    
+		$('#calendar').fullCalendar({
+		  locale: '<field>F_HTML_LOCALE</field>',
+		  defaultView: selectedView,
+		  defaultDate: argStart,
+		  // Use responsive bootstrap 3 buttons
+		  themeSystem: 'bootstrap3',
+		  // Dynamically select height to ensure a responsive view
+		  height: $(window).height() * 0.70,
+		  contentHeight: "auto",
+		  // Navigation permitted
+		  header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,listMonth'
+		  },
+		  // Allow "more" link when too many events
+		  eventLimit: true, 
+		  // Load events using AJAX, which dynamically filters by date range
+		  events: '<field>F_HTML_CALENDAR_DATA_URL</field>',
+		  // Render a popover when clicking on event
+		  eventRender: function(event, element) {
+			element.popover({
+				animation: true,
+				html: true,
+				title: event.title,
+				content: event.description,
+				container: '#calendar',
+				placement: function (context, source) {
+					var offset = $('#calendar').offset();
+					var height = $('#calendar').height();
+					var elemOffset = $(source).offset();
+					if (elemOffset.top - offset.top < 150) {
+					  return 'bottom';
+					}  
+					return "top";
+				}
+			});
+		  },
+		  // Ensure that the popover goes away when navigating to different months
+		  eventDestroy: function(event, element) {
+			element.popover('hide');
+		  },
+		  viewRender: function( view, element ) {
+			var newPath;
+			if (Object.keys(args).length > 0) {
+			  newPath = calendarUrl + "?" + create_query_string(args) + "&view=" + fullCalTranslation[view.name] + "&start=" + view.intervalStart.format();
+			} else {
+			  newPath = calendarUrl + "?" + "view=" + fullCalTranslation[view.name] + "&start=" + view.intervalStart.format();
+			}
+
+			var nextView = fullCalTranslation[view.name]
+			var nextStart = view.intervalStart.format()
+			if (nextView != lastView || nextStart != lastStart) {
+			  lastView = nextView;
+			  lastStart = nextStart;
+			  window.history.pushState({"view": nextView, "start": nextStart}, null, newPath);
+			}  
+		  }
+		});
+
+		// Helper for responding to popping of pushed state (back/forward in JS events)
+		window.onpopstate = function(event) {
+			if (!event.state || !event.state.view) {
+			  return;
+			}
+
+			var newView = event.state;
+			if (!!newView) {
+			  var nextView = viewTranslation[newView.view]
+			  var nextStart = newView.start
+			  lastView = nextView;
+			  lastStart = nextStart;
+			  $('#calendar').fullCalendar('changeView', nextView, nextStart); 
+			}
+		};
+
+		// Helper for resizing
+		$(window).resize(function() {
+		  var calHeight = $(window).height() * 0.75;
+		  $('#calendar').fullCalendar('option', 'height', calHeight);
+		});
+	} else {
+	  $('#calendar').html('<div class="alert alert-danger" role="alert"><span class="text-center">Unable to load calendar</span></div>');
+	};
+
+	<!-- Dismiss popover on other click: https://stackoverflow.com/a/14857326/589362 -->
+	$(document).on('click', function (e) {
+      $('[data-toggle="popover"],[data-original-title]').each(function () {
+        //the 'is' for buttons that trigger popups
+        //the 'has' for icons within a button that triggers a popup
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {                
+            (($(this).popover('hide').data('bs.popover')||{}).inState||{}).click = false  // fix for BS 3.3.6
+        }
+      });
+    });
+  });
+  </script>

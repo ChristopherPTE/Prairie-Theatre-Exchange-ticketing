@@ -1,0 +1,37 @@
+<div>
+ <field>pick(M_PASS_METHOD=1&M_REMAIN_PASS_AMOUNT>0,'<!-- comment: Dollar Value','')</field>
+ <field>jst(M_REMAIN_PASS_AMOUNT,'$N2')</field> remains on this
+ <a class="link" href="<field>F_HTML_FIREWALL</field>tmPass/tmPass<field>M_MT_SEQ</field>.html" onclick="return popup(this, 'notes')">
+  <field>MT_DESCRIPTION_EXTERNAL</field>.
+ </a>
+ <field>pick(M_PASS_METHOD=1&M_REMAIN_PASS_AMOUNT>0,'-->','')</field>
+
+ <field>pick(M_REMAIN_PASS_QTY>0,'<!-- comment: Quantity remaining','')</field>
+ <field>M_REMAIN_PASS_QTY</field> admissions remain on this
+ <a class="link" href="<field>F_HTML_FIREWALL</field>tmPass/tmPass<field>M_MT_SEQ</field>.html" onclick="return popup(this, 'notes')">
+  <field>MT_DESCRIPTION_EXTERNAL</field>.
+ </a>
+ <field>pick(M_REMAIN_PASS_QTY>0,'-->','')</field>
+
+ <field>pick(M_PASS_METHOD=4,'<!-- comment: Free Admission','')</field>
+ <a class="link" href="<field>F_HTML_FIREWALL</field>tmPass/tmPass<field>M_MT_SEQ</field>.html" onclick="return popup(this, 'notes')">
+  <field>MT_DESCRIPTION_EXTERNAL</field>
+ </a>
+ is valid and can be used to provide reduced pricing.
+ <field>pick(M_PASS_METHOD=4,'-->','')</field>
+
+ <field>pick(M_REMAIN_PASS_AMOUNT=0&M_REMAIN_PASS_QTY=0&M_PASS_METHOD<>4,'<!-- comment: No quantity, no value','')</field>
+ <a class="link" href="<field>F_HTML_FIREWALL</field>tmPass/tmPass<field>M_MT_SEQ</field>.html" onclick="return popup(this, 'notes')">
+  <field>MT_DESCRIPTION_EXTERNAL</field>
+ </a>
+ has been fully redeemed.
+ <field>pick(M_REMAIN_PASS_AMOUNT=0&M_REMAIN_PASS_QTY=0&M_PASS_METHOD<>4,'-->','')</field>
+
+ <field>pick(len(M_DATE_EXPIRY)>0,'<!-- comment: Expire date on pass','')</field>
+ This expires on <field>jst(M_DATE_EXPIRY,'D:n D, y')</field>.
+ <field>pick(len(M_DATE_EXPIRY)>0,'-->','')</field>
+
+ <field>pick(len(M_DATE_EXPIRY)=0,'<!-- comment: No expiration date on pass','')</field>
+ There is no expiration date and is valid until it has been fully redeemed.
+ <field>pick(len(M_DATE_EXPIRY)-0,'-->','')</field>
+</div>

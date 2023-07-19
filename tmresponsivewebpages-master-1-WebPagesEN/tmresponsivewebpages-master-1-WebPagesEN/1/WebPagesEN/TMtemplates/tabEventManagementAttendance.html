@@ -1,0 +1,43 @@
+<field>pick(F_HTML_CAN_ADD_PATRONS,'<!-- comment: Hide Add Attendee button')</field>
+<div class="pull-right">
+ <button class="btn btn-info" data-target="#AddAttendeeModal" data-toggle="modal">
+  <i class="glyphicon glyphicon-plus">
+  </i>
+  Add Attendee
+ </button>
+</div>
+<field>pick(F_HTML_CAN_ADD_PATRONS,'-->')</field>
+<table class="table table-striped table-condensed table-responsive table-hover">
+ <thead>
+  <tr>
+   <th class="text-left">
+    Name
+   </th>
+   <th class="text-left">
+    Company
+   </th>
+   <field>pick(F_HTML_CAN_VIEW_REVENUE,'<!-- comment: ')</field>
+   <th class="text-left">
+    Price Zone
+   </th>
+   <th class="text-left">
+    Promotion
+   </th>
+   <field>pick(F_HTML_CAN_VIEW_REVENUE,'-->')</field>
+   <th class="text-center">
+    Attend?
+   </th>
+   <field>pick(F_HTML_CAN_SET_ATTENDANCE,'<!-- comment: ')</field>
+   <th class="text-left">
+    Reason
+   </th>
+   <field>pick(F_HTML_CAN_SET_ATTENDANCE,'-->')</field>
+   <th class="text-left">
+    Paid?
+   </th>
+  </tr>
+ </thead>
+ <tbody>
+  <field>F_HTML_MANAGED_TICKET_LIST</field>
+ </tbody>
+</table>

@@ -1,0 +1,6 @@
+<field>pick(len(D_WEB_ANNOUNCEMENT_NOTE)>0,'<!-- comment: hide announcement')</field>
+<div class="alert alert-info fade in">
+    <!--#include virtual="${templatePath}/TMtemplates/tmMessageDismiss.html" -->
+    <field>D_WEB_ANNOUNCEMENT_NOTE</field>
+</div>
+<field>pick(len(D_WEB_ANNOUNCEMENT_NOTE)>0,'-->')</field>

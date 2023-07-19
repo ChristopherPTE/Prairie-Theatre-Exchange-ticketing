@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <!--#include virtual="tmLayout/tmFirstHead.html" -->
+  <title>
+   <field>D_COMPANY_LONG</field> | Description - <field>P_PLAY_TITLE</field>
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/cartCountdownFunctions.html" -->
+  <!--#include virtual="tmScripts/handlebarsFunctions.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmLayout/tmHeadScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastHead.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="tmLayout/tmFirstBody.html" -->
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="row">
+     <div class="col-sm-3">
+      <p>
+       <field>pick(PP_SEQ>0,'<!-- comment: use picture if avail')</field>
+       <img alt="poster for event" class="img-responsive" src="<field>F_HTML_FIREWALL</field>picture?id=<field>PP_SEQ</field>"/>
+       <field>pick(PP_SEQ>0,' -->')</field>
+        <field>pick(PP_SEQ=0,'<!-- comment: no picture, use TT icon instead')</field>
+       <img alt="poster for event" class="img-responsive" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>"/>
+       <field>pick(PP_SEQ=0,' -->')</field>
+      </p>
+      <h2>
+       <field>P_PLAY_TITLE</field>
+      </h2>
+      <small class="text-muted">
+       <!--#include virtual="TMtemplates/rowPerformanceDateTime.html" -->
+      </small>
+      <p>
+       <!-- comment:
+	     <div class="alert alert-info">
+         <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+         Some live notes!
+       </div>
+       -->
+      </p>
+     </div>
+     <div class="col-sm-9">
+      <div class="jumbotron">
+       <h2 class="text-center">
+        Starting Soon
+       </h2>
+       <hr/>
+       <!-- comment: Vertical Words -->
+       <div class="text-center countdown_template_3_render">
+       </div>
+       <div class="text-center countdown_template_1_render">
+       </div>
+       <!-- comment: Clock 
+        <div class='text-center countdown_template_2_render' />
+      -->
+       <!-- comment: Progress Bar
+        <div class='text-center countdown_template_3_render' />
+      -->
+      </div>
+     </div>
+     <!-- /#content -->
+    </div>
+    <!-- .container -->
+    <!-- comment:
+    daysNumber: Days left in countdown
+    hoursNumber: Hours left in countdown
+    minutesNumber: Minutes left in countdown
+    secondsNumber: Seconds left in countdown
+
+    daysWords: Days left in words
+    hoursWords: Hours left in words
+    minutesWords: Minutes left in words
+    secondsWords: Seconds left in words
+
+    hasDays: True if days is greater than 0
+    hasHours: True if days is greater than 0 or hours is greater than 0
+    hasMinutes: True if days is great than 0, hours is greater than 0, or minutes is greater than 0
+  -->
+    <rawfield>
+     <!-- Template 1: Interlaced HTML example -->
+     <script id="countdown-template-1" type="text/x-handlebars-template">
+      <p>
+        {{#if hasDays}}<span class="lead">{{ days }}</span> Days<br/>{{/if}}
+        {{#if hasHours}}<span class="lead">{{ hours }}</span> Hours<br/>{{/if}}
+        {{#if hasMinutes}}<span class="lead">{{ minutes }}</span> Minutes<br/>{{/if}}
+        <span class="lead">{{ seconds }}</span> Seconds
+      </p>
+     </script>
+     <!-- Template 2: Clock -->
+     <script id="countdown-template-2" type="text/x-handlebars-template">
+      <h3>{{#if hasDays}}{{ daysClock }}:{{/if}}{{#if hasHours}}{{ hoursClock }}:{{/if}}{{#if hasMinutes}}{{ minutesClock }}:{{/if}}{{ secondsClock }}</h3>
+     </script>
+     <!-- Template 3: Progress Bar -->
+     <script id="countdown-template-3" type="text/x-handlebars-template">
+      <div class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{ progressPercent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ progressPercent }}%;">
+          <span class="sr-only">60% Complete</span>
+        </div>
+      </div>
+     </script>
+    </rawfield>
+
+    <!--#include virtual="tmScripts/countdownTemplateFunctions.html" -->
+    <!--#include virtual="tmEvent/tmLiveEventPreShowCountdown.html" -->
+    <!--#include virtual="TMtemplates/tmFooter.html" -->
+   </div>
+  </div>
+  <!--#include virtual="tmLayout/tmBodyScripts.html" -->
+  <!--#include virtual="tmLayout/tmLastBody.html" -->
+ </body>
+</html>

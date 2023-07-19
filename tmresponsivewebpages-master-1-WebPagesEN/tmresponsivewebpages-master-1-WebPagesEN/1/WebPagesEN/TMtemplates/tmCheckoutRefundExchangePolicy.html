@@ -1,0 +1,13 @@
+<field>pick(SCH_TIX_QUANTITY+SCH_PASS_QUANTITY,'<!-- comment: if more than donations, show exchange policy')</field>
+<p>
+ &nbsp;
+</p>
+<b>
+ All ticket sales are final. No refunds or exchanges.
+</b>
+<!-- button trigger modal -->
+<button class="btn btn-link" data-target="#boxOfficePolicy" data-toggle="modal" type="button">
+ Box Office Policies
+</button>
+<!--#include virtual="tmFee/tmBoxOfficePolicyModal.html" -->
+<field>pick(SCH_TIX_QUANTITY+SCH_PASS_QUANTITY,'-->')</field>

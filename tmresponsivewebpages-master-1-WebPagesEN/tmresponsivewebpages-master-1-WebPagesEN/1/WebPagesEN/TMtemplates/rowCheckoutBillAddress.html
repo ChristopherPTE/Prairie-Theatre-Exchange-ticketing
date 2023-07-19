@@ -1,0 +1,21 @@
+<div class="radio">
+    <label>
+        <input type="radio" value="<field>F_HTML_ADDRESS_ID</field>" name="SCH_BILL_AD_SEQ" <field>pick(F_HTML_ADDRESS_ID=SCH_BILL_AD_SEQ,"","checked")</field>>
+        <strong>
+            <field>pick(len(AD_NICK_NAME)>0,'<!-- comment: hide empty nick name')</field>
+            "<field>AD_NICK_NAME</field>" - 
+            <field>pick(len(AD_NICK_NAME)>0,'-->')</field>
+            <field>F_HTML_ADDRESS_LOCATION</field>
+        </strong><br>
+        <field>pick(len(AD_ADDRESS1)>0,'<!-- comment: hide empty address')</field>
+        <field>AD_ADDRESS1</field><br>
+        <field>pick(len(AD_ADDRESS1)>0,'-->')</field>
+        <field>pick(len(AD_ADDRESS2)>0,'<!-- comment: hide empty address')</field>
+        <field>AD_ADDRESS2</field><br>
+        <field>pick(len(AD_ADDRESS2)>0,'-->')</field>
+        <field>AD_CITY</field>, <field>AD_PROVINCE</field><br>
+        <field>pick(len(AD_COUNTRY)>0,'<!-- comment: hide empty country')</field>
+        <field>AD_COUNTRY</field><br>
+        <field>pick(len(AD_COUNTRY)>0,'-->')</field>
+    </label>
+</div>

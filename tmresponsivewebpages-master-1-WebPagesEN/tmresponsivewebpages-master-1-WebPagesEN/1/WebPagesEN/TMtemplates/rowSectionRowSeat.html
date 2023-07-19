@@ -1,0 +1,15 @@
+<!-- comment: set the section row seat descriptions section of the cart display -->
+
+ <field>pick(PB_SALES_METHOD=2,'<!-- comment: this is for reserved admission tickets')</field>
+  <b>
+   <field>con(D_SECTION_DESC,': ',MS_SECTION,' ',D_ROW_DESC,': ',MS_ROW_NUMBER,' ',D_SEAT_DESC,': ',MS_SEAT_NUMBER)</field>
+  </b>
+ <field>pick(PB_SALES_METHOD=2,'-->')</field>
+ 
+ <field>pick(PB_SALES_METHOD=1,'<!-- comment: this is for general admission tickets')</field>
+  <field>D_FESTIVAL_DESC</field>
+ <field>pick(PB_SALES_METHOD=1,'-->')</field>
+ 
+ <field>pick(PB_SALES_METHOD=6,'<!-- comment:  this is for course registration')</field>
+  <field>D_COURSE_DESC</field>
+ <field>pick(PB_SALES_METHOD=6,'-->')</field>

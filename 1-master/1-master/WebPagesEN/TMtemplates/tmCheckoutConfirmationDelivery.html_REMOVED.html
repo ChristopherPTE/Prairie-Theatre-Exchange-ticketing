@@ -1,0 +1,36 @@
+<field>pick((SCH_TIX_QUANTITY+SCH_PASS_QUANTITY)>0&SCH_TIX_PRINT_STATUS=0,'<!-- comment:')</field>
+<div class="alert alert-success fade in">
+ <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+ <b>
+  Your e-tickets have been emailed to you.
+ </b>
+ If you wish, you may download a PDF containing your bar coded tickets now.
+ <br/>
+ <!--#include virtual="TMtemplates/tmCartTicketsPrintCart.html" -->
+</div>
+<field>pick((SCH_TIX_QUANTITY+SCH_PASS_QUANTITY)>0&SCH_TIX_PRINT_STATUS=0,'-->')</field>
+<div>
+ <div class="alert alert-warning fade in">
+  <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+  Print a receipt for your records.  It is not a ticket for admission.
+  <field>pick((SCH_TIX_QUANTITY+SCH_PASS_QUANTITY)>0&SCH_TIX_PRINT_STATUS=2,'<!-- comment:')</field>
+  <br/>
+<!-- comment: removed during Covid
+  Your tickets will be available to pick up at the box office 1 hour prior to performance time.
+-->
+<br/>
+  There will be a second email with viewing instructions sent within 48 hours. If you do not receive the followup email, please contact the PTE Box Office.
+     You will be unable to view the performance without the instructions.
+  <br/>
+  <field>pick((SCH_TIX_QUANTITY+SCH_PASS_QUANTITY)>0&SCH_TIX_PRINT_STATUS=2,'-->')</field>
+  <field>pick((SCH_TIX_QUANTITY+SCH_PASS_QUANTITY)>0&SCH_TIX_PRINT_STATUS=1,'<!-- comment:')</field>
+  <br/>
+  Your tickets should arrive via mail in 5 to 10 business days.
+  <br/>
+  <field>pick((SCH_TIX_QUANTITY+SCH_PASS_QUANTITY)>0&SCH_TIX_PRINT_STATUS=1,'-->')</field>
+  <br/>
+  <a action="<field>F_HTML_FIREWALL</field>online" class="btn btn-warning btn-sm" onclick="window.print()">
+   Print Receipt
+  </a>
+ </div>
+</div>

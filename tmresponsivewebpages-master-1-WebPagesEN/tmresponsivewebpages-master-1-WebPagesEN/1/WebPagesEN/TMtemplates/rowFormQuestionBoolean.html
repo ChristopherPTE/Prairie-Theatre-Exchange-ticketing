@@ -1,0 +1,22 @@
+<div class="form-group">
+ <!--#include virtual="TMtemplates/rowFormQuestionKey.html" -->
+ <label class="col-sm-4 text-right form-check-label" for="<field>con(FQ_SEQ,'-question-no')</field>">
+  <field>FQ_QUESTION</field>
+ </label>
+ <div class="col-sm-8">
+  <label class="radio-inline">
+   <input type="radio" class="form-check-input" name="FA_ANSWER_BOOL_<field>F_HTML_ROW</field>"
+    id="<field>con(FQ_SEQ,'-question-no')</field>" value="NO" <field>pick(FA_ANSWER_BOOL='YES','checked')</field>> No
+  </label>
+  <label class="radio-inline">
+   <input type="radio" class="form-check-input" name="FA_ANSWER_BOOL_<field>F_HTML_ROW</field>"
+    id="<field>con(FQ_SEQ,'-question-yes')</field>" value="YES" <field>pick(FA_ANSWER_BOOL='YES','','checked')</field>> Yes
+  </label>
+  <field>pick(len(FQ_DESCRIPTION)>0,'<!-- comment: show help if available')</field>
+   <p>
+    <small id="<field>con(FQ_SEQ,'-description')</field>" class="form-text text-muted"><field>FQ_DESCRIPTION</field></small>
+   </p>
+  <field>pick(len(FQ_DESCRIPTION)>0,'-->')
+  </field>
+ </div>
+</div>

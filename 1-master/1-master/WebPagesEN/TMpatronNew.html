@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <base href="<field>F_HTML_IMAGE_SERVER</field>"/>
+  <title>
+   <field>D_COMPANY_LONG</field> | New Account Window
+  </title>
+  <!--#include virtual="tmScripts/disclaimer.html" -->
+  <!--#include virtual="tmScripts/styles.html" -->
+  <!--#include virtual="tmScripts/buttonRollover.html" -->
+  <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+  <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+  <!--#include virtual="tmScripts/googleHeader.html" -->
+  <!--#include virtual="tmScripts/passwordScore.html" -->
+ </head>
+ <body class="background">
+  <!--#include virtual="TMtemplates/tmnavButtons.html" -->
+  <div class="container">
+   <div id="content">
+    <div class="row">
+     <div class="col-md-4">
+      <!--#include virtual="TMtemplates/tmErrorMessageInfo.html" -->
+     </div>
+     <div class="col-md-8">
+      <!-- comment: if use enters email that exists, then show the password request button -->
+      <field>pick(F_HTML_EMAIL_EXISTS=1,'<!-- comment: entered email exists')</field>
+      <a class="btn btn-primary" href="<field>F_HTML_FIREWALL</field>login?btnPasswordRequest=forgot">
+       Forgot My Password
+      </a>
+      <field>pick(F_HTML_EMAIL_EXISTS=1,'-->')</field>
+      <h4>
+       Account Information
+      </h4>
+      <form action="<field>F_HTML_FIREWALL</field>patronnew" method="POST" role="form">
+       <input name="param" type="hidden" value="<field>F_HTML_PARAMETER</field>"/>
+       <div class="well">
+        <field>F_HTML_EMAIL_LIST</field>
+       </div>
+       <div class="well">
+        <!--#include virtual="TMtemplates/tmPatronNameFields.html" -->
+       </div>
+       <field>F_HTML_ADDRESS_LIST</field>
+       <div class="well">
+        <field>F_HTML_CONTACT_LIST</field>
+       </div>
+       <!--#include virtual="TMtemplates/tmMarketingFields.html" -->
+       <h4>
+        How may We Contact You?
+       </h4>
+       <div class="well">
+        <!--#include virtual="TMtemplates/tmMailNotificationFields.html" -->
+       </div>
+       <div class="well">
+        <h4>
+         Email Notifications
+        </h4>
+        Visit
+        <a class="link" href="<field>F_HTML_FIREWALL</field>login?maillist=0">
+         My Email Notifications
+        </a>
+        at any time to fine tune how you wish to be informed of events and activities at
+         <field>D_COMPANY_LONG</field> that interest you. Any contact information provided will be held confidential per our
+        <a class="link" href="<field>F_HTML_FIREWALL</field>tmFee/tmPrivacyPolicy.html" onclick="return popup(this, 'notes')">
+         privacy policy.
+        </a>
+        <br/>
+        <br/>
+        <!--#include virtual="TMtemplates/tmNotificationHeader.html" -->
+       </div>
+
+  <!-- comment: START OF CUSTOM FOR CLASS INFO -->
+		<!--#include virtual="patronClassInfo.html" -->
+  <!-- comment: END OF CUSTOM FOR CLASS INFO -->        
+       
+       <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+       <input class="btn btn-success" name="btnAccountAdd" onclick="process()" type="submit" value="Create Account"/>
+       <input class="btn btn-danger" name="btnLogin" type="submit" value="Cancel Adding Account"/>
+      </form>
+     </div>
+     <!-- comment: .col-md-8 -->
+    </div>
+    <!-- comment: .row -->
+   </div>
+   <!-- comment: .content -->
+  </div>
+  <!--  comment: .container -->
+  <!--#include virtual="TMtemplates/tmFooter.html" -->
+ </body>
+</html>

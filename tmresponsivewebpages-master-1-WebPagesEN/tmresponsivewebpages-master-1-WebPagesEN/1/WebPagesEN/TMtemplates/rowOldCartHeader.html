@@ -1,0 +1,38 @@
+<tr>
+ <td>
+  <field>pick(F_HTML_CART_STATUS<>'active','<!-- comment:  Trick. Hide button')</field>
+  <a class="btn btn-info btn-xs" href="<field>F_HTML_FIREWALL</field>login?confirmation=<field>SCH_SEQ</field>">
+   Confirmation <field>SCH_SEQ</field>
+  </a>
+  <field>pick(F_HTML_CART_STATUS<>'active','-->')</field>
+  <field>pick(F_HTML_CART_STATUS='active','<!-- comment: Trick. Hide button')</field>
+  <a class="btn btn-success btn-xs" href="<field>F_HTML_FIREWALL</field>login?btnCart=Cart">
+   Current Cart
+  </a>
+  <field>pick(F_HTML_CART_STATUS='active','-->')</field>
+ </td>
+ <td>
+  <field>dat(SCH_DATE_ENTERED,'w m D y')</field>
+  <br/>
+  <field>dat(SCH_DATE_ENTERED,'@ h:N A')</field>
+ </td>
+ <td class="text-right">
+  <field>SCH_TIX_QUANTITY</field>
+ </td>
+ <td class="text-right">
+  <field>SCH_TOTAL_COST</field>
+ </td>
+ <td>
+  <field>pick(F_HTML_CART_STATUS='active','<!-- comment: Trick. Hide button')</field>
+  <a class="btn btn-success btn-xs" href="<field>F_HTML_FIREWALL</field>login?btnCheckout=Checkout">
+   Checkout Now
+  </a>
+  <field>pick(F_HTML_CART_STATUS='active','-->')</field>
+  <field>pick(len(SCH_ORD_NOTES)>0,'<!-- comment: no notes')</field>
+  <div class="alert alert-warning fade in">
+   <!--#include virtual="TMtemplates/tmMessageDismiss.html" -->
+   <field>SCH_ORD_NOTES</field>
+  </div>
+  <field>pick(len(SCH_ORD_NOTES)>0,'-->')</field>
+ </td>
+</tr>
